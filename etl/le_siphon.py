@@ -39,7 +39,11 @@ from tqdm import tqdm
 
 # ── Configuration ──────────────────────────────────────────────────────────────
 
-load_dotenv()
+# Résoudre le chemin du .env depuis la racine du projet (trajektia/)
+_HERE    = os.path.dirname(os.path.abspath(__file__))
+_ROOT    = os.path.dirname(_HERE)   # trajektia/
+_DOTENV  = os.path.join(_ROOT, ".env")
+load_dotenv(_DOTENV, override=True)  # override=True → priorité au .env sur les vars shell
 
 logging.basicConfig(
     level=logging.INFO,
