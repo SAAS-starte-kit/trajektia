@@ -1,0 +1,637 @@
+"""
+Le Siphon — ETL Neo4j → PostgreSQL (Supabase)
+==============================================
+Extrait toute l'intelligence du graphe Neo4j local et la charge
+dans le nouveau schéma PostgreSQL Trajektia sur Supabase.
+
+Architecture :
+    Neo4j local (source)
+        → Occupations         → TABLE occupations
+        → RIASEC/InterestProf → TABLE riasec_profiles
+        → Abilities/Styles/   → TABLE competencies
+          WorkValues/Skill       TABLE occupation_competencies
+        → Tasks               → TABLE tasks + occupation_tasks
+        → Tools               → TABLE tools + occupation_tools
+
+Usage :
+    cd trajektia/
+    pip install -r requirements.txt
+    python etl/le_siphon.py
+
+Variables d'environnement requises (.env) :
+    NEO4J_URI           bolt://localhost:7687
+    NEO4J_USER          neo4j
+    NEO4J_PASSWORD      ...
+    SUPABASE_DB_URL     postgresql://postgres:[password]@db.[ref].supabase.co:5432/postgres
+"""
+
+import os
+import sys
+import logging
+from datetime import datetime, timezone
+from typing import Optional
+
+import psycopg2
+import psycopg2.extras
+from neo4j import GraphDatabase
+from dotenv import load_dotenv
+from tqdm import tqdm
+
+# ── Configuration ──────────────────────────────────────────────────────────────
+
+load_dotenv()
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%H:%M:%S",
+)
+log = logging.getLogger("le_siphon")
+
+NEO4J_URI      = os.getenv("NEO4J_URI",  "bolt://localhost:7687")
+NEO4J_USER     = os.getenv("NEO4J_USER", "neo4j")
+NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
+SUPABASE_DB_URL = os.getenv("SUPABASE_DB_URL")
+
+SOURCE_TAG   = "O*NET 28.2"
+INGESTED_AT  = datetime.now(timezone.utc).isoformat()
+BATCH_SIZE   = 200
+
+if not NEO4J_PASSWORD:
+    log.error("NEO4J_PASSWORD manquant dans le .env")
+    sys.exit(1)
+if not SUPABASE_DB_URL:
+    log.error("SUPABASE_DB_URL manquant dans le .env — format: postgresql://postgres:[pwd]@db.[ref].supabase.co:5432/postgres")
+    sys.exit(1)
+
+
+# ── Connexions ─────────────────────────────────────────────────────────────────
+
+class LeSiphon:
+    def __init__(self):
+        log.info("Connexion Neo4j → %s", NEO4J_URI)
+        self.neo4j = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
+
+        log.info("Connexion PostgreSQL (Supabase)...")
+        self.pg = psycopg2.connect(SUPABASE_DB_URL)
+        self.pg.autocommit = False
+        psycopg2.extras.register_uuid()
+        log.info("Connexions établies.")
+
+    def close(self):
+        self.neo4j.close()
+        self.pg.close()
+
+    def _neo4j_fetch(self, query: str, params: dict = None):
+        with self.neo4j.session(database="neo4j") as session:
+            return list(session.run(query, params or {}))
+
+    # ── Utilitaires PG ────────────────────────────────────────────────────────
+
+    def _pg_execute_batch(self, sql: str, rows: list, cur):
+        """Execute batch upsert using execute_values for performance."""
+        if not rows:
+            return
+        psycopg2.extras.execute_values(cur, sql, rows, page_size=BATCH_SIZE)
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # PHASE 1 — OCCUPATIONS
+    # ══════════════════════════════════════════════════════════════════════════
+
+    def extract_occupations(self):
+        log.info("Extraction des Occupations depuis Neo4j...")
+        records = self._neo4j_fetch("""
+            MATCH (o:Occupation)
+            RETURN
+                o.code          AS cnp_code,
+                o.onet_soc_code AS onet_soc_code,
+                o.esco_uri      AS esco_uri,
+                o.title_fr      AS title_fr,
+                o.title_en      AS title_en,
+                o.description_fr AS description_fr,
+                o.description_en AS description_en,
+                o.median_salary  AS median_salary,
+                o.salary_source  AS salary_source,
+                o.taxonomy       AS taxonomy
+            ORDER BY o.code
+        """)
+        log.info("  %d occupations extraites.", len(records))
+        return records
+
+    def load_occupations(self, records):
+        log.info("Chargement des occupations dans PostgreSQL...")
+        sql = """
+            INSERT INTO occupations (
+                cnp_code, onet_soc_code, esco_uri,
+                title_fr, title_en, description_fr, description_en,
+                median_salary, salary_source, taxonomy,
+                created_at, updated_at
+            ) VALUES %s
+            ON CONFLICT (cnp_code) DO UPDATE SET
+                onet_soc_code  = EXCLUDED.onet_soc_code,
+                esco_uri       = EXCLUDED.esco_uri,
+                title_fr       = EXCLUDED.title_fr,
+                title_en       = EXCLUDED.title_en,
+                description_fr = EXCLUDED.description_fr,
+                description_en = EXCLUDED.description_en,
+                median_salary  = EXCLUDED.median_salary,
+                salary_source  = EXCLUDED.salary_source,
+                taxonomy       = EXCLUDED.taxonomy,
+                updated_at     = NOW()
+        """
+        rows = []
+        for r in records:
+            cnp = str(r["cnp_code"]).strip() if r["cnp_code"] else None
+            if not cnp:
+                continue
+            rows.append((
+                cnp,
+                r.get("onet_soc_code"),
+                r.get("esco_uri"),
+                r.get("title_fr"),
+                r.get("title_en"),
+                r.get("description_fr"),
+                r.get("description_en"),
+                float(r["median_salary"]) if r.get("median_salary") else None,
+                r.get("salary_source", "ESDC 2025 Official"),
+                r.get("taxonomy", "SIPeC 2025"),
+                INGESTED_AT,
+                INGESTED_AT,
+            ))
+
+        with self.pg.cursor() as cur:
+            self._pg_execute_batch(sql, rows, cur)
+        self.pg.commit()
+        log.info("  ✅ %d occupations chargées.", len(rows))
+        return len(rows)
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # PHASE 2 — RIASEC PROFILES
+    # ══════════════════════════════════════════════════════════════════════════
+
+    def extract_riasec(self):
+        """
+        Construit les profils RIASEC depuis deux sources :
+        1. HAS_INTEREST → InterestProfile (scores O*NET quantitatifs — Phase 9)
+        2. MATCHES_INTEREST → Interest (codes RIASEC catégoriels — SIPeC)
+        Priorité à la source O*NET (scores quantitatifs).
+        """
+        log.info("Extraction des profils RIASEC...")
+
+        # Source O*NET (InterestProfile — scores précis)
+        onet_riasec = self._neo4j_fetch("""
+            MATCH (o:Occupation)-[r:HAS_INTEREST]->(ip:InterestProfile)
+            RETURN
+                o.code     AS cnp_code,
+                ip.name    AS element_name,
+                r.score    AS score
+            ORDER BY o.code
+        """)
+
+        # Agréger par occupation : construire dict {cnp_code: {R:x, I:x, ...}}
+        profiles = {}
+        riasec_map = {
+            "Realistic": "r", "Investigative": "i", "Artistic": "a",
+            "Social": "s", "Enterprising": "e", "Conventional": "c",
+        }
+        for record in onet_riasec:
+            cnp = str(record["cnp_code"]).strip()
+            letter = riasec_map.get(record.get("element_name", ""))
+            if not letter:
+                continue
+            if cnp not in profiles:
+                profiles[cnp] = {"r": None, "i": None, "a": None, "s": None, "e": None, "c": None}
+            try:
+                profiles[cnp][letter] = float(record["score"])
+            except (TypeError, ValueError):
+                pass
+
+        # Fallback : occupations avec MATCHES_INTEREST seulement (catégoriel)
+        cat_riasec = self._neo4j_fetch("""
+            MATCH (o:Occupation)-[:MATCHES_INTEREST]->(i:Interest)
+            WHERE NOT (o)-[:HAS_INTEREST]->()
+            RETURN o.code AS cnp_code, collect(i.name) AS interests
+        """)
+        for record in cat_riasec:
+            cnp = str(record["cnp_code"]).strip()
+            if cnp not in profiles:
+                profiles[cnp] = {"r": None, "i": None, "a": None, "s": None, "e": None, "c": None}
+            # Assign a nominal score (3.5 = "somewhat important") for categorical only
+            for name in record.get("interests", []):
+                letter = riasec_map.get(name, "")
+                if letter and profiles[cnp][letter] is None:
+                    profiles[cnp][letter] = 3.5   # nominal — marks as present
+
+        log.info("  %d profils RIASEC construits.", len(profiles))
+        return profiles
+
+    def _compute_dominant(self, scores: dict) -> tuple[Optional[str], Optional[str]]:
+        """Compute dominant RIASEC code (3 letters) and dominant letter."""
+        pairs = [(k.upper(), v) for k, v in scores.items() if v is not None]
+        pairs.sort(key=lambda x: x[1], reverse=True)
+        if not pairs:
+            return None, None
+        dominant_code   = "".join([p[0] for p in pairs[:3]]) if len(pairs) >= 3 else None
+        dominant_letter = pairs[0][0] if pairs else None
+        return dominant_code, dominant_letter
+
+    def load_riasec(self, profiles: dict):
+        log.info("Chargement des profils RIASEC dans PostgreSQL...")
+        sql = """
+            INSERT INTO riasec_profiles (
+                occupation_cnp_code,
+                r_score, i_score, a_score, s_score, e_score, c_score,
+                dominant_code, dominant_letter, source, ingested_at
+            ) VALUES %s
+            ON CONFLICT (occupation_cnp_code) DO UPDATE SET
+                r_score         = EXCLUDED.r_score,
+                i_score         = EXCLUDED.i_score,
+                a_score         = EXCLUDED.a_score,
+                s_score         = EXCLUDED.s_score,
+                e_score         = EXCLUDED.e_score,
+                c_score         = EXCLUDED.c_score,
+                dominant_code   = EXCLUDED.dominant_code,
+                dominant_letter = EXCLUDED.dominant_letter,
+                ingested_at     = EXCLUDED.ingested_at
+        """
+        rows = []
+        # Verify CNP codes exist in occupations table first
+        with self.pg.cursor() as cur:
+            cur.execute("SELECT cnp_code FROM occupations")
+            valid_cnps = {row[0] for row in cur.fetchall()}
+
+        for cnp, scores in profiles.items():
+            if cnp not in valid_cnps:
+                continue
+            dominant_code, dominant_letter = self._compute_dominant(scores)
+            rows.append((
+                cnp,
+                scores.get("r"), scores.get("i"), scores.get("a"),
+                scores.get("s"), scores.get("e"), scores.get("c"),
+                dominant_code, dominant_letter,
+                SOURCE_TAG, INGESTED_AT,
+            ))
+
+        with self.pg.cursor() as cur:
+            self._pg_execute_batch(sql, rows, cur)
+        self.pg.commit()
+
+        # Also update denormalized fields on occupations
+        with self.pg.cursor() as cur:
+            cur.execute("""
+                UPDATE occupations o
+                SET
+                    riasec_dominant = rp.dominant_code,
+                    riasec_scores   = jsonb_build_object(
+                        'R', rp.r_score, 'I', rp.i_score, 'A', rp.a_score,
+                        'S', rp.s_score, 'E', rp.e_score, 'C', rp.c_score
+                    )
+                FROM riasec_profiles rp
+                WHERE rp.occupation_cnp_code = o.cnp_code
+            """)
+        self.pg.commit()
+        log.info("  ✅ %d profils RIASEC chargés + occupations mises à jour.", len(rows))
+        return len(rows)
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # PHASE 3 — COMPÉTENCES O*NET (Abilities, WorkStyles, WorkValues, Skills)
+    # ══════════════════════════════════════════════════════════════════════════
+
+    def extract_and_load_competencies(self):
+        """
+        Extrait toutes les compétences O*NET depuis le graphe et les charge
+        dans competencies + occupation_competencies.
+        """
+        dimensions = [
+            {
+                "rel":       "REQUIRES_ABILITY",
+                "node":      "Ability",
+                "category":  "ability",
+                "scale_id":  "IM",
+                "scale_lbl": "Importance",
+            },
+            {
+                "rel":       "EXHIBITS_STYLE",
+                "node":      "WorkStyle",
+                "category":  "work_style",
+                "scale_id":  "IM",
+                "scale_lbl": "Importance",
+            },
+            {
+                "rel":       "ALIGNED_WITH_VALUE",
+                "node":      "WorkValue",
+                "category":  "work_value",
+                "scale_id":  "EX",
+                "scale_lbl": "Extent",
+            },
+            {
+                "rel":       "REQUIRES_SKILL",
+                "node":      "Skill",
+                "category":  "skill",
+                "scale_id":  "IM",
+                "scale_lbl": "Importance",
+            },
+            {
+                "rel":       "HAS_INTEREST",
+                "node":      "InterestProfile",
+                "category":  "interest",
+                "scale_id":  "OI",
+                "scale_lbl": "Occupational Interest",
+            },
+        ]
+
+        competency_cache = {}  # name+category → UUID (avoid duplicate inserts)
+        total_junctions = 0
+
+        for dim in dimensions:
+            log.info("  Dimension [%s] → [%s]...", dim["rel"], dim["category"])
+
+            records = self._neo4j_fetch(f"""
+                MATCH (o:Occupation)-[r:{dim['rel']}]->(n:{dim['node']})
+                RETURN
+                    o.code  AS cnp_code,
+                    n.name  AS name,
+                    r.score AS score
+                ORDER BY o.code
+            """)
+
+            if not records:
+                log.info("    Aucune donnée pour %s.", dim["rel"])
+                continue
+
+            log.info("    %d relations trouvées.", len(records))
+
+            # ── Insert competencies (upsert by name + category) ───────────
+            unique_names = {str(r["name"]).strip() for r in records if r.get("name")}
+            comp_sql = """
+                INSERT INTO competencies (id, name_en, category, source, created_at)
+                VALUES %s
+                ON CONFLICT (name_en, category) DO NOTHING
+            """
+            import uuid as _uuid
+            new_rows = []
+            for name in unique_names:
+                key = (name, dim["category"])
+                if key not in competency_cache:
+                    new_id = _uuid.uuid4()
+                    competency_cache[key] = new_id
+                    new_rows.append((str(new_id), name, dim["category"], SOURCE_TAG, INGESTED_AT))
+
+            with self.pg.cursor() as cur:
+                self._pg_execute_batch(comp_sql, new_rows, cur)
+            self.pg.commit()
+
+            # Fetch all IDs from DB (including those already there)
+            with self.pg.cursor() as cur:
+                cur.execute(
+                    "SELECT id, name_en FROM competencies WHERE category = %s",
+                    (dim["category"],)
+                )
+                for row in cur.fetchall():
+                    key = (row[1], dim["category"])
+                    competency_cache[key] = row[0]
+
+            # ── Insert junction rows ──────────────────────────────────────
+            with self.pg.cursor() as cur:
+                cur.execute("SELECT cnp_code FROM occupations")
+                valid_cnps = {row[0] for row in cur.fetchall()}
+
+            junc_sql = """
+                INSERT INTO occupation_competencies (
+                    occupation_cnp_code, competency_id,
+                    score, scale_id, scale_label,
+                    source, ingested_at
+                ) VALUES %s
+                ON CONFLICT (occupation_cnp_code, competency_id, scale_id) DO UPDATE SET
+                    score       = EXCLUDED.score,
+                    ingested_at = EXCLUDED.ingested_at
+            """
+            junc_rows = []
+            skipped = 0
+            for r in records:
+                cnp  = str(r["cnp_code"]).strip() if r.get("cnp_code") else None
+                name = str(r["name"]).strip()     if r.get("name")    else None
+                if not cnp or not name or cnp not in valid_cnps:
+                    skipped += 1
+                    continue
+                key = (name, dim["category"])
+                comp_id = competency_cache.get(key)
+                if not comp_id:
+                    skipped += 1
+                    continue
+                try:
+                    score = float(r["score"]) if r.get("score") is not None else None
+                except (TypeError, ValueError):
+                    score = None
+
+                junc_rows.append((
+                    cnp, str(comp_id),
+                    score, dim["scale_id"], dim["scale_lbl"],
+                    SOURCE_TAG, INGESTED_AT,
+                ))
+
+            with self.pg.cursor() as cur:
+                self._pg_execute_batch(junc_sql, junc_rows, cur)
+            self.pg.commit()
+            total_junctions += len(junc_rows)
+            log.info(
+                "    ✅ %d compétences • %d jonctions insérées (%d ignorées).",
+                len(unique_names), len(junc_rows), skipped
+            )
+
+        log.info("Compétences — Total jonctions : %d", total_junctions)
+        return total_junctions
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # PHASE 4 — TASKS
+    # ══════════════════════════════════════════════════════════════════════════
+
+    def extract_and_load_tasks(self):
+        log.info("Extraction et chargement des Tasks...")
+        records = self._neo4j_fetch("""
+            MATCH (o:Occupation)-[:PERFORMS_TASK]->(t:Task)
+            RETURN
+                o.code          AS cnp_code,
+                t.description   AS description_en,
+                t.id            AS onet_task_id
+            ORDER BY o.code
+        """)
+        log.info("  %d relations PERFORMS_TASK trouvées.", len(records))
+
+        task_cache = {}  # description → UUID
+        with self.pg.cursor() as cur:
+            cur.execute("SELECT cnp_code FROM occupations")
+            valid_cnps = {row[0] for row in cur.fetchall()}
+
+        import uuid as _uuid
+
+        # Upsert tasks
+        unique_tasks = {}
+        for r in records:
+            desc = r.get("description_en", "").strip()
+            if desc and desc not in unique_tasks:
+                unique_tasks[desc] = r.get("onet_task_id")
+
+        task_sql = """
+            INSERT INTO tasks (id, description_en, onet_task_id, taxonomy, created_at)
+            VALUES %s
+            ON CONFLICT (onet_task_id) DO UPDATE SET description_en = EXCLUDED.description_en
+        """
+        task_rows = []
+        for desc, task_id in unique_tasks.items():
+            new_id = _uuid.uuid4()
+            task_cache[desc] = new_id
+            task_rows.append((str(new_id), desc, task_id, SOURCE_TAG, INGESTED_AT))
+
+        with self.pg.cursor() as cur:
+            self._pg_execute_batch(task_sql, task_rows, cur)
+        self.pg.commit()
+
+        # Refresh cache from DB
+        with self.pg.cursor() as cur:
+            cur.execute("SELECT id, description_en FROM tasks")
+            for row in cur.fetchall():
+                task_cache[row[1]] = row[0]
+
+        # Junction
+        junc_sql = """
+            INSERT INTO occupation_tasks (occupation_cnp_code, task_id, source, ingested_at)
+            VALUES %s
+            ON CONFLICT (occupation_cnp_code, task_id) DO NOTHING
+        """
+        junc_rows = []
+        for r in records:
+            cnp  = str(r["cnp_code"]).strip() if r.get("cnp_code") else None
+            desc = r.get("description_en", "").strip()
+            if cnp not in valid_cnps or desc not in task_cache:
+                continue
+            junc_rows.append((cnp, str(task_cache[desc]), SOURCE_TAG, INGESTED_AT))
+
+        with self.pg.cursor() as cur:
+            self._pg_execute_batch(junc_sql, junc_rows, cur)
+        self.pg.commit()
+        log.info("  ✅ %d tasks • %d jonctions.", len(unique_tasks), len(junc_rows))
+        return len(junc_rows)
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # PHASE 5 — TOOLS
+    # ══════════════════════════════════════════════════════════════════════════
+
+    def extract_and_load_tools(self):
+        log.info("Extraction et chargement des Tools...")
+        records = self._neo4j_fetch("""
+            MATCH (o:Occupation)-[:USES_TOOL]->(t:Tool)
+            RETURN o.code AS cnp_code, t.name AS name
+            ORDER BY o.code
+        """)
+        log.info("  %d relations USES_TOOL trouvées.", len(records))
+
+        import uuid as _uuid
+        tool_cache = {}
+        with self.pg.cursor() as cur:
+            cur.execute("SELECT cnp_code FROM occupations")
+            valid_cnps = {row[0] for row in cur.fetchall()}
+
+        unique_tools = {r.get("name", "").strip() for r in records if r.get("name")}
+        tool_sql = """
+            INSERT INTO tools (id, name, taxonomy, created_at)
+            VALUES %s
+            ON CONFLICT (name) DO NOTHING
+        """
+        tool_rows = []
+        for name in unique_tools:
+            new_id = _uuid.uuid4()
+            tool_cache[name] = new_id
+            tool_rows.append((str(new_id), name, SOURCE_TAG, INGESTED_AT))
+
+        with self.pg.cursor() as cur:
+            self._pg_execute_batch(tool_sql, tool_rows, cur)
+        self.pg.commit()
+
+        with self.pg.cursor() as cur:
+            cur.execute("SELECT id, name FROM tools")
+            for row in cur.fetchall():
+                tool_cache[row[1]] = row[0]
+
+        junc_sql = """
+            INSERT INTO occupation_tools (occupation_cnp_code, tool_id, source, ingested_at)
+            VALUES %s
+            ON CONFLICT (occupation_cnp_code, tool_id) DO NOTHING
+        """
+        junc_rows = []
+        for r in records:
+            cnp  = str(r["cnp_code"]).strip() if r.get("cnp_code") else None
+            name = r.get("name", "").strip()
+            if cnp not in valid_cnps or name not in tool_cache:
+                continue
+            junc_rows.append((cnp, str(tool_cache[name]), SOURCE_TAG, INGESTED_AT))
+
+        with self.pg.cursor() as cur:
+            self._pg_execute_batch(junc_sql, junc_rows, cur)
+        self.pg.commit()
+        log.info("  ✅ %d outils • %d jonctions.", len(unique_tools), len(junc_rows))
+        return len(junc_rows)
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # RAPPORT FINAL
+    # ══════════════════════════════════════════════════════════════════════════
+
+    def report(self):
+        log.info("\n%s", "=" * 60)
+        log.info("  RAPPORT FINAL — SUPABASE")
+        log.info("=" * 60)
+        tables = [
+            "occupations", "riasec_profiles", "competencies",
+            "occupation_competencies", "tasks", "occupation_tasks",
+            "tools", "occupation_tools",
+        ]
+        with self.pg.cursor() as cur:
+            for table in tables:
+                cur.execute(f"SELECT COUNT(*) FROM {table}")
+                count = cur.fetchone()[0]
+                log.info("  %-35s : %8d lignes", table, count)
+        log.info("=" * 60)
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # POINT D'ENTRÉE
+    # ══════════════════════════════════════════════════════════════════════════
+
+    def run(self):
+        log.info("=" * 60)
+        log.info("  LE SIPHON — ETL Neo4j → Supabase (Trajektia)")
+        log.info("  %s", INGESTED_AT)
+        log.info("=" * 60)
+
+        # Phase 1 — Occupations
+        occ_records = self.extract_occupations()
+        self.load_occupations(occ_records)
+
+        # Phase 2 — RIASEC
+        riasec_profiles = self.extract_riasec()
+        self.load_riasec(riasec_profiles)
+
+        # Phase 3 — Compétences O*NET
+        self.extract_and_load_competencies()
+
+        # Phase 4 — Tasks
+        self.extract_and_load_tasks()
+
+        # Phase 5 — Tools
+        self.extract_and_load_tools()
+
+        # Rapport
+        self.report()
+        log.info("\n✅ Le Siphon terminé avec succès.")
+
+
+# ── Main ───────────────────────────────────────────────────────────────────────
+
+if __name__ == "__main__":
+    siphon = LeSiphon()
+    try:
+        siphon.run()
+    except Exception as e:
+        log.exception("Erreur fatale : %s", e)
+        sys.exit(1)
+    finally:
+        siphon.close()
