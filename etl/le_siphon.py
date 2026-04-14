@@ -154,7 +154,7 @@ class LeSiphon:
                 r.get("description_en"),
                 float(r["median_salary"]) if r.get("median_salary") else None,
                 r.get("salary_source", "ESDC 2025 Official"),
-                r.get("taxonomy", "SIPeC 2025"),
+                r.get("taxonomy") or "SIPeC 2025",
                 INGESTED_AT,
                 INGESTED_AT,
             ))
