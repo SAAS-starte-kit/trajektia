@@ -9,3 +9,8 @@ dist/
 build/
 .DS_Store
 Thumbs.db
+
+# Custom logs / cache
+.cache*/
+*.log
+query
