@@ -106,7 +106,7 @@ CREATE INDEX IF NOT EXISTS idx_jobtit_lang     ON occupation_job_titles (languag
 CREATE INDEX IF NOT EXISTS idx_jobtit_type     ON occupation_job_titles (label_type);
 CREATE INDEX IF NOT EXISTS idx_jobtit_title    ON occupation_job_titles USING gin (title gin_trgm_ops);
 
-COMMENT ON TABLE occupation_job_titles IS 'Appellations d'emploi (synonymes, titres alternatifs) par profession — CNP 2021. Crucial pour la recherche plein-texte multilingue.';
+COMMENT ON TABLE occupation_job_titles IS 'Appellations d''emploi (synonymes, titres alternatifs) par profession — CNP 2021. Crucial pour la recherche plein-texte multilingue.';
 
 
 -- ============================================================

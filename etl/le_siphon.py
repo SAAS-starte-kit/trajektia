@@ -577,6 +577,156 @@ class LeSiphon:
         return len(junc_rows)
 
     # ══════════════════════════════════════════════════════════════════════════
+    # PHASE 6 — KNOWLEDGE
+    # ══════════════════════════════════════════════════════════════════════════
+
+    def extract_and_load_knowledge(self):
+        log.info("Extraction et chargement des Connaissances (Knowledge)...")
+        records = self._neo4j_fetch("""
+            MATCH (o:Occupation)-[r:REQUIRES_KNOWLEDGE]->(k:Knowledge)
+            RETURN
+                o.code          AS cnp_code,
+                k.name_en       AS name_en,
+                k.element_id    AS onet_element_id,
+                r.importance    AS importance_score
+            ORDER BY o.code
+        """)
+        log.info("  %d relations REQUIRES_KNOWLEDGE trouvées.", len(records))
+
+        cache = {}
+        with self.pg.cursor() as cur:
+            cur.execute("SELECT cnp_code FROM occupations")
+            valid_cnps = {row[0] for row in cur.fetchall()}
+
+        import uuid as _uuid
+
+        unique_items = {}
+        for r in records:
+            id_str = str(r.get("onet_element_id") or "").strip()
+            if id_str and id_str not in unique_items:
+                unique_items[id_str] = str(r.get("name_en") or "").strip()
+
+        insert_sql = """
+            INSERT INTO knowledge (id, onet_element_id, name_en, taxonomy, created_at)
+            VALUES %s
+            ON CONFLICT (onet_element_id) DO UPDATE SET name_en = EXCLUDED.name_en
+        """
+        rows = []
+        for onet_id, name in unique_items.items():
+            new_id = _uuid.uuid4()
+            cache[onet_id] = new_id
+            rows.append((str(new_id), onet_id, name, SOURCE_TAG, INGESTED_AT))
+
+        with self.pg.cursor() as cur:
+            self._pg_execute_batch(insert_sql, rows, cur)
+        self.pg.commit()
+
+        with self.pg.cursor() as cur:
+            cur.execute("SELECT id, onet_element_id FROM knowledge")
+            for row in cur.fetchall():
+                cache[row[1]] = row[0]
+
+        junc_sql = """
+            INSERT INTO occupation_knowledge (occupation_cnp_code, knowledge_id, importance_score, ingested_at)
+            VALUES %s
+            ON CONFLICT (occupation_cnp_code, knowledge_id) DO UPDATE SET importance_score = EXCLUDED.importance_score
+        """
+        junc_rows = []
+        for r in records:
+            cnp  = str(r.get("cnp_code") or "").strip()
+            onet_id = str(r.get("onet_element_id") or "").strip()
+            if not cnp or cnp not in valid_cnps or onet_id not in cache:
+                continue
+            
+            try:
+                imp = float(r["importance_score"]) if r.get("importance_score") is not None else None
+            except (TypeError, ValueError):
+                imp = None
+                
+            junc_rows.append((cnp, str(cache[onet_id]), imp, INGESTED_AT))
+
+        with self.pg.cursor() as cur:
+            self._pg_execute_batch(junc_sql, junc_rows, cur)
+        self.pg.commit()
+        log.info("  ✅ %d connaissances • %d jonctions.", len(unique_items), len(junc_rows))
+        return len(junc_rows)
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # PHASE 7 — WORK CONTEXTS
+    # ══════════════════════════════════════════════════════════════════════════
+
+    def extract_and_load_work_contexts(self):
+        log.info("Extraction et chargement des Contextes de travail (Work Contexts)...")
+        records = self._neo4j_fetch("""
+            MATCH (o:Occupation)-[r:HAS_CONTEXT]->(w:WorkContext)
+            RETURN
+                o.code          AS cnp_code,
+                w.name_en       AS name_en,
+                w.element_id    AS onet_element_id,
+                r.frequency     AS frequency_score
+            ORDER BY o.code
+        """)
+        log.info("  %d relations HAS_CONTEXT trouvées.", len(records))
+
+        cache = {}
+        with self.pg.cursor() as cur:
+            cur.execute("SELECT cnp_code FROM occupations")
+            valid_cnps = {row[0] for row in cur.fetchall()}
+
+        import uuid as _uuid
+
+        unique_items = {}
+        for r in records:
+            id_str = str(r.get("onet_element_id") or "").strip()
+            if id_str and id_str not in unique_items:
+                unique_items[id_str] = str(r.get("name_en") or "").strip()
+
+        insert_sql = """
+            INSERT INTO work_contexts (id, onet_element_id, name_en, taxonomy, created_at)
+            VALUES %s
+            ON CONFLICT (onet_element_id) DO UPDATE SET name_en = EXCLUDED.name_en
+        """
+        rows = []
+        for onet_id, name in unique_items.items():
+            new_id = _uuid.uuid4()
+            cache[onet_id] = new_id
+            rows.append((str(new_id), onet_id, name, SOURCE_TAG, INGESTED_AT))
+
+        with self.pg.cursor() as cur:
+            self._pg_execute_batch(insert_sql, rows, cur)
+        self.pg.commit()
+
+        with self.pg.cursor() as cur:
+            cur.execute("SELECT id, onet_element_id FROM work_contexts")
+            for row in cur.fetchall():
+                cache[row[1]] = row[0]
+
+        junc_sql = """
+            INSERT INTO occupation_work_contexts (occupation_cnp_code, context_id, frequency_score, ingested_at)
+            VALUES %s
+            ON CONFLICT (occupation_cnp_code, context_id) DO UPDATE SET frequency_score = EXCLUDED.frequency_score
+        """
+        junc_rows = []
+        for r in records:
+            cnp  = str(r.get("cnp_code") or "").strip()
+            onet_id = str(r.get("onet_element_id") or "").strip()
+            if not cnp or cnp not in valid_cnps or onet_id not in cache:
+                continue
+            
+            try:
+                freq = float(r["frequency_score"]) if r.get("frequency_score") is not None else None
+            except (TypeError, ValueError):
+                freq = None
+                
+            junc_rows.append((cnp, str(cache[onet_id]), freq, INGESTED_AT))
+
+        with self.pg.cursor() as cur:
+            self._pg_execute_batch(junc_sql, junc_rows, cur)
+        self.pg.commit()
+        log.info("  ✅ %d contextes • %d jonctions.", len(unique_items), len(junc_rows))
+        return len(junc_rows)
+
+    # ══════════════════════════════════════════════════════════════════════════
     # RAPPORT FINAL
     # ══════════════════════════════════════════════════════════════════════════
 
@@ -587,7 +737,8 @@ class LeSiphon:
         tables = [
             "occupations", "riasec_profiles", "competencies",
             "occupation_competencies", "tasks", "occupation_tasks",
-            "tools", "occupation_tools",
+            "tools", "occupation_tools", "knowledge", "occupation_knowledge",
+            "work_contexts", "occupation_work_contexts"
         ]
         with self.pg.cursor() as cur:
             for table in tables:
@@ -622,6 +773,12 @@ class LeSiphon:
 
         # Phase 5 — Tools
         self.extract_and_load_tools()
+
+        # Phase 6 — Knowledge
+        self.extract_and_load_knowledge()
+
+        # Phase 7 — Work Contexts
+        self.extract_and_load_work_contexts()
 
         # Rapport
         self.report()
