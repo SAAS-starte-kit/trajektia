@@ -1,0 +1,3 @@
+import { getViteConfig } from 'astro/config';
+import { resolveConfig } from 'vite';
+// Astro might not expose getViteConfig directly like this, let's just run Astro's build programmatically...

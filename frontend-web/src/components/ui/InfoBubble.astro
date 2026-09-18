@@ -1,0 +1,170 @@
+---
+// ==============================================================================
+// src/components/ui/InfoBubble.astro
+// Puce d'aide et d'explication interactive (Popover / Tooltip pédagogique CKG)
+// ==============================================================================
+
+interface Props {
+  title: string;
+  description: string;
+  source?: string;
+  badge?: string;
+  align?: 'left' | 'center' | 'right';
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  source,
+  badge,
+  align = 'center',
+  class: className = '',
+} = Astro.props;
+
+// Id unique pour relier bouton et popover (accessibilité ARIA)
+const bubbleId = `infobubble-${Math.random().toString(36).substring(2, 9)}`;
+
+// Positionnement du panneau selon l'alignement demandé
+const alignClasses = {
+  left: 'left-0 sm:left-0 origin-top-left',
+  center: 'left-1/2 -translate-x-1/2 origin-top',
+  right: 'right-0 sm:right-0 origin-top-right',
+}[align];
+---
+
+<div class={`relative inline-flex items-center group/bubble ${className}`}>
+  <!-- Bouton déclencheur interactif -->
+  <button
+    type="button"
+    aria-expanded="false"
+    aria-controls={bubbleId}
+    class="info-bubble-btn inline-flex items-center justify-center w-4 h-4 rounded-full text-[10px] font-black leading-none bg-slate-200/80 dark:bg-slate-700/80 text-slate-600 dark:text-slate-300 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 dark:hover:text-white transition-all shadow-xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+    title="Cliquer pour voir l'explication"
+  >
+    <span class="sr-only">Aide : {title}</span>
+    <span>?</span>
+  </button>
+
+  <!-- Panneau Popover / Bulle d'explication -->
+  <div
+    id={bubbleId}
+    role="tooltip"
+    class={`info-bubble-panel absolute top-full mt-2 z-50 w-72 sm:w-80 p-3.5 rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200 dark:border-slate-700/90 shadow-2xl text-left pointer-events-none opacity-0 scale-95 transition-all duration-200 ease-out ${alignClasses}`}
+  >
+    <!-- Flèche indicatrice -->
+    <div class={`absolute -top-1.5 w-3 h-3 rotate-45 bg-white dark:bg-slate-900 border-t border-l border-slate-200 dark:border-slate-700 ${align === 'center' ? 'left-1/2 -translate-x-1/2' : align === 'left' ? 'left-3' : 'right-3'}`}></div>
+
+    <div class="relative z-10 space-y-2">
+      <!-- En-tête avec titre et badge optionnel -->
+      <div class="flex items-start justify-between gap-2">
+        <h4 class="text-xs font-black text-slate-900 dark:text-white leading-tight">
+          {title}
+        </h4>
+        {badge && (
+          <span class="px-1.5 py-0.5 rounded text-[9px] font-extrabold uppercase bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/50 shrink-0">
+            {badge}
+          </span>
+        )}
+      </div>
+
+      <!-- Description pédagogique -->
+      <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+        {description}
+      </p>
+
+      <!-- Source / Référence méthodologique -->
+      {source && (
+        <div class="pt-1.5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[9px] text-slate-400 dark:text-slate-500">
+          <span class="font-medium">Source : {source}</span>
+          <span class="font-bold text-indigo-500 dark:text-indigo-400">Trajektia CKG</span>
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Support de l'affichage au survol pour les écrans desktop souris */
+  @media (hover: hover) and (pointer: fine) {
+    .group\/bubble:hover .info-bubble-panel:not(.is-dismissed) {
+      opacity: 1;
+      scale: 1;
+      pointer-events: auto;
+    }
+  }
+
+  /* Affichage forcé lors du clic / état actif */
+  .info-bubble-panel.is-active {
+    opacity: 1 !important;
+    scale: 1 !important;
+    pointer-events: auto !important;
+  }
+</style>
+
+<script>
+  // Gestionnaire global d'interaction pour toutes les bulles d'aide
+  function setupInfoBubbles() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.info-bubble-btn');
+
+    buttons.forEach((btn) => {
+      // Éviter d'attacher plusieurs fois
+      if (btn.dataset.initialized === 'true') return;
+      btn.dataset.initialized = 'true';
+
+      const panelId = btn.getAttribute('aria-controls');
+      const panel = panelId ? document.getElementById(panelId) : null;
+      if (!panel) return;
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = panel.classList.contains('is-active');
+
+        // Fermer tous les autres panneaux ouverts
+        document.querySelectorAll('.info-bubble-panel.is-active').forEach((p) => {
+          if (p !== panel) {
+            p.classList.remove('is-active');
+            const otherBtn = document.querySelector(`[aria-controls="${p.id}"]`);
+            otherBtn?.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Toggle courant
+        if (isOpen) {
+          panel.classList.remove('is-active');
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          panel.classList.add('is-active');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Fermer sur clic en dehors
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement | null;
+      if (!target?.closest('.group\/bubble')) {
+        document.querySelectorAll('.info-bubble-panel.is-active').forEach((panel) => {
+          panel.classList.remove('is-active');
+          const btn = document.querySelector(`[aria-controls="${panel.id}"]`);
+          btn?.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+
+    // Fermer sur touche Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.info-bubble-panel.is-active').forEach((panel) => {
+          panel.classList.remove('is-active');
+          const btn = document.querySelector(`[aria-controls="${panel.id}"]`);
+          btn?.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+  }
+
+  // Initialisation à l'écoute du DOM et des navigations Astro
+  setupInfoBubbles();
+  document.addEventListener('astro:page-load', setupInfoBubbles);
+</script>

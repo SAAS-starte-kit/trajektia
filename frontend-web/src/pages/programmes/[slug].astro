@@ -1,0 +1,160 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import { programmesDEC } from '../../data/programmes-dec-prealables';
+import { programmesDEP } from '../../data/programmes-dep-prealables';
+import { ChevronLeft, GraduationCap, Briefcase, BookOpen, MapPin, Target, CheckCircle2 } from 'lucide-react';
+
+export async function getStaticPaths() {
+  const slugify = (text: string) => text.toString().toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Supprime les accents
+    .replace(/\s+/g, '-')           // Remplace les espaces par des tirets
+    .replace(/[^\w\-]+/g, '')       // Supprime tous les caractères non-alphanumériques
+    .replace(/\-\-+/g, '-')         // Évite les tirets multiples
+    .replace(/^-+/, '')             // Nettoie le début
+    .replace(/-+$/, '');            // Nettoie la fin
+
+  const generateSlug = (code: string, nom: string) => {
+    const safeCode = code.toLowerCase().replace('.', '-');
+    return `${safeCode}-${slugify(nom)}`;
+  };
+
+  const decPaths = programmesDEC.map((prog) => ({
+    params: { slug: generateSlug(prog.code, prog.nom) },
+    props: { programme: prog, type: 'DEC' },
+  }));
+
+  const depPaths = programmesDEP.map((prog) => ({
+    params: { slug: generateSlug(prog.code, prog.nom) },
+    props: { programme: prog, type: 'DEP' },
+  }));
+
+  return [...decPaths, ...depPaths];
+}
+
+const { programme, type } = Astro.props;
+
+// Simulation de données futures (descriptions, métiers, salaires)
+// Vous pourrez facilement injecter ces données plus tard depuis votre base de données ou un CMS headless (comme Brilliant Directories).
+const futureData = {
+  description: (programme as any).description || `Ce programme (${programme.code}) vous préparera à intégrer le marché du travail ou poursuivre vos études. Des informations détaillées sur le cursus, les compétences développées et les établissements l'offrant seront bientôt disponibles ici.`,
+  metiers_lies: ["Métier 1", "Métier 2", "Métier 3"],
+  salaire_moyen: "À venir"
+};
+---
+
+<BaseLayout 
+  title={`${programme.code} - ${programme.nom} | Trajektia`}
+  description={`Découvrez les préalables et les détails d'admission pour le programme ${programme.nom} (${programme.code}) au Québec.`}
+>
+  <div class="max-w-4xl mx-auto">
+    <!-- Fil d'ariane & Bouton retour -->
+    <a href="/programmes" class="inline-flex items-center gap-2 text-sm text-brand-blue hover:underline mb-6 font-medium">
+      <ChevronLeft size={16} /> Retour à la liste des programmes
+    </a>
+
+    <!-- En-tête du programme (Hero) -->
+    <div class="bg-white dark:bg-slate-800/50 rounded-3xl p-8 md:p-10 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 mb-8 relative overflow-hidden">
+      <div class="absolute top-0 right-0 -mt-8 -mr-8 text-brand-blue/10 dark:text-brand-blue/5 pointer-events-none">
+        {type === 'DEC' ? <GraduationCap size={200} /> : <Briefcase size={200} />}
+      </div>
+      
+      <div class="relative z-10">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="px-3 py-1 bg-brand-dark dark:bg-slate-900 text-white rounded-full text-xs font-bold tracking-widest uppercase">
+            {type}
+          </span>
+          <span class="px-3 py-1 bg-amber-100 dark:bg-brand-yellow/20 text-amber-900 dark:text-white rounded-full text-xs font-bold">
+            {programme.secteur_nom || "Secteur non défini"}
+          </span>
+        </div>
+        
+        <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-3 leading-tight">
+          {programme.nom}
+        </h1>
+        <p class="text-xl text-slate-600 dark:text-slate-400 font-medium">Code ministériel : <span class="text-brand-blue font-bold">{programme.code}</span></p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Colonne Principale (Contenu / Description future) -->
+      <div class="md:col-span-2 space-y-6">
+        <div class="bg-white dark:bg-slate-800/50 rounded-3xl p-6 md:p-8 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700">
+          <h2 class="text-xl font-bold flex items-center gap-2 mb-4 text-slate-900 dark:text-white">
+            <BookOpen size={20} class="text-brand-blue" />
+            À propos du programme
+          </h2>
+          <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+            {futureData.description}
+          </p>
+          
+          <div class="mt-8 p-4 bg-blue-50/80 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800/50 rounded-2xl flex gap-3 text-sm text-blue-900 dark:text-blue-200">
+            <Target class="shrink-0 text-brand-blue mt-0.5" size={20} />
+            <div>
+              <strong class="font-bold">Espace Évolutif (À venir) :</strong>
+              <p class="mt-1 opacity-90 text-slate-700 dark:text-blue-100">C'est dans cette section que vous pourrez injecter dynamiquement les descriptions longues de vos programmes, les grilles de cours, et les listes d'établissements qui les offrent.</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Section Préalables (générée dynamiquement selon les données actuelles) */}
+        <div class="bg-white dark:bg-slate-800/50 rounded-3xl p-6 md:p-8 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700">
+          <h2 class="text-xl font-bold flex items-center gap-2 mb-4 text-slate-900 dark:text-white">
+            <CheckCircle2 size={20} class="text-green-600 dark:text-brand-green" />
+            Préalables d'admission
+          </h2>
+          
+          {type === 'DEC' && programme.prealables === false ? (
+            <p class="text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/50 p-4 rounded-xl border border-slate-200 dark:border-slate-700/50">Aucun préalable spécifique n'est exigé pour ce programme (D.E.S. seulement).</p>
+          ) : type === 'DEC' && typeof programme.prealables === 'object' ? (
+            <ul class="space-y-2">
+              {Object.keys(programme.prealables).map((prealable) => (
+                <li class="flex items-center gap-2 text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-900/50 px-4 py-2 rounded-xl border border-slate-100 dark:border-transparent">
+                  <div class="w-2 h-2 rounded-full bg-brand-yellow"></div>
+                  <span class="font-medium uppercase">{prealable.replace(/_/g, ' ')}</span>
+                </li>
+              ))}
+            </ul>
+          ) : type === 'DEP' && (programme as any).conditions ? (
+             <div class="space-y-3">
+               <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-xl border border-slate-100 dark:border-transparent">
+                 <span class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Français</span>
+                 <p class="text-slate-800 dark:text-gray-200 font-medium">{(programme as any).conditions.langue_enseignement.label}</p>
+               </div>
+               <div class="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-xl border border-slate-100 dark:border-transparent">
+                 <span class="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase mb-1">Mathématiques</span>
+                 <p class="text-slate-800 dark:text-gray-200 font-medium">{(programme as any).conditions.mathematiques.label}</p>
+               </div>
+             </div>
+          ) : (
+            <p class="text-slate-700 dark:text-slate-300">Voir les conditions sur le site officiel.</p>
+          )}
+        </div>
+      </div>
+
+      <!-- Colonne Latérale (Sidebar d'information rapide) -->
+      <div class="space-y-6">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 shadow-sm ring-1 ring-slate-200 dark:ring-transparent text-slate-900 dark:text-white">
+          <h3 class="font-bold text-lg mb-4">Perspectives d'avenir</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <Briefcase size={18} class="text-amber-500 dark:text-brand-yellow shrink-0 mt-0.5" />
+              <div>
+                <span class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Métiers rattachés</span>
+                <span class="text-sm font-medium text-slate-700 dark:text-gray-200 italic">(Exemple d'intégration future)</span>
+              </div>
+            </li>
+            <li class="flex items-start gap-3 mt-4">
+              <MapPin size={18} class="text-amber-500 dark:text-brand-yellow shrink-0 mt-0.5" />
+              <div>
+                <span class="block text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase">Où l'étudier ?</span>
+                <span class="text-sm font-medium text-slate-700 dark:text-gray-200">Liste des Cégeps/CFP à venir via l'API.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

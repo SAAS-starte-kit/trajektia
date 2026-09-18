@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import AfeApp from '../../components/afe/App';
+import Disclaimer from '../../components/Disclaimer';
+---
+
+<BaseLayout 
+  title="Aide financière aux études (AFE) • Guide complet & Diaporama interactif" 
+  description="L'Aide financière aux études (AFE) du Québec expliquée simplement pour le Cégep, la formation professionnelle (DEP) et l'université : prêts, bourses, calculs, montants 2026-2027 et démarches."
+>
+  <AfeApp client:idle />
+  <Disclaimer />
+</BaseLayout>
+

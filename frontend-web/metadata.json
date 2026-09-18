@@ -1,0 +1,6 @@
+{
+  "name": "Préalables DEC et DEP",
+  "description": "Portail d'exploration des programmes DEC et DEP du Québec avec vérificateur interactif des préalables d'admission et guide complet de l'Aide financière aux études (AFE).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

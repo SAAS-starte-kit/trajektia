@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import BentoGrid from '../components/bento/BentoGrid.astro';
+import SemanticSearchBar from '../components/SemanticSearchBar';
+---
+
+<BaseLayout title="Accueil" description="Plateforme éducative québécoise pour les programmes collégiaux (DEC), la formation professionnelle (DEP) et l'Aide financière aux études (AFE).">
+  
+  <!-- HEADER TITLE & INTRO -->
+  <div class="text-center max-w-3xl mx-auto mb-10 pt-4">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100/80 text-indigo-700 dark:bg-indigo-950/70 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60 mb-3.5 shadow-sm">
+      <span class="w-2 h-2 rounded-full bg-brand-yellow"></span>
+      Orientation scolaire intelligente au Québec
+    </div>
+    
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+      Trouvez votre voie parmi tous les <br class="hidden sm:inline">
+      <span class="bg-gradient-to-r from-indigo-600 via-indigo-500 to-amber-500 dark:from-indigo-400 dark:via-indigo-300 dark:to-amber-300 bg-clip-text text-transparent">programmes DEC, DEP et l'AFE</span>
+    </h1>
+    
+    <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+      Cartographie interactive des préalables mathématiques (CST, TS, SN), bourses gouvernementales et cheminements personnalisés.
+    </p>
+  </div>
+  
+  <!-- BARRE DE RECHERCHE IA -->
+  <SemanticSearchBar client:load />
+  
+  <BentoGrid />
+</BaseLayout>

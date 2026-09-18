@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import InfographieSRAM from '../../components/infographics/InfographieSRAM';
+import ShareButton from '../../components/ShareButton';
+import { ChevronLeft, BookOpen, Clock, Tag } from 'lucide-react';
+---
+
+<BaseLayout title="SRAM : Comment réussir sa demande d'admission au Cégep | Trajektia" description="Comprendre le système des 3 tours du SRAM pour faire les bons choix.">
+  <div class="max-w-4xl mx-auto">
+    <!-- Fil d'ariane -->
+    <a href="/guides" class="inline-flex items-center gap-2 text-sm text-brand-blue hover:underline mb-6 font-medium">
+      <ChevronLeft size={16} /> Retour aux guides
+    </a>
+
+    <!-- En-tête de l'article (Hero) -->
+    <div class="bg-slate-800/50 rounded-3xl p-8 md:p-10 shadow-sm ring-1 ring-slate-700 mb-8 relative overflow-hidden">
+      <div class="absolute top-0 right-0 -mt-10 -mr-10 text-brand-blue/5 pointer-events-none">
+        <BookOpen size={250} />
+      </div>
+      
+      <div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="flex-1">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="px-3 py-1 bg-brand-yellow/20 text-white rounded-full text-xs font-bold uppercase tracking-wider">
+              Admissions
+            </span>
+            <span class="flex items-center gap-1.5 text-xs font-bold text-slate-400 uppercase tracking-wider">
+              <Clock size={14} /> 4 min de lecture
+            </span>
+          </div>
+          
+          <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight tracking-tight">
+            SRAM : Comment réussir sa demande d'admission au Cégep sans se faire piéger
+          </h1>
+          <p class="text-xl text-slate-400 font-medium leading-relaxed">
+            Comprendre le système des 3 tours du SRAM pour faire les bons choix stratégiques.
+          </p>
+        </div>
+        
+        <div class="shrink-0 flex md:flex-col gap-3">
+          <ShareButton 
+            title="SRAM : Stratégie d'admission - Trajektia"
+            variant="solid" 
+            client:idle
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      
+      <!-- Contenu de l'article -->
+      <div class="lg:col-span-3">
+        <article class="bg-slate-800/50 rounded-3xl p-8 md:p-10 shadow-sm ring-1 ring-slate-700 prose prose-lg prose-slate max-w-none 
+          prose-headings:font-bold prose-headings:text-white prose-headings:tracking-tight
+          prose-h2:text-2xl prose-h2:mt-10 prose-h2:border-b prose-h2:border-slate-700/50 prose-h2:pb-3
+          prose-a:text-brand-blue prose-a:font-semibold prose-a:no-underline hover:prose-a:underline
+        ">
+          <p>La période d'admission au Cégep peut être stressante. Si vous postulez dans la grande région de Montréal, vous passerez par le fameux <strong>SRAM</strong> (Service régional d'admission du Montréal métropolitain).</p>
+          
+          <p>Le fonctionnement est simple en apparence : vous avez droit à un seul choix de programme et de Cégep par tour. Mais c'est exactement cette règle qui piège de nombreux étudiants chaque année.</p>
+
+          <h2>La stratégie de l'entonnoir (Infographie)</h2>
+          <p>Voici l'approche exacte que les conseillers d'orientation recommandent pour maximiser vos chances d'admission sans vous retrouver le bec à l'eau fin mai.</p>
+
+          <!-- Notre super infographie codée en React -->
+          <InfographieSRAM client:visible />
+
+          <h2>Pourquoi cette stratégie fonctionne ?</h2>
+          <p>Au premier tour (1er mars), <strong>toutes les places</strong> de tous les programmes sont disponibles. C'est mathématique : c'est le seul moment où vous avez une chance d'entrer dans un programme contingenté (comme les Soins infirmiers ou les Techniques policières).</p>
+
+          <blockquote class="bg-blue-50 border-l-4 border-brand-blue p-6 rounded-r-xl italic my-6 text-blue-900">
+            « Ne vous censurez pas au Tour 1. Si votre rêve est un programme contingenté, essayez-le. Le Tour 2 est là pour vous rattraper. »
+          </blockquote>
+
+          <p>Au deuxième tour (mi-avril), les programmes contingentés ont déjà rempli 100% de leurs places. Si vous êtes refusé au Tour 1 et que vous remettez un choix contingenté au Tour 2... vous allez presque assurément recevoir un autre refus.</p>
+        </article>
+      </div>
+
+      <!-- Colonne Latérale -->
+      <div class="lg:col-span-1 space-y-6">
+        <div class="bg-slate-900 rounded-3xl p-6 shadow-sm text-white">
+          <h3 class="font-bold mb-4 flex items-center gap-2">
+            <Tag size={18} class="text-brand-yellow" /> Mots-clés
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-slate-800/50/10 text-gray-300 rounded-full text-xs font-medium border border-white/20">SRAM</span>
+            <span class="px-3 py-1 bg-slate-800/50/10 text-gray-300 rounded-full text-xs font-medium border border-white/20">Cégep</span>
+            <span class="px-3 py-1 bg-slate-800/50/10 text-gray-300 rounded-full text-xs font-medium border border-white/20">Admissions</span>
+            <span class="px-3 py-1 bg-slate-800/50/10 text-gray-300 rounded-full text-xs font-medium border border-white/20">Secondaire 5</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

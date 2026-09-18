@@ -1,0 +1,145 @@
+---
+import { getProgrammes } from '../../data/programmes-dec-prealables';
+import { getDepProgrammes } from '../../data/programmes-dep-prealables';
+import { METIERS_DATA } from '../../data/metiers';
+
+const programmesCount = (await getProgrammes()).length;
+const depCount = (await getDepProgrammes()).length;
+const metiersCount = METIERS_DATA.length;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-4">
+  
+  <!-- 1. DEC Card (Colégial) -->
+  <a href="/programmes" class="col-span-1 md:col-span-2 group relative bg-white dark:bg-slate-800/70 p-8 sm:p-9 rounded-3xl shadow-sm hover:shadow-xl dark:shadow-none dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.25)] border border-slate-200/90 dark:border-slate-700/80 hover:border-indigo-500/60 dark:hover:border-indigo-400/60 transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-md">
+    <div class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-transparent to-transparent dark:from-indigo-500/10 dark:via-slate-800/30 dark:to-transparent pointer-events-none"></div>
+    <div class="absolute right-0 top-0 text-slate-200 dark:text-indigo-400/10 opacity-30 dark:opacity-20 group-hover:opacity-60 dark:group-hover:opacity-30 group-hover:scale-105 transition-all duration-300 -mt-6 -mr-6 pointer-events-none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-library"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg>
+    </div>
+    <div class="z-10 relative">
+      <div class="flex items-center gap-2 mb-4">
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-indigo-50 dark:bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border border-indigo-200/90 dark:border-indigo-500/30">
+          <span class="w-1.5 h-1.5 rounded-full bg-indigo-600 dark:bg-indigo-400 mr-1.5 animate-pulse"></span>
+          {programmesCount} programmes collégiaux
+        </span>
+        <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/60 px-2 py-0.5 rounded-md">Cégep & Privé</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">Programmes collégiaux (DEC)</h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-lg text-sm sm:text-base leading-relaxed">Explorez le tableau interactif des programmes préuniversitaires et techniques. Vérifiez en un coup d'œil vos préalables d'admission en mathématiques (CST, TS, SN) et sciences.</p>
+    </div>
+    <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-700/50 flex items-center text-indigo-600 dark:text-indigo-300 font-bold z-10 relative text-sm group-hover:text-indigo-700 dark:group-hover:text-indigo-200">
+      <span>Accéder au tableau DEC</span>
+      <svg class="ml-2 w-4 h-4 group-hover:translate-x-1.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+    </div>
+  </a>
+
+  <!-- 2. DEP Card -->
+  <a href="/dep" class="col-span-1 group relative bg-white dark:bg-slate-800/70 p-8 rounded-3xl shadow-sm hover:shadow-xl dark:shadow-none dark:hover:shadow-[0_0_30px_-5px_rgba(20,184,166,0.25)] border border-slate-200/90 dark:border-slate-700/80 hover:border-teal-500/50 dark:hover:border-teal-400/50 transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-md">
+    <div class="absolute inset-0 bg-gradient-to-br from-teal-50/40 via-transparent to-transparent dark:from-teal-500/10 dark:via-transparent dark:to-transparent pointer-events-none"></div>
+    <div class="z-10 relative">
+      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-teal-50 dark:bg-teal-500/15 text-teal-700 dark:text-teal-300 mb-4 border border-teal-200 dark:border-teal-500/30">{depCount} DEP répertoriés</span>
+      <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mb-2 group-hover:text-teal-600 dark:group-hover:text-teal-300 transition-colors">Formation professionnelle (DEP)</h2>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Consultez les conditions d'admission, préalables et cheminements des diplômes d'études professionnelles québécois.</p>
+    </div>
+    <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-700/50 flex items-center text-teal-600 dark:text-teal-300 font-bold z-10 relative text-sm group-hover:text-teal-700 dark:group-hover:text-teal-200">
+      <span>Explorer les DEP</span>
+      <svg class="ml-2 w-4 h-4 group-hover:translate-x-1.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+    </div>
+  </a>
+
+  <!-- 3. AFE Card (Featured Gold) -->
+  <a href="/aide-financiere" class="col-span-1 group relative bg-white dark:bg-slate-800/80 p-8 rounded-3xl shadow-sm hover:shadow-xl dark:shadow-none dark:hover:shadow-[0_0_30px_-5px_rgba(251,191,36,0.25)] border border-amber-300/80 dark:border-amber-500/40 hover:border-amber-500 dark:hover:border-amber-400 transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-md">
+    <div class="absolute inset-0 bg-gradient-to-br from-amber-100/50 via-amber-50/20 to-transparent dark:from-amber-400/10 dark:via-transparent dark:to-transparent pointer-events-none"></div>
+    <div class="z-10 relative">
+      <div class="flex items-center justify-between mb-4">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-brand-yellow text-slate-950 shadow-sm border border-amber-400/40">
+          <span class="w-1.5 h-1.5 rounded-full bg-slate-900 animate-ping"></span>
+          Guide & Diaporama
+        </span>
+        <span class="text-xs font-bold text-amber-900 dark:text-amber-200 bg-amber-100/80 dark:bg-slate-900/80 px-2.5 py-0.5 rounded-md border border-amber-300/80 dark:border-amber-500/30">2026-2027</span>
+      </div>
+      <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mb-2 group-hover:text-amber-600 dark:group-hover:text-brand-yellow transition-colors">Aide financière (AFE)</h2>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Prêts et bourses, montants d'allocation, critères d'autonomie et diaporama interactif téléchargeable en PowerPoint (.pptx).</p>
+    </div>
+    <div class="mt-8 pt-4 border-t border-amber-200/50 dark:border-amber-500/20 flex items-center text-amber-700 dark:text-brand-yellow font-extrabold z-10 relative text-sm group-hover:translate-x-0.5 transition-transform">
+      <span>Consulter le guide complet</span>
+      <svg class="ml-2 w-4 h-4 group-hover:translate-x-1.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+    </div>
+  </a>
+
+  <!-- 4. Guides Card -->
+  <a href="/guides" class="col-span-1 group relative bg-white dark:bg-slate-800/70 p-8 rounded-3xl shadow-sm hover:shadow-xl dark:shadow-none dark:hover:shadow-[0_0_30px_-5px_rgba(168,85,247,0.25)] border border-slate-200/90 dark:border-slate-700/80 hover:border-purple-500/50 dark:hover:border-purple-400/50 transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-md">
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-50/40 via-transparent to-transparent dark:from-purple-500/10 dark:via-transparent dark:to-transparent pointer-events-none"></div>
+    <div class="z-10 relative">
+      <div class="w-12 h-12 bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 rounded-2xl flex items-center justify-center mb-4 border border-purple-200 dark:border-purple-800/50 shadow-xs group-hover:scale-105 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      </div>
+      <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">Guides d'orientation</h2>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Comprendre les conditions d'admission, la cote R et le système collégial québécois.</p>
+    </div>
+    <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-700/50 flex items-center text-purple-600 dark:text-purple-300 font-bold z-10 relative text-sm group-hover:text-purple-700 dark:group-hover:text-purple-200">
+      <span>Lire les guides</span>
+      <svg class="ml-2 w-4 h-4 group-hover:translate-x-1.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+    </div>
+  </a>
+
+  <!-- 5. Outils Card -->
+  <a href="/outils" class="col-span-1 group relative bg-white dark:bg-slate-800/70 p-8 rounded-3xl shadow-sm hover:shadow-xl dark:shadow-none dark:hover:shadow-[0_0_30px_-5px_rgba(249,115,22,0.25)] border border-slate-200/90 dark:border-slate-700/80 hover:border-orange-500/50 dark:hover:border-orange-400/50 transition-all duration-300 flex flex-col justify-between overflow-hidden backdrop-blur-md">
+    <div class="absolute inset-0 bg-gradient-to-br from-orange-50/40 via-transparent to-transparent dark:from-orange-500/10 dark:via-transparent dark:to-transparent pointer-events-none"></div>
+    <div class="z-10 relative">
+      <div class="w-12 h-12 bg-orange-100 dark:bg-orange-950/60 text-orange-600 dark:text-orange-400 rounded-2xl flex items-center justify-center mb-4 border border-orange-200 dark:border-orange-800/50 shadow-xs group-hover:scale-105 transition-transform">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-300 transition-colors">Outils interactifs</h2>
+      <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">Calculateurs de préalables et questionnaires pour vous orienter dans vos choix.</p>
+    </div>
+    <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-700/50 flex items-center text-orange-600 dark:text-orange-400 font-bold z-10 relative text-sm group-hover:text-orange-700 dark:group-hover:text-orange-200">
+      <span>Accéder aux outils</span>
+      <svg class="ml-2 w-4 h-4 group-hover:translate-x-1.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+    </div>
+  </a>
+
+  <!-- 6. Métiers & Offres d'Emploi Card (Featured Banner) -->
+  <a href="/metiers" class="col-span-1 md:col-span-3 group relative bg-gradient-to-r from-white via-indigo-50/40 to-purple-50/20 dark:from-slate-800/90 dark:via-indigo-950/30 dark:to-slate-900/90 p-8 sm:p-9 rounded-3xl shadow-sm hover:shadow-xl dark:shadow-none dark:hover:shadow-[0_0_35px_-5px_rgba(99,102,241,0.3)] border border-indigo-200/90 dark:border-indigo-500/40 hover:border-indigo-500 dark:hover:border-indigo-400 transition-all duration-300 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 overflow-hidden backdrop-blur-md">
+    <div class="z-10 max-w-2xl">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black bg-indigo-100 text-indigo-800 dark:bg-indigo-950/80 dark:text-indigo-300 border border-indigo-300/70 dark:border-indigo-800/60">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Nouveau • Career Knowledge Graph (CKG)
+        </span>
+        <span class="text-xs font-bold text-indigo-800 dark:text-indigo-300 bg-indigo-100/80 dark:bg-indigo-950/70 px-2.5 py-0.5 rounded-md border border-indigo-300/70 dark:border-indigo-800/60">
+          {metiersCount} métiers documentés
+        </span>
+        <span class="text-xs font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-100/80 dark:bg-emerald-950/70 px-2.5 py-0.5 rounded-md border border-emerald-300/80 dark:border-emerald-800/60">
+          Offres d'emploi en direct
+        </span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+        Fiches Métiers, Salaires & Offres d'Emploi
+      </h2>
+      <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+        Salaires officiels Statistique Canada, profils d'effort physiques et cognitifs DPC, compétences vertes écoresponsables ESCO et offres d'emploi actives au Québec.
+      </p>
+    </div>
+
+    <div class="flex items-center gap-3 shrink-0 z-10">
+      <span class="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-indigo-600 group-hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-600/25 group-hover:scale-105 transition-all">
+        <span>Consulter les fiches métiers</span>
+        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </span>
+    </div>
+  </a>
+
+  <!-- 7. Bottom Banner (3 cols) -->
+  <div class="col-span-1 md:col-span-3 bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-950 dark:from-[#0c1222] dark:via-[#0F172A] dark:to-[#080d1a] text-white p-8 sm:p-10 rounded-3xl shadow-xl border border-indigo-900/50 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-6 relative overflow-hidden">
+    <div class="relative z-10">
+      <span class="inline-block text-xs font-black uppercase tracking-wider text-amber-400 mb-2">Orientation & Réussite</span>
+      <h2 class="text-2xl sm:text-3xl font-black mb-2 tracking-tight">Une plateforme pensée pour tous les parcours</h2>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">Conçue pour les élèves du secondaire, les étudiants du collégial, les adultes en retour aux études et les conseillers d'orientation.</p>
+    </div>
+    <a href="/guides" class="whitespace-nowrap bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3 rounded-full text-sm border border-white/20 transition-all hover:scale-105 shrink-0">En savoir plus</a>
+  </div>
+
+</div>

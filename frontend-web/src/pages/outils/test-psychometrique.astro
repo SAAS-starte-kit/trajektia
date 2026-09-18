@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Test de personnalité et d'intérêts professionnels (Big Five + RIASEC) | Trajektia"
+  description="Évaluez vos traits de personnalité (Big Five / OCEAN) et vos intérêts professionnels (RIASEC / Holland) grâce à un test scientifiquement validé. Obtenez des recommandations de métiers personnalisées."
+>
+  <div class="py-4">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6" aria-label="Fil d'Ariane">
+      <a href="/" class="hover:text-indigo-500 transition-colors">Accueil</a>
+      <span class="text-slate-300 dark:text-slate-600">/</span>
+      <a href="/outils" class="hover:text-indigo-500 transition-colors">Outils</a>
+      <span class="text-slate-300 dark:text-slate-600">/</span>
+      <span class="text-slate-700 dark:text-slate-200 font-medium">Test psychométrique</span>
+    </nav>
+
+    <!-- Composant React interactif (client:load pour accès immédiat) -->
+    <div id="psychometric-test-root">
+      <script>
+        // Preload indicator
+        document.getElementById('psychometric-test-root')!.innerHTML = `
+          <div class="flex items-center justify-center py-20">
+            <div class="text-center">
+              <div class="w-10 h-10 border-3 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <p class="text-slate-500 dark:text-slate-400 text-sm">Chargement du test...</p>
+            </div>
+          </div>
+        `;
+      </script>
+    </div>
+  </div>
+
+  <!-- React Island -->
+  <script>
+    import { createElement } from 'react';
+    import { createRoot } from 'react-dom/client';
+    import PsychometricTest from '../../components/PsychometricTest';
+
+    const container = document.getElementById('psychometric-test-root');
+    if (container) {
+      const root = createRoot(container);
+      root.render(createElement(PsychometricTest));
+    }
+  </script>
+</BaseLayout>

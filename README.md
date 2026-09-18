@@ -1,79 +1,152 @@
 # Trajektia 🚀
 
-**Intelligence Carrière — Hub & Spoke Architecture (Bento Bridge)**
+**Intelligence Carrière & Career Knowledge Graph (CKG)**
 
-Dépôt de production propre issu du pivot architectural depuis `saas-ai-starter` (archive R&D).
+Plateforme souveraine d'orientation professionnelle, d'intelligence du marché du travail et de planification de carrière pour le Québec et le Canada.
 
 ---
 
-## Architecture
+## 🏛️ Architecture Globale
+
+Trajektia repose sur une architecture découplée alliant graphe relationnel, base de données relationnelle enrichie et vitrine web haute performance :
 
 ```
-Neo4j local (archive)
-    ↓ Le Siphon (ETL)
-Supabase PostgreSQL  ←→  Directus Cloud (CMS)
-    ↓
-FastAPI Stitcher (Render / Railway)
-    ↓
-Brilliant Directories (Frontend)
+┌─────────────────────────────────────────────────────────────────────────┐
+│                           SOURCES DE DONNÉES                            │
+│  SIPeC / OaSIS 2025 • O*NET 28.2 • EDSC Salaires • MEQ La Relance       │
+│  CNESST Lésions • Guide des Carrières GC 2016 • ESCO • Adzuna Live API  │
+└────────────────────────────────────┬────────────────────────────────────┘
+                                     │ Ingestion & Crosswalks
+                                     ▼
+┌────────────────────────────────────┬────────────────────────────────────┐
+│      CAREER KNOWLEDGE GRAPH        │         DATA HUB POSTGRESQL        │
+│          Neo4j (bolt)              │         Supabase / Directus        │
+│  - 3 871 Métiers (O*NET, ESCO, CNP)│  - Tables encyclopédiques          │
+│  - 35 117 Relations REQUIRES       │  - Profils RIASEC & Big Five       │
+│  - 32 435 Relations Logiciels      │  - Formations MEQ (539 écoles)     │
+│  - 26 388 Relations Outils         │  - Données SST CNESST (20 secteurs)│
+│  - 2 378 Concordances (CNP↔O*NET)  │  - Exigences physiques & DPC       │
+│  - 4 253 Concordances ESCO         │  - Recherche vectorielle pgvector  │
+└────────────────────────────────────┴────────────────────────────────────┘
+                                     │
+                                     ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    MOTEURS ANALYTIQUES & DÉCISIONNELS                   │
+│  - Analytics Ergonomie & Réadaptation (`analytics/ergonomics.py`)       │
+│  - Calibration Prediger & Indice ICP (`analytics/prediger_riasec_*.py`) │
+│  - Service Sémantique & Explicabilité DPC (`analytics/dpc_service.py`)  │
+│  - Moteur d'Appariement 11D Cosinus (`frontend-web/.../scoring-engine`) │
+└────────────────────────────────────┬────────────────────────────────────┘
+                                     │
+                                     ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         VITRINE FRONTEND ASTRO                          │
+│               Astro 5 + React + Tailwind (`frontend-web/`)              │
+│  - Fiches Métiers 360° (`/metiers/[cnp_code]`)                          │
+│  - Fiches Formations (`/formations/[code]`)                             │
+│  - Explorateur & Recherche vectorielle sémantique                       │
+│  - Suite d'Outils Interactifs (`/outils`) :                             │
+│      * Test Psychométrique Big Five & RIASEC (110 items)                │
+│      * Simulateur d'aide financière aux études (AFE)                    │
+│      * Calculateur de rentabilité scolaire                              │
+│      * Observatoire du marché du travail                                │
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
-## Structure
+---
+
+## 📁 Structure du Répertoire
 
 ```
 trajektia/
-├── database/
-│   ├── schema.sql          ← DDL complet Supabase (10 tables, RLS, index)
-│   └── migrations/         ← Migrations futures
-├── etl/
-│   └── le_siphon.py        ← ETL Neo4j → PostgreSQL (données carrières)
-├── ingestors/
-│   └── oasis_ingestor.py   ← À DÉVELOPPER: OaSIS 2025 → PostgreSQL direct
-├── api/
-│   ├── main.py             ← FastAPI Stitcher (à développer)
-│   └── routers/
-├── .env.example
-├── requirements.txt
-└── README.md
+├── analytics/                   ← Moteurs décisionnels, cliniques et psychométriques
+│   ├── ergonomics.py            ← Moteur d'adéquation ergonomique & alertes CNESST
+│   ├── prediger_riasec_calibrator.py ← Calibration cartésienne Prediger ↔ RIASEC
+│   └── dpc_service.py           ← Service narratif DPC pour conseillers d'orientation
+├── ckg/                         ← Career Knowledge Graph (Neo4j)
+│   ├── ingestors/               ← Scripts d'ingestion (O*NET, SIPeC, salaires, ESCO)
+│   ├── crosswalks/              ← Concordances CNP ↔ O*NET ↔ ESCO
+│   ├── audit/                   ← Scripts d'audit et de validation du graphe
+│   ├── MANUEL_METHODOLOGIQUE_CKG.md ← Manuel méthodologique scientifique (19 sections)
+│   ├── PLAN_ACTION.md           ← Feuille de route et suivi d'avancement
+│   └── REGISTRE_SOURCES_DONNEES.md ← Registre officiel des sources de données
+├── database/                    ← Schémas SQL Supabase / PostgreSQL (V1 à V12)
+│   ├── schema.sql à schema_v12_pgvector.sql
+├── etl/                         ← Pipelines de synchronisation Supabase
+│   ├── le_siphon.py             ← Pont Neo4j → Supabase
+│   ├── meq_relance_ingestor.py  ← Écoles MEQ & données La Relance
+│   ├── cnesst_supabase_ingestor.py ← Données SST Québec & lésions
+│   └── physical_demands_dpc_ingestor.py ← Exigences physiques & DPC GC 2016
+├── frontend-web/                ← Vitrine Astro 5 & Applications React
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── PsychometricTest.tsx ← Composant interactif du test (110 questions)
+│   │   │   ├── CareerCard.astro, JobAlertModal.astro, etc.
+│   │   ├── data/
+│   │   │   ├── questions-psychometriques.ts ← Banques d'items IPIP-50 & O*NET Mini-IP
+│   │   │   └── outils.ts        ← Catalogue des outils interactifs
+│   │   ├── utils/
+│   │   │   └── scoring-engine.ts ← Moteur de scoring, inversions & similarité 11D
+│   │   └── pages/
+│   │       ├── metiers/[code].astro ← Fiche métier exhaustive 360°
+│   │       ├── outils/index.astro   ← Hub des outils interactifs
+│   │       └── outils/test-psychometrique.astro ← Page du test psychométrique
+└── scripts/                     ← Utilitaires, tests Adzuna, pgvector
 ```
 
-## Démarrage rapide
+---
+
+## 🧪 Module de Test Psychométrique (Nouveauté)
+
+Accessible sur `/outils/test-psychometrique` :
+- **Double inventaire scientifique validé** :
+  - **Big Five (OCEAN)** : 50 énoncés IPIP-50 (Goldberg 1992) avec clés d'inversion.
+  - **Intérêts RIASEC** : 60 activités concrètes O*NET Mini-IP (Rounds et al. 2010).
+- **Moteur de calcul 100% côté client** :
+  - Normalisation 0-100 par dimension.
+  - Appariement par similarité cosinus dans un espace vectoriel à **11 dimensions**.
+  - Recommandation instantanée du **Top 10 des métiers québécois** les plus adaptés.
+  - Visualisations graphiques vectorielles : **Hexagone SVG RIASEC** et **Radar SVG Big Five**.
+  - Respect strict de la Loi 25 : persistance locale sous `localStorage`, aucune donnée clinique transmise sans consentement.
+
+---
+
+## 🚀 Démarrage Rapide
+
+### 1. Backend Python & CKG
 
 ```bash
-# 1. Copier les variables d'environnement
+# Copier et configurer l'environnement
 cp .env.example .env
-# Remplir: SUPABASE_DB_URL, NEO4J_PASSWORD, ONET_API_KEY...
 
-# 2. Installer les dépendances
+# Installer les dépendances Python
 pip install -r requirements.txt
 
-# 3. Appliquer le schéma sur Supabase (via Supabase Studio → SQL Editor)
-#    Coller le contenu de database/schema.sql
+# Vérifier la configuration des sources de données
+python ckg/ckg_config.py
 
-# 4. Lancer Le Siphon (ETL Neo4j → Supabase)
-python etl/le_siphon.py
+# Tester les moteurs analytiques
+python analytics/ergonomics.py
+python analytics/prediger_riasec_calibrator.py
 ```
 
-## Données migrées (via Le Siphon)
+### 2. Frontend Astro Web
 
-| Source | Données | Table cible |
-|---|---|---|
-| SIPeC 2025 / NOC | 3 361 occupations, salaires | `occupations` |
-| O\*NET 28.2 (ZIP) | 70 146 relations psychométriques | `competencies`, `occupation_competencies` |
-| O\*NET 28.2 (API v2) | Skills, Tasks, Tools | `tasks`, `tools`, jonctions |
-| O\*NET RIASEC | Profils RIASEC par métier | `riasec_profiles` |
+```bash
+cd frontend-web
 
-## Prochaines étapes
+# Installer les dépendances Node
+npm install
 
-- [ ] **Phase 5** — `ingestors/oasis_ingestor.py` : OaSIS 2025 → PostgreSQL direct
-- [ ] **FastAPI Stitcher** — Endpoint `/api/metier/{cnp_code}` pour Brilliant Directories
-- [ ] **Connexion Directus** — Introspection sur Supabase, webhooks Flow
-- [ ] **Widgets BD** — Radar RIASEC en Vanilla JS + CDN Chart.js
+# Lancer le serveur de développement
+npm run dev
+# Vitrine accessible sur http://localhost:3000 (ou 3001 si occupé)
+```
 
-## Référence archive
+---
 
-Le dépôt `saas-ai-starter` (gelé) contient :
-- Pipeline OmniPrompt / HybridRAG
-- Ingesteurs Neo4j (O\*NET, SIPeC, JobBank)
-- Frontend React (Trajecto Explorer)
-- Scripts de debug et POC
+## 📚 Documentation de Référence
+
+- **[Manuel Méthodologique CKG](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/ckg/MANUEL_METHODOLOGIQUE_CKG.md)** : Référence scientifique complète (19 sections, formules mathématiques, modèles cliniques Prediger, DPC, Big Five, RIASEC, recherche vectorielle).
+- **[Plan d'Action CKG](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/ckg/PLAN_ACTION.md)** : Feuille de route détaillée et suivi de réalisation par phase.
+- **[Registre des Sources de Données](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/ckg/REGISTRE_SOURCES_DONNEES.md)** : Catalogue exhaustif des 12+ référentiels officiels et calendrier de mise à jour.

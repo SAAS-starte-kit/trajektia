@@ -1,0 +1,284 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import { getDepProgrammes } from '../../data/programmes-dep-prealables';
+import { secteurs } from '../../data/secteurs';
+
+const programmes = await getDepProgrammes();
+const programmesTries = [...programmes].sort((a, b) => a.nom.localeCompare(b.nom));
+
+// Secteurs avec comptage pour les programmes DEP
+const secteursAvecProgrammes = secteurs
+  .filter(s => s.id !== '200') // Exclure le secteur préuniversitaire collégial
+  .map(s => ({
+    ...s,
+    count: programmes.filter(p => p.secteur === s.id).length
+  }))
+  .filter(s => s.count > 0);
+
+const statsNiveaux = {
+  sec3: programmes.filter(p => p.niveau_scolaire === 'sec3').length,
+  sec4: programmes.filter(p => p.niveau_scolaire === 'sec4').length,
+  sec4_fr5: programmes.filter(p => p.niveau_scolaire === 'sec4_francais5').length,
+};
+---
+
+<BaseLayout title="Programmes DEP (Formation Professionnelle)" description="Tableau interactif des programmes de Diplôme d'études professionnelles (DEP) et conditions d'admission au Québec">
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-teal-100/80 text-teal-700 dark:bg-teal-500/20 dark:text-teal-300 mb-3 border border-teal-200 dark:border-teal-500/30">
+      <span class="w-2 h-2 rounded-full bg-teal-500"></span>
+      <span>{programmes.length} programmes répertoriés (MEQ)</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-2">Diplômes d'études professionnelles (DEP)</h1>
+    <p class="text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">Explorez l'ensemble des programmes de formation professionnelle au Québec selon la nomenclature officielle du Ministère de l'Éducation (MEQ). Filtrez par secteur d'emploi, niveau scolaire requis et voie d'accès.</p>
+  </div>
+
+  <!-- Guide explicatif des voies d'accès et niveaux scolaires -->
+  <div class="bg-white dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl p-4 mb-6 text-sm text-slate-700 dark:text-slate-200 shadow-sm">
+    <h2 class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-2">Conditions générales d'admission (Voie 16 ans et plus)</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+      <div class="bg-slate-50 dark:bg-slate-900/50 p-2.5 rounded-lg border border-slate-200 dark:border-slate-700">
+        <span class="font-bold text-blue-600 dark:text-blue-400 block mb-0.5">Secondaire 3</span>
+        <span>Unités de 3e sec. en langue d'ens., langue seconde et mathématiques.</span>
+      </div>
+      <div class="bg-slate-50 dark:bg-slate-900/50 p-2.5 rounded-lg border border-slate-200 dark:border-slate-700">
+        <span class="font-bold text-blue-600 dark:text-blue-400 block mb-0.5">Secondaire 4</span>
+        <span>Titulaire d'un DES ou unités de 4e sec. en langue d'ens., langue seconde et math.</span>
+      </div>
+      <div class="bg-slate-50 dark:bg-slate-900/50 p-2.5 rounded-lg border border-slate-200 dark:border-slate-700">
+        <span class="font-bold text-blue-600 dark:text-blue-400 block mb-0.5">Secondaire 4 + Français 5</span>
+        <span>Unités de 5e sec. en français + 4e sec. en anglais et math (ex. Santé/SASI).</span>
+      </div>
+      <div class="bg-slate-50 dark:bg-slate-900/50 p-2.5 rounded-lg border border-slate-200 dark:border-slate-700">
+        <span class="font-bold text-teal-600 dark:text-teal-400 block mb-0.5">Trajektia</span>
+        <span>Certificat FMS (CFMS) + 2e sec. donne accès à tous les DEP de niveau <strong>Secondaire 3</strong>.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barre de filtres interactive -->
+  <div class="bg-white dark:bg-slate-800/50 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 mb-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div>
+        <label for="search-dep" class="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">Rechercher un DEP</label>
+        <input type="text" id="search-dep" placeholder="Nom, code (ex: 5325, Soudage)..." class="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+      </div>
+      <div>
+        <label for="filter-secteur" class="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">Secteur d'emploi</label>
+        <select id="filter-secteur" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+          <option value="">Tous les secteurs ({programmes.length})</option>
+          {secteursAvecProgrammes.map(s => (
+            <option value={s.id}>{s.id} - {s.nom} ({s.count})</option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label for="filter-niveau" class="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">Niveau scolaire</label>
+        <select id="filter-niveau" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+          <option value="">Tous les niveaux scolaires ({programmes.length})</option>
+          <option value="sec3">Secondaire 3 ({statsNiveaux.sec3})</option>
+          <option value="sec4">Secondaire 4 ({statsNiveaux.sec4})</option>
+          <option value="sec4_francais5">Secondaire 4 + français 5 ({statsNiveaux.sec4_fr5})</option>
+          <option value="fms_sec2">Trajektia ({statsNiveaux.sec3} admissibles)</option>
+        </select>
+      </div>
+      <div>
+        <label for="filter-langue" class="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">Langue du programme</label>
+        <select id="filter-langue" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+          <option value="">Toutes les langues</option>
+          <option value="fr">Français</option>
+          <option value="en">Anglais</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-700/50 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600 dark:text-slate-400">
+      <div id="stat-compteur" class="font-medium">
+        <span id="stat-visible" class="font-bold text-slate-900 dark:text-white">{programmes.length}</span> programmes affichés sur {programmes.length}
+      </div>
+      <button id="btn-reset-filters" class="text-indigo-600 dark:text-indigo-400 hover:underline font-medium cursor-pointer hidden">
+        Réinitialiser les filtres
+      </button>
+    </div>
+  </div>
+
+  <!-- Tableau des programmes DEP -->
+  <div class="bg-white dark:bg-slate-800/50 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700/50 text-left">
+        <thead class="bg-slate-50 dark:bg-slate-900/50 text-slate-700 dark:text-slate-200 uppercase text-xs tracking-wider">
+          <tr>
+            <th class="px-5 py-3 font-semibold">Code</th>
+            <th class="px-5 py-3 font-semibold">Programme</th>
+            <th class="px-4 py-3 font-semibold">Secteur</th>
+            <th class="px-4 py-3 font-semibold text-center">Niveau scolaire requis</th>
+            <th class="px-4 py-3 font-semibold text-center">Langue ens.</th>
+            <th class="px-4 py-3 font-semibold text-center">Langue 2e</th>
+            <th class="px-4 py-3 font-semibold text-center">Maths</th>
+            <th class="px-4 py-3 font-semibold text-center">Langue</th>
+            <th class="px-5 py-3 font-semibold text-right">Détails</th>
+          </tr>
+        </thead>
+        <tbody id="dep-table-body" class="divide-y divide-slate-200 dark:divide-slate-700/50 bg-white dark:bg-slate-800/50 text-sm">
+          {programmesTries.map((p) => (
+            <tr
+              class="hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors dep-row"
+              data-nom={p.nom.toLowerCase()}
+              data-code={p.code.toLowerCase()}
+              data-secteur={p.secteur}
+              data-secteur-nom={p.secteur_nom.toLowerCase()}
+              data-langue={p.langue_programme}
+              data-niveau={p.niveau_scolaire}
+              data-accessible-fms={p.accessible_fms ? 'true' : 'false'}
+            >
+              <td class="px-5 py-3.5 whitespace-nowrap font-mono font-semibold text-indigo-600 dark:text-indigo-400">{p.code}</td>
+              <td class="px-5 py-3.5">
+                <div class="font-medium text-slate-900 dark:text-white leading-snug">{p.nom}</div>
+                <div class="text-xs text-slate-500 dark:text-slate-400 font-normal">{p.secteur_nom}</div>
+              </td>
+              <td class="px-4 py-3.5 whitespace-nowrap">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-700/50 dark:text-slate-200 border border-slate-200 dark:border-slate-600/50">
+                  {p.secteur} - {p.secteur_nom}
+                </span>
+              </td>
+              <td class="px-4 py-3.5 whitespace-nowrap text-center">
+                {p.niveau_scolaire === 'sec4_francais5' && (
+                  <span class="inline-flex flex-col items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+                    Sec. 4 + Français 5
+                  </span>
+                )}
+                {p.niveau_scolaire === 'sec4' && (
+                  <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+                    Secondaire 4
+                  </span>
+                )}
+                {p.niveau_scolaire === 'sec3' && (
+                  <div class="inline-flex flex-col items-center gap-0.5">
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300">
+                      Secondaire 3
+                    </span>
+                    <span class="text-[10px] text-teal-600 dark:text-teal-400 font-medium">Trajektia</span>
+                  </div>
+                )}
+              </td>
+              <td class="px-4 py-3.5 whitespace-nowrap text-center">
+                <span class="px-2 py-0.5 text-xs rounded bg-slate-100 font-medium text-slate-800 dark:bg-slate-700 dark:text-slate-200">
+                  {p.conditions.langue_enseignement.label}
+                </span>
+              </td>
+              <td class="px-4 py-3.5 whitespace-nowrap text-center">
+                <span class="px-2 py-0.5 text-xs rounded bg-slate-100 font-medium text-slate-800 dark:bg-slate-700 dark:text-slate-200">
+                  {p.conditions.langue_seconde.label}
+                </span>
+              </td>
+              <td class="px-4 py-3.5 whitespace-nowrap text-center">
+                <span class="px-2 py-0.5 text-xs rounded bg-slate-100 font-medium text-slate-800 dark:bg-slate-700 dark:text-slate-200">
+                  {p.conditions.mathematiques.label}
+                </span>
+              </td>
+              <td class="px-4 py-3.5 whitespace-nowrap text-center">
+                <span class={`px-2 py-0.5 text-xs font-semibold rounded ${p.langue_programme === 'fr' ? 'bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800' : 'bg-purple-50 text-purple-700 border border-purple-200 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-800'}`}>
+                  {p.langue_programme.toUpperCase()}
+                </span>
+              </td>
+              <td class="px-5 py-3.5 whitespace-nowrap text-right">
+                <a href={p.url} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 text-xs font-medium underline">
+                  Admission FP ↗
+                </a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Message aucun résultat -->
+    <div id="dep-aucun-resultat" class="p-8 text-center hidden">
+      <p class="text-slate-600 dark:text-slate-400 text-base font-medium mb-2">Aucun programme DEP ne correspond à ces critères.</p>
+      <p class="text-slate-500 dark:text-slate-500 text-xs mb-4">Essayez d'élargir les critères de niveau scolaire, de langue ou de secteur d'emploi.</p>
+      <button id="btn-reset-aucun" class="px-4 py-2 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-700 transition-colors cursor-pointer">
+        Réinitialiser les filtres
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('search-dep') as HTMLInputElement;
+    const filterSecteur = document.getElementById('filter-secteur') as HTMLSelectElement;
+    const filterNiveau = document.getElementById('filter-niveau') as HTMLSelectElement;
+    const filterLangue = document.getElementById('filter-langue') as HTMLSelectElement;
+    const statVisible = document.getElementById('stat-visible') as HTMLElement;
+    const btnReset = document.getElementById('btn-reset-filters') as HTMLButtonElement;
+    const btnResetAucun = document.getElementById('btn-reset-aucun') as HTMLButtonElement;
+    const aucunResultat = document.getElementById('dep-aucun-resultat') as HTMLElement;
+    const rows = document.querySelectorAll('.dep-row') as NodeListOf<HTMLElement>;
+
+    function filterDeps() {
+      const query = searchInput.value.toLowerCase().trim();
+      const secteur = filterSecteur.value;
+      const niveau = filterNiveau.value;
+      const langue = filterLangue.value;
+
+      let visibleCount = 0;
+      const isFiltered = !!(query || secteur || niveau || langue);
+
+      rows.forEach(row => {
+        const nom = row.dataset.nom || '';
+        const code = row.dataset.code || '';
+        const rowSecteur = row.dataset.secteur || '';
+        const rowSecteurNom = row.dataset.secteurNom || '';
+        const rowLangue = row.dataset.langue || '';
+        const rowNiveau = row.dataset.niveau || '';
+        const rowAccessibleFms = row.dataset.accessibleFms === 'true';
+
+        // Recherche textuelle sur le nom, le code ou le secteur
+        const matchQuery = !query || nom.includes(query) || code.includes(query) || rowSecteurNom.includes(query);
+        
+        // Filtre par secteur d'emploi
+        const matchSecteur = !secteur || rowSecteur === secteur;
+
+        // Filtre par niveau scolaire requis
+        let matchNiveau = true;
+        if (niveau === 'sec3') {
+          matchNiveau = (rowNiveau === 'sec3');
+        } else if (niveau === 'sec4') {
+          matchNiveau = (rowNiveau === 'sec4');
+        } else if (niveau === 'sec4_francais5') {
+          matchNiveau = (rowNiveau === 'sec4_francais5');
+        } else if (niveau === 'fms_sec2') {
+          // FMS + secondaire 2 rend accessible au DEP de niveau secondaire 3
+          matchNiveau = rowAccessibleFms;
+        }
+
+        // Filtre par langue
+        const matchLangue = !langue || rowLangue === langue;
+
+        if (matchQuery && matchSecteur && matchNiveau && matchLangue) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      if (statVisible) statVisible.textContent = visibleCount.toString();
+      if (btnReset) btnReset.classList.toggle('hidden', !isFiltered);
+      if (aucunResultat) aucunResultat.classList.toggle('hidden', visibleCount > 0);
+    }
+
+    function resetFilters() {
+      searchInput.value = '';
+      filterSecteur.value = '';
+      filterNiveau.value = '';
+      filterLangue.value = '';
+      filterDeps();
+    }
+
+    searchInput?.addEventListener('input', filterDeps);
+    filterSecteur?.addEventListener('change', filterDeps);
+    filterNiveau?.addEventListener('change', filterDeps);
+    filterLangue?.addEventListener('change', filterDeps);
+    btnReset?.addEventListener('click', resetFilters);
+    btnResetAucun?.addEventListener('click', resetFilters);
+  </script>
+</BaseLayout>
+

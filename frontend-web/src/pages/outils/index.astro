@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import { outils } from '../../data/outils';
+---
+
+<BaseLayout title="Outils interactifs" description="Outils et calculateurs pour votre parcours collégial">
+  <div class="mb-10">
+    <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Outils interactifs</h1>
+    <p class="text-slate-600 dark:text-slate-300 max-w-2xl">Découvrez nos applications interactives et nos outils pour faciliter votre orientation et vos démarches administratives.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {outils.map(outil => (
+      <div class="bg-white dark:bg-slate-800/50 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col h-full">
+        <div class="flex justify-between items-start mb-4">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200">
+            {outil.categorie}
+          </span>
+          {outil.statut === 'disponible' && <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300">Disponible</span>}
+          {outil.statut === 'en_developpement' && <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300">En développement</span>}
+          {outil.statut === 'a_venir' && <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">À venir</span>}
+        </div>
+        
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">{outil.nom}</h2>
+        <p class="text-slate-600 dark:text-slate-300 text-sm flex-grow mb-6">{outil.description}</p>
+        
+        {outil.statut === 'disponible' ? (
+          <a href={outil.url} class="inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-brand-blue hover:opacity-90 transition-colors">
+            Ouvrir l'outil
+          </a>
+        ) : (
+          <button disabled class="inline-flex justify-center items-center px-4 py-2 border border-slate-200 dark:border-slate-700 text-sm font-medium rounded-md text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-900/50 cursor-not-allowed">
+            Bientôt disponible
+          </button>
+        )}
+      </div>
+    ))}
+  </div>
+</BaseLayout>

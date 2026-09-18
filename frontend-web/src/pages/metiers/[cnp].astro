@@ -1,0 +1,990 @@
+---
+// ============================================================
+// src/pages/metiers/[cnp].astro
+// Fiche métier détaillée Trajektia (Career Knowledge Graph)
+// ============================================================
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import InfoBubble from '../../components/ui/InfoBubble.astro';
+import { METIERS_DATA, type FicheMetier } from '../../data/metiers';
+
+export async function getStaticPaths() {
+  return METIERS_DATA.map((metier) => ({
+    params: { cnp: metier.cnp },
+    props: { metier }
+  }));
+}
+
+interface Props {
+  metier: FicheMetier;
+}
+
+const { metier } = Astro.props;
+
+// Formatage ergonomique : évite l'effet de bogue ou de vide d'un '0 %'
+function formatRiasecScore(score: number): string {
+  if (score === 0 || score < 5) return '< 5 %';
+  return `${score} %`;
+}
+
+function getRiasecBarWidth(score: number): number {
+  if (score === 0 || score < 5) return 4;
+  return score;
+}
+---
+
+<BaseLayout 
+  title={`${metier.titre_court} (CNP ${metier.cnp}) | Salaires, RIASEC, Relance & Emplois - Trajektia`}
+  description={`Fiche métier complète pour ${metier.titre} : salaire moyen StatCan (${metier.salaire.horaire_median}$/h), profil RIASEC (${metier.riasec.code_holland}), taux de placement Relance Québec (${metier.relance_quebec?.taux_emploi_en_rapport || 'N/D'}), compétences vertes ESCO, exigences DPC et offres d'emploi en direct.`}
+>
+  <!-- Fil d'Ariane -->
+  <nav class="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 mb-6">
+    <a href="/" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Accueil</a>
+    <span>/</span>
+    <a href="/metiers" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Fiches Métiers</a>
+    <span>/</span>
+    <span class="text-slate-800 dark:text-slate-200 font-semibold truncate max-w-xs">{metier.titre_court}</span>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <div class="relative overflow-hidden bg-white dark:bg-slate-800/90 rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 dark:border-slate-700/80 shadow-xl mb-8">
+    <div class="relative z-10">
+      <div class="flex flex-wrap items-center gap-2 mb-4">
+        <span class="px-3 py-1 rounded-full text-xs font-black bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200/70 dark:border-indigo-800/60">
+          CNP {metier.cnp}
+        </span>
+        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200/70 dark:border-amber-800/60">
+          Niveau FEER {metier.feer}
+        </span>
+        <span class="px-3 py-1 rounded-full text-xs font-black bg-purple-50 dark:bg-purple-950/70 text-purple-700 dark:text-purple-300 border border-purple-200/70 dark:border-purple-800/60">
+          RIASEC : {metier.riasec.code_holland}
+        </span>
+        <span class={`px-3 py-1 rounded-full text-xs font-bold border ${metier.badge_couleur}`}>
+          {metier.secteur}
+        </span>
+        {metier.offres_emploi && metier.offres_emploi.length > 0 && (
+        <span class="ml-auto inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/70 dark:border-emerald-800/60">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          {metier.offres_emploi.length} Offres en direct
+        </span>
+        )}
+      </div>
+
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+        {metier.titre}
+      </h1>
+
+      <p class="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-4xl leading-relaxed">
+        {metier.description}
+      </p>
+
+      <!-- Quick Action Jump Links -->
+      <div class="mt-6 flex flex-wrap gap-2.5">
+        {metier.offres_emploi && metier.offres_emploi.length > 0 && (
+        <a 
+          href="#offres-emploi" 
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 transition-all"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Offres d'emploi ({metier.offres_emploi.length})
+        </a>
+        )}
+        <a 
+          href="#riasec" 
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-purple-50 hover:bg-purple-100 dark:bg-purple-950/50 dark:hover:bg-purple-900/60 text-purple-800 dark:text-purple-300 font-semibold text-xs border border-purple-200 dark:border-purple-800/60 transition-all"
+        >
+          🎯 Profil RIASEC ({metier.riasec.code_holland})
+        </a>
+        {metier.relance_quebec && (
+        <a 
+          href="#relance" 
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-teal-50 hover:bg-teal-100 dark:bg-teal-950/50 dark:hover:bg-teal-900/60 text-teal-800 dark:text-teal-300 font-semibold text-xs border border-teal-200 dark:border-teal-800/60 transition-all"
+        >
+          🎓 Relance Québec ({metier.relance_quebec.taux_emploi_en_rapport})
+        </a>
+        )}
+        <a 
+          href="#salaires" 
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-700/70 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-xs border border-slate-200 dark:border-slate-600 transition-all"
+        >
+          Salaires StatCan
+        </a>
+        {metier.competences?.vertes_esco && metier.competences.vertes_esco.length > 0 && (
+        <a 
+          href="#competences-vertes" 
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/50 dark:hover:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 font-semibold text-xs border border-emerald-200 dark:border-emerald-800/60 transition-all"
+        >
+          🌿 Compétences Vertes (ESCO)
+        </a>
+        )}
+        {metier.dpc && (
+        <a 
+          href="#profil-dpci" 
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-700/70 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-xs border border-slate-200 dark:border-slate-600 transition-all"
+        >
+          Profil DPCI & Effort
+        </a>
+        )}
+      </div>
+      
+      {metier.niveau_enrichissement === "essentiel" && (
+        <div class="mt-6 p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 text-sm text-slate-700 dark:text-slate-300">
+          <strong>Fiche essentielle — enrichissement en cours.</strong><br/>
+          Les données affichées (Secteur, FEER, Salaire, Profil RIASEC) proviennent de :<br/>
+          • Salaires : {metier.sources.salaire}<br/>
+          • Profil : {metier.sources.riasec}<br/>
+          {metier.sources.big_five && `• Traits : ${metier.sources.big_five}`}
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- BENTO GRID : STATS & INDICATEURS CLÉS -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    
+    <!-- CARTE 1 : SALAIRES & INDICE TRAJEKTIA -->
+    <div id="salaires" class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 border border-slate-200/90 dark:border-slate-700/80 shadow-md">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-1.5">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-400">Rémunération officielle</span>
+          <InfoBubble 
+            title="Rémunération & Salaires Officiels"
+            description="Données issues des enquêtes officielles d'Emploi et Développement social Canada (EDSC 2025) et de Statistique Canada au Québec. Le salaire horaire médian divise les professionnels en deux groupes égaux (50 % gagnent plus, 50 % gagnent moins)."
+            source="EDSC 2025 & StatCan"
+            badge="Salaires"
+            align="left"
+          />
+        </div>
+        <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300">
+          StatCan 2024
+        </span>
+      </div>
+
+      <div class="mb-4">
+        <div class="text-3xl font-black text-slate-900 dark:text-white">
+          {metier.salaire.horaire_median.toFixed(2)} $ <span class="text-sm font-normal text-slate-500">/ heure</span>
+        </div>
+        <div class="text-sm font-bold text-indigo-600 dark:text-indigo-400">
+          ~{metier.salaire.annuel_median.toLocaleString('fr-CA')} $ / an (médian)
+        </div>
+      </div>
+
+      <!-- Échelle Salariale min - médian - max -->
+      <div class="space-y-1.5 mb-4">
+        <div class="flex justify-between text-xs text-slate-500 dark:text-slate-400 font-medium">
+          <span>Min: {metier.salaire.horaire_min.toFixed(2)} $</span>
+          <span>Max: {metier.salaire.horaire_max.toFixed(2)} $</span>
+        </div>
+        <div class="h-2.5 w-full bg-slate-100 dark:bg-slate-700/70 rounded-full overflow-hidden flex">
+          <div class="bg-indigo-300 dark:bg-indigo-600/50 w-1/4"></div>
+          <div class="bg-indigo-600 dark:bg-indigo-400 w-1/2"></div>
+          <div class="bg-indigo-800 dark:bg-indigo-300 w-1/4"></div>
+        </div>
+      </div>
+
+      {metier.salaire.indice_trajektia_live && (
+        <div class="p-3 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/40">
+          <div class="flex items-center justify-between text-xs font-bold text-indigo-900 dark:text-indigo-200">
+            <span>Indice Trajektia en Direct™</span>
+            <span class="text-emerald-600 dark:text-emerald-400">{metier.salaire.indice_trajektia_live.variation_annuelle}</span>
+          </div>
+          <p class="text-xs text-slate-600 dark:text-slate-300 mt-0.5">
+            Moyenne de <strong>{metier.salaire.indice_trajektia_live.moyenne_offres.toLocaleString('fr-CA')} $</strong> basée sur {metier.salaire.indice_trajektia_live.echantillon_offres} offres récentes.
+          </p>
+        </div>
+      )}
+    </div>
+
+    <!-- CARTE 2 : RELANCE QUÉBEC (INSERTION DES DIPLÔMÉS) -->
+    {metier.relance_quebec && (
+    <div id="relance" class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 border border-slate-200/90 dark:border-slate-700/80 shadow-md">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-1.5">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-400">Insertion des diplômés</span>
+          <InfoBubble 
+            title="Enquête Relance Québec"
+            description="Enquête gouvernementale menée par le Ministère de l'Enseignement supérieur (MES) auprès des diplômés collégiaux et universitaires québécois, environ un an après l'obtention du diplôme."
+            source="MES Québec (Relance)"
+            badge="Éducation"
+            align="left"
+          />
+        </div>
+        <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-teal-100 text-teal-800 dark:bg-teal-900/50 dark:text-teal-300">
+          Relance MES / MEQ
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-2xl bg-teal-100 dark:bg-teal-950/70 flex items-center justify-center text-teal-600 dark:text-teal-400">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 14l9-5-9-5-9 5 9 5z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+          </svg>
+        </div>
+        <div>
+          <div class="text-2xl font-black text-teal-600 dark:text-teal-400">
+            {metier.relance_quebec.taux_emploi_en_rapport}
+          </div>
+          <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">
+            Emploi en rapport direct
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
+        <div class="flex justify-between">
+          <span class="text-slate-500">Salaire de départ (1 an) :</span>
+          <span class="font-bold text-slate-900 dark:text-white">{metier.relance_quebec.salaire_moyen_debutant}</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Poursuite d'études :</span>
+          <span class="font-semibold text-slate-800 dark:text-slate-200">{metier.relance_quebec.poursuite_etudes_universite}</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-slate-500">Taux emploi total :</span>
+          <span class="font-bold text-emerald-600 dark:text-emerald-400">{metier.relance_quebec.taux_emploi_total}</span>
+        </div>
+      </div>
+
+      {metier.relance_quebec.bourse_perspective_eligible && (
+        <div class="mt-3.5 p-2 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200/70 dark:border-amber-800/40 flex items-center gap-1.5 text-[11px] font-bold text-amber-800 dark:text-amber-300">
+          <span>⭐</span>
+          <span>Bourses Perspective Québec : {metier.relance_quebec.bourse_perspective_montant}</span>
+        </div>
+      )}
+    </div>
+    )}
+
+    <!-- CARTE 3 : RISQUE D'AUTOMATISATION & IMPACT IA -->
+    {metier.perspectives && (
+    <div class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 border border-slate-200/90 dark:border-slate-700/80 shadow-md">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-1.5">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-400">Impact IA & Futur</span>
+          <InfoBubble 
+            title="Risque d'Automatisation & Transition IA"
+            description="Évaluation de la part des tâches répétitives ou prévisibles pouvant être automatisées par des modèles d'IA ou la robotique. Un risque 'Faible' indique que le cœur du travail requiert de la motricité fine sur mesure, du jugement critique ou une présence terrain indispensable."
+            source="Dais TMU & Trajektia"
+            badge="Futur"
+            align="right"
+          />
+        </div>
+        <span class="px-2 py-0.5 rounded text-[10px] font-extrabold bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-300">
+          Diagnostic CKG
+        </span>
+      </div>
+
+      <div class="mb-3">
+        <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">Risque d'automatisation :</div>
+        <div class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+          {metier.perspectives.automatisation_risque}
+          <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-900/50 p-3 rounded-2xl border border-slate-200/70 dark:border-slate-700/50">
+        {metier.perspectives.impact_ia_analyse}
+      </p>
+    </div>
+    )}
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- NOUVELLE SECTION : PROFIL RIASEC (TYPOLOGIE HOLLAND) -->
+  <!-- ============================================================ -->
+  <section id="riasec" class="mb-10">
+    <div class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 sm:p-8 border border-slate-200/90 dark:border-slate-700/80 shadow-xl">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700/80">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full text-xs font-bold bg-purple-100 dark:bg-purple-950/80 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/50 mb-1.5">
+            <span>Orientation Holland</span>
+            <span>•</span>
+            <span>Calibration Prediger</span>
+            <InfoBubble 
+              title="Typologie RIASEC & Holland"
+              description="Le modèle RIASEC évalue l'affinité d'un métier avec 6 grands types d'intérêts professionnels : Réaliste, Investigateur, Artistique, Social, Entreprenant et Conventionnel. Le score en pourcentage indique l'intensité de chaque dimension requise. Un score < 5 % signale une absence d'exigence dans l'exercice quotidien."
+              source="O*NET 28.2 & John Holland"
+              badge="Psychométrie"
+              align="left"
+            />
+          </div>
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+            Profil RIASEC : <span class="text-purple-600 dark:text-purple-400 font-extrabold">{metier.riasec.code_holland}</span>
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+            {metier.riasec.description}
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5 shrink-0">
+          {metier.riasec.traits_dominants.map(trait => (
+            <span class="px-3 py-1 rounded-xl text-xs font-black bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60">
+              {trait}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Jauges des 6 dimensions RIASEC -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 mt-6">
+        
+        <!-- R - Réaliste -->
+        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50 text-center">
+          <div class="flex items-center justify-center gap-1 text-xs font-bold text-slate-500 dark:text-slate-400">
+            <span>R - Réaliste</span>
+            <InfoBubble 
+              title="R - Réaliste (Pratique & Manuel)"
+              description="Activités concrètes, manuelles, manipulation d'outils, de machines ou travail en extérieur. Un score < 5 % indique un métier intellectuel ou de bureau sans exigences physiques."
+              source="O*NET 28.2"
+              align="center"
+            />
+          </div>
+          <div class="text-lg font-black text-slate-900 dark:text-white my-1">{formatRiasecScore(metier.riasec.scores.realiste)}</div>
+          <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div class="bg-amber-500 h-full rounded-full transition-all" style={`width: ${getRiasecBarWidth(metier.riasec.scores.realiste)}%`}></div>
+          </div>
+          <span class="text-[10px] text-slate-400 block mt-1">Pratique / Manuel</span>
+        </div>
+
+        <!-- I - Investigateur -->
+        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50 text-center">
+          <div class="flex items-center justify-center gap-1 text-xs font-bold text-slate-500 dark:text-slate-400">
+            <span>I - Investigateur</span>
+            <InfoBubble 
+              title="I - Investigateur (Logique & Théorie)"
+              description="Résolution de problèmes complexes, analyse scientifique, logique mathématique et esprit critique. Un score < 5 % indique des tâches d'exécution sans recherche abstraite."
+              source="O*NET 28.2"
+              align="center"
+            />
+          </div>
+          <div class="text-lg font-black text-slate-900 dark:text-white my-1">{formatRiasecScore(metier.riasec.scores.investigateur)}</div>
+          <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div class="bg-indigo-600 dark:bg-indigo-400 h-full rounded-full transition-all" style={`width: ${getRiasecBarWidth(metier.riasec.scores.investigateur)}%`}></div>
+          </div>
+          <span class="text-[10px] text-slate-400 block mt-1">Logique / Théorie</span>
+        </div>
+
+        <!-- A - Artistique -->
+        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50 text-center">
+          <div class="flex items-center justify-center gap-1 text-xs font-bold text-slate-500 dark:text-slate-400">
+            <span>A - Artistique</span>
+            <InfoBubble 
+              title="A - Artistique (Créativité & Design)"
+              description="Création esthétique, originalité, design visuel, liberté d'expression sans cadre strict. Un score < 5 % indique un travail technique normé sans composante artistique requise."
+              source="O*NET 28.2"
+              align="center"
+            />
+          </div>
+          <div class="text-lg font-black text-slate-900 dark:text-white my-1">{formatRiasecScore(metier.riasec.scores.artistique)}</div>
+          <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div class="bg-pink-500 h-full rounded-full transition-all" style={`width: ${getRiasecBarWidth(metier.riasec.scores.artistique)}%`}></div>
+          </div>
+          <span class="text-[10px] text-slate-400 block mt-1">Créativité / Design</span>
+        </div>
+
+        <!-- S - Social -->
+        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50 text-center">
+          <div class="flex items-center justify-center gap-1 text-xs font-bold text-slate-500 dark:text-slate-400">
+            <span>S - Social</span>
+            <InfoBubble 
+              title="S - Social (Aide & Relationnel)"
+              description="Aide aux personnes, écoute active, enseignement, soins et collaboration bienveillante. Un score < 5 % caractérise un métier centré sur les objets, la matière ou les données sans accompagnement humain direct."
+              source="O*NET 28.2"
+              align="center"
+            />
+          </div>
+          <div class="text-lg font-black text-slate-900 dark:text-white my-1">{formatRiasecScore(metier.riasec.scores.social)}</div>
+          <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div class="bg-emerald-500 h-full rounded-full transition-all" style={`width: ${getRiasecBarWidth(metier.riasec.scores.social)}%`}></div>
+          </div>
+          <span class="text-[10px] text-slate-400 block mt-1">Aide / Soins</span>
+        </div>
+
+        <!-- E - Entreprenant -->
+        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50 text-center">
+          <div class="flex items-center justify-center gap-1 text-xs font-bold text-slate-500 dark:text-slate-400">
+            <span>E - Entreprenant</span>
+            <InfoBubble 
+              title="E - Entreprenant (Affaires & Leadership)"
+              description="Persuasion, négociation commerciale, vente, gestion d'affaires et direction d'équipe. Un score < 5 % (score brut O*NET 1.0/7) signifie que le métier n'exige aucune fonction d'affaires ou de vente au quotidien."
+              source="O*NET 28.2"
+              align="center"
+            />
+          </div>
+          <div class="text-lg font-black text-slate-900 dark:text-white my-1">{formatRiasecScore(metier.riasec.scores.entreprenant)}</div>
+          <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div class="bg-orange-500 h-full rounded-full transition-all" style={`width: ${getRiasecBarWidth(metier.riasec.scores.entreprenant)}%`}></div>
+          </div>
+          <span class="text-[10px] text-slate-400 block mt-1">Leadership / Vente</span>
+        </div>
+
+        <!-- C - Conventionnel -->
+        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50 text-center">
+          <div class="flex items-center justify-center gap-1 text-xs font-bold text-slate-500 dark:text-slate-400">
+            <span>C - Conventionnel</span>
+            <InfoBubble 
+              title="C - Conventionnel (Méthode & Rigueur)"
+              description="Respect méthodique des règles, organisation des données, suivi rigoureux de normes de conformité et de qualité."
+              source="O*NET 28.2"
+              align="center"
+            />
+          </div>
+          <div class="text-lg font-black text-slate-900 dark:text-white my-1">{formatRiasecScore(metier.riasec.scores.conventionnel)}</div>
+          <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div class="bg-blue-500 h-full rounded-full transition-all" style={`width: ${getRiasecBarWidth(metier.riasec.scores.conventionnel)}%`}></div>
+          </div>
+          <span class="text-[10px] text-slate-400 block mt-1">Rigueur / Données</span>
+        </div>
+
+      </div>
+
+      <!-- SECTION BIG FIVE (OCEAN) SI DISPONIBLE -->
+      {metier.big_five && (
+        <div class="mt-6 pt-6 border-t border-slate-200/80 dark:border-slate-700/80">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div class="flex items-center gap-2">
+              <h3 class="text-sm font-black text-slate-900 dark:text-white tracking-tight">
+                Profil de Personnalité au Travail (Modèle OCEAN / Big Five)
+              </h3>
+              <InfoBubble 
+                title="Modèle Psychométrique Big Five (OCEAN)"
+                description="Le modèle des Big Five évalue les tendances comportementales en milieu professionnel selon 5 facteurs fondamentaux : Ouverture, Conscience, Extraversion, Agréabilité et Stabilité émotionnelle (inverse du névrosisme)."
+                source="Crosswalk O*NET Work Styles & BFI-2"
+                badge="Psychométrie"
+                align="left"
+              />
+            </div>
+            <span class="text-[11px] text-slate-400 font-medium">Scores normalisés sur 100</span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
+              <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Ouverture</span>
+              <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.ouverture} %</div>
+              <span class="text-[9px] text-slate-400 block">Curiosité / Innovation</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
+              <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Conscience</span>
+              <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.conscientieux} %</div>
+              <span class="text-[9px] text-slate-400 block">Rigueur / Fiabilité</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
+              <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Extraversion</span>
+              <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.extraversion} %</div>
+              <span class="text-[9px] text-slate-400 block">Énergie / Contact</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
+              <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Agréabilité</span>
+              <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.agreabilite} %</div>
+              <span class="text-[9px] text-slate-400 block">Coopération / Écoute</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center col-span-2 sm:col-span-1">
+              <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Stabilité ém.</span>
+              <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.stabilite_emotionnelle} %</div>
+              <span class="text-[9px] text-slate-400 block">Gestion du stress</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION OFFRES D'EMPLOI EN TEMPS RÉEL -->
+  <!-- ============================================================ -->
+  {metier.offres_emploi && metier.offres_emploi.length > 0 && (
+  <section id="offres-emploi" class="mb-10">
+    <div class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 sm:p-8 border border-slate-200/90 dark:border-slate-700/80 shadow-xl">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700/80">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full text-xs font-bold bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/50 mb-1.5">
+            <span class="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></span>
+            Marché du Travail en Direct
+          </div>
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+            Offres d'emploi récentes pour ce métier
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+            Offres synchronisées avec les portails québécois (Guichet-Emplois, Jobillico et réseau partenaires Trajektia).
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-700/80 text-slate-700 dark:text-slate-300">
+            {metier.offres_emploi.length} opportunités actives
+          </span>
+        </div>
+      </div>
+
+      <!-- Liste des cartes d'offres d'emploi -->
+      <div class="grid grid-cols-1 gap-4 mt-6">
+        {metier.offres_emploi.map((offre) => (
+          <div class="p-5 rounded-2xl bg-slate-50/80 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60 hover:border-indigo-400 dark:hover:border-indigo-500 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 group">
+            
+            <div class="space-y-1.5 max-w-2xl">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="px-2 py-0.5 rounded-md text-[11px] font-extrabold bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300">
+                  {offre.source}
+                </span>
+                <span class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                  {offre.mode_travail}
+                </span>
+                <span class="text-xs text-slate-400 dark:text-slate-500 font-medium">
+                  Publiée {offre.date_publication}
+                </span>
+              </div>
+
+              <h3 class="text-lg font-black text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                {offre.titre}
+              </h3>
+
+              <div class="text-sm font-semibold text-slate-600 dark:text-slate-300 flex items-center gap-2">
+                <span>{offre.entreprise}</span>
+                <span class="text-slate-400">•</span>
+                <span class="text-slate-500 dark:text-slate-400 font-normal">{offre.lieu}</span>
+              </div>
+
+              {offre.salaire_affiche && (
+                <div class="text-sm font-black text-emerald-600 dark:text-emerald-400 pt-0.5">
+                  💰 {offre.salaire_affiche}
+                </div>
+              )}
+
+              <!-- Tags compétences recherchées -->
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                {offre.competences_cles.map(tag => (
+                  <span class="text-[11px] px-2 py-0.5 rounded-md bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700 font-medium">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Bouton Postuler / Voir -->
+            <div class="flex md:flex-col items-center md:items-end justify-between gap-3 shrink-0 pt-2 md:pt-0">
+              <a 
+                href={offre.url}
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="w-full md:w-auto px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md shadow-indigo-600/20 hover:shadow-lg transition-all text-center flex items-center justify-center gap-1.5"
+              >
+                <span>Postuler sur {offre.source}</span>
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+              <span class="text-[11px] text-slate-400 dark:text-slate-500 font-medium">Vérifié par Trajektia</span>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  </section>
+  )}
+
+  <!-- ============================================================ -->
+  <!-- NOUVEAU MODULE LEAD MAGNET & ABONNEMENT ALERTES COURRIEL -->
+  <!-- ============================================================ -->
+  <section class="mb-10">
+    <div class="bg-gradient-to-br from-indigo-900 via-indigo-950 to-slate-950 text-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-indigo-800/50 shadow-2xl relative overflow-hidden">
+      
+      <!-- Ambient Glow -->
+      <div class="absolute -right-20 -top-20 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-black bg-amber-400/20 text-amber-300 border border-amber-400/30 mb-3">
+          <span>📬 Alerte Marché & Nouvelles Offres</span>
+          <span>•</span>
+          <span>Gratuit</span>
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl font-black tracking-tight">
+          Restez informé des opportunités pour {metier.titre_court}
+        </h2>
+        
+        <p class="mt-2 text-sm text-slate-300 leading-relaxed">
+          Recevez mensuellement les <strong>nouvelles offres d'emploi exclusives au Québec</strong>, l'évolution salariale et les ajustements de bourses gouvernementales pour ce profil.
+        </p>
+
+        <!-- Formulaire d'inscription courriel interactif -->
+        <form id="lead-capture-form" class="mt-6 flex flex-col sm:flex-row gap-3">
+          <input 
+            type="email" 
+            id="lead-email-input"
+            required
+            placeholder="Entrez votre courriel (ex: nom@exemple.ca)..." 
+            class="flex-1 px-4 py-3 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all backdrop-blur-sm"
+          />
+          <button 
+            type="submit" 
+            class="px-6 py-3 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-sm shadow-lg shadow-amber-400/20 hover:scale-105 transition-all cursor-pointer whitespace-nowrap"
+          >
+            M'inscrire gratuitement
+          </button>
+        </form>
+
+        <p id="lead-success-msg" class="hidden mt-3 text-xs text-emerald-400 font-semibold">
+          ✓ Merci ! Vous êtes bien inscrit(e) aux alertes pour le métier {metier.titre_court}.
+        </p>
+
+        <div class="mt-4 flex items-center gap-4 text-[11px] text-slate-400">
+          <span>🔒 Vos données restent confidentielles</span>
+          <span>•</span>
+          <span>Désabonnement en 1 clic</span>
+          <span>•</span>
+          <span class="text-amber-300 font-semibold">Option Pro : Dossiers d'orientation complets bientôt disponibles</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION COMPÉTENCES & TRIPTYQUE CKG (OaSIS, O*NET, ESCO VERT) -->
+  <!-- ============================================================ -->
+  {metier.competences && (
+  <section class="mb-10">
+    <div class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 sm:p-8 border border-slate-200/90 dark:border-slate-700/80 shadow-xl">
+      
+      <div class="mb-6">
+        <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+          Référentiel des Compétences Métier
+        </h2>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+          Modèle triptyque Trajektia combinant OaSIS Canada, O*NET et la taxonomie européenne ESCO pour les compétences vertes.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- 1. Techniques (OaSIS Canada) -->
+        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span>
+            <h3 class="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider">
+              Compétences Techniques (OaSIS)
+            </h3>
+          </div>
+          <ul class="space-y-2">
+            {metier.competences.techniques_oasis.map(tech => (
+              <li class="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300">
+                <span class="text-blue-500 font-bold mt-0.5">✓</span>
+                <span>{tech}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- 2. Transversales (O*NET) -->
+        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+            <h3 class="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider">
+              Compétences Transversales (O*NET)
+            </h3>
+          </div>
+          <ul class="space-y-2">
+            {metier.competences.transversales_onet.map(soft => (
+              <li class="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300">
+                <span class="text-amber-500 font-bold mt-0.5">✦</span>
+                <span>{soft}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- 3. COMPÉTENCES VERTES (ESCO) - MIS EN VALEUR -->
+        <div id="competences-vertes" class="p-5 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/60">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <h3 class="text-sm font-black text-emerald-900 dark:text-emerald-200 uppercase tracking-wider">
+                Compétences Vertes (ESCO)
+              </h3>
+            </div>
+            <span class="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-emerald-200 dark:bg-emerald-900/70 text-emerald-800 dark:text-emerald-300">
+              Éco-Transition
+            </span>
+          </div>
+          <p class="text-[11px] text-emerald-800/80 dark:text-emerald-300/80 mb-3 italic">
+            Habiletés indispensables pour la transition écologique québécoise et l'économie circulaire :
+          </p>
+          <ul class="space-y-2">
+            {metier.competences.vertes_esco.map(vert => (
+              <li class="flex items-start gap-2 text-xs text-emerald-900 dark:text-emerald-200 font-medium">
+                <span class="text-emerald-600 dark:text-emerald-400 font-bold mt-0.5">🌿</span>
+                <span>{vert}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</section>
+  )}
+
+  <!-- ============================================================ -->
+  <!-- SECTION PROFIL D'EFFORT ET CONTRAINTES DPC (TRAJEKTIA) -->
+  <!-- ============================================================ -->
+  {metier.dpc && (
+  <section id="profil-dpci" class="mb-10">
+    <div class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 sm:p-8 border border-slate-200/90 dark:border-slate-700/80 shadow-xl">
+      
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 mb-1">
+            <span>Exclusivité Algorithmique Trajektia</span>
+            <InfoBubble 
+              title="Profil Ergonomique DPCI"
+              description="Le profil DPCI mesure sur une échelle de 1 (très léger / sédentaire) à 5 (critique / effort soutenu) les exigences réelles du métier en matière d'effort physique, charge cognitive, collaboration sociale, résolution de problèmes et dextérité manuelle."
+              source="OaSIS & O*NET"
+              badge="Ergonomie"
+              align="left"
+            />
+          </div>
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+            Dimensions Physiques, Cognitives & Idées (DPCI)
+          </h2>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+            Évaluez si l'environnement réel, le niveau d'effort requis et la part d'idées/conception conviennent à vos capacités et préférences.
+          </p>
+        </div>
+      </div>
+
+      <!-- Grille des jauges DPC -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+        
+        <!-- Jauge 1 : Aptitude Cognitive -->
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50">
+          <div class="text-xs font-bold text-slate-500 dark:text-slate-400">Charge Cognitive</div>
+          <div class="text-lg font-black text-slate-900 dark:text-white mt-0.5">{metier.dpc.aptitude_cognitive.label}</div>
+          <div class="flex gap-1 my-2">
+            {[1, 2, 3, 4, 5].map(i => (
+              <div class={`h-2 flex-1 rounded-full ${i <= metier.dpc.aptitude_cognitive.score ? 'bg-indigo-600 dark:bg-indigo-400' : 'bg-slate-200 dark:bg-slate-700'}`}></div>
+            ))}
+          </div>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">{metier.dpc.aptitude_cognitive.details}</p>
+        </div>
+
+        <!-- Jauge 2 : Force Physique -->
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50">
+          <div class="text-xs font-bold text-slate-500 dark:text-slate-400">Effort Physique</div>
+          <div class="text-lg font-black text-slate-900 dark:text-white mt-0.5">{metier.dpc.force_physique.label}</div>
+          <div class="flex gap-1 my-2">
+            {[1, 2, 3, 4, 5].map(i => (
+              <div class={`h-2 flex-1 rounded-full ${i <= metier.dpc.force_physique.score ? 'bg-amber-500' : 'bg-slate-200 dark:bg-slate-700'}`}></div>
+            ))}
+          </div>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">{metier.dpc.force_physique.details}</p>
+        </div>
+
+        <!-- Jauge 3 : Travail d'équipe -->
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50">
+          <div class="text-xs font-bold text-slate-500 dark:text-slate-400">Collaboration Sociale</div>
+          <div class="text-lg font-black text-slate-900 dark:text-white mt-0.5">{metier.dpc.travail_equipe.label}</div>
+          <div class="flex gap-1 my-2">
+            {[1, 2, 3, 4, 5].map(i => (
+              <div class={`h-2 flex-1 rounded-full ${i <= metier.dpc.travail_equipe.score ? 'bg-teal-500' : 'bg-slate-200 dark:bg-slate-700'}`}></div>
+            ))}
+          </div>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">{metier.dpc.travail_equipe.details}</p>
+        </div>
+
+        <!-- Jauge 4 : Résolution de problèmes -->
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50">
+          <div class="text-xs font-bold text-slate-500 dark:text-slate-400">Résolution Problèmes</div>
+          <div class="text-lg font-black text-slate-900 dark:text-white mt-0.5">{metier.dpc.resolution_problemes.label}</div>
+          <div class="flex gap-1 my-2">
+            {[1, 2, 3, 4, 5].map(i => (
+              <div class={`h-2 flex-1 rounded-full ${i <= metier.dpc.resolution_problemes.score ? 'bg-purple-500' : 'bg-slate-200 dark:bg-slate-700'}`}></div>
+            ))}
+          </div>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">{metier.dpc.resolution_problemes.details}</p>
+        </div>
+
+        <!-- Jauge 5 : Précision Manuelle -->
+        <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50">
+          <div class="text-xs font-bold text-slate-500 dark:text-slate-400">Précision Manuelle</div>
+          <div class="text-lg font-black text-slate-900 dark:text-white mt-0.5">{metier.dpc.precision_manuelle.label}</div>
+          <div class="flex gap-1 my-2">
+            {[1, 2, 3, 4, 5].map(i => (
+              <div class={`h-2 flex-1 rounded-full ${i <= metier.dpc.precision_manuelle.score ? 'bg-emerald-500' : 'bg-slate-200 dark:bg-slate-700'}`}></div>
+            ))}
+          </div>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">{metier.dpc.precision_manuelle.details}</p>
+        </div>
+
+      </div>
+
+      <!-- Conditions & Cadre de travail -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-2xl bg-slate-50/70 dark:bg-slate-900/40 border border-slate-200/70 dark:border-slate-700/50 text-xs">
+        <div>
+          <span class="font-bold text-slate-900 dark:text-white block mb-0.5">🏢 Environnement de travail typique :</span>
+          <span class="text-slate-600 dark:text-slate-300">{metier.dpc.environnement_travail}</span>
+        </div>
+        <div>
+          <span class="font-bold text-slate-900 dark:text-white block mb-0.5">⏱️ Rythme et horaires :</span>
+          <span class="text-slate-600 dark:text-slate-300">{metier.dpc.rythme}</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</section>
+  )}
+
+  <!-- ============================================================ -->
+  <!-- SECTION FORMATIONS QUÉBÉCOISES ET PRÉALABLES (DEC / DEP / UNIV) -->
+  <!-- ============================================================ -->
+  {metier.formations && metier.formations.length > 0 && (
+  <section id="formations" class="mb-10">
+    <div class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 sm:p-8 border border-slate-200/90 dark:border-slate-700/80 shadow-xl">
+      
+      <div class="mb-6">
+        <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+          Formations Recommandées au Québec
+        </h2>
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
+          Parcours de formation collégiaux (DEC), professionnels (DEP) ou universitaires menant à cette profession.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {metier.formations.map((f) => (
+          <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-lg text-xs font-black bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-300">
+                  {f.type} {f.code ? `• ${f.code}` : ''}
+                </span>
+                <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">{f.duree}</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white leading-snug">
+                {f.titre}
+              </h3>
+              <p class="mt-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                {f.description}
+              </p>
+            </div>
+
+            {f.lien_interne && (
+              <div class="mt-4 pt-3 border-t border-slate-200/60 dark:border-slate-700/60">
+                <a 
+                  href={f.lien_interne}
+                  class="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 inline-flex items-center gap-1"
+                >
+                  <span>Vérifier les préalables scolaires</span>
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+</section>
+  )}
+
+  <!-- ============================================================ -->
+  <!-- SECTION MÉTIERS CONNEXES & PASSERELLES (CKG) -->
+  <!-- ============================================================ -->
+  {metier.metiers_connexes && metier.metiers_connexes.length > 0 && (
+  <section class="mb-12">
+    <div class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 sm:p-8 border border-slate-200/90 dark:border-slate-700/80 shadow-xl">
+      
+      <div class="mb-4">
+        <div class="flex items-center gap-2">
+          <h2 class="text-xl font-black text-slate-900 dark:text-white tracking-tight">
+            Métiers Connexes & Passerelles de Reconversion
+          </h2>
+          <InfoBubble 
+            title="Similarité Vectorielle & Passerelles"
+            description="Ce pourcentage calcule le degré de recoupement entre les compétences, tâches et outils requis par ce métier et ceux du métier cible. Un score élevé (ex: > 75 %) indique une transition fluide avec un minimum de requalification."
+            source="Career Knowledge Graph (Cos-Sim)"
+            badge="CKG"
+            align="left"
+          />
+        </div>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5">
+          Calculé par similarité vectorielle de compétences dans le Career Knowledge Graph Trajektia.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+        {metier.metiers_connexes.map((connexe) => (
+          <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/70 dark:border-slate-700/50 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs mb-1.5">
+                <span class="font-bold text-slate-500">CNP {connexe.cnp}</span>
+                <span class="font-black text-indigo-600 dark:text-indigo-400">{connexe.compatibilite_pourcentage}% similarité</span>
+              </div>
+              <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 leading-snug">
+                {connexe.titre}
+              </h4>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+</section>
+  )}
+
+  <!-- Script interactif d'inscription Lead Capture -->
+  <script>
+    const form = document.getElementById('lead-capture-form') as HTMLFormElement | null;
+    const emailInput = document.getElementById('lead-email-input') as HTMLInputElement | null;
+    const successMsg = document.getElementById('lead-success-msg');
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput?.value || '';
+      // On extrait le CNP de l'URL pour l'associer au lead
+      const urlParts = window.location.pathname.split('/');
+      const cnp = urlParts[urlParts.length - 1];
+
+      if (email && successMsg) {
+        try {
+          const response = await fetch('/api/leads', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, cnp }),
+          });
+
+          if (response.ok) {
+            successMsg.classList.remove('hidden');
+            if (emailInput) emailInput.value = '';
+          } else {
+            console.error("Erreur lors de l'abonnement");
+          }
+        } catch (err) {
+          console.error("Erreur de connexion", err);
+        }
+      }
+    });
+  </script>
+
+</BaseLayout>

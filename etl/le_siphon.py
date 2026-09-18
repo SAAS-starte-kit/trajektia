@@ -103,9 +103,11 @@ class LeSiphon:
     # ══════════════════════════════════════════════════════════════════════════
 
     def extract_occupations(self):
-        log.info("Extraction des Occupations depuis Neo4j...")
+        log.info("Extraction des Occupations depuis Neo4j (avec décompte Job Bank)...")
         records = self._neo4j_fetch("""
             MATCH (o:Occupation)
+            OPTIONAL MATCH (j:JobPosting)-[:BELONGS_TO]->(o)
+            WITH o, count(j) AS active_postings
             RETURN
                 o.code          AS cnp_code,
                 o.onet_soc_code AS onet_soc_code,
@@ -116,7 +118,8 @@ class LeSiphon:
                 o.description_en AS description_en,
                 o.median_salary  AS median_salary,
                 o.salary_source  AS salary_source,
-                o.taxonomy       AS taxonomy
+                o.taxonomy       AS taxonomy,
+                active_postings  AS active_postings
             ORDER BY o.code
         """)
         log.info("  %d occupations extraites.", len(records))
@@ -124,49 +127,83 @@ class LeSiphon:
 
     def load_occupations(self, records):
         log.info("Chargement des occupations dans PostgreSQL...")
+        # S'assurer que la colonne active_postings existe
+        with self.pg.cursor() as cur:
+            cur.execute("ALTER TABLE occupations ADD COLUMN IF NOT EXISTS active_postings INTEGER DEFAULT 0;")
+        self.pg.commit()
+
         sql = """
             INSERT INTO occupations (
                 cnp_code, onet_soc_code, esco_uri,
                 title_fr, title_en, description_fr, description_en,
-                median_salary, salary_source, taxonomy,
+                median_salary, salary_source, taxonomy, active_postings,
                 created_at, updated_at
             ) VALUES %s
             ON CONFLICT (cnp_code) DO UPDATE SET
-                onet_soc_code  = EXCLUDED.onet_soc_code,
-                esco_uri       = EXCLUDED.esco_uri,
-                title_fr       = EXCLUDED.title_fr,
-                title_en       = EXCLUDED.title_en,
-                description_fr = EXCLUDED.description_fr,
-                description_en = EXCLUDED.description_en,
-                median_salary  = EXCLUDED.median_salary,
-                salary_source  = EXCLUDED.salary_source,
-                taxonomy       = EXCLUDED.taxonomy,
-                updated_at     = NOW()
+                onet_soc_code   = EXCLUDED.onet_soc_code,
+                esco_uri        = EXCLUDED.esco_uri,
+                title_fr        = EXCLUDED.title_fr,
+                title_en        = EXCLUDED.title_en,
+                description_fr  = EXCLUDED.description_fr,
+                description_en  = EXCLUDED.description_en,
+                median_salary   = EXCLUDED.median_salary,
+                salary_source   = EXCLUDED.salary_source,
+                taxonomy        = EXCLUDED.taxonomy,
+                active_postings = EXCLUDED.active_postings,
+                updated_at      = NOW()
         """
-        rows = []
+        deduped = {}
         for r in records:
-            cnp = str(r["cnp_code"]).strip() if r["cnp_code"] else None
+            cnp_raw = str(r["cnp_code"]).strip() if r["cnp_code"] else None
+            if not cnp_raw:
+                continue
+            # Normaliser le code CNP (enlever d'éventuels suffixes .0 ou préfixes CNP-)
+            cnp = cnp_raw.split(".")[0].replace("CNP-", "").strip()
             if not cnp:
                 continue
-            rows.append((
-                cnp,
-                r.get("onet_soc_code"),
-                r.get("esco_uri"),
-                r.get("title_fr"),
-                r.get("title_en"),
-                r.get("description_fr"),
-                r.get("description_en"),
-                float(r["median_salary"]) if r.get("median_salary") else None,
-                r.get("salary_source", "ESDC 2025 Official"),
-                r.get("taxonomy") or "SIPeC 2025",
-                INGESTED_AT,
-                INGESTED_AT,
-            ))
 
+            active_p = int(r.get("active_postings") or 0)
+            if cnp in deduped:
+                existing = deduped[cnp]
+                # Fusionner intelligemment
+                title_fr = r.get("title_fr") or existing[3]
+                title_en = r.get("title_en") or existing[4]
+                desc_fr = r.get("description_fr") or existing[5]
+                desc_en = r.get("description_en") or existing[6]
+                salary = float(r["median_salary"]) if r.get("median_salary") else existing[7]
+                source = r.get("salary_source") or existing[8]
+                tax = r.get("taxonomy") or existing[9]
+                total_postings = max(active_p, existing[10])
+                deduped[cnp] = (
+                    cnp,
+                    r.get("onet_soc_code") or existing[1],
+                    r.get("esco_uri") or existing[2],
+                    title_fr, title_en, desc_fr, desc_en,
+                    salary, source, tax, total_postings,
+                    INGESTED_AT, INGESTED_AT
+                )
+            else:
+                deduped[cnp] = (
+                    cnp,
+                    r.get("onet_soc_code"),
+                    r.get("esco_uri"),
+                    r.get("title_fr"),
+                    r.get("title_en"),
+                    r.get("description_fr"),
+                    r.get("description_en"),
+                    float(r["median_salary"]) if r.get("median_salary") else None,
+                    r.get("salary_source", "ESDC 2025 Official"),
+                    r.get("taxonomy") or "SIPeC 2025",
+                    active_p,
+                    INGESTED_AT,
+                    INGESTED_AT,
+                )
+
+        rows = list(deduped.values())
         with self.pg.cursor() as cur:
             self._pg_execute_batch(sql, rows, cur)
         self.pg.commit()
-        log.info("  ✅ %d occupations chargées.", len(rows))
+        log.info("  ✅ %d occupations chargées (après déduplication).", len(rows))
         return len(rows)
 
     # ══════════════════════════════════════════════════════════════════════════
@@ -315,7 +352,7 @@ class LeSiphon:
                 "scale_lbl": "Importance",
             },
             {
-                "rel":       "EXHIBITS_STYLE",
+                "rel":       "EXHIBITS_STYLE|REQUIRES_STYLE",
                 "node":      "WorkStyle",
                 "category":  "work_style",
                 "scale_id":  "IM",
@@ -410,7 +447,7 @@ class LeSiphon:
                     score       = EXCLUDED.score,
                     ingested_at = EXCLUDED.ingested_at
             """
-            junc_rows = []
+            junc_dict = {}
             skipped = 0
             for r in records:
                 cnp  = str(r["cnp_code"]).strip() if r.get("cnp_code") else None
@@ -428,18 +465,25 @@ class LeSiphon:
                 except (TypeError, ValueError):
                     score = None
 
-                junc_rows.append((
+                j_key = (cnp, str(comp_id), dim["scale_id"])
+                if j_key in junc_dict and score is not None:
+                    prev_score = junc_dict[j_key][2]
+                    if prev_score is not None:
+                        score = max(score, prev_score)
+
+                junc_dict[j_key] = (
                     cnp, str(comp_id),
                     score, dim["scale_id"], dim["scale_lbl"],
                     SOURCE_TAG, INGESTED_AT,
-                ))
+                )
 
+            junc_rows = list(junc_dict.values())
             with self.pg.cursor() as cur:
                 self._pg_execute_batch(junc_sql, junc_rows, cur)
             self.pg.commit()
             total_junctions += len(junc_rows)
             log.info(
-                "    ✅ %d compétences • %d jonctions insérées (%d ignorées).",
+                "    ✅ %d compétences • %d jonctions insérées (%d ignorées/dédupliquées).",
                 len(unique_names), len(junc_rows), skipped
             )
 
@@ -631,7 +675,7 @@ class LeSiphon:
             VALUES %s
             ON CONFLICT (occupation_cnp_code, knowledge_id) DO UPDATE SET importance_score = EXCLUDED.importance_score
         """
-        junc_rows = []
+        junc_dict = {}
         for r in records:
             cnp  = str(r.get("cnp_code") or "").strip()
             onet_id = str(r.get("onet_element_id") or "").strip()
@@ -643,8 +687,15 @@ class LeSiphon:
             except (TypeError, ValueError):
                 imp = None
                 
-            junc_rows.append((cnp, str(cache[onet_id]), imp, INGESTED_AT))
+            k_id = str(cache[onet_id])
+            j_key = (cnp, k_id)
+            if j_key in junc_dict and imp is not None:
+                prev_imp = junc_dict[j_key][2]
+                if prev_imp is not None:
+                    imp = max(imp, prev_imp)
+            junc_dict[j_key] = (cnp, k_id, imp, INGESTED_AT)
 
+        junc_rows = list(junc_dict.values())
         with self.pg.cursor() as cur:
             self._pg_execute_batch(junc_sql, junc_rows, cur)
         self.pg.commit()
@@ -706,7 +757,7 @@ class LeSiphon:
             VALUES %s
             ON CONFLICT (occupation_cnp_code, context_id) DO UPDATE SET frequency_score = EXCLUDED.frequency_score
         """
-        junc_rows = []
+        junc_dict = {}
         for r in records:
             cnp  = str(r.get("cnp_code") or "").strip()
             onet_id = str(r.get("onet_element_id") or "").strip()
@@ -718,13 +769,95 @@ class LeSiphon:
             except (TypeError, ValueError):
                 freq = None
                 
-            junc_rows.append((cnp, str(cache[onet_id]), freq, INGESTED_AT))
+            ctx_id = str(cache[onet_id])
+            j_key = (cnp, ctx_id)
+            if j_key in junc_dict and freq is not None:
+                prev_freq = junc_dict[j_key][2]
+                if prev_freq is not None:
+                    freq = max(freq, prev_freq)
+            junc_dict[j_key] = (cnp, ctx_id, freq, INGESTED_AT)
 
+        junc_rows = list(junc_dict.values())
         with self.pg.cursor() as cur:
             self._pg_execute_batch(junc_sql, junc_rows, cur)
         self.pg.commit()
         log.info("  ✅ %d contextes • %d jonctions.", len(unique_items), len(junc_rows))
         return len(junc_rows)
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # PHASE 8 — PHYSICAL DEMANDS, DPC & PREDIGER
+    # ══════════════════════════════════════════════════════════════════════════
+
+    def extract_and_load_physical_demands(self):
+        log.info("Extraction et chargement des profils Ergonomiques & DPC...")
+        records = self._neo4j_fetch("""
+            MATCH (o:Occupation)
+            WHERE o.dpc_summary IS NOT NULL OR o.strength_code IS NOT NULL
+            RETURN
+                o.code          AS raw_code,
+                o.strength_code AS strength_code,
+                o.max_weight_kg AS max_weight_kg,
+                o.body_position AS body_position_code,
+                o.dpc_summary   AS dpc_summary,
+                o.prediger_tp   AS prediger_tp,
+                o.prediger_di   AS prediger_di
+            ORDER BY o.code
+        """)
+        log.info("  %d profils ergonomiques trouvés dans Neo4j.", len(records))
+
+        with self.pg.cursor() as cur:
+            cur.execute("SELECT cnp_code FROM occupations")
+            valid_cnps = {row[0] for row in cur.fetchall()}
+
+        sql = """
+            INSERT INTO occupation_physical_demands (
+                occupation_cnp_code, strength_code, max_weight_kg,
+                body_position_code, dpc_summary,
+                prediger_things_people, prediger_data_ideas,
+                source, created_at, updated_at
+            ) VALUES %s
+            ON CONFLICT (occupation_cnp_code) DO UPDATE SET
+                strength_code          = COALESCE(EXCLUDED.strength_code, occupation_physical_demands.strength_code),
+                max_weight_kg          = COALESCE(EXCLUDED.max_weight_kg, occupation_physical_demands.max_weight_kg),
+                body_position_code     = COALESCE(EXCLUDED.body_position_code, occupation_physical_demands.body_position_code),
+                dpc_summary            = COALESCE(EXCLUDED.dpc_summary, occupation_physical_demands.dpc_summary),
+                prediger_things_people = COALESCE(EXCLUDED.prediger_things_people, occupation_physical_demands.prediger_things_people),
+                prediger_data_ideas    = COALESCE(EXCLUDED.prediger_data_ideas, occupation_physical_demands.prediger_data_ideas),
+                updated_at             = NOW()
+        """
+        deduped = {}
+        for r in records:
+            cnp_raw = str(r["raw_code"]).strip() if r.get("raw_code") else ""
+            cnp = cnp_raw.split(".")[0].replace("CNP-", "").strip()
+            if not cnp or cnp not in valid_cnps:
+                continue
+
+            max_w = None
+            if r.get("max_weight_kg") is not None:
+                try:
+                    max_w = int(r["max_weight_kg"])
+                except (ValueError, TypeError):
+                    max_w = None
+
+            deduped[cnp] = (
+                cnp,
+                r.get("strength_code"),
+                max_w,
+                r.get("body_position_code"),
+                r.get("dpc_summary"),
+                r.get("prediger_tp"),
+                r.get("prediger_di"),
+                "EDSC Guide des Carrières / CKG",
+                INGESTED_AT,
+                INGESTED_AT
+            )
+
+        rows = list(deduped.values())
+        with self.pg.cursor() as cur:
+            self._pg_execute_batch(sql, rows, cur)
+        self.pg.commit()
+        log.info("  ✅ %d profils ergonomiques & DPC synchronisés.", len(rows))
+        return len(rows)
 
     # ══════════════════════════════════════════════════════════════════════════
     # RAPPORT FINAL
@@ -738,7 +871,7 @@ class LeSiphon:
             "occupations", "riasec_profiles", "competencies",
             "occupation_competencies", "tasks", "occupation_tasks",
             "tools", "occupation_tools", "knowledge", "occupation_knowledge",
-            "work_contexts", "occupation_work_contexts"
+            "work_contexts", "occupation_work_contexts", "occupation_physical_demands"
         ]
         with self.pg.cursor() as cur:
             for table in tables:
@@ -779,6 +912,9 @@ class LeSiphon:
 
         # Phase 7 — Work Contexts
         self.extract_and_load_work_contexts()
+
+        # Phase 8 — Ergonomie & DPC
+        self.extract_and_load_physical_demands()
 
         # Rapport
         self.report()

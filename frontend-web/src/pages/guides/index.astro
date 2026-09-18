@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { BookOpen, ChevronRight, FileText } from 'lucide-react';
+
+const guides = await getCollection('guides', ({ data }) => {
+  return data.statut === 'publié';
+});
+---
+
+<BaseLayout title="Guides d'orientation | Trajektia" description="Guides et articles pour vous accompagner dans votre choix de programme">
+  <div class="max-w-5xl mx-auto">
+    <!-- Hero Section -->
+    <div class="bg-white dark:bg-slate-800/50 rounded-3xl p-8 md:p-10 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 mb-8 relative overflow-hidden">
+      <div class="absolute top-0 right-0 -mt-10 -mr-10 text-brand-blue/10 dark:text-brand-blue/5 pointer-events-none">
+        <BookOpen size={250} />
+      </div>
+      <div class="relative z-10">
+        <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 tracking-tight">Guides d'orientation</h1>
+        <p class="text-lg text-slate-600 dark:text-slate-400 font-medium max-w-2xl leading-relaxed">
+          Décoder les admissions, comprendre les préalables et préparer votre financement : nos guides pédagogiques pour faire des choix éclairés au Québec.
+        </p>
+      </div>
+    </div>
+
+    <!-- Grille Bento des articles -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {guides.map(guide => (
+        <a href={`/guides/${guide.id}`} class="group bg-white dark:bg-slate-800/50 rounded-3xl p-6 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 hover:ring-brand-blue/50 dark:hover:ring-brand-blue/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between overflow-hidden relative">
+          
+          <div class="relative z-10">
+            {guide.data.categorie && (
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 dark:bg-brand-yellow/10 text-amber-900 dark:text-brand-yellow border border-amber-200 dark:border-brand-yellow/20 mb-4">
+                {guide.data.categorie}
+              </span>
+            )}
+            
+            <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-blue transition-colors">
+              {guide.data.title}
+            </h2>
+            <p class="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-6">
+              {guide.data.description}
+            </p>
+          </div>
+          
+          <div class="relative z-10 mt-auto pt-4 border-t border-slate-100 dark:border-slate-700/50 flex items-center text-sm font-bold text-brand-blue">
+            <FileText size={16} class="mr-2" /> Lire l'article complet
+            <ChevronRight size={16} class="ml-1 group-hover:translate-x-1 transition-transform" />
+          </div>
+
+          <!-- Effet Hover -->
+          <div class="absolute -top-24 -right-24 w-48 h-48 bg-brand-blue/5 rounded-full blur-3xl group-hover:bg-brand-blue/10 transition-colors pointer-events-none"></div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

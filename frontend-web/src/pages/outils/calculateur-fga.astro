@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import CalculateurDiplome from '../../components/CalculateurDiplome';
+import Disclaimer from '../../components/Disclaimer';
+
+const title = "Calculateur D.E.S. (FGA / DEP-DES)";
+const description = "Validez vos conditions d'obtention du diplôme d'études secondaires (D.E.S.) au Québec selon votre parcours (Secteur jeunes, FGA ou DEP-DES).";
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- 
+    Utilisation de client:idle pour respecter l'approche SSG
+    et le rendu statique prioritaire tout en permettant l'hydratation React.
+  -->
+  <CalculateurDiplome client:idle />
+  <Disclaimer />
+</BaseLayout>

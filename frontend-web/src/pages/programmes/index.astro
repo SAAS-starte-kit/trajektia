@@ -1,0 +1,520 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import { getProgrammes } from '../../data/programmes-dec-prealables';
+import { secteurs } from '../../data/secteurs';
+
+const programmes = await getProgrammes();
+const programmesTries = programmes.sort((a, b) => a.nom.localeCompare(b.nom));
+---
+
+<BaseLayout title="Programmes collégiaux" description="Tableau interactif des programmes DEC et conditions particulières d'admission">
+  <div class="mb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-indigo-100/80 text-indigo-700 dark:bg-indigo-950/70 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60 mb-3 shadow-sm">
+      <span class="w-2 h-2 rounded-full bg-brand-yellow"></span>
+      <span>{programmes.length} programmes collégiaux répertoriés</span>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-2">Programmes collégiaux (DEC)</h1>
+    <p class="text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">Explorez l'ensemble des programmes DEC du Québec. Utilisez les filtres pour vérifier instantanément quels programmes correspondent à vos préalables en mathématiques et en sciences.</p>
+  </div>
+
+  <div class="flex flex-col lg:flex-row gap-6 items-start">
+    
+    <!-- Panneau de filtres -->
+    <aside class="w-full lg:w-1/4 bg-white dark:bg-slate-800/50 p-5 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white">Filtres</h2>
+        <button id="btn-reset" class="text-sm text-indigo-600 dark:text-indigo-400 hover:underline" type="button">Réinitialiser</button>
+      </div>
+      
+      <div class="space-y-6">
+        <!-- Vues -->
+        <div>
+          <h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-2">Mode d'affichage</h3>
+          <div class="flex bg-slate-100 dark:bg-slate-900/60 p-1 rounded-lg">
+            <button id="btn-vue-tableau" class="flex-1 py-1.5 text-sm font-medium rounded-md shadow-sm bg-white text-slate-900 dark:bg-slate-700 dark:text-white">Tableau croisé</button>
+            <button id="btn-vue-liste" class="flex-1 py-1.5 text-sm font-medium rounded-md text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">Résultats filtrés</button>
+          </div>
+        </div>
+
+        <!-- Recherche -->
+        <div>
+          <label for="search" class="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">Recherche</label>
+          <input type="text" id="search" placeholder="Nom, code, secteur..." class="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+        </div>
+
+        <!-- Secteur -->
+        <div>
+          <label for="secteur" class="block text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">Secteur</label>
+          <select id="secteur" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+            <option value="">Tous les secteurs ({programmes.length})</option>
+            {secteurs.map(s => {
+              const count = programmes.filter(p => p.secteur === s.id).length;
+              return (
+                <option value={s.id}>{s.id === '200' ? s.nom : `${s.id} - ${s.nom}`} ({count})</option>
+              );
+            })}
+          </select>
+        </div>
+
+        <hr class="border-slate-200 dark:border-slate-700">
+
+        <!-- Profil Étudiant (Préalables acquis) -->
+        <div>
+          <h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-2">Mon profil (préalables réussis ou visés)</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mb-3 leading-relaxed">Cochez les préalables que vous avez réussis ou que vous avez l'intention de compléter. <strong>Les niveaux supérieurs incluent automatiquement les niveaux inférieurs</strong>.</p>
+          
+          <!-- Mathématiques -->
+          <div class="mb-3">
+            <span class="text-xs font-medium text-blue-600 dark:text-blue-400 uppercase tracking-wider">Mathématiques</span>
+            <div class="mt-2 space-y-2">
+              {['cst_4', 'cst_5', 'ts_sn_4', 'ts_sn_5'].map(p => (
+                <label class="flex items-center text-sm cursor-pointer group">
+                  <input type="checkbox" id={`filter-${p}`} value={p} class="rounded text-blue-600 focus:ring-blue-500 border-slate-300 dark:border-slate-700 filter-cb bg-white dark:bg-slate-900">
+                  <span class="ml-2 text-slate-700 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white">{p.replace('_', ' ').toUpperCase()}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- Sciences -->
+          <div class="mb-3">
+            <span class="text-xs font-medium text-green-600 dark:text-green-400 uppercase tracking-wider">Sciences</span>
+            <div class="mt-2 space-y-2">
+              {['st_ats_4', 'ste_se_4'].map(p => (
+                <label class="flex items-center text-sm cursor-pointer group">
+                  <input type="checkbox" id={`filter-${p}`} value={p} class="rounded text-green-600 focus:ring-green-500 border-slate-300 dark:border-slate-700 filter-cb bg-white dark:bg-slate-900">
+                  <span class="ml-2 text-slate-700 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white">{p.replace(/_/g, '/').toUpperCase()}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- Chimie / Physique -->
+          <div>
+            <span class="text-xs font-medium text-purple-600 dark:text-purple-400 uppercase tracking-wider">Chimie & Physique</span>
+            <div class="mt-2 space-y-2">
+              {['chimie_5', 'physique_5'].map(p => (
+                <label class="flex items-center text-sm cursor-pointer group">
+                  <input type="checkbox" id={`filter-${p}`} value={p} class="rounded text-purple-600 focus:ring-purple-500 border-slate-300 dark:border-slate-700 filter-cb bg-white dark:bg-slate-900">
+                  <span class="ml-2 text-slate-700 group-hover:text-slate-900 dark:text-slate-300 dark:group-hover:text-white">{p.replace('_', ' ').charAt(0).toUpperCase() + p.slice(1).replace('_', ' ')}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Contenu principal -->
+    <div class="w-full lg:w-3/4">
+      
+      <!-- Légende et stats -->
+      <div class="bg-white dark:bg-slate-800/50 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 mb-6 flex flex-wrap gap-4 items-center justify-between text-sm">
+        <div class="flex items-center gap-4 text-slate-700 dark:text-slate-300">
+          <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-green-500"></span> Correspondance complète (<span id="stat-complete">0</span>)</div>
+          <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-yellow-400"></span> Correspondance partielle (<span id="stat-partielle">0</span>)</div>
+          <div class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-slate-300 dark:bg-slate-600"></span> Non concerné (<span id="stat-non-concerne">0</span>)</div>
+        </div>
+        <div class="font-medium text-slate-800 dark:text-slate-200">
+          Affichés : <span id="stat-total">{programmes.length}</span> / {programmes.length}
+        </div>
+      </div>
+
+      <!-- VUE 1 : Tableau croisé -->
+      <div id="vue-tableau" class="bg-white dark:bg-slate-800/50 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 whitespace-nowrap">
+                <th scope="col" class="px-4 py-3 font-semibold w-16">Code</th>
+                <th scope="col" class="px-4 py-3 font-semibold">Programme</th>
+                <th scope="col" class="px-3 py-3 font-semibold text-center" title="Math CST 4"><span class="text-blue-600 dark:text-blue-400">CST 4</span></th>
+                <th scope="col" class="px-3 py-3 font-semibold text-center" title="Math CST 5"><span class="text-blue-600 dark:text-blue-400">CST 5</span></th>
+                <th scope="col" class="px-3 py-3 font-semibold text-center" title="Math TS/SN 4"><span class="text-blue-600 dark:text-blue-400">TS/SN 4</span></th>
+                <th scope="col" class="px-3 py-3 font-semibold text-center" title="Math TS/SN 5"><span class="text-blue-600 dark:text-blue-400">TS/SN 5</span></th>
+                <th scope="col" class="px-3 py-3 font-semibold text-center" title="Sciences ST/ATS 4"><span class="text-green-600 dark:text-green-400">ST/ATS 4</span></th>
+                <th scope="col" class="px-3 py-3 font-semibold text-center" title="Sciences STE/SE 4"><span class="text-green-600 dark:text-green-400">STE/SE 4</span></th>
+                <th scope="col" class="px-3 py-3 font-semibold text-center" title="Chimie 5"><span class="text-purple-600 dark:text-purple-400">CHI 5</span></th>
+                <th scope="col" class="px-3 py-3 font-semibold text-center" title="Physique 5"><span class="text-orange-600 dark:text-orange-400">PHY 5</span></th>
+              </tr>
+            </thead>
+            <tbody id="tableau-body" class="divide-y divide-slate-200 dark:divide-slate-700/50">
+              {programmesTries.map(p => (
+                <tr class="programme-row hover:bg-slate-50 dark:hover:bg-slate-900/50 transition-colors cursor-pointer" data-code={p.code} data-nom={p.nom} data-secteur={p.secteur} data-secteur-nom={p.secteur_nom} data-pre={JSON.stringify(p.prealables)}>
+                  <td class="px-4 py-3 font-mono text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap">{p.code}</td>
+                  <td class="px-4 py-3 font-medium text-slate-900 dark:text-white">
+                    <div>{p.nom}</div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 font-normal">{p.secteur_nom}</div>
+                  </td>
+                  <td class="px-3 py-3 text-center text-slate-700 dark:text-slate-300">{p.prealables && p.prealables.cst_4 ? '●' : ''}</td>
+                  <td class="px-3 py-3 text-center text-slate-700 dark:text-slate-300">{p.prealables && p.prealables.cst_5 ? '●' : ''}</td>
+                  <td class="px-3 py-3 text-center text-slate-700 dark:text-slate-300">{p.prealables && p.prealables.ts_sn_4 ? '●' : ''}</td>
+                  <td class="px-3 py-3 text-center text-slate-700 dark:text-slate-300">{p.prealables && p.prealables.ts_sn_5 ? '●' : ''}</td>
+                  <td class="px-3 py-3 text-center text-slate-700 dark:text-slate-300">{p.prealables && p.prealables.st_ats_4 ? '●' : ''}</td>
+                  <td class="px-3 py-3 text-center text-slate-700 dark:text-slate-300">{p.prealables && p.prealables.ste_se_4 ? '●' : ''}</td>
+                  <td class="px-3 py-3 text-center text-slate-700 dark:text-slate-300">{p.prealables && p.prealables.chimie_5 ? '●' : ''}</td>
+                  <td class="px-3 py-3 text-center text-slate-700 dark:text-slate-300">{p.prealables && p.prealables.physique_5 ? '●' : ''}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- VUE 2 : Résultats filtrés (Cartes) -->
+      <div id="vue-liste" class="hidden">
+        <div id="liste-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Les cartes seront affichées ici via JS -->
+        </div>
+        <div id="liste-vide" class="hidden py-12 text-center text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800/50 rounded-xl border border-slate-300 dark:border-slate-700 border-dashed">
+          Aucun programme ne correspond à vos critères de recherche.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Modale de détails -->
+  <dialog id="programme-modal" class="rounded-xl shadow-2xl p-0 backdrop:bg-slate-900/50 backdrop:backdrop-blur-sm max-w-2xl w-full mx-auto my-auto border-0">
+    <div class="bg-white dark:bg-slate-800 overflow-hidden">
+      <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-700 flex justify-between items-center bg-slate-50 dark:bg-slate-900/50">
+        <h3 id="modal-code" class="text-sm font-mono text-slate-500 dark:text-slate-400 font-medium"></h3>
+        <button id="modal-close" class="text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 focus:outline-none" aria-label="Fermer">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="px-6 py-6">
+        <h2 id="modal-nom" class="text-2xl font-bold text-slate-900 dark:text-white mb-1"></h2>
+        <p id="modal-secteur" class="text-sm text-slate-600 dark:text-slate-300 mb-6"></p>
+        
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">Préalables spécifiques requis</h4>
+        <div id="modal-prealables" class="flex flex-wrap gap-2 mb-6">
+          <!-- Badges de préalables -->
+        </div>
+
+        <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-md">
+          <p class="text-sm text-blue-800">
+            <strong>Avertissement :</strong> Les informations présentées servent à faciliter l'exploration des programmes. Les conditions d'admission doivent être confirmées auprès de la fiche officielle du programme et de l'établissement choisi.
+          </p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+</BaseLayout>
+
+<script>
+  // Script côté client pour gérer l'interactivité
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    const PREALABLES_KEYS = ["cst_4", "cst_5", "ts_sn_4", "ts_sn_5", "st_ats_4", "ste_se_4", "chimie_5", "physique_5"];
+    
+    // Éléments du DOM
+    const vueTableau = document.getElementById('vue-tableau');
+    const vueListe = document.getElementById('vue-liste');
+    const btnVueTableau = document.getElementById('btn-vue-tableau');
+    const btnVueListe = document.getElementById('btn-vue-liste');
+    
+    const searchInput = document.getElementById('search') as HTMLInputElement;
+    const secteurSelect = document.getElementById('secteur') as HTMLSelectElement;
+    const filterCbs = document.querySelectorAll('.filter-cb') as NodeListOf<HTMLInputElement>;
+    const btnReset = document.getElementById('btn-reset');
+    
+    const rows = document.querySelectorAll('.programme-row') as NodeListOf<HTMLTableRowElement>;
+    const listeContainer = document.getElementById('liste-container');
+    const listeVide = document.getElementById('liste-vide');
+    
+    const statComplete = document.getElementById('stat-complete');
+    const statPartielle = document.getElementById('stat-partielle');
+    const statNonConcerne = document.getElementById('stat-non-concerne');
+    const statTotal = document.getElementById('stat-total');
+
+    const modal = document.getElementById('programme-modal') as HTMLDialogElement;
+    const modalClose = document.getElementById('modal-close');
+
+    // État
+    let currentVue = 'tableau'; // 'tableau' ou 'liste'
+
+    // Initialisation depuis l'URL
+    function syncFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      
+      if (params.get('vue') === 'liste') {
+        currentVue = 'liste';
+      }
+      
+      if (params.get('recherche')) searchInput.value = params.get('recherche') || '';
+      if (params.get('secteur')) secteurSelect.value = params.get('secteur') || '';
+      
+      filterCbs.forEach(cb => {
+        if (params.get(cb.value) === 'true') cb.checked = true;
+      });
+
+      updateUI();
+    }
+
+    // Mise à jour de l'URL
+    function syncToUrl() {
+      const params = new URLSearchParams();
+      
+      if (currentVue === 'liste') params.set('vue', 'liste');
+      if (searchInput.value) params.set('recherche', searchInput.value);
+      if (secteurSelect.value) params.set('secteur', secteurSelect.value);
+      
+      filterCbs.forEach(cb => {
+        if (cb.checked) params.set(cb.value, 'true');
+      });
+
+      const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+      window.history.replaceState({}, '', newUrl);
+    }
+
+    // Logique de filtrage par profil étudiant
+    function applyFilters() {
+      const recherche = searchInput.value.toLowerCase().trim();
+      const secteur = secteurSelect.value;
+      
+      const prealablesCoches = Array.from(filterCbs).filter(cb => cb.checked).map(cb => cb.value);
+      const isFiltreActif = recherche !== '' || secteur !== '' || prealablesCoches.length > 0;
+
+      // Expansion des préalables acquis (niveaux supérieurs incluent niveaux inférieurs)
+      const acquis = new Set(prealablesCoches);
+      if (acquis.has('cst_5')) {
+        acquis.add('cst_4');
+      }
+      if (acquis.has('ts_sn_4')) {
+        acquis.add('cst_4');
+        acquis.add('cst_5');
+      }
+      if (acquis.has('ts_sn_5')) {
+        acquis.add('cst_4');
+        acquis.add('cst_5');
+        acquis.add('ts_sn_4');
+      }
+      if (acquis.has('ste_se_4')) {
+        acquis.add('st_ats_4');
+      }
+      if (acquis.has('chimie_5') || acquis.has('physique_5')) {
+        acquis.add('st_ats_4');
+        acquis.add('ste_se_4');
+      }
+
+      let stats = { complete: 0, partielle: 0, nonConcerne: 0, visible: 0 };
+      
+      // Vider le conteneur liste
+      if (listeContainer) listeContainer.innerHTML = '';
+      
+      rows.forEach(row => {
+        const nom = row.getAttribute('data-nom')?.toLowerCase() || '';
+        const code = row.getAttribute('data-code')?.toLowerCase() || '';
+        const rowSecteur = row.getAttribute('data-secteur') || '';
+        const rowSecteurNom = row.getAttribute('data-secteur-nom')?.toLowerCase() || '';
+        const prealablesProg = JSON.parse(row.getAttribute('data-pre') || '{}');
+
+        let matchRechercheSecteur = true;
+
+        if (recherche && !nom.includes(recherche) && !code.includes(recherche) && !rowSecteurNom.includes(recherche)) {
+          matchRechercheSecteur = false;
+        }
+        if (secteur && rowSecteur !== secteur) {
+          matchRechercheSecteur = false;
+        }
+
+        let etat = 'non-concerne';
+
+        if (matchRechercheSecteur) {
+          if (!isFiltreActif) {
+            etat = 'aucun-filtre';
+            stats.visible++;
+          } else if (prealablesCoches.length === 0) {
+            etat = 'correspondance-complete'; // Si recherche/secteur mais sans profil préalable, tout s'affiche
+            stats.complete++;
+            stats.visible++;
+          } else {
+            const reqs = Object.keys(prealablesProg).filter(k => prealablesProg[k]);
+            if (reqs.length === 0) {
+              // Le programme ne demande AUCUN préalable, l'étudiant est automatiquement admissible !
+              etat = 'correspondance-complete';
+            } else {
+              let matchCount = 0;
+              reqs.forEach(r => {
+                if (acquis.has(r)) matchCount++;
+              });
+
+              if (matchCount === reqs.length) etat = 'correspondance-complete';
+              else if (matchCount > 0) etat = 'correspondance-partielle';
+              else etat = 'non-concerne';
+            }
+            
+            if (etat === 'correspondance-complete') stats.complete++;
+            else if (etat === 'correspondance-partielle') stats.partielle++;
+            else stats.nonConcerne++;
+            
+            stats.visible++;
+          }
+        }
+
+        // Appliquer styles au tableau
+        row.className = 'programme-row transition-colors cursor-pointer border-b border-slate-200 dark:border-slate-700/50';
+        if (currentVue === 'tableau') {
+          if (!matchRechercheSecteur) {
+            row.style.display = 'none';
+          } else {
+            row.style.display = '';
+            if (etat === 'correspondance-complete') {
+              if (prealablesCoches.length > 0) {
+                row.classList.add('bg-green-50', 'dark:bg-green-900/20', 'hover:bg-green-100', 'dark:hover:bg-green-900/30');
+              } else {
+                row.classList.add('bg-white', 'dark:bg-slate-800/50', 'hover:bg-slate-50', 'dark:hover:bg-slate-900/50');
+              }
+            } else if (etat === 'correspondance-partielle') {
+              row.classList.add('bg-yellow-50', 'dark:bg-yellow-900/20', 'hover:bg-yellow-100', 'dark:hover:bg-yellow-900/30');
+            } else if (etat === 'non-concerne') {
+              row.classList.add('opacity-40', 'bg-slate-50', 'dark:bg-slate-800/50', 'hover:bg-slate-100', 'dark:hover:bg-slate-900/50');
+            } else {
+              row.classList.add('bg-white', 'dark:bg-slate-800/50', 'hover:bg-slate-50', 'dark:hover:bg-slate-900/50');
+            }
+          }
+        } else {
+          row.style.display = 'none'; // Cacher les lignes du tableau en mode liste
+        }
+
+        // Créer carte pour le mode liste
+        if (currentVue === 'liste' && matchRechercheSecteur) {
+          if (prealablesCoches.length === 0 || etat !== 'non-concerne') {
+            createCard(row, etat);
+          }
+        }
+      });
+
+      // Mettre à jour stats
+      if (statComplete) statComplete.textContent = stats.complete.toString();
+      if (statPartielle) statPartielle.textContent = stats.partielle.toString();
+      if (statNonConcerne) statNonConcerne.textContent = stats.nonConcerne.toString();
+      if (statTotal) statTotal.textContent = stats.visible.toString();
+
+      // Message liste vide
+      if (currentVue === 'liste' && listeVide) {
+        listeVide.classList.toggle('hidden', stats.visible > 0);
+      }
+    }
+
+    function createCard(row: HTMLTableRowElement, etat: string) {
+      if (!listeContainer) return;
+      
+      const code = row.getAttribute('data-code') || '';
+      const nom = row.getAttribute('data-nom') || '';
+      const secteurNom = row.getAttribute('data-secteur-nom') || '';
+      const prealables = JSON.parse(row.getAttribute('data-pre') || '{}');
+      
+      const card = document.createElement('div');
+      card.className = `p-5 rounded-xl border cursor-pointer hover:shadow-md transition-shadow ${
+        etat === 'correspondance-complete' ? 'bg-green-50/50 dark:bg-green-900/10 border-green-200 dark:border-green-800' : 
+        etat === 'correspondance-partielle' ? 'bg-yellow-50/50 dark:bg-yellow-900/10 border-yellow-200 dark:border-yellow-800' : 'bg-white dark:bg-slate-800/50 border-slate-200 dark:border-slate-700'
+      }`;
+      
+      let prealablesHtml = '';
+      PREALABLES_KEYS.forEach(p => {
+        if (prealables[p]) {
+            let color = p.startsWith('cst') || p.startsWith('ts') ? 'blue' : p.startsWith('st') ? 'green' : p.startsWith('chi') ? 'purple' : 'orange';
+            prealablesHtml += `<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-${color}-100 dark:bg-${color}-900/30 text-${color}-800 dark:text-${color}-300 mr-1.5 mb-1.5">${p.replace(/_/g, ' ').toUpperCase()}</span>`;
+        }
+      });
+      if (!prealablesHtml) prealablesHtml = '<span class="text-xs text-slate-500 dark:text-slate-400 italic">Aucun préalable spécifique</span>';
+
+      card.innerHTML = `
+        <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-1">
+          <span class="font-mono">${code}</span>
+          ${secteurNom ? `<span class="font-medium text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/20 px-2 py-0.5 rounded-full text-xs">${secteurNom}</span>` : ''}
+        </div>
+        <h3 class="font-bold text-slate-900 dark:text-white mb-3">${nom}</h3>
+        <div class="flex flex-wrap">${prealablesHtml}</div>
+      `;
+      
+      card.addEventListener('click', () => openModal(row));
+      listeContainer.appendChild(card);
+    }
+
+    function openModal(row: HTMLTableRowElement) {
+        const code = row.getAttribute('data-code') || '';
+        const nom = row.getAttribute('data-nom') || '';
+        const secteur = row.getAttribute('data-secteur') || '';
+        const secteurNom = row.getAttribute('data-secteur-nom') || '';
+        const prealables = JSON.parse(row.getAttribute('data-pre') || '{}');
+
+        document.getElementById('modal-code')!.textContent = code;
+        document.getElementById('modal-nom')!.textContent = nom;
+        document.getElementById('modal-secteur')!.textContent = secteurNom ? `Secteur : ${secteurNom}` : (secteur ? `Secteur : ${secteur}` : '');
+        
+        const preCont = document.getElementById('modal-prealables')!;
+        preCont.innerHTML = '';
+        
+        let hasPre = false;
+        PREALABLES_KEYS.forEach(p => {
+            if (prealables[p]) {
+                hasPre = true;
+                let color = p.startsWith('cst') || p.startsWith('ts') ? 'blue' : p.startsWith('st') ? 'green' : p.startsWith('chi') ? 'purple' : 'orange';
+                preCont.innerHTML += `<span class="inline-flex items-center px-2.5 py-1 rounded-md text-sm font-medium bg-${color}-100 text-${color}-800 border border-${color}-200">${p.replace(/_/g, ' ').toUpperCase()}</span>`;
+            }
+        });
+        if (!hasPre) {
+            preCont.innerHTML = '<span class="text-slate-400 italic">Aucun préalable scientifique/mathématique particulier exigé.</span>';
+        }
+
+        modal.showModal();
+    }
+
+    function updateUI() {
+      // Toggle button styles
+      if (currentVue === 'tableau') {
+        btnVueTableau?.setAttribute('class', 'flex-1 py-1.5 text-sm font-medium rounded-md shadow-sm bg-white text-slate-900 dark:bg-slate-700 dark:text-white');
+        btnVueListe?.setAttribute('class', 'flex-1 py-1.5 text-sm font-medium rounded-md bg-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200');
+        
+        vueTableau?.classList.remove('hidden');
+        vueListe?.classList.add('hidden');
+      } else {
+        btnVueListe?.setAttribute('class', 'flex-1 py-1.5 text-sm font-medium rounded-md shadow-sm bg-white text-slate-900 dark:bg-slate-700 dark:text-white');
+        btnVueTableau?.setAttribute('class', 'flex-1 py-1.5 text-sm font-medium rounded-md bg-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200');
+
+        vueListe?.classList.remove('hidden');
+        vueTableau?.classList.add('hidden');
+      }
+
+      applyFilters();
+      syncToUrl();
+    }
+
+    // Events
+    btnVueTableau?.addEventListener('click', () => { currentVue = 'tableau'; updateUI(); });
+    btnVueListe?.addEventListener('click', () => { currentVue = 'liste'; updateUI(); });
+    
+    searchInput?.addEventListener('input', updateUI);
+    secteurSelect?.addEventListener('change', updateUI);
+    filterCbs.forEach(cb => cb.addEventListener('change', updateUI));
+    
+    btnReset?.addEventListener('click', () => {
+      searchInput.value = '';
+      secteurSelect.value = '';
+      filterCbs.forEach(cb => cb.checked = false);
+      updateUI();
+    });
+
+    rows.forEach(row => row.addEventListener('click', () => openModal(row)));
+    modalClose?.addEventListener('click', () => modal.close());
+    
+    // Close modal on click outside
+    modal.addEventListener('click', (e) => {
+      const dialogDimensions = modal.getBoundingClientRect()
+      if (
+        e.clientX < dialogDimensions.left ||
+        e.clientX > dialogDimensions.right ||
+        e.clientY < dialogDimensions.top ||
+        e.clientY > dialogDimensions.bottom
+      ) {
+        modal.close();
+      }
+    });
+
+    // Init
+    syncFromUrl();
+  });
+</script>
