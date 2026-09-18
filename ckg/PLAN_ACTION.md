@@ -29,7 +29,8 @@ métiers et formations via la vitrine Astro.
 | O*NET Outils (USES_TOOL) | FAIT | 26 388 | 100% (sur métiers liés) |
 | O*NET Logiciels (REQUIRES_SOFTWARE) | FAIT | 32 435 | 100% (sur métiers liés) |
 | Salaires ESDC 2025 | Complet | prop. sur noeuds | 100% (3 361 métiers) |
-| Crosswalk NOC vers O*NET | FAIT | 1 467 liens | Mapping complet |
+| Ingestion CNP 2021 | FAIT | 510 Noeuds | 100% (taxonomie CNP) |
+| Crosswalk NOC vers O*NET | FAIT | 1 370 mappings | 911 arêtes EQUIVALENT_TO créées |
 | Crosswalk O*NET vers ESCO | FAIT | 4 253 liens | Mapping complet |
 | ESCO Compétences Vertes (Green Skills) | Cadré | Stratégie verte ciblée | Priorisé post-B3 |
 | Formations MEQ / Relance | FAIT (Supabase) | 964 liens, 539 étab., 220 prog. | 100% dans Supabase |
@@ -39,6 +40,7 @@ métiers et formations via la vitrine Astro.
 | SST / CNESST (Données Québec) | FAIT | 3 698 liens, 20 secteurs, 7 risques (Supabase) + 1 496 HAS_RISK (Neo4j) | 100% |
 | Exigences Physiques (EDSC GC 2016) | FAIT | 504 métiers (Forces S1-S4, Postures B1-B4, Vision, Ouïe) | 100% Supabase + Neo4j |
 | DPC Données-Personnes-Choses (GC 2016) | FAIT | 504 métiers (Cotation DPC + Pont RIASEC Prediger) | 100% Supabase + Neo4j |
+| Test Psychométrique (Big Five + RIASEC) | FAIT | 110 items (50 IPIP-50 + 60 Mini-IP), scoring 11D, UI Astro/React | 100% |
 | Titres alternatifs TCC 2025 (Synonymes) | À FAIRE | Dictionnaire synonymes compétences FR/EN pour recherche | Cadré |
 | BLS ORS (Ergonomie US BLS) | Planifié | Profils ergonomiques haute précision (heures assis/debout, lbs) | Cadré post-B5 |
 | Job Bank (offres actives) | MANQUANT | 0 | 0% |
@@ -64,16 +66,15 @@ python ckg/ingestors/onet_tech_ingestor.py
 
 ---
 
-### A2 — Améliorer le crosswalk NOC -> O*NET [PRIORITÉ 2 — BLOQUANT]
+### A2 — Ingestion CNP et Crosswalk NOC -> O*NET [FAIT]
 
-**Pourquoi :** Seulement 34% des 900 métiers canadiens ont leur pont vers O*NET.
-Sans ce pont, les 66% restants n'ont ni compétences logicielles, ni psychométrie, ni RIASEC.
-**Scripts :** `ckg/crosswalks/download_noc_onet_crosswalk.py` puis `unified_crosswalk_loader.py`
-**Résultat attendu :** >80% des métiers canadiens reliés à O*NET
+**Pourquoi :** Pour intégrer les métiers officiels canadiens dans le graphe et les relier aux compétences O*NET.
+**Scripts :** `etl/ingest_cnp_to_neo4j.py` puis `etl/link_cnp_onet_neo4j.py`
+**Résultat :** 510 nœuds `Occupation` (CNP) ingérés. 911 relations `[:EQUIVALENT_TO]` créées entre CNP et O*NET existants.
 
 ```bash
-python ckg/crosswalks/download_noc_onet_crosswalk.py
-python ckg/crosswalks/unified_crosswalk_loader.py
+python etl/ingest_cnp_to_neo4j.py
+python etl/link_cnp_onet_neo4j.py
 ```
 
 ---
@@ -218,14 +219,15 @@ python trajektia/etl/physical_demands_dpc_ingestor.py
 
 > **Objectif :** Transformer les cotations brutes DPC (Données, Personnes, Choses) et les profils RIASEC en un moteur d'orientation et de réorientation scientifique fondé sur le modèle bi-axial de Dale J. Prediger (1982).
 
-### D1 — Taxonomie, Verbes d'Action & Niveaux de Complexité DPC
-- **Objectif :** Formaliser la table de correspondance sémantique des 24 échelons DPC officiels du Guide des carrières.
+### D1 — Taxonomie, Verbes d'Action & Niveaux de Complexité DPC [FAIT]
+- **Objectif :** Formaliser la table de correspondance sémantique des 25 échelons DPC officiels du Guide des carrières.
   - **Données (0 à 6)** : 0=Synthétiser, 1=Coordonner, 2=Analyser, 3=Compiler, 4=Calculer, 5=Copier, 6=Comparer.
-  - **Personnes (0 à 8)** : 0=Conseiller, 1=Négocier, 2=Instruire, 3=Superviser, 4=Divertir, 5=Persuader, 6=Signaler, 7=Servir, 8=Recevoir des instructions.
-  - **Choses (0 à 7)** : 0=Régler, 1=Travail de précision, 2=Faire fonctionner/contrôler, 3=Conduire/manœuvrer, 4=Manipuler, 5=Alimenter/retirer, 6=Arranger/déplacer, 7=Manier.
-- **Tâches à réaliser :**
-  - [ ] Créer la table de référence `ref_dpc_taxonomy` dans Supabase (niveaux, verbes d'action officiels, définitions opératoires, exemples concrets).
-  - [ ] Développer des fonctions d'agrégation et de filtres par seuil de complexité (ex: filtrer les métiers exigeant un niveau relationnel P <= 2 ou une manipulation technique C <= 2).
+  - **Personnes (0 à 8)** : 0=Conseiller/Mentorat, 1=Négocier, 2=Instruire, 3=Superviser, 4=Divertir, 5=Persuader, 6=Signaler/Échanger, 7=Servir/Aider, 8=Recevoir des consignes / Non significatif.
+  - **Choses (0 à 8)** : 0=Régler/Mise au point, 1=Travail de précision, 2=Faire fonctionner/Contrôler, 3=Conduire/Manœuvrer, 4=Manipuler/Actionner, 5=Assurer le fonctionnement/Alimenter, 6=Arranger/Surveiller, 7=Manier, 8=Non significatif.
+- **Tâches réalisées :**
+  - [x] Créer la table de référence `ref_dpc_taxonomy` et la vue `v_occupation_dpc_detailed` dans Supabase via `database/schema_v7_dpc_taxonomy.sql`. [FAIT]
+  - [x] Renseigner les 25 définitions opératoires cliniques bilingues, complexités (1 à 5), exemples concrets et pôles de Prediger. [FAIT]
+  - [x] Développer le service d'explicabilité et de filtrage dynamique `trajektia/analytics/dpc_service.py` (`explain_occupation_dpc` et `filter_occupations_by_dpc`). [FAIT]
 
 ### D2 — Moteur Bi-Axial de Prediger (Pont Psychométrique DPC <-> RIASEC) [FAIT]
 - **Objectif :** Établir le lien direct entre les intérêts professionnels auto-déclarés (RIASEC) et les exigences comportementales objectives du poste (DPC).
@@ -243,6 +245,54 @@ python trajektia/etl/physical_demands_dpc_ingestor.py
   - [ ] Créer l'algorithme de recommandation par projection cartésienne de Prediger (saisie du profil RIASEC d'un bénéficiaire -> calcul de proximité euclidienne avec les 504 groupes CNP).
   - [ ] Générer des explications en langage naturel pour le c.o. et le bénéficiaire (ex: *"Ce métier correspond à vos intérêts d'investigation, mais demande une implication humaine (Personnes: niveau 1 Négocier) supérieure à votre profil standard"*).
   - [ ] Intégrer les passerelles de bifurcations vers des professions voisines sur le plan de Prediger nécessitant moins de formation complémentaire.
+
+### D4 — Module de Test Psychométrique Interactif (Big Five IPIP-50 + RIASEC Mini-IP) [FAIT]
+- **Objectif :** Permettre l'auto-évaluation scientifiquement validée des candidats et bénéficiaires directement depuis l'interface web, avec calcul instantané des scores et appariement professionnel.
+- **Tâches réalisées :**
+  - [x] Intégrer la banque de 110 items psychométriques standardisés dans `frontend-web/src/data/questions-psychometriques.ts` :
+    - 50 items IPIP-50 (Goldberg 1992) pour les 5 facteurs OCEAN (Ouverture, Conscienciosité, Extraversion, Agréabilité, Névrosisme) avec clés d'inversion.
+    - 60 items O*NET Mini-IP (Rounds et al. 2010) pour les 6 intérêts RIASEC de Holland.
+  - [x] Concevoir le moteur de scoring et d'appariement `frontend-web/src/utils/scoring-engine.ts` :
+    - Gestion des items inversés ($S_i = 6 - x_i$).
+    - Normalisation des scores bruts sur une échelle standardisée 0-100.
+    - Algorithme d'appariement par similarité cosinus dans un espace vectoriel à 11 dimensions ($\vec{u} \in \mathbb{R}^{11} \leftrightarrow \vec{m} \in \mathbb{R}^{11}$).
+    - Détermination du code RIASEC dominant (2 à 3 lettres) et des traits de personnalité prédominants.
+    - Top 10 des métiers québécois recommandés avec score d'affinité (%) et lien vers les fiches CNP.
+    - Persistance locale 100% confidentielle via `localStorage` (`trajektia_psychometric_results_v1`) respectant la Loi 25.
+
+### D5 — Algorithme de Cosinus Centré (Pearson r) & Métiers Réels [FAIT]
+- **Objectif :** Éliminer le biais de translation où les profils factices plats obtiennent 99% et ne recommander que de vrais métiers CNP québécois.
+- **Tâches réalisées :**
+  - [x] Remplacer le cosinus brut par le **cosinus centré** ($r$ de Pearson) dans `scoring-engine.ts` :
+    - Éradication mathématique du biais des profils "plats" à 50 (variance nulle $\sigma_m = 0 \implies \text{score} = 0$).
+    - Translation calibrée du coefficient $r \in [-1, 1]$ vers l'échelle grand public : $\text{score} = \text{round}(\min(99, \max(10, 50 + r \cdot 48)))$.
+  - [x] Remplacement des profils d'exemple par **301 métiers québécois réels** dans `frontend-web/src/data/metiers.ts` via le pipeline `scripts/generate_career_content.py` :
+    - Profils RIASEC réels extraits d'O*NET 28.2 (normalisés sur échelle 1-7).
+    - Traits Big Five réels calculés via le crosswalk officiel NOC2021-ONET26.
+    - Salaires réels ESDC 2025 (bas, médian, haut), niveaux FEER et libellés officiels en français.
+  - [x] Sécurisation de la complétion à 110/110 questions dans `PsychometricTest.tsx` (ajout de l'état `isProcessing` pour éliminer le blocage sur l'item final).
+  - [x] Sécurisation du build Astro SSG (`npm run build`) : typage TypeScript rendu résilient face aux champs optionnels (`relance_quebec`, etc.) et neutralisation des accès non gardés.
+
+### D6 — Moteur de Commentaires Explicatifs Cliniques & Métiers Miroirs [FAIT]
+- **Objectif :** Fournir des explications personnalisées, positives et bienveillantes pour chaque recommandation, et exposer les métiers à l'opposé selon les règles de l'OCCOQ.
+- **Tâches réalisées :**
+  - [x] **Générateur de narratifs cliniques personnalisés** dans `scoring-engine.ts` (`generateMatchExplanation`) :
+    - Identification dynamique des convergences dominantes (traits RIASEC et OCEAN partagés).
+    - Commentaires positifs valorisant les forces spontanées de l'utilisateur pour le Top 10.
+  - [x] **Section Miroir « Métiers demandant un effort d'adaptation particulier »** (Bottom 5, $r < 0$) :
+    - Respect strict de la déontologie clinique (OCCOQ) : bannissement de tout vocabulaire disqualifiant (*« métiers déconseillés »*, *« impossibles »*).
+    - Explications axées sur le coût énergétique, la dissonance avec les penchants naturels et les stratégies d'adaptation requises.
+  - [x] **Intégration UI dans `PsychometricTest.tsx`** :
+    - Section accordéon rétractable stylisée avec badge ambre/violet.
+    - Cartes miroirs présentant les écarts dimensionnels majeurs et le narratif d'adaptation.
+
+### D7 — Module Optionnel de Satisfaction & Valeurs de Travail (TWA) [FAIT]
+- **Objectif :** Mesurer les leviers d'épanouissement durable au travail (Theory of Work Adjustment de Dawis & Lofquist), en complément de l'inventaire des intérêts (RIASEC).
+- **Tâches réalisées :**
+  - [x] Intégrer les 21 énoncés de l'O*NET Work Importance Locator (WIL) dans `frontend-web/src/data/questions-satisfaction.ts`.
+  - [x] Relier aux profils de valeurs de travail des 301 métiers québécois via la table CKG `Work Values.txt` (6 valeurs : Accomplissement, Indépendance, Reconnaissance, Relations, Soutien, Conditions de travail).
+  - [x] Concevoir le scoring de congruence des besoins-renforçateurs (*Needs-Reinforcer Fit*).
+  - [x] Proposer ce test comme Étape 2 facultative d'approfondissement dans `/outils` et sur la page de résultats psychométriques.
 
 ---
 
@@ -305,6 +355,22 @@ python trajektia/etl/physical_demands_dpc_ingestor.py
   - Filtrage dynamique instantané du catalogue des 504 métiers de la CNP.
   - Module d'exportation de rapport d'évaluation ergonomique et orientation (PDF / Fiche de synthèse).
 
+### F4 — Interface Interactive du Test Psychométrique & Visualisations SVG [FAIT]
+- [x] **Composant interactif React** (`frontend-web/src/components/PsychometricTest.tsx`) :
+  - Écran d'accueil présentant les objectifs scientifiques (Big Five & RIASEC), durée estimée (10-15 min) et garantie de confidentialité.
+  - Interface de passation progressive en 11 sections de 10 questions avec barre de complétion et compteur de progression.
+  - Navigation dynamique précédente/suivante, validation des réponses, sauvegarde instantanée de l'état.
+  - Écran de résultats complet avec restitution graphique :
+    - **Hexagone SVG RIASEC** : modélisation dynamique des 6 pôles de Holland avec polygones concentriques et axe interactif.
+    - **Radar SVG Big Five** : toile d'araignée à 5 dimensions OCEAN avec scores normalisés.
+    - **Top 10 des métiers recommandés** : cartes de métiers avec pourcentage d'affinité, badges de correspondance et liens directs vers `/metiers/{cnp_code}`.
+    - Bouton de réinitialisation pour repasser le test à volonté.
+- [x] **Page Astro dédiée** (`frontend-web/src/pages/outils/test-psychometrique.astro`) :
+  - Layout propre, balises SEO optimisées, fil d'Ariane (*Accueil > Outils > Test psychométrique*).
+  - Intégration du composant React avec hydratation `client:load`.
+- [x] **Catalogue des Outils** (`frontend-web/src/data/outils.ts`) :
+  - Outil référencé et marqué "disponible" dans la grille de la page `/outils`.
+
 ---
 
 ## PHASE G — Vérification, Validation Clinique & Audit
@@ -323,35 +389,87 @@ python scratch/verify_physical_db.py
 
 ---
 
+## PHASE H — Stratégie Emploi, Babillard Hybride & Modèle Économique Recruteurs
+
+> **Objectif :** Résoudre le problème du démarrage à froid (*cold-start*) par l'agrégation initiale, capturer des leads qualifiés et déployer un babillard d'offres propriétaire monétisable B2B.
+
+### H1 — Étape 1 : L'Agrégation Multi-Sources & Live Marché (Acquisition & SEO)
+- [x] Agréger les offres d'emploi réelles du Québec pour alimenter les fiches métiers dès le lancement. [FAIT]
+  - [x] **Job Bank / Guichet-Emplois (Open Canada)** : PRIORITÉ 1 (Tier 1). Ingestion de l'archive officielle de 88 mois en Open Data CKAN (`job-bank-open-data-all-job-postings-fr-*.csv` avec codes CNP 2021) et/ou API. Garantit une liaison CNP native parfaite pour nos calculs vectoriels.
+  - [ ] **Adzuna API Canada** : Clés configurées dans `.env`. Utilisé comme complément pour densifier la couverture privée.
+  - [ ] **Jooble API & Talent.com** : Connexion aux flux partenaires complémentaires pour densifier la couverture régionale des PME québécoises.
+  - [ ] **Endpoints ATS Directs** : Indexation des carrières des grandes entreprises québécoises (Greenhouse, Lever, SmartRecruiters).
+- [x] Calculer l'**Indice Salarial Trajektia Live™** : médiane mobile réelle et écart % vs StatCan. [FAIT]
+- [x] Déployer le module de **Lead Capture (Abonnement courriel)** sur les fiches métiers pour constituer la base d'abonnés qualifiés. [FAIT]
+- [ ] Connecter le formulaire d'inscription courriel à une table Supabase `leads_newsletter` ou service d'automatisation (Resend / Loops).
+
+### H2 — Étape 2 : Le Babillard Propriétaire « Trajektia Recrutement » (Monétisation B2B)
+- [ ] **Espace Recruteurs Partenaires** :
+  - Formulaire de dépôt d'offres direct par les employeurs du Québec.
+  - Enrichissement automatique de l'annonce par le CKG : tag RIASEC de l'offre et niveau d'effort physique DPC.
+  - **Ciblage ultra-précis par filière** : l'offre s'affiche directement sur la page du DEC ou DEP québécois correspondant pour cibler les futurs finissants.
+- [ ] **Modèle Freemium d'Amorçage Partenaires** :
+  - Gratuité offerte aux 30 à 50 premières entreprises pionnières québécoises pour densifier le réseau exclusif.
+- [ ] **Monétisation Directe & Revenus Récurrents** :
+  - Vente d'annonces vedettes sponsorisées (250 $ - 450 $ / annonce avec badge or « Recruteur Partenaire Trajektia »).
+  - Forfaits d'abonnements mensuels / annuels pour PME et grands employeurs québécois.
+  - Accès aux statistiques de consultation et métriques d'intérêt des diplômés.
+
+### H3 — Étape 3 : Observatoire Temporel & Séries Temporelles (Time-Series & Courbes de Tendances)
+- [x] Définir le schéma SQL des séries temporelles : [`database/schema_v8_market_snapshots.sql`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/database/schema_v8_market_snapshots.sql). [FAIT]
+  - `trajektia_live_job_postings` : Table de cache avec TTL de 30 jours pour l'affichage UI immédiat.
+  - `trajektia_market_snapshots` : Instantanés mensuels pour archiver salaires réels, volumes et tensions.
+  - `trajektia_skill_demand_history` : Historique de pénétration des compétences émergentes.
+  - `v_trajektia_career_trends_12m` : Vue calculant les pentes de croissance sur 12 mois.
+- [ ] Développer le script Cron d'ingestion mensuelle (`etl/market_snapshot_collector.py`) agrégeant Adzuna et Guichet-Emplois.
+- [ ] Intégrer les graphiques de tendances (courbe salariale 12 mois et momentum de recrutement) sur les fiches métiers Astro.
+
+### H4 — Étape 4 : Branding & Propriété Intellectuelle des Métriques Trajektia™
+- [x] Consigner au [Manuel Méthodologique CKG](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/ckg/MANUEL_METHODOLOGIQUE_CKG.md) la nomenclature officielle :
+  - **Indice Salarial Trajektia Live™** *(Trajektia RealWage)*
+  - **Indice de Volatilité Salariale Trajektia™**
+  - **Radar Compétences Trajektia™** & **Taux de Pénétration Marché Trajektia™**
+  - **Compétences Émergentes Trajektia™**
+  - **Indice de Tension Marché Trajektia™**
+  - **Score d'Affinité Trajektia™**
+  - **Profil DPC Trajektia™**
+- [ ] Afficher les badges de propriété intellectuelle et les infobulles méthodologiques sur le frontend Astro.
+
+---
+
 ## 🗓️ Séquence Recommandée & Feuille de Route
 
 ```
-RÉALISÉ (Fondations, Ingestion & Moteurs Analytiques)
+RÉALISÉ (Fondations, Ingestion, Moteurs & Taxonomie DPC)
 ───────────────────────────────────────────────────────────────────
+[FAIT] A2  Ingestion des métiers CNP 2021 (510 nœuds) et Mapping O*NET (911 arêtes EQUIVALENT_TO)
 [FAIT] A1  Logiciels O*NET (32 435 liens)
-[FAIT] A2  Crosswalk NOC <-> O*NET (1 467 liens)
 [FAIT] B3  Formations MEQ / La Relance (964 liaisons, 539 écoles, 220 prog.)
 [FAIT] B4  SST / CNESST Québec (3 698 liens, 20 secteurs, 1 496 arêtes Neo4j)
 [FAIT] B5  Exigences Physiques & DPC GC 2016 (504 métiers, 886 noeuds Neo4j)
 [FAIT] A7  Axes de Prediger & Intégration psychométrique dans le schéma V6
+[FAIT] D1  Table Taxonomie DPC & 25 verbes bilingues (ref_dpc_taxonomy + dpc_service.py)
 [FAIT] D2  Calibration Psychométrique Prediger-RIASEC (prediger_riasec_calibrator.py)
 [FAIT] E1  Moteur d'Adéquation Ergonomique & Réadaptation (ergonomics.py)
 [FAIT] E2  Croisement Vigilance Post-Lésion & Récidive CNESST (ergonomics.py)
+[FAIT] A4  Compétences Vertes ESCO intégrées aux fiches métiers et au CKG
+[FAIT] F2  Composants UI Fiches Métiers Astro (Salaires, Jauges DPC, RIASEC Prediger, Relance, Offres temps réel)
+[FAIT] A5  Module Offres d'emploi actives et alertes marché intégrées
+[FAIT] D4  Module Test Psychométrique (110 questions, IPIP-50 + O*NET Mini-IP, Scoring 11D Cosinus)
+[FAIT] F4  Interface Test Psychométrique React/Astro (/outils/test-psychometrique, SVG Hexagone & Radar)
+[FAIT] D5  Cosinus Centré (Pearson r), 301 Métiers Réels Supabase & Fix Complétion 110/110
+[FAIT] D6  Commentaires Narratifs Cliniques Positifs & Section Miroir Accordéon OCCOQ
+[FAIT] D7  Module de Satisfaction & Valeurs de Travail (TWA / O*NET WIL 21 items)
+[FAIT] F5  Infobulles Pédagogiques interactives (<InfoBubble>) & Règle POMP < 5% (Fiches [cnp].astro)
+[FAIT] G1  Framework Customizations Agent (.agents/rules & .agents/skills) & Orchestration Multi-Agents (dispatch-next-task)
 
-PROCHAINE ÉTAPE PRIORITAIRE — Synchronisation Pipeline & CMS (~30 min)
+PROCHAINE ÉTAPE PRIORITAIRE — Siphon, Formations (MEQ) & Offres (Guichet-Emplois)
 ───────────────────────────────────────────────────────────────────
-1. F1  Mise à jour de `le_siphon.py` (Export Ergo/DPC/Prediger/SST vers Directus/Supabase)
-2. B6  Titres alternatifs & Synonymes TCC 2025 (Recherche sémantique)
-3. A4  Compétences Vertes ESCO (Green Skills ciblées)
-
-ÉTAPES SUIVANTES — Vitrine, Frontend Astro & Outils Cliniques
-───────────────────────────────────────────────────────────────────
-4. D1  Table de référence et taxonomie sémantique DPC (24 verbes d'action)
-5. D3  Moteur de recommandation & explicabilité pour Conseillers d'Orientation (c.o.)
-6. F2  Composants UI Fiches Métiers Astro (Badges Ergo, Jauge DPC, Radar Prediger)
-7. F3  Simulateur Interactif de Réadaptation (Filtrage par limitations fonctionnelles)
-8. A5  Compteurs d'offres actives Job Bank API
-9. B7  Enrichissement BLS ORS (Profils horaires avancés)
+1. F1  Créer les nœuds (:Program) pour les formations MEQ dans Neo4j [FAIT]
+2. H1  Mettre en place l'ingestion Guichet-Emplois (Job Bank) dans Neo4j (:JobPosting) (Priorité sur Adzuna)
+3. F1  Mise à jour de `le_siphon.py` (Export Ergo/DPC/Prediger/SST vers Directus/Supabase)
+4. B6  Titres alternatifs & Synonymes TCC 2025 (Recherche sémantique)
+5. F3  Simulateur Interactif de Réadaptation (Filtrage par limitations fonctionnelles)
 ```
 
 ---
