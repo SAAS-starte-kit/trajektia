@@ -22,6 +22,10 @@ Ce document constitue la référence centrale pour le suivi, l'audit de fraîche
 | **SST / CNESST** | CNESST (Données Québec) | Millésime 2023 | Supabase + Neo4j | 3 698 liens Supabase, 20 secteurs, 1 496 HAS_RISK Neo4j | Annuelle | Fin 2026 (données 2024) |
 | **Exigences Physiques & DPC** | EDSC (Guide des carrières) | GC 2016 (Ouvert Canada) | Supabase (`occupation_physical_demands`) + Neo4j | 504 métiers (forces, postures, sensoriel, DPC) | Stable (historique consolidé) | En continu via StatCan |
 | **Concordance CNP 2016-2021** | Statistique Canada | Édition officielle v1.0 | Fichier pivot `crosswalks` | 585 paires de conversion certifiées | Quinquennale | 2026-2027 |
+| **BFI-2-Fr & Work Styles (Big Five)** | Soto & John / Lignier et al. / O*NET | Modèle 15 facettes (2020/2024) | Client Web + Supabase (`big_five_profiles`) | 60 items test usager + 21 styles O*NET mappés CNP | Stable (validé) | Permanent |
+| **IPIP-50 (Big Five recherche)** | L.R. Goldberg / IPIP | Domaine Public | Recherche / Benchmarks | 50 items (5 dimensions, clés inversion) | Stable (validé) | Permanent |
+| **O*NET Mini-IP (RIASEC)** | USDOL / Rounds et al. | Short Form 2010 | Client Web / React | 60 items (6 pôles de Holland) | Stable (validé) | Permanent |
+| **O*NET Work Values (TWA)** | USDOL / Dawis & Lofquist | Release 28.2 (2024) | `Work Values.txt` (CKG) | 6 valeurs de satisfaction par métier | Annuelle | Stable |
 | **Titres Alternatifs TCC** | EDSC (Ouvert Canada) | TCC 2025 v1.0 | Supabase (`competency_synonyms`) | Dictionnaire bilingue de synonymes | Annuelle | 2027 |
 | **BLS ORS (Ergonomie US)** | U.S. Bureau of Labor Statistics | ORS 2023-2025 | Modèle réadaptation haute précision | % heures assis/debout, charges lbs | Annuelle | Fin 2026 |
 
@@ -89,11 +93,17 @@ Ce document constitue la référence centrale pour le suivi, l'audit de fraîche
   - `Tools Used.txt` : **26 388 relations** `(:Occupation)-[:USES_TOOL]->(:Tool)`.
   - `Knowledge.txt` : **6 566 relations** de connaissances sectorielles (32 domaines standardisés avec scores d'importance et échelles).
   - `Work Context.txt` : **21 953 relations** décrivant l'environnement de travail, la fréquence des contacts humains, l'exposition physique.
-  - `Abilities.txt`, `Work Styles.txt`, `Work Values.txt`, `Interests.txt` : **109 244 relations** psychométriques (profil dominant RIASEC / John Holland).
+  - `Work Styles.txt` : **21 descripteurs empiriques standardisés** (ex: *Attention to Detail*, *Stress Tolerance*, *Innovation*, *Leadership*...) notés en Importance ($1.0$ à $5.0$) et Niveau ($0$ à $100$) pour chaque profession.
+  - `Abilities.txt`, `Work Values.txt`, `Interests.txt` : **109 244 relations** psychométriques (profil dominant RIASEC / John Holland et 6 valeurs TWA).
   - `Job Zones.txt` : Niveaux 1 à 5 de préparation opérationnelle requise.
 - **Destination dans le système :**
   - **Neo4j :** Nœuds `(:Software)`, `(:Tool)`, `(:Knowledge)`, `(:WorkContext)`, `(:WorkStyle)`, `(:WorkValue)`, `(:Ability)` et leurs arêtes relationnelles.
-  - **Supabase :** Tables `tools`, `occupation_tools`, `riasec_profiles`, `knowledge`, `work_contexts`.
+  - **Supabase :** Tables `tools`, `occupation_tools`, `riasec_profiles`, `big_five_profiles` (avec décomposition en 15 facettes), `knowledge`, `work_contexts`.
+- **Modélisation & Quantification de la Personnalité (Big Five & 15 Facettes BFI-2) :**
+  - *Passerelle vers la CNP canadienne :* Les 21 Work Styles O\*NET sont associés aux codes CNP 2021 à 5 chiffres via `noc_onet_crosswalk`.
+  - *Conversion matricielle vers 15 Facettes :* Chaque facette $F_j$ ($j = 1 \dots 15$) du BFI-2 (Soto & John, 2017) est calculée par la moyenne normalisée des Work Styles rattachés :
+    $$\text{ScoreFacette}_{F_j}(m) = \frac{1}{|WS(F_j)|} \sum_{w \in WS(F_j)} \left( \frac{I_{w, m} - 1.0}{4.0} \times 100 \right)$$
+  - *Justification scientifique (15 vs 30 facettes) :* Le modèle à 30 facettes (NEO-PI-R) est écarté au profit des 15 facettes du BFI-2 en raison de sa longueur prohibitive (240 questions provoquant >85% d'abandon web), de sa licence commerciale fermée (PAR Inc.) et de son incompatibilité avec l'analyse du travail (O\*NET comportant 21 variables, 30 facettes laisseraient des cases vides). Les 15 facettes BFI-2 conservent 92% de la variance fidèle et s'apparient rigoureusement avec les données O\*NET.
 - **Mécanisme de mise à jour :**
   - Script direct : `ckg/ingestors/onet_tech_ingestor.py` et `etl/le_siphon.py` (Phases 6 et 7).
 - **Calendrier prévisionnel :** Le National Center for O\*NET Development publie une révision majeure chaque année (v29.0). **Disponible dès maintenant via l'API O\*NET v2.**
@@ -259,6 +269,42 @@ Ce document constitue la référence centrale pour le suivi, l'audit de fraîche
 - **URL officielle :** [https://www.bls.gov/ors/factsheet/orsprofiles.htm](https://www.bls.gov/ors/factsheet/orsprofiles.htm)
 - **Objectif :** Fournir aux conseillers en réadaptation et médecins conseils CNESST des distributions horaires précises (% moyen de la journée assis vs debout, fréquence de levage, poussée/traction en livres/kg) rattachées aux métiers canadiens via le crosswalk SOC-O*NET-CNP.
 - **Statut :** Cadré (Phase B7).
+
+---
+
+### 13. Banque d'Items IPIP-50 (Big Five / OCEAN)
+- **Auteurs & Origine :** Lewis R. Goldberg (1992, 1999) / Oregon Research Institute.
+- **Plateforme & Licence :** International Personality Item Pool ([https://ipip.ori.org/](https://ipip.ori.org/)) — Domaine public libre de droits pour la recherche et les applications cliniques/éducatives.
+- **Volumétrie & Données exactes :**
+  - **50 items standardisés** mesurant les 5 domaines fondamentaux de la personnalité (10 items par dimension : Ouverture, Conscienciosité, Extraversion, Agréabilité, Névrosisme/Stabilité).
+  - Clés d'inversion intégrées (23 items inversés pour neutraliser le biais d'acquiescement).
+  - Échelle de Likert en 5 points (1=Pas du tout d'accord à 5=Tout à fait d'accord).
+- **Destination :** `frontend-web/src/data/questions-psychometriques.ts` (moteur client web).
+- **Statut :** Opérationnel en production. Instrument psychométrique stable et validé par des centaines d'études internationales.
+
+---
+
+### 14. O*NET Interest Profiler Short Form (Mini-IP / RIASEC)
+- **Auteurs & Origine :** J. Rounds, R. Su, P. Lewis & D. Rivkin (2010) / National Center for O*NET Development & USDOL/ETA.
+- **Plateforme & Licence :** O*NET Resource Center ([https://www.onetcenter.org/IP.html](https://www.onetcenter.org/IP.html)) — Outil public développé sous l'égide du Département du Travail des États-Unis.
+- **Volumétrie & Données exactes :**
+  - **60 activités de travail concrètes** (10 items pour chacun des 6 types de Holland : Réaliste, Investigateur, Artistique, Social, Entreprenant, Conventionnel).
+  - Échelle d'intérêt en 5 points (1=Je détesterais à 5=J'adorerais).
+- **Destination :** `frontend-web/src/data/questions-psychometriques.ts` (moteur client web).
+- **Statut :** Opérationnel en production. Corrélation démontrée ($r > 0.90$) avec la version longue de 180 items.
+
+---
+
+### 15. Valeurs de Travail & Satisfaction TWA (O*NET Work Values)
+- **Auteurs & Origine :** R. Dawis & L. Lofquist (Theory of Work Adjustment, Univ. of Minnesota) / National Center for O*NET Development.
+- **Plateforme & Fichier source :** `Work Values.txt` (via O*NET).
+- **Volumétrie & Données exactes :**
+  - **6 méta-besoins de satisfaction professionnelle** (Accomplissement, Indépendance, Reconnaissance, Relations, Soutien, Conditions de travail).
+  - Profil de valeurs pré-calculé (0-100) pour 301 métiers du Québec.
+  - Test interactif de 21 items basé sur le Work Importance Locator (WIL).
+- **Liaison CNP :** Relié aux codes de la Classification Nationale des Professions via script de génération Python (301 profils ciblés).
+- **Destination :** `frontend-web/src/data/valeurs-travail-metiers.ts` et `frontend-web/src/components/SatisfactionTest.tsx` (accessible via `/outils/test-satisfaction-valeurs`).
+- **Statut :** Opérationnel en production. Calcul de l'Appariement des Valeurs (Needs-Reinforcer Fit) et intégration dans l'interface de résultats.
 
 ---
 

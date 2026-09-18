@@ -10,6 +10,8 @@ Ce workflow permet d'orchestrer la suite du travail en agissant comme un dispatc
 ## Contexte
 Le projet Trajektia utilise plusieurs outils et agents d'IA pour optimiser les coûts de tokens et tirer parti des forces de chaque modèle :
 - **Antigravity (IDE)** : Architecture logicielle, coordination globale, intégration complexe multi-fichiers, frontend Astro/React, et diagnostics de fond.
+- **Google Stitch (MCP)** : Idéation et génération rapide d'écrans UI, prototypage de maquettes bento/glassmorphism, création et mise à jour de Design Systems (`design.md`) à partir de prompts textuels.
+- **Figma (MCP)** : Inspection de maquettes de production au pixel près, extraction directe des tokens (variables de couleurs, espacements Auto Layout, typographies) et synchronisation bidirectionnelle design $\leftrightarrow$ code Astro.
 - **Gemini CLI** : Tâches nécessitant une très grande fenêtre de contexte (analyse massive de documents de référence, ingurgiter les manuels complets CKG/psychométriques), génération par batch à bas coût (via Flash), ou scripts d'automatisation exécutables hors de l'IDE.
 - **Claude Code Router (CCR)** : Refactorisation ciblée de scripts backend Python, logique mathématique/algorithmique dense, génération de tests unitaires rapides.
 - **Hermes Agent** : Notifications, communication asynchrone, messages de statut via Telegram/MCP.
@@ -23,7 +25,9 @@ Le projet Trajektia utilise plusieurs outils et agents d'IA pour optimiser les c
 
 ### 2. Qualification et Attribution de la Tâche
 - Déterminer quel agent ou outil est le plus qualifié selon les critères suivants :
-  - *Modification d'interface utilisateur (Astro/Tailwind/React)* $\rightarrow$ **Antigravity**
+  - *Prototypage UI rapide, création de nouveaux concepts d'écrans ou de Design System textuel* $\rightarrow$ **Google Stitch (MCP)**
+  - *Alignement fidèle sur des maquettes graphiques existantes, extraction de tokens et variables Figma* $\rightarrow$ **Figma (MCP)**
+  - *Intégration de code frontend (Astro/Tailwind/React), refontes structurelles du site* $\rightarrow$ **Antigravity**
   - *Analyse documentaire massive, cross-référencement de manuels volumineux, batch à faible coût* $\rightarrow$ **Gemini CLI**
   - *Script Python pur (ETL, parsing, extraction, refactoring)* $\rightarrow$ **Claude Code Router**
   - *Notification, suivi externe ou message vers Telegram* $\rightarrow$ **Hermes**

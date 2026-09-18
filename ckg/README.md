@@ -51,7 +51,8 @@ ckg/
 │
 trajektia/analytics/     → Moteurs décisionnels, cliniques et psychométriques
 │   ├── ergonomics.py              Moteur d'adéquation ergonomique, limitations & alertes récidive CNESST
-│   └── prediger_riasec_calibrator.py Moteur de calibration psychométrique DPC ↔ RIASEC & ICP
+│   ├── prediger_riasec_calibrator.py Moteur de calibration psychométrique DPC ↔ RIASEC & ICP
+│   └── dpc_service.py             Service d'explicabilité narrative DPC & filtres de complexité pour c.o.
 │
 trajektia/etl/           → Pipelines Supabase & intégrations provinciales
 │   ├── cnesst_supabase_ingestor.py  Ingestion SST Québec (114k lésions, 20 secteurs)
@@ -76,8 +77,13 @@ trajektia/etl/           → Pipelines Supabase & intégrations provinciales
 | **Formations MEQ / La Relance** | ✅ Complet | 964 liens, 539 écoles | Salaires et taux de placement réels |
 | **SST / CNESST Québec** | ✅ Complet | 3 698 liens Supabase | 114 345 lésions, 1 496 `HAS_RISK` Neo4j |
 | **Exigences Physiques & DPC** | ✅ Complet | 504 métiers | Forces S1-S4, Postures B1-B4, DPC |
+| **Taxonomie DPC Officielle (D1)** | ✅ Complet | 25 échelons en base | `ref_dpc_taxonomy` + vue enrichie `v_occupation_dpc_detailed` |
+| **Service Explicabilité c.o. (D1)** | ✅ Opérationnel | `analytics/dpc_service.py` | Narratives bilingues + filtres seuils |
 | **Moteur Ergonomique (E1/E2)** | ✅ Opérationnel | `analytics/ergonomics.py` | Adéquation limitations + vigilance CNESST |
 | **Moteur Prediger-RIASEC (D2)** | ✅ Opérationnel | `analytics/prediger_riasec_calibrator.py` | Indice ICP, détection métiers hybrides |
+| **Test Psychométrique (Big Five + RIASEC)** | ✅ Complet | 110 items (IPIP-50 + Mini-IP) | Scoring 11D cosinus centré ($r$ Pearson), Astro/React, Radars SVG |
+| **Matching Métiers Réels & Miroir (D5/D6)** | ✅ Complet | 301 métiers réels branchés | Biais des profils plats éradiqué, narratifs positifs, miroir OCCOQ |
+| **Module Satisfaction TWA (D7)** | 🟡 Cadré | O*NET WIL (21 items) + Work Values | Étape 2 approfondissement (Theory of Work Adjustment) |
 | **Titres Alternatifs TCC 2025** | 🟡 Cadré | Table `competency_synonyms` | Prévu Phase B6 |
 | **Compétences Vertes ESCO** | 🟡 Cadré | Filtre `isGreenSkill` | Stratégie verte ciblée (Phase A4) |
 | **Job Bank** (offres actives) | 🔴 Planifié | 0 | Script API à lancer (Phase A5) |
@@ -86,13 +92,18 @@ trajektia/etl/           → Pipelines Supabase & intégrations provinciales
 
 ## 🎯 Prochaines actions prioritaires
 
-### Action 1 — Mettre à jour Le Siphon (`le_siphon.py`) [CRITIQUE]
+### Action 1 — Module de Satisfaction & Valeurs de Travail (Phase D7) [IMMÉDIAT]
+- Implémentation du questionnaire **O*NET Work Importance Locator (WIL)** à 21 énoncés (Theory of Work Adjustment de Dawis & Lofquist).
+- Croisement avec les profils de valeurs de travail des 301 métiers québécois (`Work Values.txt`).
+- Scoring d'adéquation des leviers de satisfaction (Accomplissement, Indépendance, Reconnaissance, Relations, Soutien, Conditions).
+
+### Action 2 — Mettre à jour Le Siphon (`le_siphon.py`) [CRITIQUE]
 Exporter et synchroniser les profils ergonomiques, les cotes DPC et les indicateurs de risques SST pour la consommation par l'API Directus et le frontend Astro.
 
-### Action 2 — Ingestion des Titres Alternatifs & Synonymes TCC 2025 (Phase B6)
+### Action 3 — Ingestion des Titres Alternatifs & Synonymes TCC 2025 (Phase B6)
 Alimenter la recherche sémantique avec le dictionnaire bilingue EDSC.
 
-### Action 3 — Composants UI & Simulateur de Réadaptation Astro (Phases F2 & F3)
+### Action 4 — Composants UI & Simulateur de Réadaptation Astro (Phases F2 & F3)
 Intégrer les blocs d'ergonomie, de radar Prediger et le moteur d'adéquation dans l'espace conseiller et les fiches métiers.
 
 ---

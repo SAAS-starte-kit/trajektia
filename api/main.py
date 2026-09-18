@@ -15,13 +15,37 @@ Endpoints :
   GET /                               — Health check
 """
 
+import sys
+
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 import asyncpg
 import os
 import json
+import asyncio
 from typing import Optional
 from contextlib import asynccontextmanager
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Charger .env depuis la racine du projet
+load_dotenv(Path(__file__).resolve().parent.parent / ".env")
+load_dotenv()
+
+# ML dependencies (Chargement conditionnel pour éviter un crash si manquant)
+try:
+    from sentence_transformers import SentenceTransformer
+    HAS_ML = True
+except ImportError:
+    HAS_ML = False
+    print("⚠️ Attention: sentence-transformers non installé. La recherche sémantique sera désactivée.")
 
 # ── Configuration ─────────────────────────────────────────────
 DATABASE_URL = os.environ.get("SUPABASE_DB_URL", "")
@@ -29,6 +53,7 @@ CORS_ORIGINS = json.loads(os.environ.get("CORS_ORIGINS", '["http://localhost:300
 
 # ── Pool de connexions PostgreSQL ─────────────────────────────
 db_pool: asyncpg.Pool | None = None
+semantic_model = None  # Instance globale du modèle IA
 
 
 @asynccontextmanager
@@ -40,8 +65,18 @@ async def lifespan(app: FastAPI):
         min_size=2,
         max_size=10,
         command_timeout=30,
+        statement_cache_size=0,
     )
     print("✅ Pool PostgreSQL initialisé")
+    
+    # Chargement du modèle IA local
+    global semantic_model
+    if HAS_ML:
+        print("🧠 Chargement du modèle d'Intelligence Artificielle en mémoire (MiniLM)...")
+        # On exécute le chargement dans un thread séparé pour ne pas bloquer la boucle asynchrone
+        semantic_model = await asyncio.to_thread(SentenceTransformer, 'paraphrase-multilingual-MiniLM-L12-v2')
+        print("✅ Modèle d'Intelligence Artificielle chargé et prêt")
+    
     yield
     await db_pool.close()
     print("🔒 Pool PostgreSQL fermé")
@@ -242,6 +277,52 @@ async def search_metiers(
             "filtres": {"teer": teer, "riasec": riasec},
             "resultats": [dict(r) for r in rows],
             "pagination": {"limit": limit, "offset": offset},
+        }
+
+
+# ── GET /api/semantic_search ──────────────────────────────────
+@app.get("/api/semantic_search", tags=["Recherche"])
+async def semantic_search(
+    q: str = Query(..., min_length=5, description="Phrase descriptive (ex: 'Je veux travailler dehors')"),
+    limit: int = Query(10, ge=1, le=50)
+):
+    """
+    Moteur de recherche par IA Sémantique.
+    Transforme la requête en vecteur 384d et effectue une recherche par distance cosinus (pgvector).
+    """
+    if not HAS_ML or not semantic_model:
+        raise HTTPException(status_code=503, detail="Le moteur d'IA n'est pas disponible sur ce serveur.")
+        
+    # 1. Encodage vectoriel (dans un thread pool pour éviter de bloquer l'Event Loop)
+    query_vector = await asyncio.to_thread(semantic_model.encode, q)
+    vector_str = str(query_vector.tolist())
+    
+    # 2. Recherche vectorielle dans Supabase (pgvector <=>)
+    async with db_pool.acquire() as conn:
+        rows = await conn.fetch(
+            """
+            SELECT
+                cnp_code,
+                title_fr,
+                title_en,
+                median_salary,
+                teer_level,
+                broad_category_name_fr,
+                riasec_dominant,
+                1 - (embedding <=> $1::vector) AS semantic_score
+            FROM occupations
+            WHERE embedding IS NOT NULL
+            ORDER BY embedding <=> $1::vector
+            LIMIT $2
+            """,
+            vector_str,
+            limit
+        )
+        
+        return {
+            "query": q,
+            "ia_model": "paraphrase-multilingual-MiniLM-L12-v2",
+            "resultats": [dict(r) for r in rows]
         }
 
 

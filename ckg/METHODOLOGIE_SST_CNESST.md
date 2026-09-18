@@ -228,4 +228,18 @@ result = evaluate_candidate_fit(candidate_profile, "72200")
 - **`cnesst_alerts` :** Détection automatique d'un risque élevé de récidive si la prévalence sectorielle de la lésion antérieure est $\ge 25\%$ (données réelles `occupation_hazards`).
 - **`recommended_preventions` :** Conseils de prévention et équipements d'assistance homologués CNESST / IRSST.
 
+---
+
+## 🧠 7. Pont Méthodologique : Risques SST, Santé Mentale & Profils Psychométriques
+
+Trajektia croise l'analyse des risques SST avec les profils psychométriques issus du test d'orientation :
+
+1. **Risques Psychosociaux & Stabilité Émotionnelle (Big Five — Névrosisme)** :
+   - Les secteurs à fort taux de lésions psychologiques (Enseignement : 18.52%, Administrations publiques : 13.89%, Soins de santé : 6.73%) requièrent une résilience émotionnelle élevée et une bonne maîtrise du stress aigu.
+   - Les commentaires narratifs de restitution soulignent avec bienveillance si un métier à fort stress relationnel demande une stratégie proactive de préservation du bien-être pour les personnes ayant une sensibilité émotionnelle vive.
+
+2. **Exigences Physiques & Intérêts Réalistes (RIASEC — Pôle R)** :
+   - Les métiers à fort taux de TMS (Fabrication non durable : 34.34%, Commerce : 33.32%, Métallurgie : 28.48%, Construction : 25.78%) s'adressent à des profils à forte dominante Réaliste (R).
+   - L'algorithme d'orientation valorise l'adéquation ergonomique préventive pour éviter que l'enthousiasme vocationnel ne conduise à des lésions d'usure précoce.
+
 
