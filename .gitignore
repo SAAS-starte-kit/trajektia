@@ -4,9 +4,14 @@ __pycache__/
 *.pyo
 .venv/
 venv/
-*.egg-info/
+node_modules/
+**/node_modules/
 dist/
+**/dist/
 build/
+**/.astro/
+.antigravity/
+.gitnexus/
 .DS_Store
 Thumbs.db
 
