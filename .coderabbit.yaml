@@ -1,0 +1,49 @@
+# CodeRabbit Configuration for Trajektia
+# Documentation: https://docs.coderabbit.ai/guides/configure-coderabbit
+
+language: "fr-FR"
+
+reviews:
+  # Niveau d'exigence : Chill, Assertive ou Strict
+  profile: "assertive"
+  
+  # Demander à CodeRabbit de faire un résumé clair en français de la PR
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+  
+  # Directives spécifiques et contexte métier pour Trajektia
+  path_instructions:
+    - path: "frontend-web/**/*.astro"
+      instructions: |
+        - Vérifier l'accessibilité et la clarté pédagogique de l'interface utilisateur.
+        - S'assurer que les métriques complexes (RIASEC, OCEAN, DPCI, risque automatisation) utilisent bien le composant `<InfoBubble>`.
+        - Ne jamais tolérer un affichage brut de "0 %" pour les scores POMP : recommander l'usage de `< 5 %`.
+        - Vérifier la bonne gestion du typage TypeScript dans le frontmatter Astro.
+        
+    - path: "frontend-web/**/*.{ts,tsx}"
+      instructions: |
+        - Vérifier la rigueur du typage TypeScript (éviter les `any`).
+        - Valider les calculs d'échelle psychométrique et la gestion des valeurs nulles/indéfinies.
+        
+    - path: "etl/**/*.py"
+      instructions: |
+        - Vérifier la gestion des erreurs de connexion à Neo4j et Supabase/PostgreSQL.
+        - Assurer que les scripts ne consomment pas de mémoire excessive lors de l'ingestion par lots.
+        
+    - path: "database/**/*.sql"
+      instructions: |
+        - S'assurer que toutes les clés étrangères ont les contraintes appropriées (ON DELETE CASCADE ou SET NULL).
+        - Vérifier la présence des index nécessaires sur les identifiants fréquemment filtrés (ex: cnp_code, program_code).
+        
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - "master"
+      - "main"
+
+chat:
+  auto_reply: true
