@@ -33,21 +33,21 @@ De légères baisses de fiabilité sont observées pour des facettes comportant 
 
 La plateforme utilise la version courte à 60 items de l'**O*NET Interest Profiler (Mini-IP)** développée par Rounds et al. (2010), évaluant les 6 dimensions typologiques de John Holland (RIASEC).
 
-### Transparence sur la Traduction et Bouclier Légal
-La traduction francophone de cet outil, bien que diffusée librement par le consortium *psychtools.work*, comporte une clause éditoriale de prudence indiquant une traduction "non formellement validée". 
-Cependant, l'utilisation clinique de cet instrument par Trajektia est justifiée et sécurisée par les **études de validation structurelles indépendantes**.
+### Transparence sur la Traduction et Limites
+La traduction francophone de cet outil, bien que diffusée librement par le consortium *psychtools.work*, comporte une clause éditoriale de prudence indiquant une traduction "non formellement validée". L'équivalence linguistique, métrique et conceptuelle stricte avec la version originale n'est pas formellement certifiée.
 
-### Validation de Construit (Données Empiriques)
+### Validation Structurelle et Décision Clinique
+Bien que l'équivalence complète ne soit pas démontrée, la décision clinique d'utiliser cet instrument dans Trajektia (à des fins d'exploration et non de diagnostic psychiatrique) s'appuie sur des **preuves structurelles indépendantes** :
 - **Structure factorielle** : La recherche menée par Zecca, Rossier et al. (2015) publiée dans le *Swiss Journal of Psychology* a formellement validé la structure de cette version francophone. Leurs analyses factorielles confirmatoires prouvent que la forme structurelle circomplexe (l'hexagone de Holland) est parfaitement préservée en français.
 - **Fiabilité** : Cette même étude démontre une fiabilité très solide, avec des coefficients Alpha de Cronbach systématiquement **supérieurs à 0,80** pour les six dimensions RIASEC.
 
 ---
 
-## 4. La Personnalité : Le choix stratégique du BFI-2-Fr & les 15 Facettes Quantifiées
+## 4. La Personnalité : Modèle Big Five (OCEAN), IPIP-50 Libre de Droit & Validation Empirique O*NET
 
-*(Note d'architecture et de recherche : Bien que Trajektia conserve l'instrument IPIP-50 dans sa base de données à des fins de recherche comparative, cet outil a été complété pour le calcul vectoriel de recommandation officiel par le modèle hiérarchique du BFI-2-Fr).*
+*(Note d'éthique, de propriété intellectuelle et de recherche : Le BFI-2 de Soto & John étant soumis à des restrictions d'usage commercial hors contexte de recherche universitaire, Trajektia a adopté une stratégie d'ingénierie légale et scientifique claire : le module interactif public autonome s'appuie sur la banque d'items de renommée mondiale **IPIP-50** (International Personality Item Pool, Lewis Goldberg 1992), strictement dans le **domaine public** et sans royalties. Les profils de personnalité des professions sont quant à eux fondés sur les données gouvernementales ouvertes O\*NET Work Styles, validées empiriquement par les recherches de pointe).*
 
-Pour évaluer les traits de la personnalité selon le modèle des cinq grands facteurs (Big Five / OCEAN) dans son moteur d'appariement principal, Trajektia utilise le **Big Five Inventory-2 (BFI-2)** de Soto et John (2017), via sa validation francophone officielle **BFI-2-Fr** (Lignier, Petot, Plaisant et Courtois, 2020).
+Pour relier les traits de la personnalité (Big Five / OCEAN) aux exigences du marché du travail, Trajektia s'appuie sur le consensus scientifique récent démontrant que les profils professionnels de personnalité suivent fidèlement les **descripteurs de styles de travail (*Work Styles*) d'O\*NET** (notamment l'étude empirique de référence de **Kätlin Anni, Uku Vainik et René Mõttus, *Journal of Applied Psychology*, 2024/2025** sur 68 000+ répondants, ainsi que les travaux de **Juchem, Denissen et Asselmann, *European Journal of Personality*, 2026** sur le *Personality-Job Fit*). Le modèle conceptuel à 15 facettes du BFI-2-Fr (Lignier et al., 2020) sert de grille d'analyse théorique pour les conseillers d'orientation.
 
 ### 4.1. Structure Hiérarchique : 5 Domaines et 15 Facettes
 Contrairement aux approches réductionnistes qui ne mesurent que 5 macro-traits globaux, le BFI-2 décompose chaque domaine fondamental en **3 facettes spécifiques** (15 facettes au total) :
@@ -89,45 +89,65 @@ On fait traditionnellement référence en clinique à un modèle à 30 facettes 
 
 ---
 
-### 4.3. Origine des Données Métiers & Quantification Empirique
+### 4.3. Origine des Données Métiers & Quantification Empirique (O*NET 30.1 & HumRRO 2024-2025)
 
-Les profils de personnalité associés aux métiers québécois et canadiens dans Trajektia ne sont ni des estimations subjectives ni des textes générés : ce sont des **mesures quantitatives issues d'enquêtes de terrain gouvernementales**.
+Les profils de personnalité associés aux métiers québécois et canadiens dans Trajektia ne sont ni des estimations subjectives ni des textes générés : ce sont des **mesures quantitatives issues d'enquêtes de terrain et d'étalonnages experts-IA gouvernementaux (O*NET 30.1 / USDOL)**, documentés par la trilogie de rapports scientifiques d'HumRRO (*Human Resources Research Organization*) :
+- **Putka, Kell, Voss, Oswald, & Lewis (2024)** : *Revisiting the Work Styles domain of the O*NET Content Model* (HumRRO Report No. 090).
+- **Putka, Liu, & Lewis (2025)** : *Updating Higher-order Work Style Dimensions in the O*NET Work Styles Taxonomy* (HumRRO Report No. 129).
+- **Putka, Liu, Wu, Burke, & Lewis (2025)** : *Using a Hybrid Artificial Intelligence-Expert Method to Develop Work Style Ratings for the O*NET Database* (HumRRO Report No. 130).
 
-Le processus repose sur trois piliers :
-1. **La base empirique américaine O*NET (USDOL / O*NET 28.2)** : Les analystes du travail et des cohortes de professionnels en exercice évaluent pour chaque profession 21 descripteurs comportementaux (*Work Styles*, ex: *Attention to Detail*, *Stress Tolerance*, *Innovation*). Chaque métier reçoit deux métriques :
-   - Un **Score d'Importance** : $I_{w, m} \in [1.0, 5.0]$
-   - Un **Score de Niveau / Intensité** : $L_{w, m} \in [0, 100]$
-2. **La table de correspondance officielle (`noc_onet_crosswalk`)** : Publiée conjointement par Statistique Canada et EDSC, elle relie chaque code de la Classification Nationale des Professions (CNP 2021 à 5 chiffres) à ses codes O*NET (SOC) correspondants.
-3. **La projection matricielle vers les 15 facettes** : Les 21 Work Styles O*NET sont transposés vers les 15 facettes du BFI-2 via une matrice d'équivalence comportementale :
-
-$$\text{ScoreFacette}_{F_j}(m) = \frac{1}{|WS(F_j)|} \sum_{w \in WS(F_j)} \left( \frac{I_{w, m} - 1.0}{4.0} \times 100 \right)$$
-
-Où :
-- $I_{w, m}$ est le score moyen d'importance du Work Style $w$ pour le métier $m$.
-- $|WS(F_j)|$ est le nombre de descripteurs rattachés à la facette $F_j$.
-- Le score final d'un macro-domaine OCEAN est la moyenne arithmétique de ses 3 facettes constitutives.
+Le processus repose sur quatre piliers méthodologiques modernes :
+1. **La base empirique américaine O*NET 30.1 (USDOL / HumRRO 2025)** : Évaluation des 21 descripteurs comportementaux (*Work Styles*) sur l'ensemble des 891 professions actives de l'économie.
+2. **L'Échelle d'Impact sur la Performance (Work Impact Score $WI \in [-3.0, +3.0]$)** :
+   Fondée sur la théorie de l'activation des traits (*Trait Activation Theory* - TAT ; Tett & Burnett 2003) et la méthode POJA (*Personality-Oriented Job Analysis* ; Goffin et al., 2011), l'échelle mesure si un niveau élevé du trait est néfaste (-3), neutre (0) ou bénéfique (+3) pour la performance dans le métier.
+3. **Le Rang de Distinction (Distinctiveness Rank $DR \in [1, 10]$)** :
+   Pour éviter que des traits universellement souhaitables (comme la *Fiabilité* ou le *Souci du détail*) ne dominent artificiellement le profil de 95 % des métiers, O*NET 30.1 applique un **algorithme de tri en 3 étapes** (filtrage des traits $\ge 2.0$, tri par rareté croissante d'occurrence à travers les 891 professions) pour identifier les 10 caractéristiques comportementales les plus **differentielles et uniques** de chaque métier.
+4. **La table de correspondance officielle (`noc_onet_crosswalk`)** : Publiée conjointement par Statistique Canada et EDSC, elle relie chaque code de la Classification Nationale des Professions (CNP 2021 à 5 chiffres) aux codes O*NET (SOC) correspondants.
 
 ---
 
-### 4.4. Matrice d'Appariement : 15 Facettes BFI-2 ↔ 21 Work Styles O*NET
+### 4.4. Structure des Work Styles : Abandon du Big Five Individuel pour les 4 Composantes PCA Métiers
 
-| Domaine OCEAN | Facette BFI-2 | O*NET Work Styles Associés (Quantifiés) | Définition Opérationnelle au Travail |
+#### L'Erreur Écologique (*Ecological Fallacy*, Robinson 1950) & L'ACP O*NET 30.1
+Le rapport HumRRO No. 129 démontre que transposer la structure factorielle des individus (Big Five ou HEXACO) aux exigences comportementales des *métiers* constitue une erreur écologique (*Ecological Fallacy* ; Robinson, 1950). L'Analyse en Composantes Principales (ACP avec rotation oblique Promax) menée sur la population complète des 891 professions d'O*NET 30.1 a révélé une **structure supérieure optimale à 4 composantes** (expliquant 87.6 % de la variance) :
+
+1. **Composante 1 : Proactivité & Orientation Croissance (*Proactive & Growth Oriented* — 52.1 % de la variance)** : *Innovation*, *Achievement Orientation*, *Intellectual Curiosity*, *Tolerance for Ambiguity*, *Initiative*, *Adaptability*, *Self-Confidence*, *Perseverance*, *Leadership Orientation*.
+2. **Composante 2 : Orientation Interpersonnelle (*Interpersonally Oriented* — 15.9 % de la variance)** : *Humility*, *Sincerity*, *Empathy*, *Cooperation*, *Optimism*, *Social Orientation*.
+3. **Composante 3 : Conscience Professionnelle & Respect des Règles (*Conscientious & Rule Oriented* — 13.5 % de la variance)** : *Cautiousness*, *Attention to Detail*, *Dependability*, *Integrity*.
+4. **Composante 4 : Résilience Émotionnelle (*Emotionally Resilient* — 6.1 % de la variance)** : *Stress Tolerance*, *Self-Control*.
+
+#### Étalonnage Hybride IA-Experts (HumRRO Report No. 130)
+Pour générer les cotes finales sur les 891 métiers sans surcharger les panélistes humains, O*NET et HumRRO ont développé un protocole hybride combinant 3 LLMs de pointe (Claude 3.5 Sonnet v1, v2 et Llama 3.3 70B Instruct, à 3 exécutions ch. = 9 runs par paire métier-style) avec étalonnage Z-Score sur un échantillon d'experts internationaux (Oswald, Ones, Van Iddekinge, Ryan, Nye).
+* **Fidélité opérationnelle (G-Theory) :** $G_{\text{rel}} = 0.98$, accord absolu $G_{\text{abs}} = 0.93$.
+* **Validité convergente Multitrait-Multiméthode (MTMM) :** Corrélations LLM-Experts de $r = .84$ (corrigée pour l'infidélité des critères à $r = .91$), surpassant les panels d'analystes humains traditionnels ($r = .76$).
+
+---
+
+### 4.5. Appariement Matriciel : 15 Facettes BFI-2 ↔ 21 Work Styles O*NET (4 Composantes)
+
+| Composante O*NET 30.1 | O*NET Work Style | Facette BFI-2 / OCEAN | Définition Opérationnelle & Impact au Travail |
 | :--- | :--- | :--- | :--- |
-| **Extraversion** | **1. Sociabilité** | *Social Orientation*, *Cooperation* | Besoin d'interactions fréquentes, travail en équipe et convivialité. |
-| | **2. Assertivité** | *Leadership*, *Initiative* | Volonté de trancher, de diriger, de persuader et d'assumer des responsabilités. |
-| | **3. Énergie d'action** | *Energy*, *Stamina* | Dynamisme d'intervention, cadence soutenue et proactivité physique/mentale. |
-| **Agréabilité** | **4. Compassion** | *Concern for Others* | Sensibilité aux besoins d'autrui, écoute active et soutien bienveillant. |
-| | **5. Respectuosité** | *Cooperation*, *Self-Control* | Respect scrupuleux des consignes, conformité hiérarchique et tact. |
-| | **6. Confiance** | *Integrity* | Transparence éthique, franchise et croyance réciproque dans l'équipe. |
-| **Conscienciosité** | **7. Organisation** | *Attention to Detail* | Tolérance minimale aux erreurs, structuration méthodique et rigueur du travail. |
-| | **8. Productivité** | *Achievement/Effort*, *Persistence* | Ambition de dépassement des objectifs, constance dans l'effort prolongé. |
-| | **9. Responsabilité** | *Dependability*, *Integrity* | Ponctualité, respect absolu des engagements, probité professionnelle. |
-| **Stabilité Émotionnelle**| **10. Calme** | *Stress Tolerance* | Constance du jugement sous tension critique ou en urgence vitale. |
-| | **11. Sérénité** | *Self-Control* | Maîtrise des affects négatifs, absence de sautes d'humeur professionnelles. |
-| | **12. Confiance en soi**| *Stress Tolerance*, *Initiative* | Résilience devant les échecs partiels et assurance dans l'action. |
-| **Ouverture** | **13. Curiosité intellectuelle**| *Analytical Thinking*, *Innovation* | Appétence pour la recherche théorique, le décorticage logique et l'investigation. |
-| | **14. Sensibilité esthétique**| *Innovation* (composante artistique) | Sensibilité aux formes, à l'élégance du design et à la créativité sensorielle. |
-| | **15. Imagination créative** | *Innovation*, *Adaptability/Flexibility* | Disposition à inventer des solutions inédites et à composer avec l'ambiguïté. |
+| **Proactivité & Croissance** | *Innovation* | 15. Imagination créative (O) | Disposition à inventer des solutions inédites et adopter de nouvelles perspectives. |
+| | *Achievement Orientation* | 8. Productivité (C) | Établissement d'objectifs stimulants et effort soutenu de maîtrise. |
+| | *Intellectual Curiosity* | 13. Curiosité intellectuelle (O)| Recherche active de nouvelles connaissances et compréhension en profondeur. |
+| | *Tolerance for Ambiguity* | 15. Imagination créative (O) | Aisance et confort face à l'incertitude et au flou opérationnel. |
+| | *Initiative* | 2. Assertivité / Proactivité (E)| Prise spontanée de responsabilités hors du cadre prescrit. |
+| | *Adaptability* | 15. Imagination créative (O) | Ouverture d'esprit et souplesse face aux changements et nouveautés. |
+| | *Self-Confidence* | 12. Confiance en soi (N) | Croyance ferme en ses capacités professionnelles et son contrôle sur les résultats. |
+| | *Perseverance* | 8. Productivité (C) | Résolution et ténacité à accomplir les tâches face aux obstacles. |
+| | *Leadership Orientation* | 2. Assertivité (E) | Propension à diriger, prendre en charge, donner son avis et orienter l'action. |
+| **Orientation Interpersonnelle** | *Humility* | 5. Respectuosité (A) | Modestie et humilité dans les interactions professionnelles. |
+| | *Sincerity* | 6. Confiance / Probité (A) | Interactions authentiques et sincères sans recherche d'intérêt personnel. |
+| | *Empathy* | 4. Compassion (A) | Sensibilité aux besoins et aux sentiments d'autrui au travail. |
+| | *Cooperation* | 5. Respectuosité (A) | Attitude agréable, entraide et disposition à assister les collègues. |
+| | *Optimism* | 12. Confiance en soi (N/E) | Attitude et émotions positives maintenues même dans les moments difficiles. |
+| | *Social Orientation* | 1. Sociabilité (E) | Recherche active et énergie tirée des interactions sociales au travail. |
+| **Conscience & Règles** | *Cautiousness* | 7. Organisation (C) | Prudence, délibération et évitement des risques dans les décisions. |
+| | *Attention to Detail* | 7. Organisation (C) | Minutie, ordre et rigueur dans l'exécution détaillée des tâches. |
+| | *Dependability* | 9. Responsabilité (C) | Fiabilité, ponctualité et constance dans le respect des obligations. |
+| | *Integrity* | 9. Responsabilité (C/A) | Honnêteté, éthique et respect irréprochable des valeurs morales. |
+| **Résilience Émotionnelle** | *Stress Tolerance* | 10. Calme (N) | Capacité à composer efficacement avec les situations professionnelles stressantes. |
+| | *Self-Control* | 11. Sérénité (N) | Sang-froid, calme et gestion des émotions face aux critiques ou conflits. |
 
 ---
 
@@ -146,6 +166,36 @@ Où :
 | **OUVERTURE** | **80 / 100** | **60 / 100** | **95 / 100** |
 | ↳ *Curiosité intellectuelle* | 95 / 100 | 65 / 100 | 70 / 100 |
 | ↳ *Imagination créative* | 75 / 100 | 45 / 100 | 98 / 100 |
+
+---
+
+### 4.6. L'Architecture à Double Hélice (Personne × Métier) : Maintien Stratégique du Big Five
+
+Bien que le rapport HumRRO No. 129 invalide l'usage du Big Five pour structurer les exigences des métiers (préférant l'ACP à 4 composantes), Trajektia maintient formellement le Big Five (IPIP-50) du côté de l'évaluation du **candidat**. Cette architecture à « double hélice » est la clé de voûte de l'appariement Personne-Poste (*Person-Job Fit*) :
+
+1. **L'Introspection vs L'Impact :** L'humain s'auto-évalue sur ses traits intérieurs (ex: *« Je garde mon calme sous pression »* = Stabilité émotionnelle). Le métier, lui, est mesuré en impact externe (O*NET 30.1). Le Big Five sert de pont psychologique pour que le candidat se comprenne.
+2. **Désambiguïsation des Métiers :** Deux postes avec une forte *"Orientation Interpersonnelle"* (Composante 2 de l'ACP) peuvent exiger des humains très différents. Exemple : Le Conseiller d'orientation exige de l'**Agréabilité (Compassion)** et de la **Sociabilité**, tandis que le Vendeur agressif exige de l'**Extraversion (Assertivité)** au détriment de l'Agréabilité. Conserver les facettes Big Five permet à l'algorithme de ne pas confondre ces profils.
+3. **Génération Narrative RAG :** Le croisement des facettes Big Five de l'usager avec les traits distinctifs du métier (*Distinctiveness Rank* O*NET) permet à l'IA générative de produire des bilans d'orientation d'un réalisme clinique saisissant (ex: *"Bien que vous ayez l'imagination requise pour ce rôle, le souci du détail extrême qu'il exige risque d'épuiser votre flexibilité"*).
+4. **Triangulation (SST & RIASEC) :** Le croisement du Big Five avec les *Work Contexts* O*NET (ex: situations de conflits) permet l'identification préventive des risques psychosociaux en réadaptation CNESST, tandis que ses corrélations connues avec le RIASEC (ex: Ouverture $\leftrightarrow$ Investigateur) verrouillent la cohérence interne du profil.
+
+---
+
+### 4.7. L'Espace Conseiller & La Finesse d'Analyse des Facettes (c.o. / OCCOQ / Réadaptation CNESST)
+
+Tandis que le grand public accède à une synthèse des 5 macro-scores OCEAN, **l'Espace Conseiller** fournit aux conseillers d'orientation (c.o.) et professionnels de la réadaptation une grille d'investigation en profondeur grâce aux **21 descripteurs de *Work Styles*** issus du modèle de contenu O\*NET :
+
+1. **Dépliage Clinique des Facettes (Décomposition Hiérarchique)** :
+   - Le conseiller peut déplier chaque grand trait pour examiner la distribution des sous-facettes comportementales (ex: *Conscience* décomposée en *Attention au détail*, *Fiabilité*, *Intégrité*, *Persévérance*, *Effort d'accomplissement* et *Initiative*).
+2. **Découplage au sein de l'Extraversion** :
+   - L'algorithme sépare formellement la composante d'ascendance managériale (*Leadership*, *Initiative*) de la composante relationnelle bienveillante (*Social Orientation*, *Concern for Others*), évitant d'orienter un profil sociable non-directif vers des postes de commandement autoritaire.
+3. **Découplage au sein de l'Ouverture** :
+   - Distinction claire entre la *Pensée Analytique* (rigueur déductive, investigation logique) et l'*Innovation* (créativité divergente, tolérance au flou).
+4. **Analyse de la Variance Intra-Trait (Hétérogénéité des profils)** :
+   - Permet au conseiller de repérer les profils composites (ex: un travailleur avec une Conscience moyenne à 50 % masquant en réalité une minutie d'orfèvre à 90 % combinée à une faible ambition compétitive à 20 %).
+5. **Filtre de Résilience & Prévention de la Récidive (Réadaptation CNESST)** :
+   - Pour les dossiers d'épuisement professionnel (*burnout*) ou de troubles anxieux, le conseiller peut isoler les cotes de *Tolérance au stress* et de *Maîtrise de soi* pour exclure les environnements à forte charge émotionnelle et identifier des métiers de transition compatibles avec la tolérance actuelle du travailleur.
+6. **Pontage direct avec les Verbes d'Action DPC** :
+   - Rapprochement direct entre les facettes de personnalité et la complexité clinique des tâches : *Pensée analytique* $\leftrightarrow$ DPC Données (Synthétiser / Analyser), *Orientation sociale* $\leftrightarrow$ DPC Personnes (Aider / Conseiller), *Attention au détail* $\leftrightarrow$ DPC Choses (Travail de précision).
 
 ---
 

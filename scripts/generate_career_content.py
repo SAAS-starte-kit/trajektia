@@ -11,6 +11,7 @@
 import os
 import json
 import sys
+import re
 import psycopg2
 from pathlib import Path
 
@@ -95,6 +96,20 @@ PILOT_CAREERS = [
             "environnement_travail": "Bureaux modernes ou télétravail flexible. Climat tempéré.",
             "rythme": "Rythme soutenu par sprints avec livraisons continues."
         },
+        "exigences_physiques": {
+            "posture": "Assise prolongée (80%+ du temps).",
+            "vision": "Acuité visuelle sur écran haute résolution.",
+            "audition": "Audition normale pour réunions virtuelles.",
+            "levage": "Poids plume (< 5 kg).",
+            "risques_cnesst": ["Troubles musculosquelettiques (TMS) liés à la souris/clavier.", "Fatigue oculaire."]
+        },
+        "onet_work_styles": [
+            { "id": "1", "nom": "Pensée Analytique", "description": "Analyser les besoins et développer des solutions complexes", "score": 92 },
+            { "id": "2", "nom": "Attention aux Détails", "description": "Précision dans l'écriture de code et le débogage", "score": 88 },
+            { "id": "3", "nom": "Initiative", "description": "Proposer de nouvelles architectures ou outils", "score": 81 },
+            { "id": "4", "nom": "Adaptabilité", "description": "S'adapter aux nouvelles technologies et frameworks", "score": 85 },
+            { "id": "5", "nom": "Innovation", "description": "Créativité dans la résolution de problèmes algorithmiques", "score": 82 }
+        ],
         "competences": {
             "techniques_oasis": [
                 "Programmation (TypeScript, Python, C#, Rust, Java)",
@@ -841,6 +856,22 @@ def generate_typescript_content(careers):
 // Source : Career Knowledge Graph (CKG) + StatCan + ESCO + RIASEC + Relance MES
 // ============================================================
 
+
+export interface OnetWorkStyle {{
+  id: string;
+  nom: string;
+  description: string;
+  score: number;
+}}
+
+export interface ExigencesPhysiques {{
+  posture: string;
+  vision: string;
+  audition: string;
+  levage: string;
+  risques_cnesst?: string[];
+}}
+
 export interface OffreEmploi {{
   id: string;
   titre: string;
@@ -925,6 +956,8 @@ export interface FicheMetier {{
     riasec: string;
     salaire: string;
     big_five?: string;
+    onet_work_styles?: string;
+    onet_work_values?: string;
   }};
   big_five?: {{
     ouverture: number;
@@ -947,6 +980,20 @@ export interface FicheMetier {{
   riasec: ProfilRIASEC;
   relance_quebec?: RelanceDiplomes;
   dpc?: ProfilDPC;
+  onet_work_styles?: OnetWorkStyle[];
+  onet_work_values?: {{
+    scores: {{
+      accomplissement: number;
+      independance: number;
+      reconnaissance: number;
+      relations: number;
+      soutien: number;
+      conditions_travail: number;
+    }};
+    valeurs_dominantes: string[];
+    source: string;
+  }};
+  exigences_physiques?: ExigencesPhysiques;
   competences?: {{
     techniques_oasis: string[];
     transversales_onet: string[];
@@ -960,6 +1007,10 @@ export interface FicheMetier {{
     compatibilite_pourcentage: number;
     difference_feer: number;
   }}>;
+  indice_mutation?: {{
+    score: number;
+    statut: string;
+  }};
 }}
 
 export const METIERS_DATA: FicheMetier[] = {json_data};
@@ -988,15 +1039,53 @@ SECTEUR_MAP = {
 }
 
 def get_db_careers():
+    # Load env if not already loaded
+    if "SUPABASE_DB_URL" not in os.environ:
+        env_path = PROJECT_ROOT / ".env"
+        if env_path.exists():
+            with open(env_path, 'r', encoding='utf-8') as f:
+                for line in f:
+                    if line.strip() and not line.startswith('#'):
+                        k, v = line.split('=', 1)
+                        if k.strip() not in os.environ:
+                            os.environ[k.strip()] = v.strip()
+
     db_url = os.environ.get("SUPABASE_DB_URL")
     if not db_url: return []
     try:
         conn = psycopg2.connect(db_url)
         cursor = conn.cursor()
         
-        query = """
-        SELECT 
-            rp.occupation_cnp_code AS cnp,
+        # Sous-requête pour récupérer les Work Styles O*NET
+        work_styles_subquery = """
+            SELECT json_agg(
+                json_build_object(
+                    'id', ws.style_id,
+                    'nom', ws.style_name_fr,
+                    'description', ws.description_fr,
+                    'score', ws.score
+                ) ORDER BY ws.score DESC
+            ) FROM onet_work_styles ws WHERE ws.cnp_code = o.cnp_code
+        """
+
+        work_values_subquery = """
+            SELECT json_build_object(
+                'scores', json_build_object(
+                    'accomplissement', wv.accomplissement,
+                    'independance', wv.independance,
+                    'reconnaissance', wv.reconnaissance,
+                    'relations', wv.relations,
+                    'soutien', wv.soutien,
+                    'conditions_travail', wv.conditions_travail
+                ),
+                'valeurs_dominantes', wv.valeurs_dominantes,
+                'source', wv.source
+            ) FROM onet_work_values wv WHERE wv.cnp_code = o.cnp_code
+        """
+
+        query = f"""
+        SELECT
+            o.cnp_code AS cnp,
             o.title_fr,
             h.teer_level,
             AVG(child.median_salary) AS avg_salary,
@@ -1006,24 +1095,30 @@ def get_db_careers():
             AVG(bf.conscientiousness_score) AS conscientiousness,
             AVG(bf.extraversion_score) AS extraversion,
             AVG(bf.agreeableness_score) AS agreeableness,
-            AVG(bf.neuroticism_score) AS neuroticism
-        FROM riasec_profiles rp
-        JOIN occupations o ON o.cnp_code = rp.occupation_cnp_code
-        LEFT JOIN cnp_hierarchy h ON h.code = rp.occupation_cnp_code
-        LEFT JOIN occupations child ON child.cnp_code LIKE rp.occupation_cnp_code || '.%' AND child.salary_source = 'ESDC 2025 Official'
-        LEFT JOIN noc_onet_crosswalk xwalk ON xwalk.noc_code = rp.occupation_cnp_code
-        LEFT JOIN big_five_profiles bf ON bf.cnp_code = split_part(xwalk.onet_soc_code, '.', 1)
-        WHERE length(rp.occupation_cnp_code) = 5
-        GROUP BY rp.occupation_cnp_code, o.title_fr, h.teer_level, 
+            AVG(bf.neuroticism_score) AS neuroticism,
+            MAX(ms.mutation_index) AS mutation_index,
+            MAX(ms.mutation_status) AS mutation_status,
+            ({work_styles_subquery}) AS onet_work_styles,
+            ({work_values_subquery}) AS onet_work_values
+        FROM occupations o
+        LEFT JOIN riasec_profiles rp ON o.cnp_code = rp.occupation_cnp_code
+        LEFT JOIN cnp_hierarchy h ON h.code = o.cnp_code
+        LEFT JOIN occupations child ON child.cnp_code LIKE o.cnp_code || '.%' AND child.salary_source = 'ESDC 2025 Official'
+        LEFT JOIN noc_onet_crosswalk xwalk ON xwalk.noc_code = o.cnp_code
+        LEFT JOIN big_five_profiles bf ON bf.cnp_code = o.cnp_code OR bf.cnp_code = split_part(xwalk.onet_soc_code, '.', 1)
+        LEFT JOIN trajektia_market_snapshots ms ON ms.cnp_code = o.cnp_code
+        WHERE length(o.cnp_code) = 5
+          AND (rp.occupation_cnp_code IS NOT NULL OR ms.mutation_index IS NOT NULL OR bf.cnp_code IS NOT NULL)
+        GROUP BY o.cnp_code, o.title_fr, h.teer_level,
                  rp.r_score, rp.i_score, rp.a_score, rp.s_score, rp.e_score, rp.c_score, rp.dominant_code
-        ORDER BY rp.occupation_cnp_code
+        ORDER BY o.cnp_code
         """
         cursor.execute(query)
         rows = cursor.fetchall()
         db_careers = []
         for row in rows:
-            (cnp, title, teer, salary, r, i, a, s, e, c, dom, 
-             op, co, ex, ag, ne) = row
+            (cnp, title, teer, salary, r, i, a, s, e, c, dom,
+             op, co, ex, ag, ne, mut_idx, mut_stat, work_styles, work_values) = row
             
             first_digit = cnp[0]
             secteur, badge = SECTEUR_MAP.get(first_digit, ("Divers", "bg-slate-500/10 text-slate-600 dark:text-slate-400 border-slate-500/20"))
@@ -1040,7 +1135,7 @@ def get_db_careers():
                 "cnp": cnp,
                 "feer": teer if teer is not None else 2,
                 "titre": title,
-                "titre_court": title.split('/')[0].split(',')[0].strip(),
+                "titre_court": re.sub(r'/[a-zà-ÿ]+', '', title, flags=re.IGNORECASE).split(',')[0].strip(),
                 "secteur": secteur,
                 "badge_couleur": badge,
                 "niveau_enrichissement": "essentiel",
@@ -1081,6 +1176,21 @@ def get_db_careers():
                     "stabilite_emotionnelle": round(100 - float(ne))
                 }
                 
+            # Ajouter les Work Styles O*NET si disponibles
+            if work_styles:
+                career["sources"]["onet_work_styles"] = "O*NET 28.2"
+                career["onet_work_styles"] = work_styles
+
+            if work_values:
+                career["sources"]["onet_work_values"] = work_values.get("source", "O*NET")
+                career["onet_work_values"] = work_values
+
+            if mut_idx is not None and mut_stat is not None:
+                career["indice_mutation"] = {
+                    "score": float(mut_idx),
+                    "statut": mut_stat
+                }
+                
             db_careers.append(career)
         return db_careers
     except Exception as e:
@@ -1114,6 +1224,19 @@ def main():
         if p["cnp"] in db_dict and "big_five" in db_dict[p["cnp"]]:
             p["big_five"] = db_dict[p["cnp"]]["big_five"]
             p["sources"]["big_five"] = db_dict[p["cnp"]]["sources"]["big_five"]
+            
+        # Add indice_mutation from DB if available
+        if p["cnp"] in db_dict and "indice_mutation" in db_dict[p["cnp"]]:
+            p["indice_mutation"] = db_dict[p["cnp"]]["indice_mutation"]
+
+        # Add onet_work_styles from DB if available (remplace les données manuelles)
+        if p["cnp"] in db_dict and "onet_work_styles" in db_dict[p["cnp"]]:
+            p["onet_work_styles"] = db_dict[p["cnp"]]["onet_work_styles"]
+            p["sources"]["onet_work_styles"] = db_dict[p["cnp"]]["sources"]["onet_work_styles"]
+
+        if p["cnp"] in db_dict and "onet_work_values" in db_dict[p["cnp"]]:
+            p["onet_work_values"] = db_dict[p["cnp"]]["onet_work_values"]
+            p["sources"]["onet_work_values"] = db_dict[p["cnp"]]["sources"]["onet_work_values"]
 
     pilot_cnps = {p['cnp'] for p in PILOT_CAREERS}
     filtered_db_careers = [c for c in db_careers if c['cnp'] not in pilot_cnps]

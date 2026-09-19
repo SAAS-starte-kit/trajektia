@@ -785,6 +785,105 @@ class LeSiphon:
         return len(junc_rows)
 
     # ══════════════════════════════════════════════════════════════════════════
+    # PHASE 9 — MARKET DEMAND (Job Bank)
+    # ══════════════════════════════════════════════════════════════════════════
+
+    def extract_and_load_market_demand(self):
+        """
+        Extrait les données MarketDemand de Neo4j et les同步 vers Supabase.
+        Source: Nœuds (:MarketDemand) créés par jobbank_api_ingestor_global.py
+        Relation: (o:Occupation)-[:HAS_DEMAND]->(m:MarketDemand)
+        Cible: table trajektia_market_snapshots + colonne active_job_postings dans occupations
+        """
+        log.info("Extraction et chargement de la demande marché (Job Bank)...")
+
+        # Requête Cypher pour extraire les MarketDemand
+        records = self._neo4j_fetch("""
+            MATCH (o:Occupation)-[r:HAS_DEMAND]->(m:MarketDemand)
+            WHERE m.source = 'JobBank'
+            RETURN
+                o.code AS cnp_code,
+                m.active_postings AS active_postings,
+                m.date AS snapshot_date,
+                m.source AS source
+            ORDER BY o.code
+        """)
+        log.info("  %d relations HAS_DEMAND trouvées dans Neo4j.", len(records))
+
+        if not records:
+            log.info("  Aucune donnée MarketDemand à synchroniser.")
+            return 0
+
+        # Préparer les données pour les deux cibles
+        snapshot_rows = []
+        occupation_updates = {}
+
+        snapshot_date = datetime.now().strftime("%Y-%m-01")
+
+        for r in records:
+            cnp_raw = str(r.get("cnp_code") or "").strip()
+            if not cnp_raw:
+                continue
+
+            # Normaliser le code CNP
+            cnp = cnp_raw.split(".")[0].replace("CNP-", "").strip()
+            if not cnp:
+                continue
+
+            active_postings = int(r.get("active_postings") or 0)
+
+            # Stocker pour mise à jour occupations
+            occupation_updates[cnp] = active_postings
+
+            # Stocker pour trajektia_market_snapshots
+            snapshot_rows.append((
+                cnp,
+                snapshot_date,
+                active_postings
+            ))
+
+        # 1. Insérer dans trajektia_market_snapshots (UPSERT)
+        snapshot_sql = """
+            INSERT INTO trajektia_market_snapshots (
+                cnp_code, snapshot_date, postings_volume
+            ) VALUES %s
+            ON CONFLICT (cnp_code, snapshot_date) DO UPDATE SET
+                postings_volume = EXCLUDED.postings_volume
+        """
+        with self.pg.cursor() as cur:
+            self._pg_execute_batch(snapshot_sql, snapshot_rows, cur)
+        self.pg.commit()
+        log.info("  ✅ %d snapshots insérés dans trajektia_market_snapshots.", len(snapshot_rows))
+
+        # 2. Mettre à jour la colonne active_job_postings dans occupations
+        # Vérifier d'abord que la colonne existe
+        with self.pg.cursor() as cur:
+            cur.execute("""
+                ALTER TABLE occupations
+                ADD COLUMN IF NOT EXISTS active_job_postings INTEGER DEFAULT 0
+            """)
+        self.pg.commit()
+
+        # UPSERT avec COALESCE pour ne pas écraser par NULL
+        if occupation_updates:
+            occupation_sql = """
+                INSERT INTO occupations (cnp_code, active_job_postings, updated_at) VALUES %s
+                ON CONFLICT (cnp_code) DO UPDATE SET
+                    active_job_postings = COALESCE(EXCLUDED.active_job_postings, occupations.active_job_postings),
+                    updated_at = NOW()
+            """
+            occ_rows = [
+                (cnp, count, INGESTED_AT)
+                for cnp, count in occupation_updates.items()
+            ]
+            with self.pg.cursor() as cur:
+                self._pg_execute_batch(occupation_sql, occ_rows, cur)
+            self.pg.commit()
+            log.info("  ✅ %d occupations mises à jour avec active_job_postings.", len(occupation_updates))
+
+        return len(records)
+
+    # ══════════════════════════════════════════════════════════════════════════
     # PHASE 8 — PHYSICAL DEMANDS, DPC & PREDIGER
     # ══════════════════════════════════════════════════════════════════════════
 
@@ -797,7 +896,7 @@ class LeSiphon:
                 o.code          AS raw_code,
                 o.strength_code AS strength_code,
                 o.max_weight_kg AS max_weight_kg,
-                o.body_position AS body_position_code,
+                o.body_position AS body_position,
                 o.dpc_summary   AS dpc_summary,
                 o.prediger_tp   AS prediger_tp,
                 o.prediger_di   AS prediger_di
@@ -809,17 +908,33 @@ class LeSiphon:
             cur.execute("SELECT cnp_code FROM occupations")
             valid_cnps = {row[0] for row in cur.fetchall()}
 
+        # Dictionnaires pour déduire les libellés/codes
+        STRENGTH_LABELS = {
+            "S-1": "Limitée (jusqu'à 5 kg)",
+            "S-2": "Légère (jusqu'à 10 kg)",
+            "S-3": "Moyenne (10 à 20 kg)",
+            "S-4": "Lourde (plus de 20 kg)"
+        }
+        POSITION_LABELS_REV = {
+            "Assis": "B-1",
+            "Debout et/ou marcher": "B-2",
+            "Courbé, accroupi, à genoux, ramper": "B-3",
+            "Grimper (hauteur, échelles)": "B-4"
+        }
+
         sql = """
             INSERT INTO occupation_physical_demands (
-                occupation_cnp_code, strength_code, max_weight_kg,
-                body_position_code, dpc_summary,
+                occupation_cnp_code, strength_code, strength_label_fr, max_weight_kg,
+                body_position_code, body_position_label_fr, dpc_summary,
                 prediger_things_people, prediger_data_ideas,
                 source, created_at, updated_at
             ) VALUES %s
             ON CONFLICT (occupation_cnp_code) DO UPDATE SET
                 strength_code          = COALESCE(EXCLUDED.strength_code, occupation_physical_demands.strength_code),
+                strength_label_fr      = COALESCE(EXCLUDED.strength_label_fr, occupation_physical_demands.strength_label_fr),
                 max_weight_kg          = COALESCE(EXCLUDED.max_weight_kg, occupation_physical_demands.max_weight_kg),
                 body_position_code     = COALESCE(EXCLUDED.body_position_code, occupation_physical_demands.body_position_code),
+                body_position_label_fr = COALESCE(EXCLUDED.body_position_label_fr, occupation_physical_demands.body_position_label_fr),
                 dpc_summary            = COALESCE(EXCLUDED.dpc_summary, occupation_physical_demands.dpc_summary),
                 prediger_things_people = COALESCE(EXCLUDED.prediger_things_people, occupation_physical_demands.prediger_things_people),
                 prediger_data_ideas    = COALESCE(EXCLUDED.prediger_data_ideas, occupation_physical_demands.prediger_data_ideas),
@@ -839,11 +954,19 @@ class LeSiphon:
                 except (ValueError, TypeError):
                     max_w = None
 
+            s_code = r.get("strength_code")
+            s_label = STRENGTH_LABELS.get(s_code) if s_code else None
+
+            b_label = r.get("body_position")
+            b_code = POSITION_LABELS_REV.get(b_label) if b_label else None
+
             deduped[cnp] = (
                 cnp,
-                r.get("strength_code"),
+                s_code,
+                s_label,
                 max_w,
-                r.get("body_position_code"),
+                b_code,
+                b_label,
                 r.get("dpc_summary"),
                 r.get("prediger_tp"),
                 r.get("prediger_di"),
@@ -871,7 +994,8 @@ class LeSiphon:
             "occupations", "riasec_profiles", "competencies",
             "occupation_competencies", "tasks", "occupation_tasks",
             "tools", "occupation_tools", "knowledge", "occupation_knowledge",
-            "work_contexts", "occupation_work_contexts", "occupation_physical_demands"
+            "work_contexts", "occupation_work_contexts", "occupation_physical_demands",
+            "trajektia_market_snapshots"
         ]
         with self.pg.cursor() as cur:
             for table in tables:
@@ -915,6 +1039,9 @@ class LeSiphon:
 
         # Phase 8 — Ergonomie & DPC
         self.extract_and_load_physical_demands()
+
+        # Phase 9 — Market Demand (Job Bank)
+        self.extract_and_load_market_demand()
 
         # Rapport
         self.report()

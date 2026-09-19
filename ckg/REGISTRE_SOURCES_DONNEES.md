@@ -28,6 +28,7 @@ Ce document constitue la référence centrale pour le suivi, l'audit de fraîche
 | **O*NET Work Values (TWA)** | USDOL / Dawis & Lofquist | Release 28.2 (2024) | `Work Values.txt` (CKG) | 6 valeurs de satisfaction par métier | Annuelle | Stable |
 | **Titres Alternatifs TCC** | EDSC (Ouvert Canada) | TCC 2025 v1.0 | Supabase (`competency_synonyms`) | Dictionnaire bilingue de synonymes | Annuelle | 2027 |
 | **BLS ORS (Ergonomie US)** | U.S. Bureau of Labor Statistics | ORS 2023-2025 | Modèle réadaptation haute précision | % heures assis/debout, charges lbs | Annuelle | Fin 2026 |
+| **Job Bank / Guichet-Emplois** | EDSC / Gouvernement du Canada (CKAN) | API Live 2026 | Neo4j (`:MarketDemand`) | 424 nœuds (239 CNPs QC avec offres actives) | Mensuelle / API Live | Continue (Automatique) |
 
 ---
 
@@ -86,27 +87,26 @@ Ce document constitue la référence centrale pour le suivi, l'audit de fraîche
 
 - **Organisme émetteur :** U.S. Department of Labor (USDOL) / Employment and Training Administration (ETA).
 - **Date de publication :** Version 28.2 (février 2024, en service 2025-2026).
-- **Format source :** Fichiers textes délimités par tabulations (base `db_28_2_text`) et API REST O\*NET v2.
-- **URL officielle :** [https://www.onetcenter.org/database.html](https://www.onetcenter.org/database.html)
+- **Format source :** Fichiers textes délimités par tabulations, exports Excel O\*NET 30.1 et API REST O\*NET v2.
+- **URL officielle :** [https://www.onetcenter.org/database.html](https://www.onetcenter.org/database.html) (Rapports HumRRO No. 090, 129, 130 - 2024/2025).
 - **Données exactes extraites et stockées :**
   - `Technology Skills.txt` : **32 435 relations** `(:Occupation)-[:REQUIRES_SOFTWARE]->(:Software)` avec flag `hot_technology`.
   - `Tools Used.txt` : **26 388 relations** `(:Occupation)-[:USES_TOOL]->(:Tool)`.
   - `Knowledge.txt` : **6 566 relations** de connaissances sectorielles (32 domaines standardisés avec scores d'importance et échelles).
   - `Work Context.txt` : **21 953 relations** décrivant l'environnement de travail, la fréquence des contacts humains, l'exposition physique.
-  - `Work Styles.txt` : **21 descripteurs empiriques standardisés** (ex: *Attention to Detail*, *Stress Tolerance*, *Innovation*, *Leadership*...) notés en Importance ($1.0$ à $5.0$) et Niveau ($0$ à $100$) pour chaque profession.
+  - `Work Styles` (O*NET 30.1) : **21 descripteurs empiriques comportementaux** regroupés en **4 macro-composantes PCA** (*Proactivité & Croissance*, *Orientation Interpersonnelle*, *Conscience & Règles*, *Résilience Émotionnelle*). Chaque profession est évaluée en score normalisé ($0$ à $100$), en score d'impact ($WI \in [-3.0, +3.0]$) et en rang de distinctivité ($DR \in [1, 10]$).
   - `Abilities.txt`, `Work Values.txt`, `Interests.txt` : **109 244 relations** psychométriques (profil dominant RIASEC / John Holland et 6 valeurs TWA).
   - `Job Zones.txt` : Niveaux 1 à 5 de préparation opérationnelle requise.
 - **Destination dans le système :**
-  - **Neo4j :** Nœuds `(:Software)`, `(:Tool)`, `(:Knowledge)`, `(:WorkContext)`, `(:WorkStyle)`, `(:WorkValue)`, `(:Ability)` et leurs arêtes relationnelles.
-  - **Supabase :** Tables `tools`, `occupation_tools`, `riasec_profiles`, `big_five_profiles` (avec décomposition en 15 facettes), `knowledge`, `work_contexts`.
-- **Modélisation & Quantification de la Personnalité (Big Five & 15 Facettes BFI-2) :**
-  - *Passerelle vers la CNP canadienne :* Les 21 Work Styles O\*NET sont associés aux codes CNP 2021 à 5 chiffres via `noc_onet_crosswalk`.
-  - *Conversion matricielle vers 15 Facettes :* Chaque facette $F_j$ ($j = 1 \dots 15$) du BFI-2 (Soto & John, 2017) est calculée par la moyenne normalisée des Work Styles rattachés :
-    $$\text{ScoreFacette}_{F_j}(m) = \frac{1}{|WS(F_j)|} \sum_{w \in WS(F_j)} \left( \frac{I_{w, m} - 1.0}{4.0} \times 100 \right)$$
-  - *Justification scientifique (15 vs 30 facettes) :* Le modèle à 30 facettes (NEO-PI-R) est écarté au profit des 15 facettes du BFI-2 en raison de sa longueur prohibitive (240 questions provoquant >85% d'abandon web), de sa licence commerciale fermée (PAR Inc.) et de son incompatibilité avec l'analyse du travail (O\*NET comportant 21 variables, 30 facettes laisseraient des cases vides). Les 15 facettes BFI-2 conservent 92% de la variance fidèle et s'apparient rigoureusement avec les données O\*NET.
+  - **Neo4j :** Nœuds `(:Software)`, `(:Tool)`, `(:Knowledge)`, `(:WorkContext)`, `(:WorkStyle)`, `(:WorkStyleComponent)`, `(:WorkValue)`, `(:Ability)` et leurs arêtes relationnelles `[:REQUIRES_STYLE]` (filtrées sur les traits distinctifs $DR$).
+  - **Supabase :** Tables `tools`, `occupation_tools`, `riasec_profiles`, `big_five_profiles`, `onet_work_styles` (avec $WI$, $DR$ et 4 composantes PCA), `knowledge`, `work_contexts`.
+- **Modélisation & Quantification de la Personnalité (O*NET 30.1 & 15 Facettes BFI-2) :**
+  - *Passerelle vers la CNP canadienne :* Les 21 Work Styles O\*NET 30.1 sont associés aux codes CNP 2021 à 5 chiffres via `noc_onet_crosswalk`.
+  - *Conversion matricielle & Rang de distinction :* Les profils métiers exploitent le *Distinctiveness Rank* ($DR$) pour mettre en lumière les traits discriminants et projeter l'exigence comportementale sur les 15 facettes du BFI-2 et les 4 composantes PCA.
+  - *Justification scientifique (HumRRO 129/130 & Robinson 1950) :* Abandon du Big Five direct pour les métiers afin d'éviter l'erreur écologique. La génération hybride LLM-Experts garantit une fidélité $G_{\text{rel}}=0.98$ et une validité convergente MTMM $r=.91$.
 - **Mécanisme de mise à jour :**
-  - Script direct : `ckg/ingestors/onet_tech_ingestor.py` et `etl/le_siphon.py` (Phases 6 et 7).
-- **Calendrier prévisionnel :** Le National Center for O\*NET Development publie une révision majeure chaque année (v29.0). **Disponible dès maintenant via l'API O\*NET v2.**
+  - Scripts d'ingestion : `scripts/generate_career_content.py`, `scripts/migrate_work_values.py`, `data/raw/onet_work_styles_v30.xlsx`.
+- **Calendrier prévisionnel :** Données O*NET 30.1 révisées et validées (décembre 2025). **Intégrées dans Supabase et le CKG.**
 
 ---
 
@@ -305,6 +305,51 @@ Ce document constitue la référence centrale pour le suivi, l'audit de fraîche
 - **Liaison CNP :** Relié aux codes de la Classification Nationale des Professions via script de génération Python (301 profils ciblés).
 - **Destination :** `frontend-web/src/data/valeurs-travail-metiers.ts` et `frontend-web/src/components/SatisfactionTest.tsx` (accessible via `/outils/test-satisfaction-valeurs`).
 - **Statut :** Opérationnel en production. Calcul de l'Appariement des Valeurs (Needs-Reinforcer Fit) et intégration dans l'interface de résultats.
+
+---
+
+---
+
+### 16. Preuves Scientifiques (Evidence-Based Practice)
+
+*La base de données des fondements scientifiques validant les algorithmes de Trajektia.*
+
+- **Source(s) de vérification :** OpenAlex API, Consensus API (optionnel), Semantic Scholar, méta-analyses publiées.
+- **Date d'initialisation :** Septembre 2026.
+- **Destination dans le système :**
+  - **Supabase :** Table `scientific_evidence` (9 preuves fondatrices).
+  - **Frontend :** `frontend-web/src/data/scientific-evidence.ts` (typé TypeScript).
+- **Preuves enregistrées :**
+  1. `bigfive_onet_workstyles` — Correspondance Big Five ↔ O*NET Work Styles (94 % consensus).
+  2. `prediger_bifurcation_dpc` — Modèle bi-axial Prediger DPC ↔ RIASEC (91 %).
+  3. `twa_satisfaction_reinforcers` — Needs-Reinforcer Fit TWA (89 %).
+  4. `cnesst_ergonomic_lumbar` — TMS lombaires et charges >20 kg (98 %).
+  5. `burnout_resilience_stress_tolerance` — JD-R et retour au travail (95 %).
+  6. `formula_pomp_standardization` — Standardisation POMP (100 %).
+  7. `formula_pearson_centered_cosine` — Cosinus centré = Pearson (100 %).
+  8. `formula_prediger_trigonometric` — Projection trigonométrique Prediger (100 %).
+  9. `formula_reverse_scoring` — Reverse scoring psychométrique (100 %).
+- **Mécanisme de mise à jour :**
+  - Script : `scripts/seed_scientific_evidence.py`.
+  - Interrogation automatique de l'API OpenAlex pour récupérer : citations, OA URL, année, revue.
+  - Clé `CONSENSUS_API_KEY` optionnelle pour Consensus API.
+- **Intégration UI :** Composant `<InfoBubble>` dans les fiches métiers et pages de guides.
+- **Statut :** Production (Septembre 2026).
+
+---
+
+### 17. Job Bank / Guichet-Emplois (Offres d'emploi actives)
+
+*Le flux officiel des offres d'emploi actives au Canada (Emploi et Développement Social Canada / Open Canada CKAN API).*
+
+- **Source de données :** Portail Données Ouvertes Gouvernement du Canada (CKAN API resource `ea639e28-c0fc-48bf-b5dd-b8899bd43072`).
+- **Date d'initialisation :** Septembre 2026.
+- **Architecture de stockage (Neo4j) :**
+  - Conforme à la règle d'or d'isolation des données de marché temporelles : création de nœuds séparés `(:MarketDemand)` rattachés aux professions CNP 2021 via `[:HAS_DEMAND]`.
+  - Attributs du nœud : `{source: 'JobBank', active_postings: X, date: '2026-09'}`.
+- **Volumétrie :** 94 240 enregistrements analysés via l'API CKAN (filtrés sur le Québec `QC`), agrégés en **424 nœuds `(:MarketDemand)`** sur **239 CNPs uniques**.
+- **Script ETL :** `ckg/ingestors/jobbank_api_ingestor_global.py` (ingestion paginée par lots de 5 000 enregistrements avec requêtes Cypher paramétrées `UNWIND $batch`).
+- **Statut :** Opérationnel en production Neo4j.
 
 ---
 

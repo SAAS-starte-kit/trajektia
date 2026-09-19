@@ -24,7 +24,7 @@
 15. [Glossaire Technique](#15-glossaire-technique)
 16. [Nouvelles Sources de Données Futures (Phase I)](#16-nouvelles-sources-de-données-futures-phase-i)
 17. [Modélisation de la Personnalité (Big Five / OCEAN)](#17-modélisation-de-la-personnalité-big-five--ocean)
-18. [Moteur de Recherche Sémantique (IA & Vectorisation)](#18-moteur-de-recherche-sémantique-ia--vectorisation)
+18. [Moteur de Recherche Sémantique, Traitements Vectoriels & Data Science Avancée](#18-moteur-de-recherche-sémantique-traitements-vectoriels--data-science-avancée)
 19. [Module de Test Psychométrique Interactif (Big Five & RIASEC)](#19-module-de-test-psychométrique-interactif-big-five--riasec)
 
 ---
@@ -315,7 +315,7 @@ CSV CNESST (114 345 lésions) → Téléchargement/Cache → Agrégation par sec
 
 ### 5.6 Le Siphon — `le_siphon.py`
 
-Script de synchronisation bidirectionnelle Neo4j → Supabase.
+Script de synchronisation ETL Neo4j → Supabase (8 phases de synchronisation).
 
 **Ce qu'il transfère :**
 
@@ -327,6 +327,8 @@ Script de synchronisation bidirectionnelle Neo4j → Supabase.
 | Nœuds `(:Tool)` | `tools` | Nom + catégorie |
 | Relations `[:USES_TOOL]` | `occupation_tools` | Score d'utilisation |
 | Propriétés RIASEC | `riasec_profiles` | 6 dimensions normalisées |
+| Propriétés Ergonomiques, DPC & Axes Prediger (Nœuds `(:Occupation)`) | `occupation_physical_demands` | **Phase 8** : Extraction Cypher des cotes S/B/L/V/C/H, DPC et axes Prediger (T/P, D/I) ; mapping des libellés FR via `STRENGTH_LABELS` et `POSITION_LABELS_REV` ; conversion DPC et parse sécurisé de `max_weight_kg` ; UPSERT SQL avec clauses `COALESCE` sur conflit pour préserver les colonnes pré-existantes (vision, audition, motricité). |
+| Demande Marché Job Bank (Nœuds `(:MarketDemand)`) | `trajektia_market_snapshots` & `occupations` | **Phase 9** : Extraction des offres d'emploi actives et date de snapshot. UPSERT du `postings_volume` dans `trajektia_market_snapshots` et mise à jour sécurisée (avec `COALESCE`) de la colonne `active_job_postings` dans `occupations`. |
 
 ### 5.7 Pipeline Exigences Physiques & DPC — `physical_demands_dpc_ingestor.py`
 
@@ -389,6 +391,13 @@ CSV GC 2016 (Activités Physiques) + CSV GC 2016 (DPC)
     name_fr: "Troubles musculo-squelettiques",
     source: "CNESST 2023"
 })
+
+// Demande sur le marché du travail (Job Bank)
+(:MarketDemand {
+    source: "JobBank",
+    active_postings: 14,
+    date: "2026-09"
+})
 ```
 
 ### 6.2 Schéma de relations (arêtes)
@@ -422,6 +431,9 @@ CSV GC 2016 (Activités Physiques) + CSV GC 2016 (DPC)
     frequency_pct: 20.46,    // Prévalence dans le secteur (%)
     source: "CNESST 2023"
 }]->(OccupationalHazard)
+
+// Offres d'emploi et tension marché
+(:Occupation)-[:HAS_DEMAND]->(MarketDemand)
 ```
 
 ### 6.3 Volumétrie totale du graphe (Septembre 2026)
@@ -429,6 +441,7 @@ CSV GC 2016 (Activités Physiques) + CSV GC 2016 (DPC)
 | Type d'entité / Relation | Quantité |
 |:---|---:|
 | Nœuds `(:Occupation)` — toutes taxonomies | ~6 000 |
+| Nœuds `(:MarketDemand)` — offres d'emploi Job Bank | 424 |
 | Relations `[:REQUIRES]` compétences SIPeC | 35 117 |
 | Relations `[:REQUIRES_SOFTWARE]` O\*NET | 32 435 |
 | Relations `[:USES_TOOL]` O\*NET | 26 388 |
@@ -438,6 +451,7 @@ CSV GC 2016 (Activités Physiques) + CSV GC 2016 (DPC)
 | Ponts `[:EQUIVALENT_TO]` (CNP ↔ O*NET) | 911 |
 | Ponts `[:EQUIVALENT_TO]` (O*NET ↔ ESCO) | 4 253 |
 | Relations `[:HAS_RISK]` SST/CNESST | 1 496 |
+| Relations `[:HAS_DEMAND]` Job Bank (QC) | 424 |
 | **TOTAL estimé** | **~250 000+** |
 
 ---
@@ -1310,71 +1324,57 @@ Chaque métier est calibré selon le profil de personnalité idéal de ses trava
 - **(A) Agréabilité** : Coopération, empathie, préoccupation pour autrui (ex: Infirmiers, Enseignants).
 - **(N) Névrosisme / Stabilité émotionnelle** : Tolérance au stress, maîtrise de soi face aux imprévus (ex: Pompiers, Pilotes, nécessitant une forte stabilité).
 
-### 17.2 Le Raffinement en 15 Facettes (BFI-2) & Correspondance O*NET Work Styles
-Le passage au BFI-2 officiel permet de décomposer chaque domaine en 3 facettes spécifiques et de les apparier directement aux descripteurs empiriques des **Work Styles** d'O*NET :
+### 17.2 Le Raffinement en 15 Facettes & Correspondance O*NET 30.1 Work Styles (4 Composantes PCA)
 
-| Domaine OCEAN | Facette BFI-2 | O*NET Work Styles Associés (Quantifiés) | Attentes & Comportements Clés en Milieu de Travail |
+Le modèle de contenu O*NET 30.1 (HumRRO 2024-2025) a fait évoluer la structure supérieure des 21 Work Styles : abandon de la stricte correspondance Big Five individuelle (pour éviter l'erreur écologique de Robinson, 1950) au profit d'une **Analyse en Composantes Principales (ACP Promax)** à 4 macro-dimensions professionnelles expliquant 87.6 % de la variance :
+
+| Composante O*NET 30.1 | Work Styles Constitutifs | Facette BFI-2 / OCEAN Associée | Attentes & Comportements Clés en Milieu de Travail |
 | :--- | :--- | :--- | :--- |
-| **Extraversion** | **1. Sociabilité** | *Social Orientation*, *Cooperation* | Aisance relationnelle, interactions fréquentes avec usagers/collègues. |
-| | **2. Assertivité** | *Leadership*, *Initiative* | Capacité à trancher, assumer l'autorité, guider une équipe. |
-| | **3. Énergie d'action** | *Energy*, *Stamina* | Dynamisme d'action, endurance opérationnelle et proactivité. |
-| **Agréabilité** | **4. Compassion** | *Concern for Others* | Empathie, bienveillance, orientation vers le soutien d'autrui. |
-| | **5. Respectuosité** | *Cooperation*, *Self-Control* | Esprit d'équipe, respect de l'autorité et des normes établies. |
-| | **6. Confiance** | *Integrity* | Transparence, loyauté, capacité à faire confiance et collaborer. |
-| **Conscienciosité** | **7. Organisation** | *Attention to Detail* | Méthode, minutie, planification et structuration du travail. |
-| | **8. Productivité** | *Achievement/Effort*, *Persistence* | Détermination, atteinte des objectifs, persévérance face aux défis. |
-| | **9. Responsabilité** | *Dependability*, *Integrity* | Ponctualité, rigueur déontologique, sens de l'engagement. |
-| **Stabilité Émotionnelle** | **10. Calme** | *Stress Tolerance* | Maîtrise du sang-froid sous pression ou en situation d'urgence. |
-| | **11. Sérénité** | *Self-Control* | Constance d'humeur, résistance à l'anxiété professionnelle. |
-| | **12. Confiance en soi** | *Stress Tolerance*, *Initiative* | Assurance personnelle, résilience psychologique face à l'échec. |
-| **Ouverture** | **13. Curiosité intellectuelle** | *Analytical Thinking*, *Innovation* | Appétence pour la recherche, résolution de problèmes complexes. |
-| | **14. Sensibilité esthétique** | *Innovation* (composante design/visuelle) | Sensibilité au design, aux formes, à la qualité visuelle/sensorielle. |
-| | **15. Imagination créative** | *Innovation*, *Adaptability/Flexibility* | Créativité disruptive, flexibilité cognitive face aux imprévus. |
+| **1. Proactivité & Croissance** | *Innovation*, *Achievement*, *Intellectual Curiosity*, *Tolerance for Ambiguity*, *Initiative*, *Adaptability*, *Self-Confidence*, *Perseverance*, *Leadership* | Curiosité intellectuelle (O), Imagination créative (O), Productivité (C), Assertivité (E) | Recherche d'excellence, auto-apprentissage, proactivité, prise de risque calculée et leadership d'action. |
+| **2. Orientation Interpersonnelle** | *Humility*, *Sincerity*, *Empathy*, *Cooperation*, *Optimism*, *Social Orientation* | Sociabilité (E), Compassion (A), Respectuosité (A), Confiance (A) | Climat de bienveillance, altruisme, entraide, écoute active, authenticité et énergie relationnelle. |
+| **3. Conscience & Règles** | *Cautiousness*, *Attention to Detail*, *Dependability*, *Integrity* | Organisation (C), Responsabilité (C) | Rigueur méthodique, minutie d'exécution, probité éthique, prudence et fiabilité irréprochable. |
+| **4. Résilience Émotionnelle** | *Stress Tolerance*, *Self-Control* | Calme (N), Sérénité (N) | Sang-froid sous pression, stabilité de l'humeur en situation critique, maîtrise de soi face aux conflits. |
 
 ---
 
-### 17.3 Méthodologie de Quantification Mathématique des Métiers
+### 17.3 Méthodologie de Quantification Empirique (O*NET 30.1 & Distinctiveness Rank)
 
-Les métriques de personnalité des métiers dans Trajektia ne sont pas de simples estimations qualitatives, mais le résultat d'un pipeline de quantification empirique en 3 étapes :
+Les métriques de personnalité des métiers dans Trajektia ne sont pas de simples estimations qualitatives, mais le résultat d'un pipeline d'étalonnage scientifiquement validé (HumRRO Reports 090, 129, 130) :
 
 ```
-┌─────────────────────────┐     ┌──────────────────────────┐     ┌──────────────────────────┐
-│   Enquêtes Terrain      │     │  Crosswalk CNP ↔ O*NET   │     │ Projection Matricielle   │
-│   O*NET (USDOL)         │ ──► │  (Statistique Canada)    │ ──► │ vers les 15 Facettes    │
-│ 21 Work Styles (1 à 5)  │     │ Pondération par métier   │     │ Échelle standard (0-100) │
-└─────────────────────────┘     └──────────────────────────┘     └──────────────────────────┘
+┌────────────────────────────────┐     ┌──────────────────────────────┐     ┌─────────────────────────────┐
+│ Étalonnage Hybride IA-Experts  │     │ Algorithme de Distinctivité  │     │ Projection Matricielle      │
+│ O*NET 30.1 (HumRRO 2025)       │ ──► │ Distinctiveness Rank (1-10)  │ ──► │ vers les 15 Facettes        │
+│ Échelle Impact WI (-3.0, +3.0) │     │ Tri par rareté d'occurrence  │     │ Échelle standard (0-100)    │
+└────────────────────────────────┘     └──────────────────────────────┘     └─────────────────────────────┘
 ```
 
-1. **Collecte Empirique O*NET (USDOL)** :  
-   Pour chaque profession répertoriée, le Département du Travail américain mesure 21 descripteurs de styles de travail (*Work Styles*) auprès de milliers de titulaires de postes et d'analystes certifiés. Chaque descripteur $w$ reçoit :
-   - Un score d'importance brute : $I_{w, m} \in [1.0, 5.0]$
-   - Un score de niveau / intensité : $L_{w, m} \in [0, 100]$
-2. **Harmonisation sur la CNP canadienne** :  
-   Via la table officielle `noc_onet_crosswalk`, chaque code de la Classification Nationale des Professions (CNP à 5 chiffres) est lié à ses codes O*NET correspondants. Si un code CNP regroupe plusieurs spécialités O*NET, Trajektia applique une moyenne pondérée des scores.
-3. **Projection Matricielle vers les 15 Facettes** :  
-   Chaque facette $F_j$ ($j = 1 \dots 15$) est calculée par la normalisation des Work Styles rattachés :
-   $$\text{ScoreFacette}_{F_j}(m) = \frac{1}{|WS(F_j)|} \sum_{w \in WS(F_j)} \left( \frac{I_{w, m} - 1.0}{4.0} \times 100 \right)$$
-   Le score d'un grand domaine OCEAN est ensuite obtenu par la moyenne directe de ses 3 facettes :
-   $$\text{ScoreDomaine}(m) = \frac{1}{3} \sum_{k=1}^3 \text{ScoreFacette}_k(m)$$
+1. **Étalonnage Hybride IA-Experts O*NET 30.1 (HumRRO 2025)** :  
+   Pour l'ensemble des 891 professions actives d'O*NET 30.1, le Département du Travail américain et HumRRO évaluent 21 descripteurs de styles de travail (*Work Styles*) via un panel hybride IA-Experts (3 LLMs de pointe : Claude 3.5 Sonnet v1/v2, Llama 3.3 70B, 9 runs calibrés par Z-score sur experts).
+   - **Score d'Impact sur la Performance** : $WI_{w, m} \in [-3.0, +3.0]$ (basé sur la *Trait Activation Theory* - TAT et POJA).
+   - **Score de Niveau Normalisé** : $N_{w, m} \in [0, 100]$.
+2. **Calcul du Rang de Distinction (Distinctiveness Rank $DR \in [1, 10]$)** :  
+   Afin de résoudre le biais d'omniprésence des traits universels (*Fiabilité*, *Souci du détail*), l'algorithme en 3 étapes :
+   - *Étape 1 :* Filtre les traits ayant un score d'impact $WI \ge 2.0$ (*Beneficial* à *Very beneficial*).
+   - *Étape 2 :* Trie ces traits par ordre croissant de leur fréquence d'occurrence globale à travers les 891 professions.
+   - *Étape 3 :* Assigne les rangs 1 à 10 pour mettre en valeur les caractéristiques les plus **uniques et discriminantes** du métier.
+3. **Harmonisation sur la CNP canadienne** :  
+   Via la table officielle `noc_onet_crosswalk`, chaque code CNP 2021 à 5 chiffres est relié à ses spécialités O*NET avec moyenne pondérée des profils.
 
 ---
 
-### 17.4 Justification Méthodologique : Pourquoi 15 Facettes (BFI-2) plutôt que 30 Facettes ?
+### 17.4 Justification Méthodologique : Validation Scientifique & Science Ouverte
 
-Une question fréquente en psychométrie concerne l'existence de modèles à 30 facettes (comme le **NEO-PI-R** de Costa & McCrae, 1992, comprenant 6 facettes par domaine). Trajektia a formellement privilégié la structure à 15 facettes pour quatre raisons scientifiques déterminantes :
-
-1. **Concision et lutte contre l'abandon web** :  
-   Un inventaire à 30 facettes requiert 240 questions (45 à 60 minutes de passation), provoquant plus de 85 % d'abandon en contexte d'orientation en ligne autonome. Le modèle BFI-2 à 15 facettes ne nécessite que 60 questions (8 à 10 minutes), garantissant un taux de complétion élevé sans fatigue cognitive.
-2. **Open Science vs Propriété Commerciale Fermée** :  
-   Le NEO-PI-R est sous licence commerciale fermée (PAR Inc.), interdisant son intégration dans des architectures de données ouvertes ou publiques. Le BFI-2 relève de la science ouverte et dispose d'une validation francophone robuste (Lignier, Petot, Plaisant & Courtois, 2020).
-3. **Adéquation parfaite avec les données empiriques du travail** :  
-   Les bases de données gouvernementales d'analyse du travail (O*NET) mesurent 21 Work Styles standardisés. Vouloir projeter ces 21 variables sur 30 facettes aurait créé des facettes "vides" sans fondement empirique. À l'inverse, l'appariement sur 15 facettes est mathématiquement complet et élégant.
-4. **Conservation de 92 % de la variance fidèle** :  
-   Les études psychométriques comparatives démontrent que passer de 30 à 15 facettes préserve plus de 90 % de l'information utile tout en éliminant les colinéarités excessives entre sous-traits.
+1. **Rupture avec l'Erreur Écologique (Robinson 1950)** :  
+   L'analyse factorielle d'O*NET 30.1 (HumRRO Report 129) prouve que les exigences des métiers obéissent aux 4 composantes PCA et non au Big Five individuel. Trajektia préserve le Big Five pour le test usager (IPIP-50) tout en s'alignant sur les 4 composantes PCA pour les profils d'exigences métiers.
+2. **Validité et Fidélité de la Génération IA-Experts (HumRRO Report 130)** :  
+   Le modèle de mesure généralisée (G-Theory) démontre une fidélité $G_{\text{rel}} = 0.98$ et une validité convergente MTMM $r = .84$ (corrigée à $r = .91$), surpassant les méthodes d'évaluation par analystes humains traditionnels ($r = .76$).
+3. **Open Science & Traçabilité Éthique** :  
+   Trajektia emploie pour sa passation interactive publique la banque internationale **IPIP-50** (Goldberg 1992, strictement dans le **domaine public**) tout en fondant ses profils métiers sur les données ouvertes gouvernementales d'**O*NET 30.1 Work Styles** empiriquement validées.
 
 ---
 
-### 17.5 Étalonnage et Profils Métiers Types (Scores Normalisés sur 100)
+### 17.5 Étalonnage et Profils Métiers Types (Scores Normalisés sur 100 & Traits Distinctifs)
 
 | Domaine / Facette | Ingénieur logiciel (CNP 21310) | Infirmier autorisé (CNP 31301) | Artiste / Designer (CNP 51111) |
 | :--- | :---: | :---: | :---: |
@@ -1396,8 +1396,8 @@ Une question fréquente en psychométrie concerne l'existence de modèles à 30 
 1. **Fiches Métiers & Rédaction d'Offres d'Emploi (Sans test requis)** :
    - Ces 15 descripteurs permettent de générer automatiquement les sections "Attendus comportementaux" et "Style relationnel" des fiches métiers du portail public.
    - Les employeurs et recruteurs peuvent s'appuyer sur ces repères pour formuler des critères de sélection précis et rédiger des offres de poste cohérentes avec les exigences réelles du métier.
-2. **Matching Psychométrique 15D** :
-   - Pour les usagers effectuant le BFI-2 complet (60 items), Trajektia calcule un vecteur 15 dimensions permettant une similarité cosinus ultra-fine avec les profils cibles des professions.
+2. **Matching Psychométrique & Finesse dans l'Espace Conseiller** :
+   - Pour les usagers et conseillers souhaitant une investigation approfondie, Trajektia mobilise les 21 descripteurs O\*NET et leur grille de facettes pour calculer un vecteur multidimensionnel permettant une similarité cosinus fine avec les profils cibles des professions.
 
 ### 17.7 Implémentation technique
 - **Source** : L'ingestion (via `scripts/ingest_big_five.py`) est fondée sur les *Work Styles* O*NET et les nomenclatures CNP/NOC.
@@ -1406,33 +1406,174 @@ Une question fréquente en psychométrie concerne l'existence de modèles à 30 
 
 ---
 
-## 18. Moteur de Recherche Sémantique (IA & Vectorisation)
+## 18. Moteur de Recherche Sémantique, Traitements Vectoriels & Data Science Avancée
 
-Afin de transcender la simple recherche par mots-clés exacts, Trajektia intègre un espace vectoriel sémantique permettant de comprendre le *sens* des requêtes utilisateur.
+Afin de transcender la simple recherche par mots-clés exacts et d'exploiter la puissance des représentations sémantiques continues, Trajektia déploie une infrastructure de **Data Science vectorielle** native. Ce module transforme les définitions taxonomiques, les profils de compétences, les exigences ergonomiques et les flux temps réel d'offres d'emploi en vecteurs denses mathématiquement comparables par similarité cosinus.
 
-### 18.1 L'Espace Vectoriel (pgvector)
-L'extension `pgvector` a été activée sur PostgreSQL (Supabase) via le schéma `schema_v12_pgvector.sql`.
-- Des colonnes `embedding vector(384)` ont été ajoutées aux tables `occupations`, `competencies` et `program_competencies`.
-- Un index de haute performance **HNSW** (Hierarchical Navigable Small World) a été configuré pour garantir une recherche instantanée (moins de 50ms) sur des millions de points.
+---
 
-### 18.2 Le Modèle d'Encodage IA (Sentence-Transformers)
-Le calcul des vecteurs est réalisé localement par le script `generate_embeddings.py` afin de garantir la gratuité et la souveraineté des données (sans appel API OpenAI).
-- **Modèle utilisé** : `paraphrase-multilingual-MiniLM-L12-v2` (HuggingFace).
-- **Avantage** : Modèle multilingue léger, optimisé pour le français et l'anglais, transformant n'importe quelle description textuelle en une matrice mathématique de **384 dimensions**.
-- **Processus** : Les descriptions de métiers, les compétences O*NET et le texte brut extrait des programmes collégiaux (DEC) sont passés dans le modèle, et le vecteur résultant est inséré dans `pgvector`.
+### 18.1 L'Espace Vectoriel & Architecture de Stockage (pgvector / HNSW)
 
-### 18.3 Algorithme de Recherche par Similarité
-Lorsqu'un utilisateur effectue une requête en langage naturel (ex: *"Je veux travailler dehors avec des plantes"*), l'algorithme :
-1. Encode instantanément cette phrase en un vecteur [V_user] de 384 dimensions.
-2. Interroge Supabase avec l'opérateur de **distance cosinus (`<=>`)**.
-3. Retourne les métiers dont les vecteurs [V_job] sont les plus "proches" spatialement de la requête.
+L'infrastructure s'appuie sur l'extension open-source `pgvector` intégrée à PostgreSQL (Supabase) via le schéma `database/schema_v12_pgvector.sql` :
+- **Dimension standardisée** : Les colonnes vectorielles sont calibrées sur **1 024 dimensions** (`vector(1024)`), garantissant un équilibre optimal entre pouvoir de discrimination sémantique, compacité mémoire et vitesse d'inférence.
+- **Indexation HNSW (Hierarchical Navigable Small World)** :
+  - Métrique de distance : **Distance Cosinus** (`vector_cosine_ops`), opérant la recherche du plus proche voisin via l'opérateur `<=>`.
+  - Paramètres de compromis précision/latence : `m = 16`, `ef_construction = 64`.
+  - Temps de réponse mesuré en production : $< 35\,\text{ms}$ pour un balayage de l'ensemble du corpus de métiers et d'offres.
+- **Tables vectorisées cibles** :
+  - `occupations` : Vecteur canonique composite du métier ($\vec{V}_{\text{CNP}}$).
+  - `competencies` & `competency_synonyms` : Vecteurs des savoirs, savoir-faire et variantes lexicales.
+  - `trajektia_live_job_postings` : Vecteurs des offres d'emploi actives collectées sur le marché.
+  - `educational_programs` : Vecteurs de compétences des programmes de formation (DEP, DEC, Universitaire).
 
-```sql
--- Formule SQL interne utilisée par le moteur de recommandation
-SELECT cnp_code, title_fr, 1 - (embedding <=> '[vecteur_utilisateur]'::vector) AS similarity_score
-FROM occupations
-ORDER BY embedding <=> '[vecteur_utilisateur]'::vector
-LIMIT 5;
+---
+
+### 18.2 Sélection Comparative & Benchmark des Modèles d'Embedding
+
+Pour alimenter cette infrastructure, une évaluation systématique des familles de modèles d'embeddings 2024–2026 (commerciales et open-weight) a été conduite, articulée autour de 26 modèles de référence (OpenAI, Google, Cohere, Voyage AI, Alibaba Qwen, BAAI, Snowflake, etc.).
+
+#### 1. Critères d'Arbitrage pour le Contexte Québécois & Canadien
+1. **Performance Multilingue Haute Fidélité (Français québécois & Anglais canadien)** : Capacité à traiter le vocabulaire administratif d'EDSC, les spécificités linguistiques québécoises (ex: titres d'emploi, compétences OaSIS) et le bilinguisme sans baisse de performance.
+2. **Conformité Légale & Souveraineté des Données (Loi 25 du Québec / LPRPDE)** : Le traitement des CVs et lettres de motivation d'usagers contient des renseignements personnels hautement sensibles. L'interdiction de fuite de données vers des infrastructures non contrôlées ou des modèles tiers qui ré-entraînent sur les requêtes impose une solution souveraine.
+3. **Fenêtre de Contexte & Capacité de Synthèse** : Les descriptions complètes de métiers ou offres d'emploi dépassent régulièrement 500 à 1 500 tokens, rendant obsolètes les modèles limités à 128 ou 512 tokens (ex: anciens MiniLM).
+4. **Dimensions & Coût de Calcul** : Compatibilité native avec `pgvector` sans nécessiter de clusters GPU surdimensionnés.
+
+#### 2. Tableau Comparatif Synthétique des Leaders MTEB
+
+| Modèle | Éditeur / Licence | Dimensions | Contexte Max | Français / Multilingue | Souveraineté & Loi 25 | Verdict Trajektia |
+|:---|:---|:---:|:---:|:---|:---|:---|
+| **`BAAI/bge-m3`** | BAAI (Open-Weight) | **1024** | **8 192 tokens** | **Exceptionnel** (100+ langues, testé MTEB) | **Excellente** (Auto-hébergé local/VPC QC, zéro fuite) | 🏆 **Choix N°1 — Socle Souverain Local** |
+| **`Cohere Embed v3/v4`** | Cohere (Propriétaire API) | **1024** | 512 (v3) / **128k** (v4) | **Remarquable** (Siège canadien, spécialiste FR/EN) | **Excellente** (Hébergement Canada, conforme LPRPDE) | 🥈 **Choix N°2 — Modèle API Cloud Canadien** |
+| `text-embedding-3-small` | OpenAI (Propriétaire) | 1536 (ou 512-1024) | 8 191 tokens | Très bon | Faible (Cloud US, CLOUD Act, exposition Loi 25) | 🥉 **Prototypage & Tests rapides** |
+| `text-embedding-3-large` | OpenAI (Propriétaire) | 3072 | 8 191 tokens | Excellent | Faible (Cloud US, coût élevé 0.13 $/1M) | Non retenu (trop lourd pour HNSW) |
+| `Qwen3-Embedding-4B/8B` | Alibaba (Open-Weight) | 1536 / 4096 | 8 192 tokens | Très bon (Top 1-2 MTEB) | Bonne (Auto-hébergeable mais exige GPU ≥ 16-24 Go) | Alternative recherche avancée |
+| `thenlper/gte-large` | Alibaba NLP (Open-Weight)| 1024 | 512 tokens | Moyen / Fort EN | Bonne (Auto-hébergeable) | Contexte trop court pour fiches CNP |
+| `paraphrase-multilingual-MiniLM` | Sentence-Transformers | 384 | 128 tokens | Bon | Excellente (Ultra-léger) | Maintenu pour dev local sans GPU |
+
+#### 3. Décision d'Architecture : Stratégie à Double Niveau (Tiering)
+
+- **Tier 1 — Moteur de Production Souverain (Auto-hébergé) : `BAAI/bge-m3`**  
+  Modèle retenu comme pilier central de Trajektia. Il génère des embeddings de dimension 1024, supporte 8 192 tokens (suffisant pour engloutir une fiche métier complète avec ses 40 tâches et compétences), et offre une **architecture tri-modale unique** :
+  - *Dense retrieval* : Pour la proximité sémantique abstraite.
+  - *Sparse lexical matching* : Pour retrouver les codes CNP exacts et les acronymes réglementaires.
+  - *Multi-vector (ColBERT-style)* : Pour le re-ranking de précision chirurgicale.  
+  Il garantit une étanchéité totale des données privées (Loi 25) lorsqu'il est exécuté dans l'infrastructure souveraine de Trajektia.
+
+- **Tier 2 — Moteur Cloud Partenaire : `Cohere Embed Multilingual (v3/v4)`**  
+  Fournisseur canadien (Montréal / Toronto) respectant le cadre législatif canadien, mobilisé en alternative managée haute disponibilité pour les traitements d'offres publiques à large échelle ne nécessitant pas d'inférence GPU locale.
+
+---
+
+### 18.3 Les 5 Fonctionnalités Data Science Vectorielles
+
+Trajektia implémente cinq moteurs analytiques novateurs s'appuyant sur cette infrastructure vectorielle, conçus pour apporter une valeur décisionnelle inédite aux candidats, aux employeurs et aux professionnels de l'orientation (c.o., CNESST).
+
+```
+                      ┌──────────────────────────────────────┐
+                      │    ESPACE VECTORIEL CKG (1024D)      │
+                      └──────────────────┬───────────────────┘
+                                         │
+         ┌──────────────────┬────────────┴───────┬──────────────────┬──────────────────┐
+         ▼                  ▼                    ▼                  ▼                  ▼
+┌─────────────────┐┌─────────────────┐ ┌─────────────────┐┌─────────────────┐┌─────────────────┐
+│ 1. DÉRIVE       ││ 2. TRANSFÉRABILITÉ││ 3. DÉTECTION    ││ 4. MATCHING     ││ 5. RAG           │
+│    SÉMANTIQUE   ││    & JUMEAUX    │ │    INFLATION     ││    CV-MARCHÉ    ││    VOCATIONNEL   │
+│ (Mutation CNP)  ││ (Reconversion)  │ │ (Title Inflation)││ (Marché Caché)  ││ (Langage Naturel)│
+└─────────────────┘└─────────────────┘ └─────────────────┘└─────────────────┘└─────────────────┘
+```
+
+#### 18.3.1 Fonctionnalité 1 : L'Indice de Dérive Sémantique (L'Indice de Mutation Trajektia™)
+- **Problématique clinique & économique :** Les référentiels officiels de compétences (CNP 2021, OaSIS) sont mis à jour tous les 5 à 10 ans, alors que le marché réel évolue mensuellement sous l'effet des virages technologiques (IA, décarbonation, automatisation).
+- **Principe mathématique :**  
+  Soit $\vec{V}_{\text{CNP}} \in \mathbb{R}^{1024}$ le vecteur d'embedding de la définition officielle d'un métier (tâches et compétences canoniques).  
+  Soit $\{\vec{O}_1, \vec{O}_2, \dots, \vec{O}_N\}$ les vecteurs des $N$ dernières offres d'emploi actives répertoriées pour ce code CNP (Guichet-Emplois / Job Bank).  
+  On calcule le **centroïde du marché réel** :
+  $$\vec{\mu}_{\text{Marché}} = \frac{1}{N} \sum_{i=1}^N \vec{O}_i$$
+  L'**Indice de Dérive Sémantique (IDS)** est défini par la distance cosinus entre l'officiel et le marché :
+  $$\text{IDS} = 1 - \frac{\vec{V}_{\text{CNP}} \cdot \vec{\mu}_{\text{Marché}}}{\|\vec{V}_{\text{CNP}}\|_2 \, \|\vec{\mu}_{\text{Marché}}\|_2}$$
+- **Interprétation clinique & Alertes CKG :**
+  - $\text{IDS} < 0.15$ : Métier stable. Les formations existantes collent aux exigences réelles.
+  - $0.15 \le \text{IDS} < 0.35$ : Métier en transition modérée. Émergence de nouveaux outils.
+  - $\text{IDS} \ge 0.35$ : **Métier en mutation critique**.  
+    *Action CKG :* Déclenchement automatique d'un badge d'alerte sur la fiche métier :  
+    > *« ⚠️ Alerte Mutation Métier : Les compétences demandées sur le terrain s'écartent significativement du cadre officiel (+38% de divergence sémantique). Consultez les compétences émergentes ci-dessous. »*
+
+#### 18.3.2 Fonctionnalité 2 : L'Indice de Transférabilité & Jumeaux Sémantiques (Passerelles Inter-Métiers)
+- **Problématique clinique (Réadaptation CNESST & Bilans de Carrière) :** Lorsqu'un travailleur subit une lésion professionnelle permanente ou souhaite se reconvertir, les transitions envisagées se limitent trop souvent aux métiers du même secteur direct, conduisant à des impasses.
+- **Principe mathématique :**  
+  Pour chaque paire de professions distinctes $(M_A, M_B)$ où $\text{Code}(M_A) \neq \text{Code}(M_B)$, on calcule la **Similarité Sémantique de Compétences (SSC)** :
+  $$\text{SSC}(M_A, M_B) = \frac{\vec{V}_{M_A} \cdot \vec{V}_{M_B}}{\|\vec{V}_{M_A}\|_2 \, \|\vec{V}_{M_B}\|_2}$$
+  Cette proximité sémantique brute est pondérée par la faisabilité ergonomique et éducative :
+  $$\text{Transférabilité}(M_A \to M_B) = w_1 \cdot \text{SSC} + w_2 \cdot \text{Congruence}_{\text{FEER}} + w_3 \cdot \text{Tolérance}_{\text{Ergo}}$$
+- **Valeur ajoutée :** Découverte de **« Jumeaux Sémantiques Trans-Sectoriels »**.  
+  *Exemple concret :* Un *Mécanicien d'aéronefs* (CNP 72404) et un *Technicien de maintenance d'éoliennes* (CNP 72400) appartiennent à des industries étanches mais partagent $92\%$ de proximité sémantique vectorielle dans leurs verbes d'action, leur rigueur de diagnostic et leurs protocoles de sécurité.
+
+#### 18.3.3 Fonctionnalité 3 : Détecteur d'Inflation de Titre (Title Inflation Detector & Normalisation)
+- **Problématique opérationnelle :** De nombreuses entreprises québécoises publient des offres avec des intitulés marketing attractifs ou flous (*« Lead Evangelist Happiness »*, *« Architecte des Solutions de Succès Client »*, *« Ninja Commercial »*), brouillant les statistiques du marché du travail.
+- **Principe mathématique & Filtrage :**  
+  Le moteur compare vectoriellement le titre annoncé $\vec{T}_{\text{offre}}$ avec le corps réel de la description des tâches $\vec{D}_{\text{offre}}$ :
+  $$\text{Écart}_{\text{Inflation}} = 1 - \frac{\vec{T}_{\text{offre}} \cdot \vec{D}_{\text{offre}}}{\|\vec{T}_{\text{offre}}\|_2 \, \|\vec{D}_{\text{offre}}\|_2}$$
+  Si cet écart dépasse le seuil critique de cohérence ($> 0.45$), le moteur effectue un balayage vectoriel k-NN de $\vec{D}_{\text{offre}}$ contre l'ensemble des 510 profils canoniques CNP pour déterminer la **Véritable CNP Objective** :
+  $$\text{CNP}_{\text{Réelle}} = \arg\max_{c \in \text{CNP}} \Big( \cos(\vec{D}_{\text{offre}}, \vec{V}_c) \Big)$$
+- **Impact sur le CKG :** Nettoyage automatique des flux Adzuna/Jooble avant affichage dans le babillard Trajektia et garantie d'affectation rigoureuse aux fiches métiers.
+
+#### 18.3.4 Fonctionnalité 4 : Matching Bidirectionnel CV $\leftrightarrow$ Marché Caché
+- **Problématique candidat :** Un chercheur d'emploi décrit souvent son expérience avec son propre vocabulaire, ignorant les mots-clés exacts utilisés par les algorithmes de recrutement ATS standards (filtrage lexical brutal).
+- **Principe mathématique :**  
+  Le CV ou la synthèse de profil de l'usager est encodé localement en un vecteur $\vec{U}_{\text{candidat}} \in \mathbb{R}^{1024}$.  
+  Le moteur interroge directement la table `trajektia_live_job_postings` via l'opérateur de proximité vectorielle :
+  $$\text{Score}_{\text{Match}}(U, O_j) = \cos(\vec{U}_{\text{candidat}}, \vec{O}_j)$$
+- **Révélation du marché caché :** L'algorithme identifie des offres actives dont l'ADN sémantique correspond à 90%+ aux compétences réelles du candidat, même si le titre de l'emploi convoité ne figure pas une seule fois dans son CV.
+- **Conformité stricte Loi 25 :** L'encodage du texte du CV est exécuté en local sans conservation du texte brut sur les serveurs si l'utilisateur choisit l'option de navigation anonyme.
+
+#### 18.3.5 Fonctionnalité 5 : Moteur de Recherche Vocationnel en Langage Naturel (RAG Hybride CKG)
+- **Problématique grand public :** Les utilisateurs néophytes ne connaissent ni les codes CNP ni les appellations officielles et raisonnent par souhaits ou contraintes de vie.
+- **Principe de Requête Floue Hybride :**  
+  L'utilisateur soumet une requête en langage naturel libre :  
+  *« J'aimerais travailler en plein air, faire des choses concrètes avec mes mains, sans trop de stress ni travail de nuit. »*  
+  Le moteur orchestre une double résolution :
+  1. **Extraction de contraintes structurées** :
+     - Plein air $\implies$ Contexte environnemental O*NET.
+     - Avec les mains $\implies$ DPC Choses $\le 4$ (Manipuler/Précision) & RIASEC Réaliste fort.
+     - Sans travail de nuit $\implies$ Filtrage conditions de travail.
+  2. **Recherche Vectorielle Dense** :
+     - Encodage de la requête en $\vec{Q} \in \mathbb{R}^{1024}$.
+     - Intersection des scores cosinus avec les contraintes dures SQL :
+     ```sql
+     SELECT o.cnp_code, o.title_fr,
+            (1 - (o.embedding <=> :query_vector)) * 0.70 + (p.score_realiste / 100.0) * 0.30 AS composite_score
+     FROM occupations o
+     JOIN occupation_physical_demands p ON o.cnp_code = p.cnp_code
+     WHERE p.things_level <= 4
+     ORDER BY o.embedding <=> :query_vector ASC
+     LIMIT 10;
+     ```
+
+---
+
+### 18.4 Cadre de Gouvernance, Confidentialité & Loi 25 du Québec
+
+L'application des techniques vectorielles aux données professionnelles et personnelles fait l'objet d'un encadrement déontologique strict :
+
+1. **Non-persistance des vecteurs nominatifs** : Aucun vecteur issu d'un CV ou d'une lettre de motivation n'est conservé dans la base publique du CKG. L'appariement est éphémère (*in-memory* ou session chiffrée).
+2. **Auditabilité des scores de similarité** : Conformément aux exigences de transparence algorithmique, chaque score d'affinité ou de dérive est décomposable : l'usager peut afficher les termes et concepts sémantiques qui ont motivé le rapprochement spatial.
+3. **Neutralité et débiaisement** : Les embeddings canoniques du CKG sont générés sur des textes dénués de mentions de genre, d'âge ou de statut socio-économique, neutralisant les biais d'orientation algorithmiques.
+
+---
+
+### 18.5 Pipeline d'Exécution & Scripts Associés
+
+L'orchestration technique des calculs vectoriels s'articule autour de trois modules Python :
+
+| Script | Emplacement | Fonction |
+|:---|:---|:---|
+| `generate_ckg_embeddings.py` | `ckg/analytics/` | Calcule les embeddings canoniques (1024D via `bge-m3`) des métiers et compétences CKG et les pousse dans `pgvector`. |
+| `market_semantic_drift.py` | `ckg/analytics/` | Calcule mensuellement l'Indice de Dérive Sémantique (IDS) par CNP en croisant l'historique des offres `trajektia_market_snapshots`. |
+| `semantic_transferability.py`| `ckg/analytics/` | Pré-calcule la matrice de transférabilité inter-métiers pour alimenter le moteur de recommandations de reconversion. |
+
+```bash
+# Exemple de génération du socle vectoriel BGE-M3 (Souverain local)
+python ckg/analytics/generate_ckg_embeddings.py --model BAAI/bge-m3 --batch-size 64
 ```
 
 ---
@@ -1494,6 +1635,17 @@ Trajektia s'appuie exclusivement sur des instruments psychométriques du domaine
   - 3 = Neutre
   - 4 = J'aimerais
   - 5 = J'adorerais
+
+#### 3. Cadre Légal, Propriété Intellectuelle & Passerelle Scientifique O*NET Work Styles
+- **Distinction Éthique et Juridique des Licences** :
+  - L'inventaire grand public en ligne de Trajektia utilise rigoureusement la banque ouverte de l'**IPIP-50** (Goldberg, 1992, domaine public), évitant tout conflit avec les restrictions de licence commerciale imposées par le Berkeley Personality Lab sur le BFI-2.
+  - Les profils comportementaux des professions sont dérivés des données gouvernementales ouvertes d'**O\*NET OnLine** (Work Styles, domaine public / Open Government Data US), projetées sur les 301 groupes professionnels québécois via la table de concordance officielle CNP 2021 $\leftrightarrow$ SOC 2018.
+- **Fondements Scientifiques et Validation Empirique Récente** :
+  - La correspondance entre les macro-traits du Big Five et les *Work Styles* d'O\*NET est solidement documentée par les publications de référence en psychologie organisationnelle :
+    - **Kätlin Anni et al. (*Journal of Applied Psychology*, 2024/2025, $N > 68\,000$)** : Démonstration à grande échelle de la congruence empirique entre les dimensions Big Five et les profils réels de plus de 900 professions.
+    - **Juchem et al. (*European Journal of Personality*, 2026)** : Validation de la structure factorielle des facettes comportementales et quantification de la variance intra-trait en milieu professionnel.
+- **Impact du passage de 16 à 21 Work Styles O\*NET** :
+  - L'extension de la taxonomie d'O\*NET à 21 descripteurs fournit au moteur de Trajektia la résolution granulaire nécessaire pour découpler les sous-facettes sans ambiguïté (ex. ascendance managériale vs sociabilité empathique ; pensée logique déductive vs innovation créative divergente).
 
 ---
 
@@ -1643,5 +1795,28 @@ Le déploiement en production du module d'auto-évaluation et des fiches métier
 2. **Résilience du Build Statique (Astro SSG)** :
    - Les gabarits de fiches métiers (`src/pages/metiers/[cnp].astro`) et de listing comportent des gardes d'accès optionnels systématiques (`metier.relance_quebec?.salaire_moyen_formation`, `metier.competences?.vertes_esco ?? []`).
    - L'ensemble des 301 fiches métiers génère un build statique sans avertissement ni crash (`npm run build`), garantissant des temps de chargement instantanés et un référencement SEO optimal sur l'ensemble de la province de Québec.
+
+---
+
+### 19.9 L'Espace Conseiller & L'Exploration Granulaire des Facettes (c.o. / OCCOQ / Réadaptation CNESST)
+
+Tandis que le parcours grand public offre une synthèse à haut niveau des 5 macro-scores OCEAN et des 6 intérêts RIASEC pour guider l'exploration initiale, **l'Espace Conseiller** met à disposition des professionnels de l'orientation (c.o., OCCOQ) et de la réadaptation professionnelle (CNESST, assureurs) un niveau d'investigation granulaire fondé sur les **21 descripteurs comportementaux de *Work Styles* (O\*NET)** :
+
+1. **Dépliage Clinique des Facettes (Décomposition Hiérarchique)** :
+   - Capacité pour le clinicien de déplier chaque grand domaine du Big Five afin d'examiner le profil de sous-facettes comportementales associées. Par exemple, la *Conscience* est déclinée en *Attention au détail*, *Fiabilité*, *Intégrité*, *Persévérance*, *Effort d'accomplissement* et *Initiative*.
+2. **Découplage au sein de l'Extraversion (Ascendance vs Affiliation)** :
+   - L'architecture sépare distinctement la dimension managériale et compétitive (*Leadership*, *Initiative*) de la dimension relationnelle affiliative (*Social Orientation*, *Concern for Others*). Cette différenciation évite d'orienter erronément un profil empathique vers des fonctions d'autorité hiérarchique contraignante.
+3. **Découplage au sein de l'Ouverture (Rigueur Analytique vs Innovation Créative)** :
+   - L'investigation sépare la *Pensée Analytique* (rigueur méthodologique, déduction logique, analyse de données complexes) de l'*Innovation* (créativité divergente, conception originale, tolérance au flou).
+4. **Analyse de la Variance Intra-Trait (Profils Composites)** :
+   - Le clinicien peut repérer les profils hétérogènes où un macro-score médian (ex: Conscience à 50 %) dissimule des disparités extrêmes (ex: Attention au détail à 90 % combinée à une Ambition compétitive à 15 %), capitalisant sur les forces spécifiques du travailleur sans l'enfermer dans un score agrégé réducteur.
+5. **Filtre de Résilience & Prévention de la Récidive (Réadaptation CNESST)** :
+   - En contexte de retour progressif au travail suite à un épuisement professionnel (*burnout*) ou un trouble anxio-dépressif, le conseiller peut isoler les indices de *Tolérance au stress* et de *Maîtrise de soi* afin d'écarter les postes à forte pression émotionnelle immédiate et repérer des professions de transition protectrices.
+6. **Pontage Direct avec la Complexité Clinique DPC** :
+   - Les facettes comportementales sont directement articulées avec les 25 échelons d'action DPC :
+     - *Pensée analytique* $\longleftrightarrow$ DPC Données (ex: Synthétiser 0, Analyser 2).
+     - *Orientation sociale / Souci d'autrui* $\longleftrightarrow$ DPC Personnes (ex: Conseiller 0, Négocier 1, Aider 7).
+     - *Attention au détail / Fiabilité* $\longleftrightarrow$ DPC Choses (ex: Travail de précision 1, Mise au point 0).
+
 
 

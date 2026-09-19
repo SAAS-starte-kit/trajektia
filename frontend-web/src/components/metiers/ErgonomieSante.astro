@@ -1,0 +1,74 @@
+---
+// ============================================================
+// ErgonomieSante.astro
+// Composant pour afficher les exigences physiques et risques ergonomiques
+// ============================================================
+import type { FicheMetier } from '../../data/metiers';
+
+interface Props {
+  metier: FicheMetier;
+}
+
+const { metier } = Astro.props;
+const { exigences_physiques } = metier;
+---
+
+{exigences_physiques && (
+<div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700/60 mb-8">
+  <div class="flex items-center gap-3 mb-6">
+    <div class="p-3 bg-rose-100 dark:bg-rose-900/50 rounded-xl text-rose-600 dark:text-rose-400">
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+    </div>
+    <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Ergonomie & Santé au travail</h2>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="space-y-4">
+      <h3 class="text-md font-bold text-slate-800 dark:text-slate-200 border-b border-slate-100 dark:border-slate-700 pb-2">Exigences Physiques</h3>
+      
+      <div class="grid grid-cols-2 gap-4">
+        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+          <div class="text-xs font-bold text-slate-500 uppercase">Posture</div>
+          <div class="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-1">{exigences_physiques.posture}</div>
+        </div>
+        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+          <div class="text-xs font-bold text-slate-500 uppercase">Vision</div>
+          <div class="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-1">{exigences_physiques.vision}</div>
+        </div>
+        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+          <div class="text-xs font-bold text-slate-500 uppercase">Audition</div>
+          <div class="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-1">{exigences_physiques.audition}</div>
+        </div>
+        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+          <div class="text-xs font-bold text-slate-500 uppercase">Levage</div>
+          <div class="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-1">{exigences_physiques.levage}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pro-only space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-2">
+        <h3 class="text-md font-bold text-slate-800 dark:text-slate-200">Avertissements CNESST</h3>
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
+          Mode Pro
+        </span>
+      </div>
+      
+      {exigences_physiques.risques_cnesst && exigences_physiques.risques_cnesst.length > 0 ? (
+        <ul class="space-y-2">
+          {exigences_physiques.risques_cnesst.map(risque => (
+            <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300 bg-rose-50 dark:bg-rose-900/10 p-2 rounded border border-rose-100 dark:border-rose-900/30">
+              <svg class="w-4 h-4 text-rose-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              {risque}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="text-sm text-slate-500 dark:text-slate-400 italic">Aucun risque ergonomique majeur signalé par la CNESST pour ce métier.</p>
+      )}
+    </div>
+  </div>
+</div>
+)}

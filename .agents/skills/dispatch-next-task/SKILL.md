@@ -20,7 +20,7 @@ Le projet Trajektia utilise plusieurs outils et agents d'IA pour optimiser les c
 ## Étapes du Workflow
 
 ### 1. Analyse du Plan d'Action
-- Ouvrir et lire le fichier [`ckg/PLAN_ACTION.md`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/ckg/PLAN_ACTION.md).
+- Ouvrir et lire le fichier `ckg/PLAN_ACTION.md`.
 - Repérer la ou les prochaines tâches prioritaires ayant le statut **À faire** ou **En attente**.
 
 ### 2. Qualification et Attribution de la Tâche
@@ -42,10 +42,10 @@ Le projet Trajektia utilise plusieurs outils et agents d'IA pour optimiser les c
     3. **Contraintes et règles** (ex : règle POMP `< 5 %`, requêtes Cypher paramétrées)
     4. **Critères d'acceptation**
 - **Envoi / Routage** :
-  - Si l'agent cible est accessible via un outil (ex: envoi d'un message via l'outil MCP `hermes` avec `messages_send`), router directement la tâche.
+  - Si l'agent cible est accessible via un outil (ex: envoi d'un message via l'outil MCP `hermes` avec `messages_send`), router la tâche et valider explicitement le succès de l'exécution (aucun code d'erreur ou échec retourné) avant de continuer.
   - Sinon, créer un artefact Markdown structuré (ex: `prompt_delegation_[agent].md`) pour permettre à l'utilisateur de copier-coller la consigne immédiatement dans l'outil concerné.
 
 ### 4. Mise à Jour du Statut
-- Dans [`ckg/PLAN_ACTION.md`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/ckg/PLAN_ACTION.md), annoter la tâche avec la mention :
+- Une fois le succès du routage validé ou l'artefact de délégation généré, annoter la tâche dans `ckg/PLAN_ACTION.md` avec la mention :
   `[Assigné à : <Nom de l'Agent>] - <Date/Heure>`
 - Indiquer clairement à l'utilisateur la délégation effectuée et les prochaines étapes attendues.

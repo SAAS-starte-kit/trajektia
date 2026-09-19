@@ -32,7 +32,7 @@ Pour atteindre une pertinence clinique maximale sans alourdir le diagnostic, Tra
 - **Ouverture** : *Curiosité intellectuelle*, *Sensibilité esthétique*, *Imagination créative*.
 
 > **Pourquoi 15 facettes plutôt que les 30 facettes traditionnelles (NEO-PI-R) ?**  
-> Les inventaires cliniques classiques à 30 facettes requièrent 240 questions (45-60 minutes) et sont verrouillés par des licences commerciales fermées (PAR Inc.), provoquant plus de 85 % d'abandon sur le web. Le BFI-2 (60 questions / 8 minutes) préserve 92 % de la variance explicative, s'aligne fidèlement sur les données empiriques d'analyse de poste gouvernementales, et dispose d'une validation francophone rigoureuse dans le domaine public.
+> Les inventaires cliniques classiques à 30 facettes requièrent 240 questions (45-60 minutes) et sont verrouillés par des licences commerciales fermées (PAR Inc.), provoquant plus de 85 % d'abandon sur le web. Le modèle à 15 facettes préserve 92 % de la variance explicative, s'aligne fidèlement sur les données empiriques d'analyse de poste gouvernementales (21 Work Styles O\*NET validés par Anni et al., 2025 et Juchem et al., 2026), et permet une interprétation clinique approfondie sans alourdir le diagnostic. Pour la passation web interactive autonome, Trajektia privilégie la banque ouverte IPIP-50 (Goldberg 1992), strictement dans le domaine public.
 
 ### 2.3. Le modèle bi-axial de Prediger (1982)
 Dale J. Prediger a traduit l'hexagone RIASEC en deux axes cartésiens mesurables dans la réalité :
@@ -66,15 +66,15 @@ Le CKG se nourrit exclusivement de données gouvernementales ouvertes, fiables e
 ### 3.4. Les Instruments Psychométriques et la Quantification des Métiers
 Pour garantir la validité clinique, Trajektia réconcilie les auto-évaluations des usagers avec des matrices de métiers quantifiées empiriquement :
 
-1. **Auto-évaluation Usager (Domaine Public)** :
-   - **BFI-2-Fr (Personnalité / Big Five)** : Développé par Soto et John (2017) et validé en français (Lignier, Petot, Plaisant et Courtois, 2020). Inventaire hiérarchique de **60 énoncés** (4 par facette) mesurés sur échelle de Likert (1 à 5) avec clés d'inversion en temps réel ($S = 6 - x$).
+1. **Auto-évaluation Usager (Domaine Public & Science Ouverte)** :
+   - **IPIP-50 (Personnalité / Big Five)** : Développé par Lewis Goldberg (1992, *International Personality Item Pool*), strictement dans le domaine public sans contrainte de licence commerciale. Inventaire psychométrique éprouvé de **50 énoncés** mesurés sur échelle de Likert (1 à 5) avec clés d'inversion en temps réel ($S = 6 - x$). Le cadre à 15 facettes (BFI-2 / Work Styles) sert d'analyse clinique pour l'Espace Conseiller.
    - **O*NET Mini-IP (Intérêts / RIASEC)** : Développé par le Département du Travail américain (Rounds et al.). **60 activités concrètes** (10 items par dimension RIASEC) mesurées de 1 ("Je détesterais") à 5 ("J'adorerais").
    - **O*NET Work Importance Locator (WIL)** : Pour la Theory of Work Adjustment (TWA), **21 énoncés** mesurant les besoins clés pour profiler les 6 valeurs dominantes.
 
 2. **Quantification Mathématique des Métiers (Pipeline en 3 étapes)** :
-   - **Enquêtes terrain O*NET** : 21 descripteurs empiriques (*Work Styles*, ex: *Attention to Detail*, *Stress Tolerance*, *Innovation*) quantifiés en importance (1 à 5) et niveau (0 à 100) pour chaque métier.
+   - **Enquêtes terrain O*NET (21 Work Styles)** : 21 descripteurs empiriques comportementaux (*Work Styles*, ex: *Attention to Detail*, *Stress Tolerance*, *Innovation*, *Leadership*) quantifiés en importance (1 à 5) et niveau (0 à 100) pour chaque métier, validés scientifiquement par Anni et al. (*JAP*, 2025) et Juchem et al. (*EJOP*, 2026).
    - **Crosswalk CNP ↔ O*NET** : Table officielle de Statistique Canada et EDSC reliant les codes CNP à 5 chiffres aux spécialités O*NET.
-   - **Projection matricielle vers les 15 facettes** : Les 21 Work Styles sont projetés mathématiquement sur les 15 facettes BFI-2 normalisées sur une échelle standardisée $[0, 100]$.
+   - **Projection matricielle vers les 15 facettes & Espace Conseiller** : Les 21 Work Styles sont projetés mathématiquement sur les facettes comportementales normalisées sur une échelle standardisée $[0, 100]$, permettant un découplage fin (leadership vs social, logique vs innovation, résilience CNESST).
 
 L'ensemble de ces instruments produit des **vecteurs continus de 0 à 100** permettant de mesurer la distance exacte entre le tempérament de l'usager et les exigences réelles du métier.
 

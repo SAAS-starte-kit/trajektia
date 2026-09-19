@@ -11,7 +11,7 @@ import {
   type ValeurTravail,
   VALEURS_TRAVAIL_META,
 } from "../data/questions-satisfaction";
-import { VALEURS_TRAVAIL_PAR_CNP } from "../data/valeurs-travail-metiers";
+import { METIERS } from "../data/metiers";
 
 export interface ValeursScores {
   accomplissement: number;
@@ -183,9 +183,9 @@ export function buildUserValuesVector(r: SatisfactionResults): number[] {
 }
 
 export function buildJobValuesVector(cnp: string): number[] | null {
-  const profile = VALEURS_TRAVAIL_PAR_CNP[cnp];
-  if (!profile || !profile.scores) return null;
-  return VECTOR_ORDER.map((key) => profile.scores[key]);
+  const metier = METIERS.find(m => m.cnp === cnp);
+  if (!metier || !metier.onet_work_values || !metier.onet_work_values.scores) return null;
+  return VECTOR_ORDER.map((key) => metier.onet_work_values!.scores[key]);
 }
 
 export function getSatisfactionFit(
@@ -212,7 +212,9 @@ export function getSatisfactionFit(
     if (r === 0) continue; // Instabilité numérique
 
     const score_satisfaction = Math.round(Math.min(99, Math.max(10, 50 + r * 48)));
-    const profile = VALEURS_TRAVAIL_PAR_CNP[candidat.cnp];
+    const metier = METIERS.find(m => m.cnp === candidat.cnp);
+    if (!metier || !metier.onet_work_values) continue;
+    const profile = metier.onet_work_values;
 
     const leviers: ValeurTravail[] = [];
     const vigilances: ValeurTravail[] = [];

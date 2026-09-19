@@ -189,9 +189,13 @@ const secteurs = [...new Set(METIERS_DATA.map(m => m.secteur))].sort();
               <span class="font-bold text-purple-600 dark:text-purple-400">{metier.riasec.traits_dominants.join(' • ')}</span>
             </div>
             {metier.competences?.vertes_esco && metier.competences.vertes_esco.length > 0 && (
-            <p class="text-xs text-slate-600 dark:text-slate-300 line-clamp-1 italic bg-emerald-50/60 dark:bg-emerald-950/30 px-2.5 py-1.5 rounded-xl border border-emerald-200/50 dark:border-emerald-800/40">
-              🌿 ESCO : "{metier.competences.vertes_esco[0]}"
-            </p>
+            <div class="text-xs leading-relaxed text-slate-700 dark:text-slate-200 bg-emerald-50/80 dark:bg-emerald-950/40 px-3 py-2 rounded-xl border border-emerald-200/70 dark:border-emerald-800/60 flex items-start gap-2">
+              <span class="text-sm shrink-0">🌿</span>
+              <div class="min-w-0 flex-1">
+                <span class="font-bold text-emerald-800 dark:text-emerald-300 not-italic">ESCO :</span>
+                <span class="italic text-slate-600 dark:text-slate-300 ml-1">"{metier.competences.vertes_esco[0]}"</span>
+              </div>
+            </div>
             )}
           </div>
 

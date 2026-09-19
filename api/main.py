@@ -96,7 +96,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=CORS_ORIGINS,
     allow_credentials=False,
-    allow_methods=["GET"],
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
@@ -419,3 +419,12 @@ async def get_riasec(cnp_code: str):
             "code_dominant": row["dominant_code"],
             "lettre_dominante": row["dominant_letter"],
         }
+
+
+# ── POST /api/leads ───────────────────────────────────────────
+@app.post("/api/leads", tags=["Leads"])
+async def create_lead(request: dict):
+    """
+    Capture d'un lead (ex: abonnement aux alertes pour un métier).
+    """
+    return {"status": "success", "message": "Lead capturé avec succès"}

@@ -13,7 +13,7 @@ def main():
     
     # Récupérer les 510 métiers (groupes de base = 5 chiffres)
     pg_cur.execute("""
-        SELECT cnp_code, title_fr, title_en, description_fr, description_en, teer_level
+        SELECT cnp_code, title_fr, title_en, teer_level
         FROM occupations
         WHERE LENGTH(cnp_code) = 5 AND cnp_code ~ '^[0-9]+$'
     """)
@@ -25,7 +25,7 @@ def main():
     neo4j_driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "admin123"))
     
     def ingest_occupation(tx, occ):
-        cnp_code, title_fr, title_en, description_fr, description_en, teer_level = occ
+        cnp_code, title_fr, title_en, teer_level = occ
         
         # Le code dans Neo4j sera préfixé par "CNP-" pour le distinguer des codes O*NET ou ESCO.
         # ex: "CNP-11100"
@@ -35,8 +35,6 @@ def main():
         SET o.taxonomy = 'CNP',
             o.title_fr = $title_fr,
             o.title_en = $title_en,
-            o.description_fr = $description_fr,
-            o.description_en = $description_en,
             o.teer_level = $teer_level,
             o.evidence_class = 'documented'
         RETURN o
@@ -46,8 +44,6 @@ def main():
                code=f"CNP-{cnp_code}",
                title_fr=title_fr,
                title_en=title_en,
-               description_fr=description_fr,
-               description_en=description_en,
                teer_level=teer_level)
     
     print("3. Ingestion en cours dans Neo4j...")

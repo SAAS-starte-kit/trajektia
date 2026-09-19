@@ -1,0 +1,142 @@
+{
+  "uuid": "trajektia-ckg-dashboard-v1",
+  "title": "Trajektia — Career Knowledge Graph",
+  "version": "2.4",
+  "settings": {
+    "pagenumber": 0,
+    "editable": true,
+    "fullscreenEnabled": false,
+    "parameters": {},
+    "theme": "light"
+  },
+  "pages": [
+    {
+      "title": "Tour de Contrôle CKG",
+      "reports": [
+        {
+          "id": "header-card",
+          "title": "🏛️ Trajektia — Intelligence Carrière & CKG",
+          "query": "### Tableau de bord de pilotage du Career Knowledge Graph\nCe cockpit low-code permet de naviguer au cœur des ontologies **CNP 2021**, **O*NET 28.2**, **OaSIS**, **Holland RIASEC** et **Salaires EDSC**.\n*Les graphiques et métriques ci-dessous sont calculés en temps réel à partir de votre base Neo4j locale.*",
+          "width": 12,
+          "height": 2,
+          "x": 0,
+          "y": 0,
+          "type": "text",
+          "selection": {},
+          "settings": {}
+        },
+        {
+          "id": "kpi-occupations",
+          "title": "Total Métiers Référencés",
+          "query": "MATCH (o:Occupation) RETURN count(o) as value",
+          "width": 4,
+          "height": 2,
+          "x": 0,
+          "y": 2,
+          "type": "value",
+          "selection": {},
+          "settings": {
+            "fontSize": 36,
+            "color": "#2563eb"
+          }
+        },
+        {
+          "id": "kpi-skills",
+          "title": "Compétences & Connaissances",
+          "query": "MATCH (s:Skill) RETURN count(s) as value",
+          "width": 4,
+          "height": 2,
+          "x": 4,
+          "y": 2,
+          "type": "value",
+          "selection": {},
+          "settings": {
+            "fontSize": 36,
+            "color": "#10b981"
+          }
+        },
+        {
+          "id": "kpi-tools",
+          "title": "Outils & Technologies",
+          "query": "MATCH (t:Tool) RETURN count(t) as value",
+          "width": 4,
+          "height": 2,
+          "x": 8,
+          "y": 2,
+          "type": "value",
+          "selection": {},
+          "settings": {
+            "fontSize": 36,
+            "color": "#8b5cf6"
+          }
+        },
+        {
+          "id": "chart-top-skills",
+          "title": "🔥 Top 10 des Compétences les Plus Demandées",
+          "query": "MATCH (o:Occupation)-[:REQUIRES_SKILL]->(s:Skill)\nRETURN coalesce(s.name_fr, s.name, s.title_en) as category, count(o) as value\nORDER BY value DESC\nLIMIT 10",
+          "width": 6,
+          "height": 4,
+          "x": 0,
+          "y": 4,
+          "type": "bar",
+          "selection": {
+            "index": "category",
+            "value": "value",
+            "key": "(none)"
+          },
+          "settings": {}
+        },
+        {
+          "id": "chart-riasec",
+          "title": "🧭 Répartition des Métiers par Dimension RIASEC (Dominante)",
+          "query": "MATCH (o:Occupation)-[:MATCHES_INTEREST]->(i:Interest)\nWHERE i.label IS NOT NULL\nRETURN i.label as category, count(o) as value\nORDER BY value DESC",
+          "width": 6,
+          "height": 4,
+          "x": 6,
+          "y": 4,
+          "type": "pie",
+          "selection": {
+            "index": "category",
+            "value": "value",
+            "key": "(none)"
+          },
+          "settings": {}
+        },
+        {
+          "id": "graph-subgraph",
+          "title": "🕸️ Constellation Interactive : Métiers & Outils / Logiciels",
+          "query": "MATCH (o:Occupation)-[r:REQUIRES_SKILL|USES_TOOL|REQUIRES_SOFTWARE]->(t)\nRETURN o, r, t\nLIMIT 40",
+          "width": 7,
+          "height": 5,
+          "x": 0,
+          "y": 8,
+          "type": "graph",
+          "selection": {
+            "Occupation": "title_en",
+            "Skill": "name",
+            "Tool": "name",
+            "Software": "name"
+          },
+          "settings": {}
+        },
+        {
+          "id": "table-salaries",
+          "title": "💼 Salaires Médians les Plus Élevés ($ CAD)",
+          "query": "MATCH (o:Occupation)\nWHERE o.median_salary IS NOT NULL\nRETURN o.code as CNP, coalesce(o.title_fr, o.title_en) as Titre, o.median_salary as Salaire_Median\nORDER BY o.median_salary DESC\nLIMIT 10",
+          "width": 5,
+          "height": 5,
+          "x": 7,
+          "y": 8,
+          "type": "table",
+          "selection": {},
+          "settings": {}
+        }
+      ]
+    }
+  ],
+  "parameters": {},
+  "extensions": {
+    "active": true,
+    "activeReducers": []
+  }
+}

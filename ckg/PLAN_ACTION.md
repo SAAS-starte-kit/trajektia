@@ -43,7 +43,7 @@ métiers et formations via la vitrine Astro.
 | Test Psychométrique (Big Five + RIASEC) | FAIT | 110 items (50 IPIP-50 + 60 Mini-IP), scoring 11D, UI Astro/React | 100% |
 | Titres alternatifs TCC 2025 (Synonymes) | À FAIRE | Dictionnaire synonymes compétences FR/EN pour recherche | Cadré |
 | BLS ORS (Ergonomie US BLS) | Planifié | Profils ergonomiques haute précision (heures assis/debout, lbs) | Cadré post-B5 |
-| Job Bank (offres actives) | MANQUANT | 0 | 0% |
+| Job Bank (offres actives) | FAIT | 424 nœuds MarketDemand (239 CNPs QC) | 100% |
 | Career Ladders (CMC) | Demo | 19 liens | Demo seulement |
 
 ---
@@ -98,10 +98,10 @@ python etl/link_cnp_onet_neo4j.py
 
 ---
 
-### A5 — Offres d'emploi Job Bank (compteurs) [PRIORITÉ 4]
+### A5 — Offres d'emploi Job Bank (compteurs) [FAIT]
 
 **Pourquoi :** Afficher "X offres actives au Québec" sur chaque fiche métier.
-**Stockage :** Propriété active_postings sur le noeud (:Occupation)
+**Stockage NEO4J :** Création de nœuds séparés `(:MarketDemand)` (ou `(:JobPosting)`) reliés au métier `(:Occupation)` via la relation `[:HAS_DEMAND]`. Cela permet de ne pas brouiller les données structurelles CNP/O*NET avec des données temporelles/marché.
 **Script :** `ckg/ingestors/jobbank_api_ingestor_global.py`
 
 ```bash
@@ -136,7 +136,7 @@ python ckg/ingestors/jobbank_api_ingestor_global.py
 
 ---
 
-### B2 — Exécuter Le Siphon (Neo4j -> Supabase) [PRIORITÉ 2]
+### B2 — Exécuter Le Siphon (Neo4j -> Supabase) [FAIT]
 
 **Prérequis :** A1 + A2 complétés ET B1 appliqués.
 **Script :** `etl/le_siphon.py`
@@ -201,12 +201,12 @@ python trajektia/etl/cnesst_supabase_ingestor.py
 python trajektia/etl/physical_demands_dpc_ingestor.py
 ```
 
-### B6 — Titres Alternatifs & Synonymes Bilingues de Compétences [TCC 2025]
+### B6 — Titres Alternatifs & Synonymes Bilingues de Compétences [TCC 2025] [FAIT]
 
 **Pourquoi :** Améliorer la recherche sémantique et la découverte de compétences dans le moteur d'orientation.
 **Source officielle :** Taxonomie des compétences et capacités (TCC 2025 v1.0 - EDSC / Ouvert Canada).
-**Table cible Supabase :** `competency_synonyms` (code compétence, titre officiel, titre alternatif/synonyme, langue FR/EN).
-**Script :** `trajektia/etl/tcc_synonyms_ingestor.py`
+**Table cible Supabase :** `competency_synonyms` (1 028 synonymes ingérés avec gestion d'idempotence et batching).
+**Script exécuté :** `scripts/ingest_tcc_synonyms.py` [FAIT]
 
 ### B7 — Profils Ergonomiques BLS ORS (Haute Précision Réadaptation) [PLANIFIÉ]
 
@@ -248,6 +248,7 @@ python trajektia/etl/physical_demands_dpc_ingestor.py
 
 ### D4 — Module de Test Psychométrique Interactif (Big Five IPIP-50 + RIASEC Mini-IP) [FAIT]
 - **Objectif :** Permettre l'auto-évaluation scientifiquement validée des candidats et bénéficiaires directement depuis l'interface web, avec calcul instantané des scores et appariement professionnel.
+- **Note d'alignement méthodologique & cadre légal :** Ce module interactif grand public s'appuie sur la banque ouverte **IPIP-50** (Goldberg 1992, domaine public) et le **Mini-IP** (Rounds et al. 2010, domaine public) garantissant une passation libre de droits et sans restriction de licence commerciale (contrairement au BFI-2 restreint pour usage commercial par le Berkeley Personality Lab). Les profils métiers s'articulent avec les **21 Work Styles d'O\*NET** validés empiriquement par les travaux récents de Kätlin Anni et al. (*Journal of Applied Psychology*, 2024/2025, $N > 68\,000$) et Juchem et al. (*EJOP*, 2026), permettant une investigation clinique granulaire dans l'Espace Conseiller.
 - **Tâches réalisées :**
   - [x] Intégrer la banque de 110 items psychométriques standardisés dans `frontend-web/src/data/questions-psychometriques.ts` :
     - 50 items IPIP-50 (Goldberg 1992) pour les 5 facteurs OCEAN (Ouverture, Conscienciosité, Extraversion, Agréabilité, Névrosisme) avec clés d'inversion.
@@ -258,14 +259,14 @@ python trajektia/etl/physical_demands_dpc_ingestor.py
     - Algorithme d'appariement par similarité cosinus dans un espace vectoriel à 11 dimensions ($\vec{u} \in \mathbb{R}^{11} \leftrightarrow \vec{m} \in \mathbb{R}^{11}$).
     - Détermination du code RIASEC dominant (2 à 3 lettres) et des traits de personnalité prédominants.
     - Top 10 des métiers québécois recommandés avec score d'affinité (%) et lien vers les fiches CNP.
-    - Persistance locale 100% confidentielle via `localStorage` (`trajektia_psychometric_results_v1`) respectant la Loi 25.
+    - Sauvegarde locale côté client dans le navigateur (clé `localStorage` `trajektia_psychometric_results_v1`) sans transmission serveur par défaut, avec mécanismes d'effacement et de consentement prévus conformément à la Loi 25.
 
 ### D5 — Algorithme de Cosinus Centré (Pearson r) & Métiers Réels [FAIT]
 - **Objectif :** Éliminer le biais de translation où les profils factices plats obtiennent 99% et ne recommander que de vrais métiers CNP québécois.
 - **Tâches réalisées :**
   - [x] Remplacer le cosinus brut par le **cosinus centré** ($r$ de Pearson) dans `scoring-engine.ts` :
     - Éradication mathématique du biais des profils "plats" à 50 (variance nulle $\sigma_m = 0 \implies \text{score} = 0$).
-    - Translation calibrée du coefficient $r \in [-1, 1]$ vers l'échelle grand public : $\text{score} = \text{round}(\min(99, \max(10, 50 + r \cdot 48)))$.
+    - Translation calibrée du coefficient $r \in [-1, 1]$ vers l'échelle grand public : $\text{score} = 0$ si $\sigma_m = 0$, sinon $\text{score} = \text{round}(\min(99, \max(10, 50 + r \cdot 48)))$.
   - [x] Remplacement des profils d'exemple par **301 métiers québécois réels** dans `frontend-web/src/data/metiers.ts` via le pipeline `scripts/generate_career_content.py` :
     - Profils RIASEC réels extraits d'O*NET 28.2 (normalisés sur échelle 1-7).
     - Traits Big Five réels calculés via le crosswalk officiel NOC2021-ONET26.
@@ -336,24 +337,30 @@ python trajektia/etl/physical_demands_dpc_ingestor.py
 
 > **Objectif :** Restituer ces dimensions de manière lisible, percutante et adaptée à chaque public (Grand public, Candidats en reconversion, Conseillers d'orientation, Professionnels de la réadaptation).
 
-### F1 — Mise à Jour du Pipeline de Synchronisation (`le_siphon.py`)
-- [ ] Mettre à jour `etl/le_siphon.py` pour synchroniser la table `occupation_physical_demands` et les champs ergonomiques / DPC / Prediger vers Supabase / Directus.
-- [ ] Valider l'intégrité des données dans les API Directus / Astro.
+### F1 — Mise à Jour du Pipeline de Synchronisation (`le_siphon.py`) [FAIT]
+- [x] Mettre à jour `etl/le_siphon.py` pour synchroniser la table `occupation_physical_demands` et les champs ergonomiques / DPC / Prediger vers Supabase / Directus (Phase 8 `extract_and_load_physical_demands`). [FAIT]
+- [x] Securiser le pipeline contre l'écrasement par NULL via des clauses `COALESCE` SQL lors des UPSERT sur conflit. [FAIT]
 
-### F2 — Conception UI des Blocs Fiches Métiers (Astro)
-- [ ] **Bloc Ergonomie & Santé au travail** :
+### F2 — Conception UI des Blocs Fiches Métiers (Astro) `[FAIT]`
+- [x] **Bloc Ergonomie & Santé au travail** :
   - *Affichage Grand Public :* Badges synthétiques et iconographie claire (ex: "Travail sédentaire", "Charges légères <= 5 kg", "Dextérité fine requise").
   - *Mode Pro / Réadaptation (Toggle) :* Matrice ergonomique complète (cotes S, B, L, V, C, H), charge maximale en kg, facteurs de risques sectoriels CNESST et alertes TMS.
-- [ ] **Bloc Profil Psychométrique & Triade DPC** :
+- [x] **Bloc Profil Psychométrique & Triade DPC** :
   - Graphique cartésien interactif du Modèle de Prediger (Axes Données/Idées et Choses/Personnes) avec point de positionnement du métier.
   - Jauge tripartite interactive DPC (Données, Personnes, Choses) avec explicitation du verbe d'action de référence.
-  - Radar RIASEC enrichi.
+  - Radar RIASEC enrichi (6 dimensions).
+  - *Finesse des Facettes (Mode Conseiller) :* Dépliage des 21 descripteurs comportementaux O*NET (*Work Styles*), découplage managérial vs relationnel et pensée logique vs créativité, indicateurs de variance intra-trait et filtres de résilience (stress/maîtrise de soi).
 
-### F3 — Simulateur Interactif d'Aptitude & Réadaptation (Espace Conseiller)
-- [ ] Interface dédiée pour les c.o. et conseillers en réadaptation :
-  - Formulaire de saisie des limitations fonctionnelles d'un client (poids max toléré, postures contre-indiquées, vision, audition).
-  - Filtrage dynamique instantané du catalogue des 504 métiers de la CNP.
-  - Module d'exportation de rapport d'évaluation ergonomique et orientation (PDF / Fiche de synthèse).
+### F3 — Simulateur Interactif d'Aptitude, Réadaptation & Finesse Clinique (Espace Conseiller)
+- [ ] Interface dédiée pour les c.o., professionnels OCCOQ et conseillers en réadaptation CNESST :
+  - Formulaire de saisie des limitations fonctionnelles d'un travailleur (poids max toléré, postures contre-indiquées, vision, audition).
+  - Filtrage dynamique instantané du catalogue des métiers de la CNP québécoise.
+  - **Grille d'investigation psychométrique granulaire (21 Work Styles O\*NET)** :
+    - Dépliage hiérarchique des sous-facettes comportementales (attention au détail, intégrité, initiative, etc.).
+    - Filtre de résilience post-burnout / réadaptation : identification de métiers à charge émotionnelle et stress modérés.
+    - Analyse de la variance intra-trait pour valoriser les profils composites.
+    - Pontage direct avec les verbes d'action DPC.
+  - Module d'exportation de rapport d'évaluation ergonomique, psychométrique et d'orientation (PDF / Fiche clinique synthétique).
 
 ### F4 — Interface Interactive du Test Psychométrique & Visualisations SVG [FAIT]
 - [x] **Composant interactif React** (`frontend-web/src/components/PsychometricTest.tsx`) :
@@ -416,16 +423,16 @@ python scratch/verify_physical_db.py
   - Accès aux statistiques de consultation et métriques d'intérêt des diplômés.
 
 ### H3 — Étape 3 : Observatoire Temporel & Séries Temporelles (Time-Series & Courbes de Tendances)
-- [x] Définir le schéma SQL des séries temporelles : [`database/schema_v8_market_snapshots.sql`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/database/schema_v8_market_snapshots.sql). [FAIT]
+- [x] Définir le schéma SQL des séries temporelles : [`database/schema_v8_market_snapshots.sql`](database/schema_v8_market_snapshots.sql). [FAIT]
   - `trajektia_live_job_postings` : Table de cache avec TTL de 30 jours pour l'affichage UI immédiat.
   - `trajektia_market_snapshots` : Instantanés mensuels pour archiver salaires réels, volumes et tensions.
   - `trajektia_skill_demand_history` : Historique de pénétration des compétences émergentes.
   - `v_trajektia_career_trends_12m` : Vue calculant les pentes de croissance sur 12 mois.
-- [ ] Développer le script Cron d'ingestion mensuelle (`etl/market_snapshot_collector.py`) agrégeant Adzuna et Guichet-Emplois.
+- [x] Développer le script Cron d'ingestion mensuelle (`etl/market_snapshot_collector.py`) agrégeant Adzuna et Guichet-Emplois. [FAIT]
 - [ ] Intégrer les graphiques de tendances (courbe salariale 12 mois et momentum de recrutement) sur les fiches métiers Astro.
 
 ### H4 — Étape 4 : Branding & Propriété Intellectuelle des Métriques Trajektia™
-- [x] Consigner au [Manuel Méthodologique CKG](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/ckg/MANUEL_METHODOLOGIQUE_CKG.md) la nomenclature officielle :
+- [x] Consigner au [Manuel Méthodologique CKG](ckg/MANUEL_METHODOLOGIQUE_CKG.md) la nomenclature officielle :
   - **Indice Salarial Trajektia Live™** *(Trajektia RealWage)*
   - **Indice de Volatilité Salariale Trajektia™**
   - **Radar Compétences Trajektia™** & **Taux de Pénétration Marché Trajektia™**
@@ -434,6 +441,49 @@ python scratch/verify_physical_db.py
   - **Score d'Affinité Trajektia™**
   - **Profil DPC Trajektia™**
 - [ ] Afficher les badges de propriété intellectuelle et les infobulles méthodologiques sur le frontend Astro.
+
+---
+
+## PHASE I — Data Science Vectorielle & Intelligence Sémantique (5 Moteurs IA)
+
+> **Objectif :** Transformer les taxonomies textuelles et le flux d'offres d'emploi en vecteurs sémantiques continus (Embeddings 1024D) pour débloquer des capacités de recherche cognitive et d'appariement multidimensionnel.
+
+### I1 — Socle d'Embedding & Schéma Vectoriel Supabase (pgvector)
+- **Objectif :** Déployer l'infrastructure HNSW sur Supabase pour la similarité cosinus.
+- **Modèle Sélectionné :** `BAAI/bge-m3` (Souverain/Local, 1024D, 8192 tokens) avec `Cohere Embed Multilingual` (API Cloud Canada) en solution de repli gérée.
+- **Tâches à réaliser :**
+  - [ ] Ajouter les colonnes `vector(1024)` aux tables `occupations` et `trajektia_live_job_postings`.
+  - [ ] Créer les index HNSW (distance cosinus).
+  - [ ] Script d'inférence batch `generate_ckg_embeddings.py`.
+
+### I2 — Moteur de Dérive Sémantique (Indice de Mutation Trajektia™)
+- **Objectif :** Comparer le vecteur canonique CNP 2021 d'un métier avec le centroïde vectoriel des offres Job Bank récentes pour détecter les obsolescences.
+- **Tâches à réaliser :**
+  - [ ] Script analytique `market_semantic_drift.py`.
+  - [ ] Mise en place de seuils d'alerte ($\text{IDS} \ge 0.35$).
+
+### I3 — Moteur de Transférabilité & Jumeaux Sémantiques
+- **Objectif :** Identifier des carrières alternatives pertinentes pour les travailleurs accidentés (CNESST) en franchissant les frontières sectorielles (ex. mécanicien aéronef $\to$ technicien éolienne).
+- **Tâches à réaliser :**
+  - [ ] Matrice globale de Similarité Sémantique de Compétences (SSC).
+  - [ ] Interface conseiller "Explorer les jumeaux sémantiques".
+
+### I4 — Détecteur d'Inflation de Titres (Title Inflation)
+- **Objectif :** Débruiter le marché du travail en ré-assignant les offres aux titres pompeux à leurs véritables catégories CNP via la similarité des descriptions.
+- **Tâches à réaliser :**
+  - [ ] Filtre k-NN dans le pipeline ETL `le_siphon.py` pour valider la catégorie CNP des annonces Adzuna/Jooble.
+
+### I5 — Matching Bidirectionnel CV ↔ Marché Caché (Conformité Loi 25)
+- **Objectif :** Permettre aux candidats d'importer leur CV et de se voir recommander instantanément des offres d'emploi basées sur la proximité sémantique de leurs compétences réelles.
+- **Tâches à réaliser :**
+  - [ ] Module d'ingestion de CV (extraction texte).
+  - [ ] Endpoint d'inférence en-mémoire garantissant aucune conservation nominative des CV (conformité Loi 25).
+
+### I6 — Moteur de Recherche Vocationnel en Langage Naturel (RAG Hybride)
+- **Objectif :** Permettre une recherche grand public sous forme de requêtes libres (ex: *"Travailler dehors sans stress avec les mains"*).
+- **Tâches à réaliser :**
+  - [ ] Extraction des entités (filtres DPC, FEER, conditions de travail).
+  - [ ] Recherche hybride Supabase (Dense vectoriel + Sparse lexical).
 
 ---
 
@@ -462,14 +512,21 @@ RÉALISÉ (Fondations, Ingestion, Moteurs & Taxonomie DPC)
 [FAIT] D7  Module de Satisfaction & Valeurs de Travail (TWA / O*NET WIL 21 items)
 [FAIT] F5  Infobulles Pédagogiques interactives (<InfoBubble>) & Règle POMP < 5% (Fiches [cnp].astro)
 [FAIT] G1  Framework Customizations Agent (.agents/rules & .agents/skills) & Orchestration Multi-Agents (dispatch-next-task)
+[FAIT] F1  Mise à jour de `le_siphon.py` (Phase 8 Export Ergo/DPC/Prediger/SST vers Directus/Supabase avec COALESCE)
+[FAIT] B6  Titres alternatifs & Synonymes TCC 2025 (`scripts/ingest_tcc_synonyms.py`, 1 028 synonymes en base)
+[FAIT] A5  Ingestion Job Bank / Guichet-Emplois dans Neo4j (`ckg/ingestors/jobbank_api_ingestor_global.py`, 424 nœuds :MarketDemand, 239 CNPs QC)
+[FAIT] B2  Siphon des données MarketDemand vers Supabase (`etl/le_siphon.py` - Phase 9 extract_and_load_market_demand)
+[FAIT] H3  Script Cron d'ingestion mensuelle des offres d'emploi (`etl/market_snapshot_collector.py`)
 
-PROCHAINE ÉTAPE PRIORITAIRE — Siphon, Formations (MEQ) & Offres (Guichet-Emplois)
+PROCHAINE ÉTAPE PRIORITAIRE — Interface Fiches Métiers (F2) & Offres Guichet-Emplois (H1)
 ───────────────────────────────────────────────────────────────────
-1. F1  Créer les nœuds (:Program) pour les formations MEQ dans Neo4j [FAIT]
-2. H1  Mettre en place l'ingestion Guichet-Emplois (Job Bank) dans Neo4j (:JobPosting) (Priorité sur Adzuna)
-3. F1  Mise à jour de `le_siphon.py` (Export Ergo/DPC/Prediger/SST vers Directus/Supabase)
-4. B6  Titres alternatifs & Synonymes TCC 2025 (Recherche sémantique)
-5. F3  Simulateur Interactif de Réadaptation (Filtrage par limitations fonctionnelles)
+1. F2  Conception UI des Blocs Fiches Métiers Astro (Bloc Ergonomie & Graphique Prediger) [Prêt à lancer]
+2. B8  Ingérer les 21 Work Styles O*NET v30.1 (4 Composantes PCA, WI Impact & Distinctiveness Rank) [Terminé - 2026-09-19]
+   - ✅ Table `onet_work_styles` peuplée dans Supabase (18 711 lignes, scores réels v30.1, `wi_score` & `dr_rank`)
+   - ✅ Alignement méthodologique & psychométrique effectué dans la documentation CKG (`MANUEL_PSYCHOMETRIQUE.md`, `MANUEL_METHODOLOGIQUE_CKG.md`, `REGISTRE_SOURCES_DONNEES.md`) d'après la trilogie de rapports HumRRO (2024-2025).
+   - ✅ generate_career_content.py & metiers.ts ajustés pour valoriser le rang de distinctivité (`dr_rank`) et les 4 composantes PCA O*NET 30.1.
+3. H1  Mettre en place l'ingestion Guichet-Emplois (Job Bank) dans Neo4j (:JobPosting)
+4. F3  Simulateur Interactif de Réadaptation (Filtrage par limitations fonctionnelles)
 ```
 
 ---

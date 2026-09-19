@@ -34,22 +34,23 @@ const alignClasses = {
 ---
 
 <div class={`relative inline-flex items-center group/bubble ${className}`}>
-  <!-- Bouton déclencheur interactif -->
+  <!-- Bouton déclencheur interactif avec cible tactile minimale de 44x44px -->
   <button
     type="button"
     aria-expanded="false"
     aria-controls={bubbleId}
-    class="info-bubble-btn inline-flex items-center justify-center w-4 h-4 rounded-full text-[10px] font-black leading-none bg-slate-200/80 dark:bg-slate-700/80 text-slate-600 dark:text-slate-300 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-500 dark:hover:text-white transition-all shadow-xs cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+    class="info-bubble-btn inline-flex items-center justify-center min-w-[44px] min-h-[44px] -m-2.5 p-2.5 group cursor-pointer focus:outline-none"
     title="Cliquer pour voir l'explication"
   >
     <span class="sr-only">Aide : {title}</span>
-    <span>?</span>
+    <span class="inline-flex items-center justify-center w-4 h-4 rounded-full text-[10px] font-black leading-none bg-slate-200/80 dark:bg-slate-700/80 text-slate-600 dark:text-slate-300 group-hover:bg-indigo-600 group-hover:text-white dark:group-hover:bg-indigo-500 dark:group-hover:text-white transition-all shadow-xs focus:ring-2 focus:ring-indigo-500/50">?</span>
   </button>
 
   <!-- Panneau Popover / Bulle d'explication -->
   <div
     id={bubbleId}
     role="tooltip"
+    aria-hidden="true"
     class={`info-bubble-panel absolute top-full mt-2 z-50 w-72 sm:w-80 p-3.5 rounded-2xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200 dark:border-slate-700/90 shadow-2xl text-left pointer-events-none opacity-0 scale-95 transition-all duration-200 ease-out ${alignClasses}`}
   >
     <!-- Flèche indicatrice -->
@@ -103,15 +104,34 @@ const alignClasses = {
 </style>
 
 <script>
-  // Gestionnaire global d'interaction pour toutes les bulles d'aide
+  let infoBubbleAbortController: AbortController | null = null;
+
+  function closeBubble(panel: HTMLElement, btn?: HTMLButtonElement | null) {
+    panel.classList.remove('is-active');
+    panel.classList.add('is-dismissed');
+    panel.setAttribute('aria-hidden', 'true');
+    const associatedBtn = btn || document.querySelector<HTMLButtonElement>(`[aria-controls="${panel.id}"]`);
+    associatedBtn?.setAttribute('aria-expanded', 'false');
+  }
+
+  function openBubble(panel: HTMLElement, btn: HTMLButtonElement) {
+    panel.classList.remove('is-dismissed');
+    panel.classList.add('is-active');
+    panel.setAttribute('aria-hidden', 'false');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+
+  // Gestionnaire d'interaction pour les bulles d'aide
   function setupInfoBubbles() {
+    // Nettoyage des écouteurs globaux précédents via AbortController
+    if (infoBubbleAbortController) {
+      infoBubbleAbortController.abort();
+    }
+    infoBubbleAbortController = new AbortController();
+    const { signal } = infoBubbleAbortController;
+
     const buttons = document.querySelectorAll<HTMLButtonElement>('.info-bubble-btn');
-
     buttons.forEach((btn) => {
-      // Éviter d'attacher plusieurs fois
-      if (btn.dataset.initialized === 'true') return;
-      btn.dataset.initialized = 'true';
-
       const panelId = btn.getAttribute('aria-controls');
       const panel = panelId ? document.getElementById(panelId) : null;
       if (!panel) return;
@@ -121,47 +141,47 @@ const alignClasses = {
         const isOpen = panel.classList.contains('is-active');
 
         // Fermer tous les autres panneaux ouverts
-        document.querySelectorAll('.info-bubble-panel.is-active').forEach((p) => {
-          if (p !== panel) {
-            p.classList.remove('is-active');
-            const otherBtn = document.querySelector(`[aria-controls="${p.id}"]`);
-            otherBtn?.setAttribute('aria-expanded', 'false');
-          }
+        document.querySelectorAll<HTMLElement>('.info-bubble-panel.is-active').forEach((p) => {
+          if (p !== panel) closeBubble(p);
         });
 
-        // Toggle courant
         if (isOpen) {
-          panel.classList.remove('is-active');
-          btn.setAttribute('aria-expanded', 'false');
+          closeBubble(panel, btn);
         } else {
-          panel.classList.add('is-active');
-          btn.setAttribute('aria-expanded', 'true');
+          openBubble(panel, btn);
         }
-      });
+      }, { signal });
+    });
+
+    // Réinitialiser l'état is-dismissed lorsque le pointeur quitte le groupe
+    const groups = document.querySelectorAll<HTMLElement>('.group\\/bubble');
+    groups.forEach((grp) => {
+      grp.addEventListener('mouseleave', () => {
+        const panel = grp.querySelector<HTMLElement>('.info-bubble-panel');
+        if (panel) {
+          panel.classList.remove('is-dismissed');
+        }
+      }, { signal });
     });
 
     // Fermer sur clic en dehors
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement | null;
-      if (!target?.closest('.group\/bubble')) {
-        document.querySelectorAll('.info-bubble-panel.is-active').forEach((panel) => {
-          panel.classList.remove('is-active');
-          const btn = document.querySelector(`[aria-controls="${panel.id}"]`);
-          btn?.setAttribute('aria-expanded', 'false');
+      if (!target?.closest('.group\\/bubble')) {
+        document.querySelectorAll<HTMLElement>('.info-bubble-panel.is-active').forEach((panel) => {
+          closeBubble(panel);
         });
       }
-    });
+    }, { signal });
 
     // Fermer sur touche Escape
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        document.querySelectorAll('.info-bubble-panel.is-active').forEach((panel) => {
-          panel.classList.remove('is-active');
-          const btn = document.querySelector(`[aria-controls="${panel.id}"]`);
-          btn?.setAttribute('aria-expanded', 'false');
+        document.querySelectorAll<HTMLElement>('.info-bubble-panel.is-active').forEach((panel) => {
+          closeBubble(panel);
         });
       }
-    });
+    }, { signal });
   }
 
   // Initialisation à l'écoute du DOM et des navigations Astro

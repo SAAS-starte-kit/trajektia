@@ -10,7 +10,7 @@ Ces règles s'appliquent lors de la modification ou de la création de composant
 ## 2. Formatage des Pourcentages
 - **Règle absolue :** Ne jamais afficher `0 %` pour des scores qui ont été calculés par la transformation mathématique POMP (Percent of Maximum Possible).
 - Un score brut de 1.00 sur l'échelle O*NET devient 0% avec la formule POMP, mais cela donne l'impression à l'utilisateur d'une erreur ou d'une nullité absolue.
-- À la place de `0 %`, vous devez afficher `< 5 %` de manière dynamique dans l'interface (ex: `score === 0 ? "< 5 %" : \`\${score} %\``).
+- À la place de `0 %`, vous devez afficher `< 5 %` de manière dynamique dans l'interface pour tout score inférieur à 5 % (ex: `score < 5 ? "< 5 %" : \`${score} %\``).
 
 ## 3. Design Premium et Cohérent
 - Évitez les couleurs génériques (rouge, bleu ou vert basiques). Utilisez des palettes harmonieuses, les utilitaires TailwindCSS, et gérez correctement le mode sombre (Dark Mode) si applicable.

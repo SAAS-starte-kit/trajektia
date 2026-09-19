@@ -1,0 +1,69 @@
+---
+// ============================================================
+// ToggleProPublic.astro
+// Composant pour basculer entre la vue simplifiée et la vue détaillée
+// ============================================================
+---
+<div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700/60 mb-6 transition-colors">
+  <div class="flex items-center gap-3">
+    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+      </svg>
+    </div>
+    <div>
+      <h3 class="text-sm font-bold text-slate-900 dark:text-white">Mode Professionnel</h3>
+      <p class="text-xs text-slate-500 dark:text-slate-400">Affiche les facettes psychométriques détaillées (O*NET) et les calculs statistiques pour les experts.</p>
+    </div>
+  </div>
+  
+  <label class="relative inline-flex items-center cursor-pointer">
+    <input type="checkbox" id="toggle-pro-mode" class="sr-only peer">
+    <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-indigo-300 dark:peer-focus:ring-indigo-800 rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-600 peer-checked:bg-indigo-600"></div>
+  </label>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('toggle-pro-mode') as HTMLInputElement;
+    if (!toggleBtn) return;
+
+    // Initialize state from localStorage
+    const isPro = localStorage.getItem('trajektia-pro-mode') === 'true';
+    toggleBtn.checked = isPro;
+    if (isPro) {
+      document.documentElement.classList.add('pro-mode-active');
+    }
+
+    // Listen for toggle changes
+    toggleBtn.addEventListener('change', (e) => {
+      const target = e.target as HTMLInputElement;
+      const checked = target.checked;
+      localStorage.setItem('trajektia-pro-mode', checked ? 'true' : 'false');
+      
+      if (checked) {
+        document.documentElement.classList.add('pro-mode-active');
+      } else {
+        document.documentElement.classList.remove('pro-mode-active');
+      }
+    });
+  });
+</script>
+
+<style is:global>
+  /* Elements that are ONLY visible in public mode */
+  .pro-mode-active .public-only {
+    display: none !important;
+  }
+  
+  /* Elements that are ONLY visible in pro mode */
+  .pro-only {
+    display: none !important;
+  }
+  .pro-mode-active .pro-only {
+    display: block !important;
+  }
+  .pro-mode-active .pro-only-flex {
+    display: flex !important;
+  }
+</style>

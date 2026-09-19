@@ -83,8 +83,9 @@ trajektia/etl/           → Pipelines Supabase & intégrations provinciales
 | **Moteur Prediger-RIASEC (D2)** | ✅ Opérationnel | `analytics/prediger_riasec_calibrator.py` | Indice ICP, détection métiers hybrides |
 | **Test Psychométrique (Big Five + RIASEC)** | ✅ Complet | 110 items (IPIP-50 + Mini-IP) | Scoring 11D cosinus centré ($r$ Pearson), Astro/React, Radars SVG |
 | **Matching Métiers Réels & Miroir (D5/D6)** | ✅ Complet | 301 métiers réels branchés | Biais des profils plats éradiqué, narratifs positifs, miroir OCCOQ |
+| **Le Siphon (Neo4j → Supabase)** | ✅ Complet | 8 phases d'export | Synchronisation Occupations, Compétences, Outils, RIASEC, SST & Exigences Physiques / DPC / Prediger (`occupation_physical_demands`) |
 | **Module Satisfaction TWA (D7)** | 🟡 Cadré | O*NET WIL (21 items) + Work Values | Étape 2 approfondissement (Theory of Work Adjustment) |
-| **Titres Alternatifs TCC 2025** | 🟡 Cadré | Table `competency_synonyms` | Prévu Phase B6 |
+| **Titres Alternatifs TCC 2025** | ✅ Complet | 1 028 synonymes | Ingestion via `scripts/ingest_tcc_synonyms.py` vers `competency_synonyms` |
 | **Compétences Vertes ESCO** | 🟡 Cadré | Filtre `isGreenSkill` | Stratégie verte ciblée (Phase A4) |
 | **Job Bank** (offres actives) | 🔴 Planifié | 0 | Script API à lancer (Phase A5) |
 
@@ -92,19 +93,11 @@ trajektia/etl/           → Pipelines Supabase & intégrations provinciales
 
 ## 🎯 Prochaines actions prioritaires
 
-### Action 1 — Module de Satisfaction & Valeurs de Travail (Phase D7) [IMMÉDIAT]
-- Implémentation du questionnaire **O*NET Work Importance Locator (WIL)** à 21 énoncés (Theory of Work Adjustment de Dawis & Lofquist).
-- Croisement avec les profils de valeurs de travail des 301 métiers québécois (`Work Values.txt`).
-- Scoring d'adéquation des leviers de satisfaction (Accomplissement, Indépendance, Reconnaissance, Relations, Soutien, Conditions).
+### Action 1 — Composants UI Fiches Métiers Astro (Phase F2) [IMMÉDIAT]
+Conception du Bloc Ergonomie (toggle Pro/Grand public) et du Graphique cartésien de Prediger dans `frontend-web/src/pages/metiers/[cnp].astro` (prototypage Google Stitch + Astro).
 
-### Action 2 — Mettre à jour Le Siphon (`le_siphon.py`) [CRITIQUE]
-Exporter et synchroniser les profils ergonomiques, les cotes DPC et les indicateurs de risques SST pour la consommation par l'API Directus et le frontend Astro.
-
-### Action 3 — Ingestion des Titres Alternatifs & Synonymes TCC 2025 (Phase B6)
-Alimenter la recherche sémantique avec le dictionnaire bilingue EDSC.
-
-### Action 4 — Composants UI & Simulateur de Réadaptation Astro (Phases F2 & F3)
-Intégrer les blocs d'ergonomie, de radar Prediger et le moteur d'adéquation dans l'espace conseiller et les fiches métiers.
+### Action 2 — Ingestion des Offres Guichet-Emplois (Job Bank - Phase H1)
+Ingestion de l'archive officielle Guichet-Emplois (Open Data CKAN) pour lier les offres réelles du marché aux codes CNP 2021 dans Neo4j (`:JobPosting`).
 
 ---
 

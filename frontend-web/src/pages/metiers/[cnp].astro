@@ -5,6 +5,9 @@
 // ============================================================
 import BaseLayout from '../../components/layout/BaseLayout.astro';
 import InfoBubble from '../../components/ui/InfoBubble.astro';
+import ToggleProPublic from '../../components/ui/ToggleProPublic.astro';
+import ProfilPsychometrique from '../../components/metiers/ProfilPsychometrique.astro';
+import ErgonomieSante from '../../components/metiers/ErgonomieSante.astro';
 import { METIERS_DATA, type FicheMetier } from '../../data/metiers';
 
 export async function getStaticPaths() {
@@ -26,9 +29,21 @@ function formatRiasecScore(score: number): string {
   return `${score} %`;
 }
 
+function formatPompScore(score: number): string {
+  if (score < 5) return '< 5 %';
+  return `${score} %`;
+}
+
 function getRiasecBarWidth(score: number): number {
   if (score === 0 || score < 5) return 4;
   return score;
+}
+
+function getMutationBadgeStyle(statut: string): string {
+  if (statut === 'Stable') return 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-200/70 dark:border-emerald-800/60';
+  if (statut === 'Transition modérée') return 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200/70 dark:border-amber-800/60';
+  if (statut === 'Mutation critique') return 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 border-rose-200/70 dark:border-rose-800/60 animate-pulse';
+  return 'bg-slate-50 dark:bg-slate-950/60 text-slate-700 dark:text-slate-300 border-slate-200/70 dark:border-slate-800/60';
 }
 ---
 
@@ -67,7 +82,28 @@ function getRiasecBarWidth(score: number): number {
           {metier.offres_emploi.length} Offres en direct
         </span>
         )}
+        {metier.indice_mutation && (
+          <span title={`Score de dérive sémantique (IDS): ${(metier.indice_mutation.score * 100).toFixed(1)}%`} class={`px-3 py-1 rounded-full text-xs font-bold border ${getMutationBadgeStyle(metier.indice_mutation.statut)}`}>
+            {metier.indice_mutation.statut === 'Mutation critique' ? '⚠️ ' : ''}Indice de Mutation : {metier.indice_mutation.statut}
+          </span>
+        )}
       </div>
+
+      {metier.indice_mutation && metier.indice_mutation.statut === 'Mutation critique' && (
+        <div class="mb-6 rounded-xl border border-rose-200 dark:border-rose-900/50 bg-rose-50/50 dark:bg-rose-950/30 p-4">
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-rose-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <div>
+              <h3 class="text-sm font-bold text-rose-800 dark:text-rose-300">Alerte Mutation Métier (Indice Trajektia™)</h3>
+              <p class="mt-1 text-sm text-rose-700 dark:text-rose-400">
+                Les compétences demandées sur le terrain s'écartent significativement du cadre officiel (+{(metier.indice_mutation.score * 100).toFixed(1)}% de divergence sémantique). L'ADN de ce métier est en mutation rapide.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
         {metier.titre}
@@ -139,6 +175,8 @@ function getRiasecBarWidth(score: number): number {
       )}
     </div>
   </div>
+
+  <ToggleProPublic />
 
   <!-- BENTO GRID : STATS & INDICATEURS CLÉS -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -279,7 +317,7 @@ function getRiasecBarWidth(score: number): number {
         <div class="text-xs font-semibold text-slate-500 dark:text-slate-400">Risque d'automatisation :</div>
         <div class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
           {metier.perspectives.automatisation_risque}
-          <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+          <span class={`w-3 h-3 rounded-full ${metier.perspectives.automatisation_risque.toLowerCase().includes('faible') ? 'bg-emerald-500' : metier.perspectives.automatisation_risque.toLowerCase().includes('élevé') || metier.perspectives.automatisation_risque.toLowerCase().includes('fort') ? 'bg-rose-500' : 'bg-amber-500'}`}></span>
         </div>
       </div>
 
@@ -292,206 +330,11 @@ function getRiasecBarWidth(score: number): number {
   </div>
 
   <!-- ============================================================ -->
-  <!-- NOUVELLE SECTION : PROFIL RIASEC (TYPOLOGIE HOLLAND) -->
+  <!-- PROFILS PSYCHOMÉTRIQUES ET SANTÉ (NOUVEAUX COMPOSANTS) -->
   <!-- ============================================================ -->
-  <section id="riasec" class="mb-10">
-    <div class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 sm:p-8 border border-slate-200/90 dark:border-slate-700/80 shadow-xl">
-      
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700/80">
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full text-xs font-bold bg-purple-100 dark:bg-purple-950/80 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/50 mb-1.5">
-            <span>Orientation Holland</span>
-            <span>•</span>
-            <span>Calibration Prediger</span>
-            <InfoBubble 
-              title="Typologie RIASEC & Holland"
-              description="Le modèle RIASEC évalue l'affinité d'un métier avec 6 grands types d'intérêts professionnels : Réaliste, Investigateur, Artistique, Social, Entreprenant et Conventionnel. Le score en pourcentage indique l'intensité de chaque dimension requise. Un score < 5 % signale une absence d'exigence dans l'exercice quotidien."
-              source="O*NET 28.2 & John Holland"
-              badge="Psychométrie"
-              align="left"
-            />
-          </div>
-          <h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
-            Profil RIASEC : <span class="text-purple-600 dark:text-purple-400 font-extrabold">{metier.riasec.code_holland}</span>
-          </h2>
-          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">
-            {metier.riasec.description}
-          </p>
-        </div>
+  <ProfilPsychometrique metier={metier} />
 
-        <div class="flex flex-wrap gap-1.5 shrink-0">
-          {metier.riasec.traits_dominants.map(trait => (
-            <span class="px-3 py-1 rounded-xl text-xs font-black bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-800/60">
-              {trait}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <!-- Jauges des 6 dimensions RIASEC -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 mt-6">
-        
-        <!-- R - Réaliste -->
-        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50 text-center">
-          <div class="flex items-center justify-center gap-1 text-xs font-bold text-slate-500 dark:text-slate-400">
-            <span>R - Réaliste</span>
-            <InfoBubble 
-              title="R - Réaliste (Pratique & Manuel)"
-              description="Activités concrètes, manuelles, manipulation d'outils, de machines ou travail en extérieur. Un score < 5 % indique un métier intellectuel ou de bureau sans exigences physiques."
-              source="O*NET 28.2"
-              align="center"
-            />
-          </div>
-          <div class="text-lg font-black text-slate-900 dark:text-white my-1">{formatRiasecScore(metier.riasec.scores.realiste)}</div>
-          <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-            <div class="bg-amber-500 h-full rounded-full transition-all" style={`width: ${getRiasecBarWidth(metier.riasec.scores.realiste)}%`}></div>
-          </div>
-          <span class="text-[10px] text-slate-400 block mt-1">Pratique / Manuel</span>
-        </div>
-
-        <!-- I - Investigateur -->
-        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50 text-center">
-          <div class="flex items-center justify-center gap-1 text-xs font-bold text-slate-500 dark:text-slate-400">
-            <span>I - Investigateur</span>
-            <InfoBubble 
-              title="I - Investigateur (Logique & Théorie)"
-              description="Résolution de problèmes complexes, analyse scientifique, logique mathématique et esprit critique. Un score < 5 % indique des tâches d'exécution sans recherche abstraite."
-              source="O*NET 28.2"
-              align="center"
-            />
-          </div>
-          <div class="text-lg font-black text-slate-900 dark:text-white my-1">{formatRiasecScore(metier.riasec.scores.investigateur)}</div>
-          <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-            <div class="bg-indigo-600 dark:bg-indigo-400 h-full rounded-full transition-all" style={`width: ${getRiasecBarWidth(metier.riasec.scores.investigateur)}%`}></div>
-          </div>
-          <span class="text-[10px] text-slate-400 block mt-1">Logique / Théorie</span>
-        </div>
-
-        <!-- A - Artistique -->
-        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50 text-center">
-          <div class="flex items-center justify-center gap-1 text-xs font-bold text-slate-500 dark:text-slate-400">
-            <span>A - Artistique</span>
-            <InfoBubble 
-              title="A - Artistique (Créativité & Design)"
-              description="Création esthétique, originalité, design visuel, liberté d'expression sans cadre strict. Un score < 5 % indique un travail technique normé sans composante artistique requise."
-              source="O*NET 28.2"
-              align="center"
-            />
-          </div>
-          <div class="text-lg font-black text-slate-900 dark:text-white my-1">{formatRiasecScore(metier.riasec.scores.artistique)}</div>
-          <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-            <div class="bg-pink-500 h-full rounded-full transition-all" style={`width: ${getRiasecBarWidth(metier.riasec.scores.artistique)}%`}></div>
-          </div>
-          <span class="text-[10px] text-slate-400 block mt-1">Créativité / Design</span>
-        </div>
-
-        <!-- S - Social -->
-        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50 text-center">
-          <div class="flex items-center justify-center gap-1 text-xs font-bold text-slate-500 dark:text-slate-400">
-            <span>S - Social</span>
-            <InfoBubble 
-              title="S - Social (Aide & Relationnel)"
-              description="Aide aux personnes, écoute active, enseignement, soins et collaboration bienveillante. Un score < 5 % caractérise un métier centré sur les objets, la matière ou les données sans accompagnement humain direct."
-              source="O*NET 28.2"
-              align="center"
-            />
-          </div>
-          <div class="text-lg font-black text-slate-900 dark:text-white my-1">{formatRiasecScore(metier.riasec.scores.social)}</div>
-          <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-            <div class="bg-emerald-500 h-full rounded-full transition-all" style={`width: ${getRiasecBarWidth(metier.riasec.scores.social)}%`}></div>
-          </div>
-          <span class="text-[10px] text-slate-400 block mt-1">Aide / Soins</span>
-        </div>
-
-        <!-- E - Entreprenant -->
-        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50 text-center">
-          <div class="flex items-center justify-center gap-1 text-xs font-bold text-slate-500 dark:text-slate-400">
-            <span>E - Entreprenant</span>
-            <InfoBubble 
-              title="E - Entreprenant (Affaires & Leadership)"
-              description="Persuasion, négociation commerciale, vente, gestion d'affaires et direction d'équipe. Un score < 5 % (score brut O*NET 1.0/7) signifie que le métier n'exige aucune fonction d'affaires ou de vente au quotidien."
-              source="O*NET 28.2"
-              align="center"
-            />
-          </div>
-          <div class="text-lg font-black text-slate-900 dark:text-white my-1">{formatRiasecScore(metier.riasec.scores.entreprenant)}</div>
-          <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-            <div class="bg-orange-500 h-full rounded-full transition-all" style={`width: ${getRiasecBarWidth(metier.riasec.scores.entreprenant)}%`}></div>
-          </div>
-          <span class="text-[10px] text-slate-400 block mt-1">Leadership / Vente</span>
-        </div>
-
-        <!-- C - Conventionnel -->
-        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-700/50 text-center">
-          <div class="flex items-center justify-center gap-1 text-xs font-bold text-slate-500 dark:text-slate-400">
-            <span>C - Conventionnel</span>
-            <InfoBubble 
-              title="C - Conventionnel (Méthode & Rigueur)"
-              description="Respect méthodique des règles, organisation des données, suivi rigoureux de normes de conformité et de qualité."
-              source="O*NET 28.2"
-              align="center"
-            />
-          </div>
-          <div class="text-lg font-black text-slate-900 dark:text-white my-1">{formatRiasecScore(metier.riasec.scores.conventionnel)}</div>
-          <div class="h-2 w-full bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-            <div class="bg-blue-500 h-full rounded-full transition-all" style={`width: ${getRiasecBarWidth(metier.riasec.scores.conventionnel)}%`}></div>
-          </div>
-          <span class="text-[10px] text-slate-400 block mt-1">Rigueur / Données</span>
-        </div>
-
-      </div>
-
-      <!-- SECTION BIG FIVE (OCEAN) SI DISPONIBLE -->
-      {metier.big_five && (
-        <div class="mt-6 pt-6 border-t border-slate-200/80 dark:border-slate-700/80">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-            <div class="flex items-center gap-2">
-              <h3 class="text-sm font-black text-slate-900 dark:text-white tracking-tight">
-                Profil de Personnalité au Travail (Modèle OCEAN / Big Five)
-              </h3>
-              <InfoBubble 
-                title="Modèle Psychométrique Big Five (OCEAN)"
-                description="Le modèle des Big Five évalue les tendances comportementales en milieu professionnel selon 5 facteurs fondamentaux : Ouverture, Conscience, Extraversion, Agréabilité et Stabilité émotionnelle (inverse du névrosisme)."
-                source="Crosswalk O*NET Work Styles & BFI-2"
-                badge="Psychométrie"
-                align="left"
-              />
-            </div>
-            <span class="text-[11px] text-slate-400 font-medium">Scores normalisés sur 100</span>
-          </div>
-
-          <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
-              <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Ouverture</span>
-              <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.ouverture} %</div>
-              <span class="text-[9px] text-slate-400 block">Curiosité / Innovation</span>
-            </div>
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
-              <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Conscience</span>
-              <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.conscientieux} %</div>
-              <span class="text-[9px] text-slate-400 block">Rigueur / Fiabilité</span>
-            </div>
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
-              <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Extraversion</span>
-              <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.extraversion} %</div>
-              <span class="text-[9px] text-slate-400 block">Énergie / Contact</span>
-            </div>
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
-              <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Agréabilité</span>
-              <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.agreabilite} %</div>
-              <span class="text-[9px] text-slate-400 block">Coopération / Écoute</span>
-            </div>
-            <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center col-span-2 sm:col-span-1">
-              <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Stabilité ém.</span>
-              <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.stabilite_emotionnelle} %</div>
-              <span class="text-[9px] text-slate-400 block">Gestion du stress</span>
-            </div>
-          </div>
-        </div>
-      )}
-
-    </div>
-  </section>
+  <ErgonomieSante metier={metier} />
 
   <!-- ============================================================ -->
   <!-- SECTION OFFRES D'EMPLOI EN TEMPS RÉEL -->
@@ -588,7 +431,7 @@ function getRiasecBarWidth(score: number): number {
     </div>
   </section>
 
-  </section>
+  
   )}
 
   <!-- ============================================================ -->
@@ -616,10 +459,13 @@ function getRiasecBarWidth(score: number): number {
         </p>
 
         <!-- Formulaire d'inscription courriel interactif -->
-        <form id="lead-capture-form" class="mt-6 flex flex-col sm:flex-row gap-3">
+        <form id="lead-capture-form" data-cnp={metier.cnp} class="mt-6 flex flex-col sm:flex-row gap-3">
+          <label for="lead-email-input" class="sr-only">Adresse courriel</label>
           <input 
             type="email" 
             id="lead-email-input"
+            name="email"
+            autocomplete="email"
             required
             placeholder="Entrez votre courriel (ex: nom@exemple.ca)..." 
             class="flex-1 px-4 py-3 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 transition-all backdrop-blur-sm"
@@ -632,7 +478,7 @@ function getRiasecBarWidth(score: number): number {
           </button>
         </form>
 
-        <p id="lead-success-msg" class="hidden mt-3 text-xs text-emerald-400 font-semibold">
+        <p id="lead-success-msg" role="status" aria-live="polite" class="hidden mt-3 text-xs font-semibold">
           ✓ Merci ! Vous êtes bien inscrit(e) aux alertes pour le métier {metier.titre_court}.
         </p>
 
@@ -733,7 +579,7 @@ function getRiasecBarWidth(score: number): number {
     </div>
   </section>
 
-</section>
+
   )}
 
   <!-- ============================================================ -->
@@ -844,7 +690,7 @@ function getRiasecBarWidth(score: number): number {
     </div>
   </section>
 
-</section>
+
   )}
 
   <!-- ============================================================ -->
@@ -901,7 +747,7 @@ function getRiasecBarWidth(score: number): number {
     </div>
   </section>
 
-</section>
+
   )}
 
   <!-- ============================================================ -->
@@ -948,7 +794,7 @@ function getRiasecBarWidth(score: number): number {
     </div>
   </section>
 
-</section>
+
   )}
 
   <!-- Script interactif d'inscription Lead Capture -->
@@ -960,13 +806,13 @@ function getRiasecBarWidth(score: number): number {
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = emailInput?.value || '';
-      // On extrait le CNP de l'URL pour l'associer au lead
-      const urlParts = window.location.pathname.split('/');
-      const cnp = urlParts[urlParts.length - 1];
+      // On extrait le CNP via data-cnp ou l'URL (avec filtre sur segments non-vides pour gérer un éventuel trailing slash)
+      const cnp = form?.dataset.cnp || window.location.pathname.split('/').filter(Boolean).pop() || '';
 
       if (email && successMsg) {
         try {
-          const response = await fetch('/api/leads', {
+          const apiUrl = import.meta.env.PUBLIC_API_URL || 'http://localhost:8000';
+          const response = await fetch(`${apiUrl}/api/leads`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -975,12 +821,20 @@ function getRiasecBarWidth(score: number): number {
           });
 
           if (response.ok) {
+            successMsg.textContent = `✓ Merci ! Vous êtes bien inscrit(e) aux alertes.`;
+            successMsg.className = "mt-3 text-xs text-emerald-400 font-semibold";
             successMsg.classList.remove('hidden');
             if (emailInput) emailInput.value = '';
           } else {
+            successMsg.textContent = "❌ Erreur lors de l'abonnement. Veuillez réessayer.";
+            successMsg.className = "mt-3 text-xs text-rose-400 font-semibold";
+            successMsg.classList.remove('hidden');
             console.error("Erreur lors de l'abonnement");
           }
         } catch (err) {
+          successMsg.textContent = "❌ Erreur de connexion au serveur.";
+          successMsg.className = "mt-3 text-xs text-rose-400 font-semibold";
+          successMsg.classList.remove('hidden');
           console.error("Erreur de connexion", err);
         }
       }

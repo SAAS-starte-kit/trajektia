@@ -25,7 +25,13 @@ def main():
         print("Erreur: SUPABASE_DB_URL introuvable.")
         sys.exit(1)
         
-    sql_file = base_dir / "database" / "schema_v12_pgvector.sql"
+    if len(sys.argv) > 1:
+        sql_file = Path(sys.argv[1])
+        if not sql_file.is_absolute():
+            sql_file = base_dir / sql_file
+    else:
+        sql_file = base_dir / "database" / "schema_v12_pgvector.sql"
+        
     with open(sql_file, "r", encoding="utf-8") as f:
         sql = f.read()
         

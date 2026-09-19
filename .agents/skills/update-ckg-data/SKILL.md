@@ -1,14 +1,14 @@
 ---
 name: update-ckg-data
-description: Automatiser le pipeline ETL pour mettre à jour le graphe de connaissances avec les données O*NET.
+description: Automatiser le pipeline ETL pour synchroniser les données du graphe Neo4j vers PostgreSQL (Supabase).
 ---
 
 # update-ckg-data
 
-Ce skill permet de mettre à jour la base de données Neo4j avec de nouvelles données extraites et transformées via le script ETL `le_siphon.py`.
+Ce skill permet de synchroniser la base de données PostgreSQL (Supabase) avec les nouvelles données extraites du graphe Neo4j via le script ETL `le_siphon.py`.
 
 ## Contexte
-Lorsque de nouvelles données O*NET ou ESCD sont disponibles, il est nécessaire de les injecter proprement dans la base de données Neo4j (le Career Knowledge Graph de Trajektia). Ce processus peut prendre du temps et nécessite des vérifications d'intégrité après coup.
+Lorsque de nouvelles données O*NET ou ESCD ont été injectées dans le graphe Neo4j (le Career Knowledge Graph de Trajektia), il est nécessaire de les extraire et de les charger dans Supabase pour le frontend. Ce processus peut prendre du temps et nécessite des vérifications d'intégrité après coup.
 
 ## Étapes du Workflow
 
