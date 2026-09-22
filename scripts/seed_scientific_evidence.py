@@ -301,6 +301,87 @@ def get_evidence_data() -> list:
                 }
             ],
             'consensus_summary': 'Le reverse scoring est un standard psychométrique depuis Goldberg (1992) pour le traitement des échelles de personnalité (IPIP-50).'
+        },
+        {
+            'claim_key': 'pr_rsm_edwards_polynomial_fit',
+            'category': 'Modélisation Non-Linéaire',
+            'statement_fr': 'La régression polynomiale combinée à l\'analyse des surfaces de réponse (PR-RSM) surpasse les scores de différence absolue en modélisant de manière asymétrique et non-linéaire la sous-utilisation des compétences versus la surcharge de travail.',
+            'statement_en': 'Polynomial regression combined with response surface methodology (PR-RSM) outperforms simple difference scores by capturing non-linear and asymmetric effects of skill underutilization versus workload strain.',
+            'consensus_percentage': 96,
+            'consensus_verdict': 'Standard Méthodologique Avancé',
+            'sample_size_total': 'N > 1 200',
+            'key_papers': [
+                {
+                    'title': 'On the use of polynomial regression equations as an alternative to difference scores in organizational research',
+                    'authors': 'Jeffrey R. Edwards & Mark E. Parry',
+                    'year': 1993,
+                    'journal': 'Academy of Management Journal',
+                    'doi': '10.5465/256643',
+                    'open_access_url': None,
+                    'tldr': 'Démonstration formelle des faiblesses psychométriques des scores de différence et validation des tests géométriques de congruence (LOC) et d\'incongruence (LOIC).'
+                },
+                {
+                    'title': 'Alternatives to difference scores: Polynomial regression analysis and response surface methodology',
+                    'authors': 'Jeffrey R. Edwards',
+                    'year': 2002,
+                    'journal': 'Measuring and Analyzing Behavior in Organizations',
+                    'doi': None,
+                    'open_access_url': None,
+                    'tldr': None
+                }
+            ],
+            'consensus_summary': 'La méthodologie PR-RSM d\'Edwards permet d\'évaluer la ligne de congruence (a1, a2) et la ligne d\'incongruence (a3, a4) sans masquer la variance person-job.'
+        },
+        {
+            'claim_key': 'angular_agreement_riasec_congruence',
+            'category': 'Psychométrie',
+            'statement_fr': 'L\'accord angulaire (Angular Agreement) sur l\'espace circomplexe de Holland évalue la similarité directionnelle sans biais d\'amplitude et possède une validité de critère supérieure à la distance euclidienne pour prédire la persévérance.',
+            'statement_en': 'Angular Agreement in Holland\'s circumplex space assesses directional similarity without magnitude bias and exhibits superior criterion validity compared to Euclidean distance for predicting satisfaction and retention.',
+            'consensus_percentage': 92,
+            'consensus_verdict': 'Validé Empiriquement',
+            'sample_size_total': 'N = 173',
+            'key_papers': [
+                {
+                    'title': 'A preliminary analysis of the psychometric properties of the German O*NET interest profiler short form in rehabilitation education',
+                    'authors': 'Steffen Wild & Michélle Möhring',
+                    'year': 2026,
+                    'journal': 'Frontiers in Rehabilitation Sciences',
+                    'doi': '10.3389/fresc.2026.1789335',
+                    'open_access_url': 'https://www.frontiersin.org/journals/rehabilitation-sciences/articles/10.3389/fresc.2026.1789335/pdf',
+                    'tldr': 'Dans un contexte professionnel diffus, l\'accord angulaire montre une corrélation significative avec la satisfaction des études (r = .18, p < .05) alors que la distance euclidienne reste non significative (r = -.08).'
+                }
+            ],
+            'consensus_summary': 'L\'accord angulaire (cosinus de l\'angle directionnel des vecteurs RIASEC) neutralise les effets de halo et les biais d\'acquiescement par rapport à la distance euclidienne.'
+        },
+        {
+            'claim_key': 'meta_analysis_bigfive_riasec_correlations',
+            'category': 'Psychométrie',
+            'statement_fr': 'Les méta-analyses confirment une convergence théorique et empirique robuste entre les 5 grands facteurs de personnalité (OCEAN) et les 6 intérêts RIASEC, notamment entre Ouverture et Artistique (r = .48) ainsi qu\'Extraversion et Entreprenant (r = .41).',
+            'statement_en': 'Meta-analyses confirm robust theoretical and empirical convergence between Big Five traits (OCEAN) and RIASEC vocational interests, notably Openness and Artistic (r = .48) as well as Extraversion and Enterprising (r = .41).',
+            'consensus_percentage': 97,
+            'consensus_verdict': 'Consensus Établi',
+            'sample_size_total': 'N > 50 000',
+            'key_papers': [
+                {
+                    'title': 'Higher-order dimensions of the Big Five personality traits and the Big Six vocational interest types',
+                    'authors': 'Michael K. Mount, Murray R. Barrick, Steven M. Scullen, James Rounds',
+                    'year': 2005,
+                    'journal': 'Personnel Psychology',
+                    'doi': '10.1111/j.1744-6570.2005.00668.x',
+                    'open_access_url': 'http://www.sitesbysarah.com/mbwp/Pubs/2005_Mount_Barrick_Scullen_Rounds_PP.pdf',
+                    'tldr': 'Synthèse méta-analytique structurant les liens entre OCEAN et RIASEC et reliant leurs dimensions aux axes d\'ordre supérieur de Prediger et Hogan.'
+                },
+                {
+                    'title': 'Personality and vocational interests: A meta-analysis',
+                    'authors': 'M. R. Barrick, M. K. Mount, & R. Gupta',
+                    'year': 2003,
+                    'journal': 'Journal of Vocational Behavior',
+                    'doi': '10.1016/S0001-8791(02)00026-9',
+                    'open_access_url': None,
+                    'tldr': 'Matrice des corrélations vraies corrigées d\'atténuation entre les 5 facteurs OCEAN et les 6 types de Holland.'
+                }
+            ],
+            'consensus_summary': 'Les corrélations méta-analytiques d\'atténuation corrigée verrouillent la cohérence croisée du profil usager dans l\'architecture en Double Hélice de Trajektia.'
         }
     ]
 

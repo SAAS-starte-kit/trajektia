@@ -85,8 +85,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       # Scripts d'initialisation (appliqués une seule fois)
-      - ./database/schema.sql:/docker-entrypoint-initdb.d/01_schema_v1.sql
-      - ./database/schema_v2.sql:/docker-entrypoint-initdb.d/02_schema_v2.sql
+      - ./packages/database/schema.sql:/docker-entrypoint-initdb.d/01_schema_v1.sql
+      - ./packages/database/schema_v2.sql:/docker-entrypoint-initdb.d/02_schema_v2.sql
     networks:
       - trajektia_net
     # Pas exposé à l'extérieur — accessible uniquement via le réseau interne
@@ -228,8 +228,8 @@ services:
   # ============================================================
   fastapi:
     build:
-      context: .
-      dockerfile: Dockerfile.api
+      context: ./apps/api
+      dockerfile: Dockerfile
     container_name: trajektia_api
     restart: unless-stopped
     environment:
@@ -248,3 +248,22 @@ services:
       - "traefik.http.routers.api.entrypoints=websecure"
       - "traefik.http.routers.api.tls.certresolver=letsencrypt"
       - "traefik.http.services.api.loadbalancer.server.port=8000"
+
+  # ============================================================
+  # FRONTEND ASTRO — Vitrine Web & Interface Utilisateur
+  # ============================================================
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    container_name: trajektia_frontend
+    restart: unless-stopped
+    networks:
+      - trajektia_net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+

@@ -1,7 +1,7 @@
 <!-- gitnexus:start -->
 # GitNexus — Code Intelligence
 
-This project is indexed by GitNexus as **trajektia** (2232 symbols, 3527 relationships, 64 execution flows).
+This project is indexed by GitNexus as **trajektia** (2477 symbols, 3866 relationships, 71 execution flows).
 
 > Index stale? Run `node .gitnexus/run.cjs analyze --index-only` from the project root — it auto-selects an available runner. No `.gitnexus/run.cjs` yet? Bootstrap with `npx`, `bunx`, or `pnpm dlx` — e.g. `bunx gitnexus@latest analyze` (npm 11 npx crash; #1939).
 
@@ -40,16 +40,5 @@ This project is indexed by GitNexus as **trajektia** (2232 symbols, 3527 relatio
 | Rename / extract / split / refactor | `.claude/skills/gitnexus-refactoring/SKILL.md` |
 | Tools, resources, schema reference | `.claude/skills/gitnexus-guide/SKILL.md` |
 | Index, status, clean, wiki CLI commands | `.claude/skills/gitnexus-cli/SKILL.md` |
-| Work in the Etl area (104 symbols) | `.claude/skills/gitnexus-area-etl/SKILL.md` |
-| Work in the Components area (69 symbols) | `.claude/skills/gitnexus-area-components/SKILL.md` |
-| Work in the Ingestors area (57 symbols) | `.claude/skills/gitnexus-area-ingestors/SKILL.md` |
-| Work in the Scripts area (42 symbols) | `.claude/skills/gitnexus-area-scripts/SKILL.md` |
-| Work in the Frontend-web area (15 symbols) | `.claude/skills/gitnexus-area-frontend-web/SKILL.md` |
-| Work in the Afe area (12 symbols) | `.claude/skills/gitnexus-area-afe/SKILL.md` |
-| Work in the Analytics area (10 symbols) | `.claude/skills/gitnexus-area-analytics/SKILL.md` |
-| Work in the Directus area (5 symbols) | `.claude/skills/gitnexus-area-directus/SKILL.md` |
-| Work in the Cluster_61 area (5 symbols) | `.claude/skills/gitnexus-area-cluster-61/SKILL.md` |
-| Work in the Cluster_19 area (4 symbols) | `.claude/skills/gitnexus-area-cluster-19/SKILL.md` |
-| Work in the Data area (4 symbols) | `.claude/skills/gitnexus-area-data/SKILL.md` |
 
 <!-- gitnexus:end -->

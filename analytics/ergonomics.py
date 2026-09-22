@@ -6,7 +6,7 @@ from psycopg2.extras import RealDictCursor
 try:
     import sys
     sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-    from ckg.ckg_config import SUPABASE_DB_URL
+    from packages.ckg.ckg_config import SUPABASE_DB_URL
 except ImportError:
     SUPABASE_DB_URL = os.getenv("SUPABASE_DB_URL", "")
 

@@ -1,0 +1,68 @@
+---
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import MobileBottomNav from './MobileBottomNav.astro';
+import FeatureFlagDevPanel from '../ui/FeatureFlagDevPanel';
+import '../../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Plateforme éducative pour les programmes collégiaux au Québec" } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Theme Script to avoid FOUC -->
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+      
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+      
+      window.localStorage.setItem('theme', theme);
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col bg-slate-50 dark:bg-[#0B1120] text-slate-800 dark:text-slate-100 font-sans antialiased transition-colors duration-250 pb-20 md:pb-0">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-indigo-600 focus:text-white rounded-br-lg font-bold">Passer au contenu</a>
+    
+    <!-- Background Glow Effects -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+      <!-- Light mode subtle grid -->
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-70 dark:opacity-0 transition-opacity duration-300"></div>
+      
+      <!-- Dark mode ambient AI Glow -->
+      <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-amber-400/10 blur-[130px] rounded-full opacity-0 dark:opacity-100 transition-opacity duration-500"></div>
+      <div class="absolute top-[600px] right-0 w-[450px] h-[450px] bg-teal-500/10 blur-[120px] rounded-full opacity-0 dark:opacity-100 transition-opacity duration-500"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_65%_50%_at_50%_20%,#000_60%,transparent_100%)] opacity-0 dark:opacity-25 transition-opacity duration-300"></div>
+    </div>
+
+    <Header />
+    <main id="main-content" class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+      <slot />
+    </main>
+    <Footer />
+    <MobileBottomNav />
+    {/* Widget développeur — Feature Flags (s'affiche uniquement si FF_CONSEILLER_DEV_PANEL est actif) */}
+    <FeatureFlagDevPanel client:idle />
+  </body>
+</html>

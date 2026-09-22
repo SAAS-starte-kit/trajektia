@@ -1,0 +1,156 @@
+---
+// ============================================================
+// ErgonomieSante.astro
+// Composant pour afficher les exigences physiques et risques ergonomiques
+// Intègre les facteurs de stress O*NET (TAT) derrière FF_METIERS_WORK_CONTEXTS
+// ============================================================
+import type { FicheMetier } from '../../data/metiers';
+import { isFeatureEnabled } from '../../config/feature-flags';
+
+interface Props {
+  metier: FicheMetier;
+}
+
+const { metier } = Astro.props;
+const { exigences_physiques } = metier;
+const showOnetContexts = isFeatureEnabled('FF_METIERS_WORK_CONTEXTS');
+---
+
+{exigences_physiques && (
+<div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700/60 mb-8">
+  <div class="flex items-center gap-3 mb-6">
+    <div class="p-3 bg-rose-100 dark:bg-rose-900/50 rounded-xl text-rose-600 dark:text-rose-400">
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+    </div>
+    <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Ergonomie & Santé au travail</h2>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-6">
+    <div class="space-y-4">
+      <h3 class="text-md font-bold text-slate-800 dark:text-slate-200 border-b border-slate-100 dark:border-slate-700 pb-2">Exigences Physiques</h3>
+      
+      <div class="grid grid-cols-2 gap-4">
+        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+          <div class="text-xs font-bold text-slate-500 uppercase">Posture</div>
+          <div class="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-1">{exigences_physiques.posture}</div>
+        </div>
+        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+          <div class="text-xs font-bold text-slate-500 uppercase">Vision</div>
+          <div class="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-1">{exigences_physiques.vision}</div>
+        </div>
+        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+          <div class="text-xs font-bold text-slate-500 uppercase">Audition</div>
+          <div class="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-1">{exigences_physiques.audition}</div>
+        </div>
+        <div class="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+          <div class="text-xs font-bold text-slate-500 uppercase">Levage</div>
+          <div class="text-sm font-semibold text-slate-800 dark:text-slate-200 mt-1">{exigences_physiques.levage}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pro-only space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-2">
+        <h3 class="text-md font-bold text-slate-800 dark:text-slate-200">Avertissements CNESST</h3>
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
+          Mode Pro
+        </span>
+      </div>
+      
+      {exigences_physiques.risques_cnesst && exigences_physiques.risques_cnesst.length > 0 ? (
+        <ul class="space-y-2">
+          {exigences_physiques.risques_cnesst.map(risque => (
+            <li class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-300 bg-rose-50 dark:bg-rose-900/10 p-2 rounded border border-rose-100 dark:border-rose-900/30">
+              <svg class="w-4 h-4 text-rose-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+              {risque}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="text-sm text-slate-500 dark:text-slate-400 italic">Aucun risque ergonomique majeur signalé par la CNESST pour ce métier.</p>
+      )}
+    </div>
+  </div>
+</div>
+)}
+
+{showOnetContexts && (
+<div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700/60 mb-8">
+  <div class="flex items-center gap-3 mb-2">
+    <div class="p-3 bg-violet-100 dark:bg-violet-900/40 rounded-xl text-violet-600 dark:text-violet-400">
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.347.347a3.75 3.75 0 01-5.304 0l-.347-.347z" />
+      </svg>
+    </div>
+    <div>
+      <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Facteurs de Stress O*NET</h2>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Axes d'interaction TAT — Tett &amp; Burnett (2003)</p>
+    </div>
+    <span class="ml-auto inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-violet-100 text-violet-800 dark:bg-violet-900/40 dark:text-violet-300 border border-violet-200 dark:border-violet-800">
+      Bêta
+    </span>
+  </div>
+
+  <p class="text-sm text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+    Ces contextes de travail sont des <strong class="text-slate-800 dark:text-slate-200">activateurs situationnels</strong> qui interagissent
+    avec le profil de stabilité émotionnelle d'une personne pour produire un écart de tension (Strain Index).
+    Un accompagnement c.o. permet d'explorer des leviers d'aménagement adaptés.
+  </p>
+
+  <div class="grid sm:grid-cols-2 gap-4">
+    <!-- Pression temporelle -->
+    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 space-y-2">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Pression Temporelle</span>
+        <code class="text-[10px] text-slate-400 font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">O*NET 4.C.3.d.1</code>
+      </div>
+      <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+        Fréquence à laquelle le travail implique de respecter des délais serrés.
+        Interaction : Névrosisme × Perfectionnisme → risque d'épuisement émotionnel aigu.
+      </p>
+    </div>
+
+    <!-- Fréquence des conflits -->
+    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 space-y-2">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Conflits interpersonnels</span>
+        <code class="text-[10px] text-slate-400 font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">O*NET 4.C.1.d.2</code>
+      </div>
+      <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+        Fréquence de contact avec des personnes difficiles ou en situation de crise.
+        Interaction : Névrosisme × Empathie → risque de fatigue compassionnelle.
+      </p>
+    </div>
+
+    <!-- Conséquences des erreurs -->
+    <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800 space-y-2">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-slate-800 dark:text-slate-200">Conséquences des erreurs</span>
+        <code class="text-[10px] text-slate-400 font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">O*NET 4.C.3.a.1</code>
+      </div>
+      <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+        Gravité des conséquences en cas d'erreur sur ce poste.
+        Interaction : Névrosisme → risque de paralysie décisionnelle sous pression.
+      </p>
+    </div>
+
+    <!-- Travail structuré (protecteur) -->
+    <div class="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-800/40 space-y-2">
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-bold text-emerald-800 dark:text-emerald-300">Degré de structuration</span>
+        <code class="text-[10px] text-slate-400 font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">O*NET 4.C.3.b.8a</code>
+      </div>
+      <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+        Niveau de procédures et routines claires sur le poste.
+        <span class="text-emerald-700 dark:text-emerald-400 font-medium">Facteur protecteur</span> — réduit la tension perçue.
+      </p>
+    </div>
+  </div>
+
+  <p class="text-[11px] text-slate-400 dark:text-slate-600 mt-4 italic">
+    Source : O*NET Work Contexts 30.1 (U.S. DOL). Les scores d'interaction personnalisés sont disponibles dans votre rapport psychométrique.
+  </p>
+</div>
+)}
