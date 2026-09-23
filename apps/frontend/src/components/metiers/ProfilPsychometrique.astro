@@ -1,7 +1,7 @@
 ---
 // ============================================================
 // ProfilPsychometrique.astro
-// Composant pour afficher le profil RIASEC, Triade DPC et les 21 facettes
+// Composant pour afficher le profil RIASEC, Tétraèdre DPCI et les 21 facettes O*NET
 // ============================================================
 import type { FicheMetier } from '../../data/metiers';
 import { SCIENTIFIC_EVIDENCE } from '../../data/scientific-evidence';
@@ -12,10 +12,73 @@ interface Props {
 
 const { metier } = Astro.props;
 
-// Calcul des coordonnées de Prediger (simplifié pour démo)
-// Normalement calculé selon les scores RIASEC ou DPC
-const predigerX = metier.dpc ? (metier.dpc.travail_equipe.score - metier.dpc.precision_manuelle.score) * 10 : 0; // -100 à 100
-const predigerY = metier.dpc ? (metier.dpc.aptitude_cognitive.score - metier.dpc.force_physique.score) * 10 : 0; // -100 à 100
+// Pôle Idées DPCI calculé à partir de la moyenne des scores RIASEC Investigateur et Artistique (I+A)/2
+const scoreInvestigateur = metier.riasec?.scores?.investigateur ?? 50;
+const scoreArtistique = metier.riasec?.scores?.artistique ?? 50;
+const ideesRiasec = Math.round((scoreInvestigateur + scoreArtistique) / 2);
+
+// Échelon 1 à 5 aligné sur le modèle DPCI
+const ideesScore = Math.max(1, Math.min(5, Math.round((ideesRiasec / 100) * 4) + 1));
+
+// Verbes d'action concrets pour l'ergonomie sémantique DPCI
+const dpciActions = {
+  donnees: {
+    5: { verbe: "Concevoir & Modéliser", label: "Synthèse & Stratégie" },
+    4: { verbe: "Analyser & Structurer", label: "Analyse approfondie" },
+    3: { verbe: "Compiler & Traiter", label: "Traitement de données" },
+    2: { verbe: "Calculer & Classifier", label: "Calcul & Classement" },
+    1: { verbe: "Recueillir & Comparer", label: "Collecte méthodique" }
+  },
+  personnes: {
+    5: { verbe: "Coordonner & Conseiller", label: "Conseil & Direction" },
+    4: { verbe: "Négocier & Orienter", label: "Négociation & Guidance" },
+    3: { verbe: "Superviser & Animer", label: "Supervision & Équipe" },
+    2: { verbe: "Collaborer & Échanger", label: "Échange & Service" },
+    1: { verbe: "Accueillir & Informer", label: "Accueil & Information" }
+  },
+  choses: {
+    5: { verbe: "Ajuster avec précision", label: "Haute précision technique" },
+    4: { verbe: "Piloter & Régler", label: "Pilotage technique" },
+    3: { verbe: "Contrôler & Faire fonctionner", label: "Contrôle & Opérations" },
+    2: { verbe: "Manipuler & Façonner", label: "Manipulation d'outils" },
+    1: { verbe: "Manier & Acheminer", label: "Manutention de base" }
+  },
+  idees: {
+    5: { verbe: "Innover & Théoriser", label: "Créativité conceptuelle" },
+    4: { verbe: "Explorer & Prototyper", label: "Exploration & Recherche" },
+    3: { verbe: "Résoudre & Adapter", label: "Résolution créative" },
+    2: { verbe: "Questionner & Optimiser", label: "Optimisation continue" },
+    1: { verbe: "Appliquer & Standardiser", label: "Application pratique" }
+  }
+};
+
+const rawScoreD = metier.dpc?.aptitude_cognitive?.score ?? 3;
+const rawScoreP = metier.dpc?.travail_equipe?.score ?? 3;
+const rawScoreC = metier.dpc?.precision_manuelle?.score ?? 3;
+const rawScoreI = ideesScore;
+
+const infoD = dpciActions.donnees[rawScoreD as keyof typeof dpciActions.donnees] || dpciActions.donnees[3];
+const infoP = dpciActions.personnes[rawScoreP as keyof typeof dpciActions.personnes] || dpciActions.personnes[3];
+const infoC = dpciActions.choses[rawScoreC as keyof typeof dpciActions.choses] || dpciActions.choses[3];
+const infoI = dpciActions.idees[rawScoreI as keyof typeof dpciActions.idees] || dpciActions.idees[3];
+
+// Descriptions cliniques et contextuelles complètes
+const descD = metier.dpc?.aptitude_cognitive?.details || "Analyse méthodique, synthèse rigoureuse et traitement structuré des flux de données et informations du métier.";
+const descP = metier.dpc?.travail_equipe?.details || "Interactions humaines, coordination multidisciplinaire, communication professionnelle et accompagnement.";
+const descC = metier.dpc?.precision_manuelle?.details || "Utilisation d'outils matériels, contrôle d'équipements techniques et précision des gestes appliqués.";
+const descI = ideesScore >= 4 
+  ? "Conception architecturale, innovation continue et modélisation théorique ou créative de solutions novatrices."
+  : ideesScore === 3
+  ? "Adaptation méthodique de concepts existants et résolution inventive de problèmes techniques."
+  : "Mise en œuvre concrète de protocoles éprouvés et application pratique orientée résultats.";
+
+// Calcul des coordonnées de Prediger (Axes T/P et D/I)
+// Axe Choses/Personnes (T/P) : Choses négatif (-100), Personnes positif (+100)
+// Axe Données/Idées (D/I) : Idées négatif (-100), Données positif (+100)
+const predigerX = (rawScoreP - rawScoreC) * 20;
+const predigerY = (rawScoreD - rawScoreI) * 20;
+const clampedX = Math.max(-85, Math.min(85, predigerX));
+const clampedY = Math.max(-85, Math.min(85, predigerY));
 
 // Evidence data
 const onetEvidence = SCIENTIFIC_EVIDENCE['bigfive_onet_workstyles'];
@@ -29,23 +92,101 @@ const riasecColors: Record<string, string> = {
   'entreprenant': 'bg-blue-500',
   'conventionnel': 'bg-purple-500'
 };
+
+// Déduplication défensive et tri par score décroissant des Work Styles O*NET
+const rawWorkStyles = metier.onet_work_styles || [];
+const uniqueStylesMap = new Map<string, typeof rawWorkStyles[0]>();
+for (const ws of rawWorkStyles) {
+  const key = ws.id || ws.nom;
+  if (!uniqueStylesMap.has(key)) {
+    uniqueStylesMap.set(key, { ...ws });
+  } else {
+    const existing = uniqueStylesMap.get(key)!;
+    existing.score = Math.round((existing.score + ws.score) / 2);
+  }
+}
+const allWorkStyles = Array.from(uniqueStylesMap.values()).sort((a, b) => b.score - a.score);
+
+// Fallback intelligent si non renseigné
+const fallbackStyles = [
+  { id: "1", nom: "Pensée Analytique", description: "Analyser les besoins et formuler des solutions adaptées aux contraintes.", score: Math.min(95, (metier.riasec?.scores?.investigateur || 60) + 5) },
+  { id: "2", nom: "Attention aux Détails", description: "Rigueur et précision dans l'exécution quotidienne des livrables.", score: Math.min(95, (metier.riasec?.scores?.conventionnel || 60) + 10) },
+  { id: "3", nom: "Initiative & Autonomie", description: "Prise en charge proactive des responsabilités et défis du métier.", score: Math.min(95, (metier.riasec?.scores?.entreprenant || 60) + 5) },
+  { id: "4", nom: "Coopération & Esprit d'Équipe", description: "Travail collaboratif et communication efficace avec les collègues et partenaires.", score: Math.min(95, (metier.riasec?.scores?.social || 60) + 5) }
+];
+const effectiveWorkStyles = allWorkStyles.length > 0 ? allWorkStyles : fallbackStyles;
+const dominantWorkStyles = effectiveWorkStyles.slice(0, 4);
+
+// 4 Macro-dimensions d'ordre supérieur O*NET 30.1 (Mode Pro)
+const macroDimensions = [
+  {
+    id: "proactivite",
+    nom: "Orientation Proactive & Croissance",
+    icone: "🚀",
+    badge: "bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 border-amber-200 dark:border-amber-800",
+    description: "Dynamisme d'accomplissement, initiative personnelle et innovation.",
+    styles: effectiveWorkStyles.filter(ws => ["1", "7", "8", "10", "14", "18"].includes(ws.id) || 
+      /Accomplissement|Initiative|Innovation|Leadership|Persévérance|Risque/i.test(ws.nom))
+  },
+  {
+    id: "interpersonnel",
+    nom: "Dimension Interpersonnelle & Sociale",
+    icone: "🤝",
+    badge: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800",
+    description: "Coopération, intelligence relationnelle et sens de l'équipe.",
+    styles: effectiveWorkStyles.filter(ws => ["5", "16", "20"].includes(ws.id) || 
+      /Coopération|Sociale|Sensibilité/i.test(ws.nom))
+  },
+  {
+    id: "rigueur",
+    nom: "Conscienciosité & Rigueur Opérationnelle",
+    icone: "📐",
+    badge: "bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 border-blue-200 dark:border-blue-800",
+    description: "Souci du détail, intégrité, fiabilité et méthodes de travail.",
+    styles: effectiveWorkStyles.filter(ws => ["4", "6", "9", "11", "12", "13", "15", "17"].includes(ws.id) || 
+      /Détails|Fiabilité|Intégrité|Organisation|Planification|Raisonnement/i.test(ws.nom))
+  },
+  {
+    id: "resilience",
+    nom: "Résilience & Régulation Émotionnelle",
+    icone: "🛡️",
+    badge: "bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300 border-purple-200 dark:border-purple-800",
+    description: "Tolérance au stress, adaptabilité face aux aléas et sang-froid.",
+    styles: effectiveWorkStyles.filter(ws => ["2", "3", "19", "21"].includes(ws.id) || 
+      /Stress|Contrôle|Adaptabilité|Analytique/i.test(ws.nom))
+  }
+];
 ---
 
 <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700/60 mb-8">
-  <div class="flex items-center gap-3 mb-6">
-    <div class="p-3 bg-purple-100 dark:bg-purple-900/50 rounded-xl text-purple-600 dark:text-purple-400">
-      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-      </svg>
+  <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-200/80 dark:border-slate-700/60">
+    <div class="flex items-center gap-3">
+      <div class="p-3 bg-purple-100 dark:bg-purple-900/50 rounded-xl text-purple-600 dark:text-purple-400">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+        </svg>
+      </div>
+      <div>
+        <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Profil Psychométrique & Triade DPCI</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Modèle de Holland (RIASEC), matrice DPCI (Données, Personnes, Choses, Idées) et facettes O*NET 30.1</p>
+      </div>
     </div>
-    <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Profil Psychométrique & DPC</h2>
+
+    <span class="hidden sm:inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
+      <span>📐 Modèle Prediger DPCI</span>
+    </span>
   </div>
 
   <div class="grid lg:grid-cols-2 gap-8">
-    <!-- Colonne 1: RIASEC -->
+    <!-- Colonne 1: RIASEC & Work Styles O*NET -->
     <div class="space-y-6">
       <div>
-        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Code Holland (RIASEC)</h3>
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Code Holland (RIASEC)</h3>
+          <span class="text-xs font-bold px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300">
+            {metier.riasec.code_holland}
+          </span>
+        </div>
         <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">{metier.riasec.description}</p>
         
         <div class="space-y-3">
@@ -53,7 +194,7 @@ const riasecColors: Record<string, string> = {
             <div class="flex items-center gap-3">
               <span class="w-24 text-sm font-semibold capitalize text-slate-700 dark:text-slate-300">{key}</span>
               <div class="flex-1 h-3 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
-                <div class={`h-full rounded-full ${riasecColors[key] || 'bg-indigo-500'}`} style={`width: ${score}%`}></div>
+                <div class={`h-full rounded-full ${riasecColors[key] || 'bg-indigo-500'} transition-all duration-500`} style={`width: ${score}%`}></div>
               </div>
               <span class="w-10 text-right text-xs font-bold text-slate-500 dark:text-slate-400">{score}%</span>
             </div>
@@ -61,35 +202,85 @@ const riasecColors: Record<string, string> = {
         </div>
       </div>
 
-      <!-- Section O*NET 21 Facettes (Pro Only) -->
-      <div class="pro-only mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
-        <div class="flex items-center gap-2 mb-3">
-          <h3 class="text-lg font-bold text-slate-900 dark:text-white">21 Facettes Détaillées (Work Styles O*NET / Big Five)</h3>
-          {onetEvidence && (
-            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400 border border-green-200 dark:border-green-800">
-              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              Consensus {onetEvidence.consensus_percentage}%
-            </span>
-          )}
+      <!-- WORK STYLES : VUE GRAND PUBLIC (Top 3-4 dominants avec explications complètes) -->
+      <div class="public-only mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span>🌟 Styles de Travail Clés (O*NET 30.1)</span>
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Postures comportementales indispensables au quotidien pour ce métier.</p>
+          </div>
+          <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+            Top 4 Dominants
+          </span>
         </div>
-        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 italic">
-          {onetEvidence?.statement_fr || "Correspondance validée avec les dimensions du Big Five (OCEAN / IPIP-50)."}
-        </p>
-        
-        {metier.onet_work_styles ? (
-          <div class="grid grid-cols-2 gap-2">
-            {metier.onet_work_styles.map(ws => (
-              <div class="flex items-center justify-between p-2 rounded bg-slate-50 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700">
-                <span class="text-xs font-medium text-slate-700 dark:text-slate-300 truncate pr-2" title={ws.description}>{ws.nom}</span>
-                <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400">{ws.score}/100</span>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+          {dominantWorkStyles.map(ws => (
+            <div class="p-3.5 rounded-2xl bg-slate-50/90 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60 hover:border-indigo-300 dark:hover:border-indigo-600 transition-all flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <span class="text-xs font-black text-slate-900 dark:text-slate-100 truncate">{ws.nom}</span>
+                  <span class="text-xs font-black px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-800/40 shrink-0">
+                    {ws.score}%
+                  </span>
+                </div>
+                <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
+                  {ws.description}
+                </p>
               </div>
-            ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- WORK STYLES : VUE MODE PROFESSIONNEL (21 Facettes O*NET 30.1 en 4 Macro-Dimensions) -->
+      <div class="pro-only mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+          <div class="flex items-center gap-2">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Matrice des 21 Facettes O*NET 30.1 (Mode Expert)</h3>
+            {onetEvidence && (
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400 border border-green-200 dark:border-green-800">
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                Consensus {onetEvidence.consensus_percentage}%
+              </span>
+            )}
           </div>
-        ) : (
-          <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-center">
-            <p class="text-sm text-slate-500 dark:text-slate-400">Les données O*NET détaillées ne sont pas disponibles pour ce métier.</p>
-          </div>
-        )}
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+            {effectiveWorkStyles.length} Facettes Recensées
+          </span>
+        </div>
+
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 italic">
+          {onetEvidence?.statement_fr || "Structure factorielle d'ordre supérieur regroupant les descripteurs empiriques O*NET."}
+        </p>
+
+        <div class="space-y-4">
+          {macroDimensions.map(group => (
+            <div class="p-3.5 rounded-2xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-700/60">
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-sm">{group.icone}</span>
+                  <h4 class="text-xs font-bold text-slate-900 dark:text-white">{group.nom}</h4>
+                </div>
+                <span class={`text-[10px] font-bold px-2 py-0.5 rounded border ${group.badge}`}>
+                  {group.styles.length} facettes
+                </span>
+              </div>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mb-2.5">{group.description}</p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {group.styles.map(ws => (
+                  <div class="flex items-center justify-between p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700/60">
+                    <span class="text-xs font-medium text-slate-700 dark:text-slate-300 truncate pr-2" title={ws.description}>{ws.nom}</span>
+                    <span class="text-xs font-black text-indigo-600 dark:text-indigo-400 shrink-0">{ws.score}/100</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
 
         {onetEvidence && onetEvidence.key_papers && onetEvidence.key_papers.length > 0 && (
           <details class="mt-4 text-xs text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-800 rounded-lg p-3 border border-slate-200 dark:border-slate-700 shadow-sm">
@@ -114,11 +305,11 @@ const riasecColors: Record<string, string> = {
       </div>
     </div>
 
-    <!-- Colonne 2: Prediger et DPC -->
+    <!-- Colonne 2: Prediger & Modèle DPCI -->
     <div class="space-y-6">
       <div>
         <div class="flex items-center justify-between mb-2">
-          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Modèle de Prediger (DPC)</h3>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Projection Bi-Axiale de Prediger (DPCI)</h3>
           {predigerEvidence && (
             <span class="pro-only inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400 border border-green-200 dark:border-green-800">
               <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -127,8 +318,8 @@ const riasecColors: Record<string, string> = {
           )}
         </div>
         
-        <p class="pro-only text-xs text-slate-500 dark:text-slate-400 mb-4 italic">
-          {predigerEvidence?.statement_fr || "Modèle bi-axial reliant les intérêts aux exigences fonctionnelles."}
+        <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+          Positionnement cartésien reliant les objets d'activité (Choses vs Personnes) et les modes opératoires (Données vs Idées).
         </p>
 
         <!-- Graphique Prediger CSS -->
@@ -141,60 +332,189 @@ const riasecColors: Record<string, string> = {
             <div class="h-full w-px bg-slate-300 dark:bg-slate-600"></div>
           </div>
           
-          <!-- Labels -->
-          <span class="absolute top-2 left-1/2 -translate-x-1/2 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Données</span>
-          <span class="absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Idées</span>
-          <span class="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Choses</span>
-          <span class="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Personnes</span>
+          <!-- Labels des Pôles -->
+          <span class="absolute top-2 left-1/2 -translate-x-1/2 text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-wider">Données</span>
+          <span class="absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] font-black text-purple-600 dark:text-purple-400 uppercase tracking-wider">Idées</span>
+          <span class="absolute left-2 top-1/2 -translate-y-1/2 text-[10px] font-black text-amber-600 dark:text-amber-400 uppercase tracking-wider">Choses</span>
+          <span class="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Personnes</span>
 
           <!-- Point de données -->
           <div 
             class="absolute w-4 h-4 bg-indigo-600 rounded-full border-2 border-white dark:border-slate-800 shadow-md transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-out"
-            style={`left: ${50 + (predigerX / 2)}%; top: ${50 - (predigerY / 2)}%;`}
+            style={`left: ${50 + (clampedX / 2)}%; top: ${50 - (clampedY / 2)}%;`}
           >
             <div class="absolute inset-0 bg-indigo-400 rounded-full animate-ping opacity-75"></div>
           </div>
         </div>
+
+        <div class="pro-only text-center mb-4">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-lg text-xs font-mono font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+            <span>Coordonnées : T/P = {predigerX > 0 ? `+${predigerX}` : predigerX} | D/I = {predigerY > 0 ? `+${predigerY}` : predigerY}</span>
+          </span>
+        </div>
       </div>
 
-      <!-- Tableau DPC (Data/People/Things) -->
-      {metier.dpc && (
-        <div class="grid grid-cols-3 gap-2 text-center mt-4">
-          <div class="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-800/50">
-            <div class="text-xs font-bold text-blue-800 dark:text-blue-300 uppercase tracking-wide mb-1">Données</div>
-            <div class="text-2xl font-black text-blue-600 dark:text-blue-400">{metier.dpc.aptitude_cognitive.score}</div>
+      <!-- BOÎTE DPCI : VUE GRAND PUBLIC (Verbes d'Action Concrets & Descriptions Claires) -->
+      <div class="public-only">
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
+            <span>🧩 Activités & Objets Principaux (DPCI)</span>
+          </h4>
+          <span class="text-[10px] text-slate-400">Verbes d'action & missions</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Données -->
+          <div class="p-3.5 bg-blue-50/80 dark:bg-blue-950/30 rounded-2xl border border-blue-200/70 dark:border-blue-800/40 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-[11px] font-extrabold text-blue-800 dark:text-blue-300 uppercase tracking-wide">📊 Données</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-200/60 dark:bg-blue-900/60 text-blue-800 dark:text-blue-200">Niv. {rawScoreD}/5</span>
+              </div>
+              <div class="text-xs font-black text-blue-950 dark:text-blue-100 leading-tight mb-1">{infoD.verbe}</div>
+              <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">{descD}</p>
+            </div>
+            <span class="text-[10px] text-blue-700/80 dark:text-blue-300/80 mt-2 pt-1.5 border-t border-blue-200/40 dark:border-blue-800/30 block">
+              Orientation : {infoD.label}
+            </span>
           </div>
-          <div class="p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border border-emerald-100 dark:border-emerald-800/50">
-            <div class="text-xs font-bold text-emerald-800 dark:text-emerald-300 uppercase tracking-wide mb-1">Personnes</div>
-            <div class="text-2xl font-black text-emerald-600 dark:text-emerald-400">{metier.dpc.travail_equipe.score}</div>
+
+          <!-- Personnes -->
+          <div class="p-3.5 bg-emerald-50/80 dark:bg-emerald-950/30 rounded-2xl border border-emerald-200/70 dark:border-emerald-800/40 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-[11px] font-extrabold text-emerald-800 dark:text-emerald-300 uppercase tracking-wide">👥 Personnes</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-200/60 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200">Niv. {rawScoreP}/5</span>
+              </div>
+              <div class="text-xs font-black text-emerald-950 dark:text-emerald-100 leading-tight mb-1">{infoP.verbe}</div>
+              <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">{descP}</p>
+            </div>
+            <span class="text-[10px] text-emerald-700/80 dark:text-emerald-300/80 mt-2 pt-1.5 border-t border-emerald-200/40 dark:border-emerald-800/30 block">
+              Orientation : {infoP.label}
+            </span>
           </div>
-          <div class="p-3 bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-100 dark:border-amber-800/50">
-            <div class="text-xs font-bold text-amber-800 dark:text-amber-300 uppercase tracking-wide mb-1">Choses</div>
-            <div class="text-2xl font-black text-amber-600 dark:text-amber-400">{metier.dpc.precision_manuelle.score}</div>
+
+          <!-- Choses -->
+          <div class="p-3.5 bg-amber-50/80 dark:bg-amber-950/30 rounded-2xl border border-amber-200/70 dark:border-amber-800/40 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-[11px] font-extrabold text-amber-800 dark:text-amber-300 uppercase tracking-wide">🛠️ Choses</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-200/60 dark:bg-amber-900/60 text-amber-800 dark:text-amber-200">Niv. {rawScoreC}/5</span>
+              </div>
+              <div class="text-xs font-black text-amber-900 dark:text-amber-100 leading-tight mb-1">{infoC.verbe}</div>
+              <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">{descC}</p>
+            </div>
+            <span class="text-[10px] text-amber-700/80 dark:text-amber-300/80 mt-2 pt-1.5 border-t border-amber-200/40 dark:border-amber-800/30 block">
+              Orientation : {infoC.label}
+            </span>
+          </div>
+
+          <!-- Idées -->
+          <div class="p-3.5 bg-purple-50/80 dark:bg-purple-950/30 rounded-2xl border border-purple-200/70 dark:border-purple-800/40 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-[11px] font-extrabold text-purple-800 dark:text-purple-300 uppercase tracking-wide">💡 Idées</span>
+                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-purple-200/60 dark:bg-purple-900/60 text-purple-800 dark:text-purple-200">Niv. {rawScoreI}/5</span>
+              </div>
+              <div class="text-xs font-black text-purple-900 dark:text-purple-100 leading-tight mb-1">{infoI.verbe}</div>
+              <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">{descI}</p>
+            </div>
+            <span class="text-[10px] text-purple-700/80 dark:text-purple-300/80 mt-2 pt-1.5 border-t border-purple-200/40 dark:border-purple-800/30 block">
+              Orientation : {infoI.label}
+            </span>
           </div>
         </div>
-      )}
+      </div>
 
-      {predigerEvidence && predigerEvidence.key_papers && predigerEvidence.key_papers.length > 0 && (
-        <details class="pro-only mt-4 text-xs text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-800 rounded-lg p-3 border border-slate-200 dark:border-slate-700 shadow-sm">
-          <summary class="font-bold cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-            Sources scientifiques (Consensus {predigerEvidence.consensus_percentage}%)
-          </summary>
-          <div class="mt-3 space-y-2 border-t border-slate-100 dark:border-slate-700 pt-2">
-            <p class="italic">"{predigerEvidence.consensus_summary}"</p>
-            <ul class="list-disc pl-4 space-y-1.5 mt-2">
-              {predigerEvidence.key_papers.map(paper => (
-                <li>
-                  <span class="font-semibold text-slate-700 dark:text-slate-300">{paper.authors} ({paper.year})</span>. {paper.title}. <i class="text-slate-500">{paper.journal}</i>.
-                  {paper.doi && <a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noopener noreferrer" class="text-indigo-500 hover:underline ml-1">[{paper.doi}]</a>}
-                  {paper.open_access_url && <a href={paper.open_access_url} target="_blank" rel="noopener noreferrer" class="text-emerald-600 dark:text-emerald-400 hover:underline ml-1">(PDF gratuit)</a>}
-                </li>
-              ))}
-            </ul>
+      <!-- BOÎTE DPCI : VUE MODE PROFESSIONNEL (Cotes Cliniques, EDSC & Contexte Opérationnel) -->
+      <div class="pro-only space-y-4">
+        <div class="flex items-center justify-between">
+          <h4 class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">Matrice Clinique DPCI Détaillée (EDSC & Prediger)</h4>
+          <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+            Cotation 1 à 5
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="p-3.5 bg-blue-50/70 dark:bg-blue-950/30 rounded-xl border border-blue-200/60 dark:border-blue-800/40">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-blue-900 dark:text-blue-200">Données (D) : {rawScoreD}/5</span>
+              <span class="text-[10px] font-semibold text-blue-700 dark:text-blue-300">{infoD.verbe}</span>
+            </div>
+            <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">{descD}</p>
           </div>
-        </details>
-      )}
+
+          <div class="p-3.5 bg-emerald-50/70 dark:bg-emerald-950/30 rounded-xl border border-emerald-200/60 dark:border-emerald-800/40">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-emerald-900 dark:text-emerald-200">Personnes (P) : {rawScoreP}/5</span>
+              <span class="text-[10px] font-semibold text-emerald-700 dark:text-emerald-300">{infoP.verbe}</span>
+            </div>
+            <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">{descP}</p>
+          </div>
+
+          <div class="p-3.5 bg-amber-50/70 dark:bg-amber-950/30 rounded-xl border border-amber-200/60 dark:border-amber-800/40">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-amber-900 dark:text-amber-200">Choses (C) : {rawScoreC}/5</span>
+              <span class="text-[10px] font-semibold text-amber-700 dark:text-amber-300">{infoC.verbe}</span>
+            </div>
+            <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">{descC}</p>
+          </div>
+
+          <div class="p-3.5 bg-purple-50/70 dark:bg-purple-950/30 rounded-xl border border-purple-200/60 dark:border-purple-800/40">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-bold text-purple-900 dark:text-purple-200">Idées (I) : {rawScoreI}/5</span>
+              <span class="text-[10px] font-semibold text-purple-700 dark:text-purple-300">{infoI.verbe}</span>
+            </div>
+            <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">{descI}</p>
+          </div>
+        </div>
+
+        <!-- Contexte Opérationnel & Ergonomique -->
+        {(metier.dpc?.environnement_travail || metier.dpc?.rythme || metier.dpc?.resolution_problemes) && (
+          <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60 text-xs space-y-2">
+            <div class="font-bold text-slate-800 dark:text-slate-200 mb-1">Conditions d'Exercice & Ergonomie :</div>
+            {metier.dpc.resolution_problemes && (
+              <div class="flex items-start gap-2">
+                <span class="font-semibold text-slate-600 dark:text-slate-400 shrink-0">🧩 Résolution de problèmes :</span>
+                <span class="text-slate-700 dark:text-slate-300">{metier.dpc.resolution_problemes.details} ({metier.dpc.resolution_problemes.label})</span>
+              </div>
+            )}
+            {metier.dpc.environnement_travail && (
+              <div class="flex items-start gap-2">
+                <span class="font-semibold text-slate-600 dark:text-slate-400 shrink-0">🏢 Environnement :</span>
+                <span class="text-slate-700 dark:text-slate-300">{metier.dpc.environnement_travail}</span>
+              </div>
+            )}
+            {metier.dpc.rythme && (
+              <div class="flex items-start gap-2">
+                <span class="font-semibold text-slate-600 dark:text-slate-400 shrink-0">⏱️ Rythme opératoire :</span>
+                <span class="text-slate-700 dark:text-slate-300">{metier.dpc.rythme}</span>
+              </div>
+            )}
+          </div>
+        )}
+
+        {predigerEvidence && predigerEvidence.key_papers && predigerEvidence.key_papers.length > 0 && (
+          <details class="mt-4 text-xs text-slate-600 dark:text-slate-400 bg-white dark:bg-slate-800 rounded-lg p-3 border border-slate-200 dark:border-slate-700 shadow-sm">
+            <summary class="font-bold cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+              Sources scientifiques (Consensus {predigerEvidence.consensus_percentage}%)
+            </summary>
+            <div class="mt-3 space-y-2 border-t border-slate-100 dark:border-slate-700 pt-2">
+              <p class="italic">"{predigerEvidence.consensus_summary}"</p>
+              <ul class="list-disc pl-4 space-y-1.5 mt-2">
+                {predigerEvidence.key_papers.map(paper => (
+                  <li>
+                    <span class="font-semibold text-slate-700 dark:text-slate-300">{paper.authors} ({paper.year})</span>. {paper.title}. <i class="text-slate-500">{paper.journal}</i>.
+                    {paper.doi && <a href={`https://doi.org/${paper.doi}`} target="_blank" rel="noopener noreferrer" class="text-indigo-500 hover:underline ml-1">[{paper.doi}]</a>}
+                    {paper.open_access_url && <a href={paper.open_access_url} target="_blank" rel="noopener noreferrer" class="text-emerald-600 dark:text-emerald-400 hover:underline ml-1">(PDF gratuit)</a>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </details>
+        )}
+      </div>
     </div>
   </div>
 

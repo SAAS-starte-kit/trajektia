@@ -194,8 +194,15 @@ Tandis que le grand public accède à une synthèse des 5 macro-scores OCEAN, **
    - Permet au conseiller de repérer les profils composites (ex: un travailleur avec une Conscience moyenne à 50 % masquant en réalité une minutie d'orfèvre à 90 % combinée à une faible ambition compétitive à 20 %).
 5. **Filtre de Résilience & Prévention de la Récidive (Réadaptation CNESST)** :
    - Pour les dossiers d'épuisement professionnel (*burnout*) ou de troubles anxieux, le conseiller peut isoler les cotes de *Tolérance au stress* et de *Maîtrise de soi* pour exclure les environnements à forte charge émotionnelle et identifier des métiers de transition compatibles avec la tolérance actuelle du travailleur.
-6. **Pontage direct avec les Verbes d'Action DPC** :
-   - Rapprochement direct entre les facettes de personnalité et la complexité clinique des tâches : *Pensée analytique* $\leftrightarrow$ DPC Données (Synthétiser / Analyser), *Orientation sociale* $\leftrightarrow$ DPC Personnes (Aider / Conseiller), *Attention au détail* $\leftrightarrow$ DPC Choses (Travail de précision).
+6. **Pontage direct avec la Tétra-Structure DPCI & les Verbes d'Action Fonctionnels** :
+   - Rapprochement direct entre les facettes de personnalité, les intérêts RIASEC de Prediger et la complexité clinique des tâches :
+     - *Pensée analytique / Rigueur* $\longleftrightarrow$ **DPC Données** (*Analyser, Structurer, Classifier*).
+     - *Orientation sociale / Empathie* $\longleftrightarrow$ **DPC Personnes** (*Conseiller, Coordonner, Accompagner*).
+     - *Attention au détail / Précision motrice* $\longleftrightarrow$ **DPC Choses** (*Ajuster avec précision, Façonner, Manœuvrer*).
+     - *Curiosité intellectuelle / Innovation (I + A)* $\longleftrightarrow$ **DPC Idées** (*Concevoir, Modéliser, Explorer, Résoudre*).
+7. **Stratégie d'Affichage Éthique et Cognitive (Grand Public vs. Espace Conseiller)** :
+   - **Grand Public** : Restitution dénuée de jargon chiffré. Le système met en valeur les **3 à 4 Work Styles dominants** du métier (les cotes d'importance les plus élevées $> 80/100$) avec des définitions courtes et concrètes d'impact au quotidien, et traduit le profil DPCI en verbes d'action immédiats.
+   - **Espace Conseiller (Mode Pro)** : Restitution intégrale de la matrice des **21 Work Styles O\*NET 30.1**, organisée sous les **4 macro-dimensions empiriques** (Proactivité, Interpersonnel, Conscience/Règles, Résilience) démontrées par Putka et al. (HumRRO, 2025) pour éviter l'erreur écologique (*Ecological Fallacy*), avec accès aux échelons EDSC de base et aux coordonnées de Prediger.
 
 ---
 

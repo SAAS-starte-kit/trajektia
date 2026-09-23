@@ -24,7 +24,7 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function initProToggle() {
     const toggleBtn = document.getElementById('toggle-pro-mode') as HTMLInputElement;
     if (!toggleBtn) return;
 
@@ -33,10 +33,12 @@
     toggleBtn.checked = isPro;
     if (isPro) {
       document.documentElement.classList.add('pro-mode-active');
+    } else {
+      document.documentElement.classList.remove('pro-mode-active');
     }
 
     // Listen for toggle changes
-    toggleBtn.addEventListener('change', (e) => {
+    toggleBtn.onchange = (e) => {
       const target = e.target as HTMLInputElement;
       const checked = target.checked;
       localStorage.setItem('trajektia-pro-mode', checked ? 'true' : 'false');
@@ -46,8 +48,13 @@
       } else {
         document.documentElement.classList.remove('pro-mode-active');
       }
-    });
-  });
+    };
+  }
+
+  // Execution immediate et réactive aux transitions
+  initProToggle();
+  document.addEventListener('DOMContentLoaded', initProToggle);
+  document.addEventListener('astro:page-load', initProToggle);
 </script>
 
 <style is:global>

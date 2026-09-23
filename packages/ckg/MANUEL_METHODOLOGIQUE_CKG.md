@@ -191,6 +191,8 @@ Référentiel sectoriel utilisé par la CNESST pour identifier le secteur de l'e
 | SST / CNESST | CNESST (Québec) | Millésime 2023 | 114 345 lésions, 3 698 liaisons | CC-BY 4.0 QC |
 | Exigences Physiques & DPC | EDSC (Canada) | GC 2016 (Ouvert Canada) | 504 métiers cotés (forces, postures, DPC) | CC-BY 4.0 Canada |
 | Concordance CNP 2016-2021 | Statistique Canada | v1.0 officiel | 585 règles de conversion certifiées | Statistique Canada |
+| Synonymes TCC 2025 | EDSC (Canada) | v1.0 (2025) | 1 028 synonymes bilingues FR/EN | CC-BY 4.0 Canada |
+| Devis Ministériels MES | MEQ / MES (Québec) | 2024-2026 | Devis ministériels structurés en 4 niveaux | CC-BY 4.0 QC |
 
 ### 4.2 Données SIPeC/OaSIS — Fichiers CSV traités
 
@@ -621,6 +623,7 @@ CREATE TABLE occupation_physical_demands (
 | V6 | `schema_v6_physical_demands_dpc.sql` | Ergonomie & Aptitude : `occupation_physical_demands` (forces, postures, sensoriel, DPC) |
 | V7 | `schema_v7_dpc_taxonomy.sql` | Taxonomie DPC & Explicabilité : `ref_dpc_taxonomy` (25 verbes, définitions FR/EN, vue enrichie) |
 | V8 | `schema_v8_market_snapshots.sql` | Observatoire Temporel & Tendances : `trajektia_market_snapshots`, `trajektia_skill_demand_history`, `trajektia_live_job_postings` |
+| V9 | `schema_v9_program_devis.sql` | Devis Ministériels MES : `program_competencies` (Codes ministériels 016K, savoir-faire, critères de performance) & champs descriptifs généraux sur `educational_programs` |
 
 ---
 
@@ -804,7 +807,7 @@ Le script `trajektia/analytics/prediger_riasec_calibrator.py` formalise le calcu
    - L'analyse empirique révèle que **99.7% des métiers présentent un statut « Hybride / En tension »** ($\Delta_{\text{ICP}} > 3.0$), ce qui démontre quantitativement que les déclarations d'intérêts vocationnels théoriques diffèrent substantiellement de la réalité opérationnelle des tâches quotidiennes (ex: informaticiens devant négocier ou soignants devant gérer des données massives).
    - Ce moteur fournit aux conseillers d'orientation (c.o.) une couche d'explicabilité inédite pour accompagner les réorientations.
 
-### 8.7 La place des « Idées » dans la taxonomie DPC & le modèle de Prediger
+### 8.7 La place des « Idées » dans la taxonomie DPC, le modèle de Prediger et la Tétra-Structure DPCI
 
 Une interrogation méthodologique fréquente concerne l'absence apparente de la lettre « I » pour « Idées » dans l'acronyme historique **DPC (Données, Personnes, Choses)**.
 
@@ -815,16 +818,46 @@ Dans la taxonomie de base de la *Functional Job Analysis (FJA)* d'Emploi et Dév
 - **Échelons D-2 à D-4 (`Analyser`, `Compiler`, `Calculer`)** : Manipulation rigoureuse d'informations structurées, bilans, calculs numériques. $\rightarrow$ **Pôle DONNÉES (Gestion & Faits vérifiables)**.
 - **Échelons D-5 et D-6 (`Copier`, `Comparer`)** : Tâches d'exécution et de classement standard. $\rightarrow$ **Pôle DONNÉES (Opérationnel)**.
 
-#### La clarification par Dale J. Prediger (1982) :
+#### La clarification par Dale J. Prediger (1982) et la formalisation du DPCI :
 Dale Prediger a formellement dissocié les deux concepts en traçant l'axe orthogonal **[Données vs. Idées]** :
 - **Pôle Idées (A + I)** : Pensée divergente, recherche scientifique, modélisation abstraite, créativité conceptuelle.
 - **Pôle Données (C + E)** : Pensée convergente, rigueur comptable, conformité aux lois, gestion d'affaires et contrôle qualité.
 
-### 8.8 Explicabilité Clinique des Dimensions Physiques et Cognitives (DPC)
+Trajektia formalise ainsi le passage de la triade historique DPC vers la tétra-structure **DPCI (Données, Personnes, Choses, Idées)** :
+$$\text{Score Idées} = \frac{\text{Investigateur (I)} + \text{Artistique (A)}}{2}$$
+Cette formalisation permet de réconcilier les exigences de terrain objectives d'EDSC avec les aspirations psychologiques de l'hexagone RIASEC de Holland.
 
-La section DPC des fiches métiers Trajektia constitue une rupture avec les sites d'orientation conventionnels qui ne présentent que les salaires et diplômes sans aborder la réalité corporelle et mentale du travail quotidien.
+### 8.8 Explicabilité Clinique & Ergonomie d'Affichage du DPCI : Verbes d'Action vs. Données Chiffrées
 
-Trajektia structure cette évaluation autour de 5 jauges fonctionnelles opérationnelles (notées de 1 à 5) :
+La restitution du profil DPCI sur les fiches métiers et outils de Trajektia repose sur une **stratégie d'affichage à double niveau d'exigence (Grand Public vs. Espace Professionnel)** :
+
+#### A. Affichage Grand Public : Restitution par Verbes d'Action Fonctionnels
+Présenter des scores chiffrés abstraits (ex: "Données : 4", "Personnes : 2") engendre une confusion auprès des étudiants et chercheurs d'emploi. Trajektia valorise la richesse originelle de la FJA en traduisant chaque pôle en **verbes d'action concrets et compétences observables** :
+- 💡 **Idées & Conception (I)** : *Concevoir, Innover, Modéliser, Explorer, Résoudre des problèmes complexes*.
+- 📊 **Données & Analyse (D)** : *Analyser, Structurer, Classifier, Compiler, Calculer, Comparer*.
+- 👥 **Personnes & Relations (P)** : *Conseiller, Accompagner, Coordonner, Négocier, Enseigner, Superviser*.
+- ⚙️ **Choses & Matériel (C)** : *Façonner, Ajuster avec précision, Manœuvrer, Opérer des machines, Entretenir*.
+
+#### B. Affichage Espace Professionnel (Conseillers d'orientation, Ergonomes, CNESST) :
+Le Mode Professionnel déploie les données métriques complètes nécessaires au diagnostic clinique :
+1. **Échelons officiels EDSC / Guide des carrières** : Cotes discrètes exactes ($D \in [0, 6], P \in [0, 8], C \in [0, 7]$).
+2. **Coordonnées cartésiennes de Prediger** : Projection sur le repère bipolaire ($DI$ et $CP$) avec calcul trigonométrique exact.
+3. **Indice de Cohérence Psychométrique (ICP)** : Calcul de la divergence $\Delta_{\text{ICP}}$ entre le RIASEC déclaré et les contraintes réelles de poste pour détecter les métiers en tension psychologique.
+
+### 8.8.1 Structuration des 21 Work Styles O*NET 30.1 & Prévention de l'Erreur Écologique
+
+L'intégration des styles comportementaux au travail (*Work Styles*) repose sur les travaux majeurs de Dan Putka, Jiayi Liu (HumRRO, décembre 2025) et d'Anni, Vainik & Mõttus (*Journal of Applied Psychology*, 2025) intégrés à la base O*NET 30.1 / 30.3 :
+
+1. **L'Erreur Écologique (*Ecological Fallacy*) au niveau des professions** :
+   Les recherches démontrent que transposer le modèle individuel Big Five (OCEAN) directement sur les exigences professionnelles constitue une erreur écologique. L'analyse factorielle (PCA) sur 891 professions réelles isole **4 composantes macro-dimensionnelles d'ordre supérieur** :
+   - **Proactif et axé sur la croissance** (*Innovation, Accomplissement, Curiosité intellectuelle, Tolérance à l'ambiguïté, Initiative, Adaptabilité, Confiance en soi, Persévérance, Leadership*).
+   - **Orienté vers l'interpersonnel** (*Humilité, Sincérité, Empathie, Coopération, Optimisme, Orientation sociale*).
+   - **Consciencieux et axé sur les règles** (*Prudence, Attention aux détails, Fiabilité, Intégrité*).
+   - **Résilience émotionnelle** (*Tolérance au stress, Maîtrise de soi*).
+
+2. **Affichage Grand Public vs. Mode Pro des Work Styles** :
+   - **Grand Public** : Mise en valeur exclusive des **3 à 4 Work Styles dominants** du métier (les cotes d'importance les plus élevées $> 80/100$) accompagnés d'une courte définition contextualisée d'application terrain, évitant la surcharge cognitive.
+   - **Mode Pro** : Déploiement de la matrice exhaustive des **21 facettes comportementales O*NET**, avec scores percentiles normalisés et correspondances avec les 30 sous-facettes de l'inventaire IPIP-NEO-120.
 
 1. **Charge Cognitive (1 à 5)** : Évalue le niveau d'abstraction requis, la complexité algorithmique ou diagnostique, la vitesse d'apprentissage de nouveaux systèmes et la mémoire de travail (ex: Développeur = 5/5, Soudeur = 3/5).
 2. **Effort Physique (1 à 5)** : Traduit la cotation officielle de force (Sédentaire `S-1` à Très Lourd `S-4`), le port de charges en kilogrammes, les postures contraignantes (accroupi, escaliers, escabeaux) et la résistance à la fatigue musculaire (ex: Comptable = 1/5, Électricien = 4/5, Soudeur = 5/5).

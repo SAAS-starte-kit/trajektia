@@ -32,6 +32,10 @@ Le projet Trajektia utilise plusieurs outils et agents d'IA pour optimiser les c
   - *Script Python pur (`apps/api`, `packages/data-pipeline`, `packages/ckg`)* $\rightarrow$ **Claude Code Router**
   - *Notification, suivi externe ou message vers Telegram* $\rightarrow$ **Hermes**
   - *Exploration de données, requêtes analytiques lourdes* $\rightarrow$ **Google Jules**
+
+- **Sélection du Modèle pour Antigravity** :
+  - Si la tâche attribuée à **Antigravity** implique de la refactorisation architecturale complexe, du raisonnement abstrait multi-fichiers ou la résolution de bugs subtils $\rightarrow$ Recommander à l'utilisateur de basculer sur **Gemini 3.1 Pro** ou **Claude 3.7 Sonnet**.
+  - Si la tâche concerne l'intégration UI courante, des composants Tailwind/React/Astro ou l'exécution rapide de workflows $\rightarrow$ Maintenir **Gemini 3.6 Flash** pour une vitesse et une économie de tokens optimales.
 - Définir le contexte minimal nécessaire (fichiers cibles, contraintes, format attendu) pour économiser un maximum de tokens.
 
 ### 3. Préparation et Envoi Direct (Mode Zéro Intermédiaire - Sans passer par l'utilisateur)

@@ -30,5 +30,6 @@ Trajektia est un projet scientifique et technique complexe. La documentation doi
    - Si une nouvelle formule mathématique a été introduite (ex: ajustement POMP), documentez-la explicitement dans le `MANUEL_PSYCHOMETRIQUE.md` et/ou le `MANUEL_METHODOLOGIQUE_CKG.md`.
 
 4. **Validation et Plan d'Action :**
-   - Si la mise à jour correspond à une tâche terminée, mettez à jour le statut de la tâche dans `packages/ckg/PLAN_ACTION.md` (passer de "En cours" à "Terminé").
-   - Fournissez un résumé des modifications à l'utilisateur (Artifact "Walkthrough") afin qu'il puisse vérifier que la documentation reflète parfaitement la réalité du système.
+   - Si la mise à jour correspond à une tâche terminée, mettez à jour le statut de la tâche dans `packages/ckg/PLAN_ACTION.md` (passer de "À FAIRE" à "[FAIT]").
+   - Fournissez un résumé des modifications à l'utilisateur afin qu'il puisse vérifier que la documentation reflète parfaitement la réalité du système.
+

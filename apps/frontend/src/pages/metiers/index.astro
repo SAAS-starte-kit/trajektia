@@ -242,6 +242,8 @@ const secteurs = [...new Set(METIERS_DATA.map(m => m.secteur))].sort();
 
   <!-- Script interactif de recherche côté client -->
   <script>
+    import { SYNONYMES_TCC } from '../../data/synonymes_tcc';
+
     const searchInput = document.getElementById('metier-search-input') as HTMLInputElement | null;
     const riasecSelect = document.getElementById('riasec-filter') as HTMLSelectElement | null;
     const secteurSelect = document.getElementById('secteur-filter') as HTMLSelectElement | null;
@@ -249,26 +251,46 @@ const secteurs = [...new Set(METIERS_DATA.map(m => m.secteur))].sort();
     const cards = document.querySelectorAll<HTMLElement>('.metier-card');
     const noResultsMsg = document.getElementById('no-results');
 
+    // Normalisation du texte (enlève les accents)
+    function normalizeText(text: string): string {
+      return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    }
+
     function filterMetiers() {
-      const query = (searchInput?.value || '').toLowerCase().trim();
+      const rawQuery = (searchInput?.value || '').trim();
+      const queryNorm = normalizeText(rawQuery);
       const riasec = (riasecSelect?.value || '').trim().toUpperCase();
       const secteur = (secteurSelect?.value || '').trim();
       const feer = (feerSelect?.value || '').trim();
 
+      // Recherche des CNP équivalentes via le dictionnaire de synonymes TCC
+      const matchedCnpsFromSynonyms = new Set<string>();
+      if (queryNorm) {
+        SYNONYMES_TCC.forEach(mapping => {
+          const termeNorm = normalizeText(mapping.terme);
+          if (queryNorm.includes(termeNorm) || termeNorm.includes(queryNorm)) {
+            mapping.cnps.forEach(cnp => matchedCnpsFromSynonyms.add(cnp));
+          }
+        });
+      }
+
       let visibleCount = 0;
 
       cards.forEach(card => {
-        const title = card.getAttribute('data-title') || '';
+        const title = normalizeText(card.getAttribute('data-title') || '');
         const cnp = card.getAttribute('data-cnp') || '';
         const cardSecteur = card.getAttribute('data-secteur') || '';
         const cardFeer = card.getAttribute('data-feer') || '';
         const cardRiasec = card.getAttribute('data-riasec') || '';
-        const skills = card.getAttribute('data-skills') || '';
+        const skills = normalizeText(card.getAttribute('data-skills') || '');
 
-        const matchesQuery = !query || 
-          title.includes(query) || 
-          cnp.includes(query) || 
-          skills.includes(query);
+        const matchesDirectQuery = !queryNorm || 
+          title.includes(queryNorm) || 
+          cnp.includes(queryNorm) || 
+          skills.includes(queryNorm);
+
+        const matchesSynonym = matchedCnpsFromSynonyms.has(cnp);
+        const matchesQuery = matchesDirectQuery || matchesSynonym;
 
         const matchesRiasec = !riasec || cardRiasec.includes(riasec);
         const matchesSecteur = !secteur || cardSecteur === secteur;

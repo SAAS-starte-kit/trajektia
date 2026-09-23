@@ -17,7 +17,9 @@ from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
-OUTPUT_FILE = PROJECT_ROOT / "frontend-web" / "src" / "data" / "metiers.ts"
+OUTPUT_FILE = PROJECT_ROOT / "apps" / "frontend" / "src" / "data" / "metiers.ts"
+if not OUTPUT_FILE.parent.exists():
+    OUTPUT_FILE = PROJECT_ROOT / "frontend-web" / "src" / "data" / "metiers.ts"
 
 print(f"[CKG Generator] Racine du projet: {PROJECT_ROOT}")
 print(f"[CKG Generator] Fichier cible: {OUTPUT_FILE}")
@@ -1038,6 +1040,20 @@ SECTEUR_MAP = {
     '9': ("Fabrication et services d'utilité publique", "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20")
 }
 
+def deduplicate_work_styles(styles):
+    """Déduplique les 21 Work Styles O*NET en agrégeant et moyennant les scores par style."""
+    if not styles:
+        return styles
+    seen = {}
+    for s in styles:
+        sid = s.get("id") or s.get("nom")
+        if sid not in seen:
+            seen[sid] = dict(s)
+        else:
+            existing = seen[sid]
+            existing["score"] = round((existing["score"] + s.get("score", 50)) / 2)
+    return sorted(seen.values(), key=lambda x: x.get("score", 0), reverse=True)
+
 def get_db_careers():
     # Load env if not already loaded
     if "SUPABASE_DB_URL" not in os.environ:
@@ -1056,16 +1072,25 @@ def get_db_careers():
         conn = psycopg2.connect(db_url)
         cursor = conn.cursor()
         
-        # Sous-requête pour récupérer les Work Styles O*NET
+        # Sous-requête pour récupérer les Work Styles O*NET (déduplication et moyenne sur les 21 styles)
         work_styles_subquery = """
             SELECT json_agg(
                 json_build_object(
-                    'id', ws.style_id,
-                    'nom', ws.style_name_fr,
-                    'description', ws.description_fr,
-                    'score', ws.score
-                ) ORDER BY ws.score DESC
-            ) FROM onet_work_styles ws WHERE ws.cnp_code = o.cnp_code
+                    'id', sub.style_id,
+                    'nom', sub.style_name_fr,
+                    'description', sub.description_fr,
+                    'score', sub.score
+                ) ORDER BY sub.score DESC
+            ) FROM (
+                SELECT 
+                    ws.style_id,
+                    ws.style_name_fr,
+                    ws.description_fr,
+                    ROUND(AVG(ws.score))::int AS score
+                FROM onet_work_styles ws
+                WHERE ws.cnp_code = o.cnp_code
+                GROUP BY ws.style_id, ws.style_name_fr, ws.description_fr
+            ) sub
         """
 
         work_values_subquery = """
@@ -1176,10 +1201,10 @@ def get_db_careers():
                     "stabilite_emotionnelle": round(100 - float(ne))
                 }
                 
-            # Ajouter les Work Styles O*NET si disponibles
+            # Ajouter les Work Styles O*NET si disponibles (dédupliqués)
             if work_styles:
                 career["sources"]["onet_work_styles"] = "O*NET 28.2"
-                career["onet_work_styles"] = work_styles
+                career["onet_work_styles"] = deduplicate_work_styles(work_styles)
 
             if work_values:
                 career["sources"]["onet_work_values"] = work_values.get("source", "O*NET")
@@ -1229,10 +1254,12 @@ def main():
         if p["cnp"] in db_dict and "indice_mutation" in db_dict[p["cnp"]]:
             p["indice_mutation"] = db_dict[p["cnp"]]["indice_mutation"]
 
-        # Add onet_work_styles from DB if available (remplace les données manuelles)
+        # Add onet_work_styles from DB if available (remplace les données manuelles, dédupliqué)
         if p["cnp"] in db_dict and "onet_work_styles" in db_dict[p["cnp"]]:
-            p["onet_work_styles"] = db_dict[p["cnp"]]["onet_work_styles"]
+            p["onet_work_styles"] = deduplicate_work_styles(db_dict[p["cnp"]]["onet_work_styles"])
             p["sources"]["onet_work_styles"] = db_dict[p["cnp"]]["sources"]["onet_work_styles"]
+        elif "onet_work_styles" in p:
+            p["onet_work_styles"] = deduplicate_work_styles(p["onet_work_styles"])
 
         if p["cnp"] in db_dict and "onet_work_values" in db_dict[p["cnp"]]:
             p["onet_work_values"] = db_dict[p["cnp"]]["onet_work_values"]

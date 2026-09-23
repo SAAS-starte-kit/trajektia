@@ -160,17 +160,19 @@ python etl/le_siphon.py
 **Tables cibles et rÃ©sultats vÃ©rifiÃ©s en base :**
 - `cip_domains` : **25 domaines** CPE/CIP Canada avec statut d'admissibilitÃ© au PTPD (IRCC).
 - `educational_institutions` : **539 Ã©tablissements** d'enseignement quÃ©bÃ©cois (UniversitÃ©s, CÃ©geps, CFP).
-- `educational_programs` : **220 programmes** officiels (DEP, DEC, BAC, Doctorat) avec salaires rÃ©els et taux de placement La Relance.
-- `program_institutions` : **390 offres de formation** localisÃ©es par Ã©tablissement / rÃ©gion administrative.
-- `occupation_programs` : **964 associations** mÃ©tiers (CNP) â†” formations (MEQ) avec voies directes officielles et voies alternatives.
+- `educational_programs` : **220 programmes** officiels (DEP, DEC, BAC, Doctorat) enrichis avec descriptions générales et objectifs du MES.
+- `program_competencies` : **Devis ministériels structurés** (Niveaux 1 à 4 : Codes ministériels, énoncés, éléments de compétence et critères de performance).
+- `program_institutions` : **390 offres de formation** localisées par établissement / région administrative.
+- `occupation_programs` : **964 associations** métiers (CNP) ↔ formations (MEQ) avec voies directes officielles et voies alternatives.
 
-**Script exÃ©cutÃ© :** `trajektia/etl/meq_relance_ingestor.py`
-**Sources ouvertes MEQ/MES intÃ©grÃ©es :**
-- DonnÃ©es ouvertes DonnÃ©es QuÃ©bec : `relance_fp_2011_2019.csv`, `relance_fp_region_2013_2019.csv`
-- DonnÃ©es gÃ©ospatiales MEQ-MES : `es_universitaire.csv`, `es_collegial.csv`, `pps_public_ecole.csv`
+**Scripts exécutés :** `packages/database/schema_v9_program_devis.sql` et `packages/data-pipeline/etl/meq_devis_ingestor.py` [FAIT]
+**Sources ouvertes MEQ/MES intégrées :**
+- Données ouvertes Données Québec : `relance_fp_2011_2019.csv`, `relance_fp_region_2013_2019.csv`
+- Données géospatiales MEQ-MES : `es_universitaire.csv`, `es_collegial.csv`, `pps_public_ecole.csv`
+- Devis ministériels MES / Ministère de l'Enseignement supérieur du Québec.
 
 ```bash
-python trajektia/etl/meq_relance_ingestor.py
+python packages/data-pipeline/etl/meq_devis_ingestor.py
 ```
 
 ### B4 â€” DonnÃ©es SST/CNESST (directement dans Supabase) [FAIT]
@@ -375,11 +377,21 @@ python trajektia/etl/physical_demands_dpc_ingestor.py
 - [x] **Bloc Ergonomie & SantÃ© au travail** :
   - *Affichage Grand Public :* Badges synthÃ©tiques et iconographie claire (ex: "Travail sÃ©dentaire", "Charges lÃ©gÃ¨res <= 5 kg", "DextÃ©ritÃ© fine requise").
   - *Mode Pro / RÃ©adaptation (Toggle) :* Matrice ergonomique complÃ¨te (cotes S, B, L, V, C, H), charge maximale en kg, facteurs de risques sectoriels CNESST et alertes TMS.
-- [x] **Bloc Profil PsychomÃ©trique & Triade DPC** :
-  - Graphique cartÃ©sien interactif du ModÃ¨le de Prediger (Axes DonnÃ©es/IdÃ©es et Choses/Personnes) avec point de positionnement du mÃ©tier.
-  - Jauge tripartite interactive DPC (DonnÃ©es, Personnes, Choses) avec explicitation du verbe d'action de rÃ©fÃ©rence.
+- [x] **Bloc Profil Psychométrique & Triade DPC** :
+  - Graphique cartésien interactif du Modèle de Prediger (Axes Données/Idées et Choses/Personnes) avec point de positionnement du métier.
+  - Jauge tripartite interactive DPC (Données, Personnes, Choses) avec explicitation du verbe d'action de référence.
   - Radar RIASEC enrichi (6 dimensions).
-  - *Finesse des Facettes (Mode Conseiller) :* DÃ©pliage des 21 descripteurs comportementaux O*NET (*Work Styles*), dÃ©couplage managÃ©rial vs relationnel et pensÃ©e logique vs crÃ©ativitÃ©, indicateurs de variance intra-trait et filtres de rÃ©silience (stress/maÃ®trise de soi).
+  - *Finesse des Facettes (Mode Conseiller) :* Dépliage des 21 descripteurs comportementaux O*NET (*Work Styles*), découplage managérial vs relationnel et pensée logique vs créativité, indicateurs de variance intra-trait et filtres de résilience (stress/maîtrise de soi).
+
+### F2.1 — Harmonisation Sémantique DPCI & Déduplication des Work Styles O*NET (Astro & ETL) [FAIT — 2026-09-23]
+- **Objectif :** Éliminer les redondances dans les données O*NET et sublimer l'expérience utilisateur des fiches métiers en remplaçant les scores numériques abstraits par des verbes d'action fonctionnels.
+- **Tâches réalisées :**
+  - [x] **Déduplication ETL (`scripts/generate_career_content.py`)** : Agréger par `style_id` et moyenner les scores des 21 Work Styles (`AVG(score) GROUP BY ws.style_id`) pour éliminer les doublons causés par les correspondances multiples CNP $\leftrightarrow$ US-SOC (résolution validée : max 21 facettes par métier, 0 doublon sur les 395 blocs).
+  - [x] **Pôle « Idées » DPCI** : Intégrer formellement le pôle « Idées » calculé à partir de la moyenne des scores RIASEC Investigateur et Artistique $(I+A)/2$ et des cotes EDSC $D \le 1$ (Synthétiser / Coordonner).
+  - [x] **Ergonomie Sémantique DPCI (Grand Public)** : Remplacement des chiffres 1 à 5 de la boîte DPC par des verbes d'action concrets (*Concevoir & Modéliser*, *Analyser & Structurer*, *Coordonner & Conseiller*, *Ajuster avec précision*). Cotes chiffrées et coordonnées cartésiennes de Prediger réservées au Mode Pro.
+  - [x] **Work Styles Dominants vs. Exhaustivité (Astro)** :
+    - *Grand Public :* Affichage des **3 à 4 Work Styles dominants** du métier avec badges d'affinité et définitions courtes d'application terrain.
+    - *Mode Pro :* Affichage de la matrice des **21 facettes O*NET 30.1** regroupées sous les 4 macro-dimensions d'ordre supérieur (Orientation Proactive & Croissance, Dimension Interpersonnelle & Sociale, Conscienciosité & Rigueur Opérationnelle, Résilience & Régulation Émotionnelle) pour prévenir l'erreur écologique.
 
 ### F3 â€” Simulateur Interactif d'Aptitude, RÃ©adaptation & Finesse Clinique (Espace Conseiller)
 - [ ] Interface dÃ©diÃ©e pour les c.o., professionnels OCCOQ et conseillers en rÃ©adaptation CNESST :
@@ -569,14 +581,18 @@ RÃ‰ALISÃ‰ (Fondations, Ingestion, Moteurs & Taxonomie DPC)
 [FAIT] G3  Moteur de Preuve Scientifique Souverain & Audit DÃ©terministe (`scripts/verify_evidence_paperqa.py`)
 [FAIT] G3b Audit DÃ©terministe 100% VÃ‰RIFIÃ‰ (12/12) via Ollama qwen3:8b & bge-m3 contre les monographies de `ckg/references/` (rapport `ckg/audit/rapport_audit_preuves_paperqa.md`)
 [FAIT] G4  Scanner de Documentation & Injection DÃ©terministe de Citations (`scripts/scan_and_cite_documentation.py`)
-[FAIT] G5  Pipeline de Preuves Hybride & Ã‰valuation Ã‰pistÃ©mique ARA Rigor Reviewer (`scripts/g5_hybrid_evidence_pipeline.py`, OpenAlex + Ollama/DeepSeek-R1 + .agents/skills/ara-rigor-reviewer)
-[FAIT] D8  Moteur d'AdÃ©quation Personne-Poste (TAT & PR-RSM) implÃ©mentÃ© dans le frontend (pr-rsm-engine.ts)
+[FAIT] D8  Moteur d'Adéquation Personne-Poste (TAT & PR-RSM) implémenté dans le frontend (pr-rsm-engine.ts)
+[FAIT] B3b Ingestion des Devis Ministériels MES & Compétences 4 Niveaux (`schema_v9_program_devis.sql`, `meq_devis_ingestor.py`)
+[FAIT] P1/P2 Recherche Multicritère Avancée & Dictionnaire Synonymes TCC 2025 (`synonymes_tcc.ts`, `index.astro`)
+[FAIT] P3  Interconnexion Formations MEQ / MES, 539 Établissements & Admissibilité PTPD (`[cnp].astro`)
+[FAIT] P4  Validation Build Statique SSG (910 pages HTML générées sans erreur dans `dist/` + Sitemap XML)
+[FAIT] F2.1 Harmonisation Sémantique DPCI & Déduplication des Work Styles O*NET (Astro & ETL)
 
-PROCHAINE Ã‰TAPE PRIORITAIRE â€” Simulateur Ergonomique & RÃ©adaptation (F3) ou Ingestion MÃ©thodologique Skill_Seekers (G6)
-â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-1. F3  Simulateur Interactif d'Aptitude, Réadaptation & Finesse Clinique (Espace Conseiller) [Assigné à : Claude Code Router - 2026-09-21]
-2. G6  Ingestion de MÃ©thodologies & Guides SpÃ©cialisÃ©s via Skill_Seekers (CNESST, IRSST, EDSC, OCCOQ) [AssignÃ© Ã  : Claude Code Router / Python CLI]
-3. D3  Moteur de Recommandation CartÃ©sien de Prediger (Projection euclidienne CNP)
+PROCHAINE ÉTAPE PRIORITAIRE — Encyclopédie Grand Public & Espace Conseiller
+────────────────────────────────────────────────────────────────────────
+1. H3  Intégration des graphiques de tendances salariales 12 mois (Time-Series Trajektia Live™)
+2. G6  Ingestion de Méthodologies & Guides Spécialisés via Skill_Seekers (CNESST, IRSST, EDSC, OCCOQ)
+3. F3  Simulateur Interactif d'Aptitude, Réadaptation & Finesse Clinique (Espace Conseiller)
 ```
 
 
