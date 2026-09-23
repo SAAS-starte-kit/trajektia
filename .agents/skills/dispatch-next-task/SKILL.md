@@ -19,9 +19,12 @@ Le projet Trajektia utilise plusieurs outils et agents d'IA pour optimiser les c
 
 ## Étapes du Workflow
 
-### 1. Analyse du Plan d'Action
-- Ouvrir et lire le fichier `packages/ckg/PLAN_ACTION.md`.
-- Repérer la ou les prochaines tâches prioritaires ayant le statut **À faire** ou **En attente**.
+### 1. Analyse du Plan d'Action ou Tâche Directe
+- **Si une tâche explicite est fournie en argument** (ex: `/dispatch-next-task "tâche xyz"`) :
+  - **Court-circuiter l'étape du plan** : Ne pas lire `packages/ckg/PLAN_ACTION.md` et passer directement à l'étape 2 (ou utiliser la commande dédiée `/dispatch-task-now "..."` / `/dispatch-now "..."`).
+- **Si aucun argument n'est fourni** :
+  - Ouvrir et lire le fichier `packages/ckg/PLAN_ACTION.md`.
+  - Repérer la ou les prochaines tâches prioritaires ayant le statut **À faire** ou **En attente**.
 
 ### 2. Qualification et Attribution de la Tâche
 - Déterminer quel agent ou outil est le plus qualifié selon les critères suivants :

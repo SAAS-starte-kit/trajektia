@@ -109,13 +109,106 @@ const allWorkStyles = Array.from(uniqueStylesMap.values()).sort((a, b) => b.scor
 
 // Fallback intelligent si non renseigné
 const fallbackStyles = [
-  { id: "1", nom: "Pensée Analytique", description: "Analyser les besoins et formuler des solutions adaptées aux contraintes.", score: Math.min(95, (metier.riasec?.scores?.investigateur || 60) + 5) },
-  { id: "2", nom: "Attention aux Détails", description: "Rigueur et précision dans l'exécution quotidienne des livrables.", score: Math.min(95, (metier.riasec?.scores?.conventionnel || 60) + 10) },
-  { id: "3", nom: "Initiative & Autonomie", description: "Prise en charge proactive des responsabilités et défis du métier.", score: Math.min(95, (metier.riasec?.scores?.entreprenant || 60) + 5) },
-  { id: "4", nom: "Coopération & Esprit d'Équipe", description: "Travail collaboratif et communication efficace avec les collègues et partenaires.", score: Math.min(95, (metier.riasec?.scores?.social || 60) + 5) }
+  { id: "3", nom: "Pensée Analytique", description: "Analyser les besoins et formuler des solutions adaptées aux contraintes.", score: Math.min(95, (metier.riasec?.scores?.investigateur || 60) + 5) },
+  { id: "4", nom: "Attention aux Détails", description: "Rigueur et précision dans l'exécution quotidienne des livrables.", score: Math.min(95, (metier.riasec?.scores?.conventionnel || 60) + 10) },
+  { id: "7", nom: "Initiative & Autonomie", description: "Prise en charge proactive des responsabilités et défis du métier.", score: Math.min(95, (metier.riasec?.scores?.entreprenant || 60) + 5) },
+  { id: "8", nom: "Innovation", description: "Créativité et recherche de solutions techniques novatrices.", score: Math.min(95, (metier.riasec?.scores?.investigateur || 60) + 2) },
+  { id: "5", nom: "Coopération & Esprit d'Équipe", description: "Travail collaboratif et communication efficace avec les collègues et partenaires.", score: Math.min(95, (metier.riasec?.scores?.social || 60) + 5) }
 ];
 const effectiveWorkStyles = allWorkStyles.length > 0 ? allWorkStyles : fallbackStyles;
-const dominantWorkStyles = effectiveWorkStyles.slice(0, 4);
+// Standard O*NET : Top 5 des facettes dominantes pour l'affichage Grand Public
+const dominantWorkStyles = effectiveWorkStyles.slice(0, 5);
+
+// Référentiel des 21 icônes pérennes O*NET (utilisées partout dans Trajektia)
+const ONET_FACET_ICONS: Record<string, string> = {
+  "1": "🎯", // Accomplissement/Effort
+  "2": "🔄", // Adaptabilité/Flexibilité
+  "3": "🧩", // Pensée Analytique
+  "4": "🔍", // Attention aux Détails
+  "5": "🤝", // Coopération
+  "6": "⚓", // Fiabilité
+  "7": "⚡", // Initiative
+  "8": "💡", // Innovation
+  "9": "⚖️", // Intégrité
+  "10": "🧭", // Leadership
+  "11": "📐", // Raisonnement Mathématique
+  "12": "⚙️", // Raisonnement Mécanique
+  "13": "📋", // Organisation
+  "14": "🧗", // Persévérance
+  "15": "📅", // Planification et Organisation
+  "16": "🚨", // Sensibilité aux Problèmes
+  "17": "🧠", // Raisonnement Logique
+  "18": "🚀", // Prise de Risque
+  "19": "🧘", // Auto-Contrôle (Sang-froid)
+  "20": "💬", // Orientation Sociale
+  "21": "🛡️", // Tolérance au Stress
+};
+
+function getFacetIcon(id: string, name: string): string {
+  if (ONET_FACET_ICONS[id]) return ONET_FACET_ICONS[id];
+  const n = name.toLowerCase();
+  if (n.includes('analyt')) return '🧩';
+  if (n.includes('détail') || n.includes('detail')) return '🔍';
+  if (n.includes('innov')) return '💡';
+  if (n.includes('adapt') || n.includes('flexib')) return '🔄';
+  if (n.includes('initiat')) return '⚡';
+  if (n.includes('coopér') || n.includes('cooper') || n.includes('équipe')) return '🤝';
+  if (n.includes('fiab') || n.includes('respons')) return '⚓';
+  if (n.includes('stress')) return '🛡️';
+  if (n.includes('math')) return '📐';
+  if (n.includes('mécan') || n.includes('mecan')) return '⚙️';
+  if (n.includes('organis')) return '📋';
+  if (n.includes('planif')) return '📅';
+  if (n.includes('persév') || n.includes('persev')) return '🧗';
+  if (n.includes('lead')) return '🧭';
+  if (n.includes('intég') || n.includes('integ') || n.includes('éthiqu')) return '⚖️';
+  if (n.includes('social') || n.includes('contact')) return '💬';
+  if (n.includes('problème') || n.includes('probleme')) return '🚨';
+  if (n.includes('raison')) return '🧠';
+  if (n.includes('risque')) return '🚀';
+  if (n.includes('contrôle') || n.includes('controle') || n.includes('calme') || n.includes('soi')) return '🧘';
+  if (n.includes('accompli') || n.includes('effort')) return '🎯';
+  return '✨';
+}
+
+// Fonction de qualification d'intensité DPCI pour le Grand Public (remplace les cotes 1/5 à 5/5)
+function getDPCIIntensityBadge(score: number): { label: string; class: string } {
+  if (score >= 4) {
+    return { 
+      label: "Cœur du métier", 
+      class: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900/60 dark:text-indigo-200 border-indigo-200 dark:border-indigo-800" 
+    };
+  } else if (score === 3) {
+    return { 
+      label: "Complémentaire", 
+      class: "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border-slate-200 dark:border-slate-700" 
+    };
+  } else {
+    return { 
+      label: "Ponctuel", 
+      class: "bg-slate-50 text-slate-500 dark:bg-slate-800/50 dark:text-slate-400 border-slate-200/60 dark:border-slate-700/50" 
+    };
+  }
+}
+
+// Partitionnement strict sans doublon des 21 facettes dans les 4 macro-dimensions O*NET 30.1 / HumRRO (Mode Pro)
+function getMacroDimForStyle(id: string, name: string): "proactivite" | "interpersonnel" | "rigueur" | "resilience" {
+  const proactiviteIds = ["1", "7", "8", "10", "14", "18"];
+  const interpersonnelIds = ["5", "16", "20"];
+  const resilienceIds = ["2", "19", "21"];
+  const rigueurIds = ["3", "4", "6", "9", "11", "12", "13", "15", "17"];
+
+  if (proactiviteIds.includes(id)) return "proactivite";
+  if (interpersonnelIds.includes(id)) return "interpersonnel";
+  if (resilienceIds.includes(id)) return "resilience";
+  if (rigueurIds.includes(id)) return "rigueur";
+
+  // Fallback heuristique si ID non standard
+  if (/Accomplissement|Initiative|Innovation|Leadership|Persévérance|Risque/i.test(name)) return "proactivite";
+  if (/Coopération|Sociale|Sensibilité/i.test(name)) return "interpersonnel";
+  if (/Stress|Contrôle|Soi|Calme/i.test(name)) return "resilience";
+  return "rigueur";
+}
 
 // 4 Macro-dimensions d'ordre supérieur O*NET 30.1 (Mode Pro)
 const macroDimensions = [
@@ -125,8 +218,7 @@ const macroDimensions = [
     icone: "🚀",
     badge: "bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 border-amber-200 dark:border-amber-800",
     description: "Dynamisme d'accomplissement, initiative personnelle et innovation.",
-    styles: effectiveWorkStyles.filter(ws => ["1", "7", "8", "10", "14", "18"].includes(ws.id) || 
-      /Accomplissement|Initiative|Innovation|Leadership|Persévérance|Risque/i.test(ws.nom))
+    styles: effectiveWorkStyles.filter(ws => getMacroDimForStyle(ws.id, ws.nom) === "proactivite")
   },
   {
     id: "interpersonnel",
@@ -134,8 +226,7 @@ const macroDimensions = [
     icone: "🤝",
     badge: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800",
     description: "Coopération, intelligence relationnelle et sens de l'équipe.",
-    styles: effectiveWorkStyles.filter(ws => ["5", "16", "20"].includes(ws.id) || 
-      /Coopération|Sociale|Sensibilité/i.test(ws.nom))
+    styles: effectiveWorkStyles.filter(ws => getMacroDimForStyle(ws.id, ws.nom) === "interpersonnel")
   },
   {
     id: "rigueur",
@@ -143,8 +234,7 @@ const macroDimensions = [
     icone: "📐",
     badge: "bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 border-blue-200 dark:border-blue-800",
     description: "Souci du détail, intégrité, fiabilité et méthodes de travail.",
-    styles: effectiveWorkStyles.filter(ws => ["4", "6", "9", "11", "12", "13", "15", "17"].includes(ws.id) || 
-      /Détails|Fiabilité|Intégrité|Organisation|Planification|Raisonnement/i.test(ws.nom))
+    styles: effectiveWorkStyles.filter(ws => getMacroDimForStyle(ws.id, ws.nom) === "rigueur")
   },
   {
     id: "resilience",
@@ -152,8 +242,7 @@ const macroDimensions = [
     icone: "🛡️",
     badge: "bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300 border-purple-200 dark:border-purple-800",
     description: "Tolérance au stress, adaptabilité face aux aléas et sang-froid.",
-    styles: effectiveWorkStyles.filter(ws => ["2", "3", "19", "21"].includes(ws.id) || 
-      /Stress|Contrôle|Adaptabilité|Analytique/i.test(ws.nom))
+    styles: effectiveWorkStyles.filter(ws => getMacroDimForStyle(ws.id, ws.nom) === "resilience")
   }
 ];
 ---
@@ -167,13 +256,20 @@ const macroDimensions = [
         </svg>
       </div>
       <div>
-        <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Profil Psychométrique & Triade DPCI</h2>
-        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Modèle de Holland (RIASEC), matrice DPCI (Données, Personnes, Choses, Idées) et facettes O*NET 30.1</p>
+        <h2 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
+          <span class="public-only">Profil Psychométrique & Forces au Travail</span>
+          <span class="pro-only">Profil Psychométrique & Triade DPCI</span>
+        </h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+          <span class="public-only">Affinités professionnelles (RIASEC), répartition des activités quotidiennes et aptitudes comportementales clés.</span>
+          <span class="pro-only">Modèle de Holland (RIASEC), matrice DPCI (Données, Personnes, Choses, Idées) et facettes O*NET 30.1</span>
+        </p>
       </div>
     </div>
 
     <span class="hidden sm:inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
-      <span>📐 Modèle Prediger DPCI</span>
+      <span class="public-only">🧭 Boussole d'Activité</span>
+      <span class="pro-only">📐 Modèle Prediger DPCI</span>
     </span>
   </div>
 
@@ -202,17 +298,17 @@ const macroDimensions = [
         </div>
       </div>
 
-      <!-- WORK STYLES : VUE GRAND PUBLIC (Top 3-4 dominants avec explications complètes) -->
+      <!-- WORK STYLES : VUE GRAND PUBLIC (Top 5 dominants selon recommandation O*NET avec icônes et sans pourcentages) -->
       <div class="public-only mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
         <div class="flex items-center justify-between mb-3">
           <div>
             <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span>🌟 Styles de Travail Clés (O*NET 30.1)</span>
+              <span>🌟 Vos 5 Forces au Travail (Styles O*NET)</span>
             </h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400">Postures comportementales indispensables au quotidien pour ce métier.</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Postures et qualités comportementales les plus valorisées pour ce métier.</p>
           </div>
-          <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
-            Top 4 Dominants
+          <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 shrink-0">
+            Top 5 Dominants
           </span>
         </div>
 
@@ -220,11 +316,9 @@ const macroDimensions = [
           {dominantWorkStyles.map(ws => (
             <div class="p-3.5 rounded-2xl bg-slate-50/90 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60 hover:border-indigo-300 dark:hover:border-indigo-600 transition-all flex flex-col justify-between">
               <div>
-                <div class="flex items-center justify-between gap-2 mb-1.5">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="text-base select-none shrink-0" aria-hidden="true">{getFacetIcon(ws.id, ws.nom)}</span>
                   <span class="text-xs font-black text-slate-900 dark:text-slate-100 truncate">{ws.nom}</span>
-                  <span class="text-xs font-black px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-800/40 shrink-0">
-                    {ws.score}%
-                  </span>
                 </div>
                 <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
                   {ws.description}
@@ -309,7 +403,10 @@ const macroDimensions = [
     <div class="space-y-6">
       <div>
         <div class="flex items-center justify-between mb-2">
-          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Projection Bi-Axiale de Prediger (DPCI)</h3>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">
+            <span class="public-only">🧭 Votre Boussole d'Activité au Quotidien</span>
+            <span class="pro-only">Projection Bi-Axiale de Prediger (DPCI)</span>
+          </h3>
           {predigerEvidence && (
             <span class="pro-only inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400 border border-green-200 dark:border-green-800">
               <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -319,7 +416,8 @@ const macroDimensions = [
         </div>
         
         <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
-          Positionnement cartésien reliant les objets d'activité (Choses vs Personnes) et les modes opératoires (Données vs Idées).
+          <span class="public-only">Visualisez l'équilibre de votre temps de travail entre la réflexion théorique, le traitement de données, les relations humaines et les outils matériels.</span>
+          <span class="pro-only">Positionnement cartésien reliant les objets d'activité (Choses vs Personnes) et les modes opératoires (Données vs Idées).</span>
         </p>
 
         <!-- Graphique Prediger CSS -->
@@ -354,13 +452,13 @@ const macroDimensions = [
         </div>
       </div>
 
-      <!-- BOÎTE DPCI : VUE GRAND PUBLIC (Verbes d'Action Concrets & Descriptions Claires) -->
+      <!-- BOÎTE DPCI : VUE GRAND PUBLIC (Verbes d'Action Concrets, Zéro cote chiffrée 1/5) -->
       <div class="public-only">
         <div class="flex items-center justify-between mb-3">
           <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
-            <span>🧩 Activités & Objets Principaux (DPCI)</span>
+            <span>🛠️ Le Cœur de vos Activités Quotidiennes</span>
           </h4>
-          <span class="text-[10px] text-slate-400">Verbes d'action & missions</span>
+          <span class="text-[10px] text-slate-400">Ce que vous manipulerez au quotidien</span>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -369,7 +467,7 @@ const macroDimensions = [
             <div>
               <div class="flex items-center justify-between mb-1">
                 <span class="text-[11px] font-extrabold text-blue-800 dark:text-blue-300 uppercase tracking-wide">📊 Données</span>
-                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-200/60 dark:bg-blue-900/60 text-blue-800 dark:text-blue-200">Niv. {rawScoreD}/5</span>
+                <span class={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${getDPCIIntensityBadge(rawScoreD).class}`}>{getDPCIIntensityBadge(rawScoreD).label}</span>
               </div>
               <div class="text-xs font-black text-blue-950 dark:text-blue-100 leading-tight mb-1">{infoD.verbe}</div>
               <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">{descD}</p>
@@ -384,7 +482,7 @@ const macroDimensions = [
             <div>
               <div class="flex items-center justify-between mb-1">
                 <span class="text-[11px] font-extrabold text-emerald-800 dark:text-emerald-300 uppercase tracking-wide">👥 Personnes</span>
-                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-200/60 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200">Niv. {rawScoreP}/5</span>
+                <span class={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${getDPCIIntensityBadge(rawScoreP).class}`}>{getDPCIIntensityBadge(rawScoreP).label}</span>
               </div>
               <div class="text-xs font-black text-emerald-950 dark:text-emerald-100 leading-tight mb-1">{infoP.verbe}</div>
               <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">{descP}</p>
@@ -399,7 +497,7 @@ const macroDimensions = [
             <div>
               <div class="flex items-center justify-between mb-1">
                 <span class="text-[11px] font-extrabold text-amber-800 dark:text-amber-300 uppercase tracking-wide">🛠️ Choses</span>
-                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-amber-200/60 dark:bg-amber-900/60 text-amber-800 dark:text-amber-200">Niv. {rawScoreC}/5</span>
+                <span class={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${getDPCIIntensityBadge(rawScoreC).class}`}>{getDPCIIntensityBadge(rawScoreC).label}</span>
               </div>
               <div class="text-xs font-black text-amber-900 dark:text-amber-100 leading-tight mb-1">{infoC.verbe}</div>
               <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">{descC}</p>
@@ -414,7 +512,7 @@ const macroDimensions = [
             <div>
               <div class="flex items-center justify-between mb-1">
                 <span class="text-[11px] font-extrabold text-purple-800 dark:text-purple-300 uppercase tracking-wide">💡 Idées</span>
-                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-purple-200/60 dark:bg-purple-900/60 text-purple-800 dark:text-purple-200">Niv. {rawScoreI}/5</span>
+                <span class={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${getDPCIIntensityBadge(rawScoreI).class}`}>{getDPCIIntensityBadge(rawScoreI).label}</span>
               </div>
               <div class="text-xs font-black text-purple-900 dark:text-purple-100 leading-tight mb-1">{infoI.verbe}</div>
               <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">{descI}</p>
@@ -519,45 +617,82 @@ const macroDimensions = [
   </div>
 
   <!-- SECTION BIG FIVE (OCEAN) SI DISPONIBLE -->
+  <!-- SECTION BIG FIVE (OCEAN) SI DISPONIBLE -->
   {metier.big_five && (
     <div class="mt-6 pt-6 border-t border-slate-200/80 dark:border-slate-700/80">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
         <div class="flex items-center gap-2">
           <h3 class="text-sm font-black text-slate-900 dark:text-white tracking-tight">
-            Profil de Personnalité au Travail (Modèle OCEAN / Big Five)
+            <span class="public-only">Climat Comportemental & Ambiance de Travail</span>
+            <span class="pro-only">Profil de Personnalité au Travail (Modèle OCEAN / Big Five)</span>
           </h3>
           <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-400 border border-purple-200 dark:border-purple-800">
             Psychométrie
           </span>
         </div>
-        <span class="text-[11px] text-slate-400 font-medium">Scores normalisés sur 100</span>
+        <span class="pro-only text-[11px] text-slate-400 font-medium">Scores normalisés sur 100</span>
+        <span class="public-only text-[11px] text-slate-400 font-medium">Ce que l'environnement de travail sollicite</span>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
-        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
-          <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Ouverture</span>
-          <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.ouverture} %</div>
-          <span class="text-[9px] text-slate-400 block">Curiosité / Innovation</span>
+      <!-- VUE PROFESSIONNELLE (Scores chiffrés pour conseillers et psychologues) -->
+      <div class="pro-only">
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
+            <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Ouverture</span>
+            <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.ouverture} %</div>
+            <span class="text-[9px] text-slate-400 block">Curiosité / Innovation</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
+            <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Conscience</span>
+            <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.conscientieux} %</div>
+            <span class="text-[9px] text-slate-400 block">Rigueur / Fiabilité</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
+            <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Extraversion</span>
+            <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.extraversion} %</div>
+            <span class="text-[9px] text-slate-400 block">Énergie / Contact</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
+            <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Agréabilité</span>
+            <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.agreabilite} %</div>
+            <span class="text-[9px] text-slate-400 block">Coopération / Écoute</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center col-span-2 sm:col-span-1">
+            <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Stabilité ém.</span>
+            <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.stabilite_emotionnelle} %</div>
+            <span class="text-[9px] text-slate-400 block">Gestion du stress</span>
+          </div>
         </div>
-        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
-          <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Conscience</span>
-          <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.conscientieux} %</div>
-          <span class="text-[9px] text-slate-400 block">Rigueur / Fiabilité</span>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
-          <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Extraversion</span>
-          <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.extraversion} %</div>
-          <span class="text-[9px] text-slate-400 block">Énergie / Contact</span>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
-          <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Agréabilité</span>
-          <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.agreabilite} %</div>
-          <span class="text-[9px] text-slate-400 block">Coopération / Écoute</span>
-        </div>
-        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center col-span-2 sm:col-span-1">
-          <span class="text-[11px] font-bold text-slate-500 dark:text-slate-400">Stabilité ém.</span>
-          <div class="text-base font-black text-slate-900 dark:text-white my-0.5">{metier.big_five.stabilite_emotionnelle} %</div>
-          <span class="text-[9px] text-slate-400 block">Gestion du stress</span>
+      </div>
+
+      <!-- VUE GRAND PUBLIC (Postures comportementales concrètes, zéro pourcentage anxiogène) -->
+      <div class="public-only">
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+          <div class="p-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
+            <span class="text-base block mb-0.5" aria-hidden="true">💡</span>
+            <span class="text-xs font-bold text-slate-900 dark:text-white block">Curiosité</span>
+            <span class="text-[10px] text-slate-500 dark:text-slate-400 block mt-0.5">Exploration & Idées</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
+            <span class="text-base block mb-0.5" aria-hidden="true">📐</span>
+            <span class="text-xs font-bold text-slate-900 dark:text-white block">Rigueur</span>
+            <span class="text-[10px] text-slate-500 dark:text-slate-400 block mt-0.5">Qualité du travail</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
+            <span class="text-base block mb-0.5" aria-hidden="true">👥</span>
+            <span class="text-xs font-bold text-slate-900 dark:text-white block">Collaboration</span>
+            <span class="text-[10px] text-slate-500 dark:text-slate-400 block mt-0.5">Échanges en équipe</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center">
+            <span class="text-base block mb-0.5" aria-hidden="true">🤝</span>
+            <span class="text-xs font-bold text-slate-900 dark:text-white block">Entraide</span>
+            <span class="text-[10px] text-slate-500 dark:text-slate-400 block mt-0.5">Écoute & Respect</span>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50/80 dark:bg-slate-900/50 border border-slate-200/60 dark:border-slate-700/50 text-center col-span-2 sm:col-span-1">
+            <span class="text-base block mb-0.5" aria-hidden="true">🧘</span>
+            <span class="text-xs font-bold text-slate-900 dark:text-white block">Sérénité</span>
+            <span class="text-[10px] text-slate-500 dark:text-slate-400 block mt-0.5">Calme face aux défis</span>
+          </div>
         </div>
       </div>
     </div>

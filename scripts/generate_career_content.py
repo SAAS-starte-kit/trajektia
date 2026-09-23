@@ -106,11 +106,27 @@ PILOT_CAREERS = [
             "risques_cnesst": ["Troubles musculosquelettiques (TMS) liés à la souris/clavier.", "Fatigue oculaire."]
         },
         "onet_work_styles": [
-            { "id": "1", "nom": "Pensée Analytique", "description": "Analyser les besoins et développer des solutions complexes", "score": 92 },
-            { "id": "2", "nom": "Attention aux Détails", "description": "Précision dans l'écriture de code et le débogage", "score": 88 },
-            { "id": "3", "nom": "Initiative", "description": "Proposer de nouvelles architectures ou outils", "score": 81 },
-            { "id": "4", "nom": "Adaptabilité", "description": "S'adapter aux nouvelles technologies et frameworks", "score": 85 },
-            { "id": "5", "nom": "Innovation", "description": "Créativité dans la résolution de problèmes algorithmiques", "score": 82 }
+            { "id": "3", "nom": "Pensée Analytique", "description": "Analyser les besoins et développer des solutions logicielles complexes.", "score": 92 },
+            { "id": "4", "nom": "Attention aux Détails", "description": "Précision dans l'écriture de code et le débogage minutieux.", "score": 88 },
+            { "id": "2", "nom": "Adaptabilité & Flexibilité", "description": "S'adapter aux nouvelles technologies, langages et frameworks.", "score": 85 },
+            { "id": "17", "nom": "Raisonnement Logique", "description": "Évaluer la robustesse et l'efficience des architectures logicielles.", "score": 85 },
+            { "id": "8", "nom": "Innovation", "description": "Créativité dans la résolution de problèmes algorithmiques et conception.", "score": 82 },
+            { "id": "6", "nom": "Fiabilité & Assiduité", "description": "Respect scrupuleux des engagements, standards de code et sécurité.", "score": 82 },
+            { "id": "7", "nom": "Initiative", "description": "Proposer de nouvelles architectures, outils et améliorations continues.", "score": 81 },
+            { "id": "14", "nom": "Persévérance", "description": "Ténacité face aux bogues complexes et aux défis d'intégration système.", "score": 80 },
+            { "id": "5", "nom": "Coopération", "description": "Collaboration bienveillante en équipe Agile et revues de code constructives.", "score": 78 },
+            { "id": "11", "nom": "Raisonnement Mathématique", "description": "Application de modèles computationnels et calculs de complexité.", "score": 78 },
+            { "id": "1", "nom": "Accomplissement & Effort", "description": "Volonté d'exceller et de maîtriser des technologies de pointe.", "score": 76 },
+            { "id": "9", "nom": "Intégrité & Éthique", "description": "Protection de la confidentialité des données et sécurité logicielle.", "score": 75 },
+            { "id": "15", "nom": "Planification & Gestion", "description": "Organisation des sprints, priorisation des tâches et respect des jalons.", "score": 74 },
+            { "id": "13", "nom": "Organisation Opérationnelle", "description": "Structure rigoureuse des projets, tests et documentation technique.", "score": 72 },
+            { "id": "19", "nom": "Maîtrise de Soi", "description": "Garder son calme et son discernement lors d'incidents critiques en production.", "score": 72 },
+            { "id": "21", "nom": "Tolérance au Stress", "description": "Gestion sereine des délais serrés et imprévus de déploiement.", "score": 70 },
+            { "id": "16", "nom": "Sensibilité aux Problèmes", "description": "Anticipation des vulnérabilités et goulets d'étranglement de performance.", "score": 68 },
+            { "id": "10", "nom": "Leadership Technique", "description": "Mentorat des pairs et orientation des choix d'architecture logicielle.", "score": 65 },
+            { "id": "20", "nom": "Orientation Sociale", "description": "Communication régulière avec le produit et les utilisateurs finaux.", "score": 58 },
+            { "id": "18", "nom": "Prise de Risque Mesurée", "description": "Expérimentation contrôlée de technologies émergentes (PoC).", "score": 52 },
+            { "id": "12", "nom": "Logique Matérielle", "description": "Compréhension des interactions du logiciel avec les serveurs et le matériel.", "score": 38 }
         ],
         "competences": {
             "techniques_oasis": [
