@@ -881,9 +881,14 @@ L'intégration des styles comportementaux au travail (*Work Styles*) repose sur 
    - **Consciencieux et axé sur les règles** (*Prudence, Attention aux détails, Fiabilité, Intégrité*).
    - **Résilience émotionnelle** (*Tolérance au stress, Maîtrise de soi*).
 
-2. **Affichage Grand Public vs. Mode Pro des Work Styles** :
-   - **Grand Public** : Mise en valeur exclusive des **3 à 4 Work Styles dominants** du métier (les cotes d'importance les plus élevées $> 80/100$) accompagnés d'une courte définition contextualisée d'application terrain, évitant la surcharge cognitive.
-   - **Mode Pro** : Déploiement de la matrice exhaustive des **21 facettes comportementales O\*NET**, regroupées sous les **4 macro-dimensions**, avec scores percentiles normalisés, scores d'impact sur la performance ($WI$) et rangs de distinction ($DR$).
+2. **Affichage Grand Public vs. Mode Pro des Work Styles & Profil Psychométrique** :
+   - **Grand Public** :
+     - *Top 5 des Work Styles Dominants* : Standard O\*NET Online présentant les 5 dimensions à plus forte saillance d'importance relative.
+     - *Suppression des pourcentages chiffrés* : Présentation qualitative épurée avec pictogrammes permanents (ex: 🧩 *Pensée Analytique*, 🔍 *Attention aux Détails*, 💡 *Innovation*, 🔄 *Adaptabilité*, ⚡ *Initiative*) et descriptions d'impact, sans notation sur 100 pour éliminer tout biais d'anxiété scolaire.
+     - *Ergonomie Sémantique DPCI* : Élimination des cotes numériques 1/5 à 5/5 au profit de badges d'intensité (*Cœur du métier*, *Complémentaire*, *Ponctuel*) et de verbes d'action concrets (*Analyser & Structurer*, *Concevoir & Modéliser*).
+     - *Vulgarisation des Titres* : Remplacement du jargon expert (*Projection Bi-Axiale de Prediger*) par des titres orientés utilisateur (*« 🧭 Votre Boussole d'Activité au Quotidien »*).
+     - *Climat Comportemental (Big Five)* : Découplage de la section OCEAN brute en 5 postures clés bienveillantes (*Curiosité, Rigueur, Collaboration, Entraide, Sérénité*) sans scores chiffrés.
+   - **Mode Pro** : Déploiement de la matrice exhaustive des **21 facettes comportementales O\*NET**, partitionnées strictement sous les **4 macro-dimensions factorielles d'ordre supérieur**, avec scores percentiles normalisés sur 100, scores d'impact sur la performance ($WI$), rangs de distinction ($DR$), cotes cliniques EDSC 1 à 5 et coordonnées cartésiennes de Prediger.
 
 ### 8.8.2 Grille des 5 Dimensions Contextuelles de Terrain (Mode Pro)
 

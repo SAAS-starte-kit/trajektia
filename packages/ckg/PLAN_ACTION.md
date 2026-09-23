@@ -393,6 +393,23 @@ python trajektia/etl/physical_demands_dpc_ingestor.py
     - *Grand Public :* Affichage des **3 à 4 Work Styles dominants** du métier avec badges d'affinité et définitions courtes d'application terrain.
     - *Mode Pro :* Affichage de la matrice des **21 facettes O*NET 30.1** regroupées sous les 4 macro-dimensions d'ordre supérieur (Orientation Proactive & Croissance, Dimension Interpersonnelle & Sociale, Conscienciosité & Rigueur Opérationnelle, Résilience & Régulation Émotionnelle) pour prévenir l'erreur écologique.
 
+### F2.2 — Vulgarisation Ergonomique, Top 5 O*NET & Découplage Éthique Grand Public [FAIT — 2026-09-23]
+- **Objectif :** Réduire la charge mentale, éliminer l'anxiété scolaire liée aux pourcentages et offrir une lisibilité optimale du profil psychométrique pour le grand public tout en préservant la précision pour les professionnels.
+- **Tâches réalisées :**
+  - [x] **Top 5 des Facettes Dominantes (Norme O\*NET)** : Standardisation sur les 5 facettes à plus forte saillance d'importance relative pour le grand public.
+  - [x] **Suppression des pourcentages chiffrés (Grand Public)** : Retrait des notes sur 100 de la vue publique pour prévenir le biais de sélection et la confusion avec une note d'admissibilité scolaire.
+  - [x] **Système Iconographique Permanent (21 Facettes O\*NET)** : Intégration d'un dictionnaire d'icônes dédiées et pérennes (ex: 🧩 *Pensée Analytique*, 🔍 *Attention aux Détails*, 💡 *Innovation*, 🔄 *Adaptabilité*, ⚡ *Initiative*, 🤝 *Coopération*).
+  - [x] **Suppression des Cotes 1/5 à 5/5 en DPCI (Grand Public)** : Remplacement des scores numériques par des badges d'intensité qualitatifs (*Cœur du métier*, *Complémentaire*, *Ponctuel*) et focus direct sur les verbes d'action. Cotes 1/5 à 5/5 maintenues exclusivement en Mode Pro.
+  - [x] **Vulgarisation des Titres & Réduction du Jargon** :
+    - *Boussole d'activité* : « 🧭 Votre Boussole d'Activité au Quotidien » au lieu de *Projection Bi-Axiale de Prediger (DPCI)*.
+    - *Missions quotidiennes* : « 🛠️ Le Cœur de vos Activités Quotidiennes » au lieu de *Matrice DPCI*.
+    - *Aptitudes clés* : « 🌟 Vos 5 Forces au Travail (Styles O\*NET) ».
+  - [x] **Découplage Éthique Big Five (OCEAN)** :
+    - *Mode Public :* Traduction en « Climat Comportemental & Ambiance de Travail » avec 5 postures bienveillantes (*Curiosité, Rigueur, Collaboration, Entraide, Sérénité*) sans note chiffrée.
+    - *Mode Pro :* Conservation des percentiles et scores normés pour les conseillers d'orientation.
+  - [x] **Complétion 21 Facettes O\*NET pour Développeur (CNP 21232)** : Ingestion des 21 Work Styles avec IDs officiels 1 à 21 dans `metiers.ts` et `generate_career_content.py` et partitionnement strict sans doublon dans les 4 macro-dimensions.
+
+
 ### F3 â€” Simulateur Interactif d'Aptitude, RÃ©adaptation & Finesse Clinique (Espace Conseiller)
 - [ ] Interface dÃ©diÃ©e pour les c.o., professionnels OCCOQ et conseillers en rÃ©adaptation CNESST :
   - Formulaire de saisie des limitations fonctionnelles d'un travailleur (poids max tolÃ©rÃ©, postures contre-indiquÃ©es, vision, audition).

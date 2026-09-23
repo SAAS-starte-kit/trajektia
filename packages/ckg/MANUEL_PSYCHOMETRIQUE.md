@@ -238,9 +238,18 @@ Tandis que le grand public accède à une synthèse des 5 macro-scores OCEAN, **
      - **II. Dimension Interpersonnelle & Sociale** : *Coopération*, *Orientation sociale*, *Sensibilité aux problèmes / Souci d'autrui*.
      - **III. Conscienciosité & Rigueur Opérationnelle** : *Attention aux détails*, *Fiabilité*, *Intégrité*, *Organisation*, *Planification*, *Raisonnement / Prudence*.
      - **IV. Résilience & Régulation Émotionnelle** : *Tolérance au stress*, *Auto-contrôle / Maîtrise de soi*, *Adaptabilité / Flexibilité*, *Pensée analytique*.
-8. **Stratégie d'Affichage Éthique et Cognitive (Grand Public vs. Espace Conseiller)** :
-   - **Grand Public** : Élimination du bruit informationnel et de la surcharge cognitive. Le système met en valeur les **3 à 4 Work Styles dominants** du métier (les scores d'importance les plus élevés $> 80/100$) avec badges de compétence et définitions concrètes d'impact au quotidien, et traduit le profil DPCI en verbes d'action immédiats.
-   - **Espace Conseiller (Mode Pro)** : Restitution intégrale de la matrice des **21 Work Styles O\*NET 30.1**, organisée sous les **4 macro-dimensions empiriques**, avec accès aux scores percentiles normalisés, au score d'impact sur la performance ($WI \in [-3, +3]$), au rang de distinction ($DR \in [1, 10]$), aux échelons EDSC de base et aux coordonnées de Prediger.
+8. **Stratégie d'Affichage Éthique, Ergonomique et Cognitive (Grand Public vs. Espace Conseiller)** :
+   - **Grand Public (Candidats, Élèves & Parents)** : Élimination du bruit informationnel, de l'anxiété de performance et du biais scolaire.
+     - *Top 5 des Styles Dominants (Norme O\*NET)* : Conformément aux recommandations de diffusion d'O\*NET OnLine, mise en valeur exclusive des **5 facettes dominantes** du métier (les scores d'importance relative les plus élevés) accompagnées d'un référentiel d'icônes pérennes (ex: 🧩 *Pensée Analytique*, 🔍 *Attention aux Détails*, 💡 *Innovation*, 🔄 *Adaptabilité*, ⚡ *Initiative*).
+     - *Suppression des pourcentages chiffrés* : Zéro score sur 100 ni pourcentage affiché au grand public pour éviter qu'il n'interprète les exigences de poste comme un examen couperet ou une note d'admissibilité personnelle.
+     - *Ergonomie Sémantique DPCI & Élimination des cotes 1/5 à 5/5* : Suppression des notes chiffrées qui induisaient un contresens punitif (un niveau 1/5 en manipulation d'objets perçu comme un « échec »). Remplacement par des **badges d'intensité qualitative** (*« Cœur du métier »* pour score $\ge 4$, *« Complémentaire »* pour score $= 3$, *« Ponctuel »* pour score $\le 2$) et valorisation des verbes d'action opérationnels (*« Analyser & Structurer »*, *« Concevoir & Modéliser »*).
+     - *Vulgarisation des Titres & Réduction du Jargon* : Substitution des termes académiques par des repères intuitifs (*« 🧭 Votre Boussole d'Activité au Quotidien »* au lieu de *Projection Bi-Axiale de Prediger*, *« 🛠️ Le Cœur de vos Activités Quotidiennes »* au lieu de *Matrice DPCI*, *« 🌟 Vos 5 Forces au Travail »* au lieu de *Styles O\*NET 30.1*).
+     - *Découplage Éthique du Modèle Big Five (OCEAN)* : Pour prévenir le déterminisme psychologique et l'autocensure, la section OCEAN brute est vulgarisée en **« Climat Comportemental & Ambiance de Travail »** mettant en avant 5 postures positives concrètes (*Curiosité, Rigueur, Collaboration, Entraide, Sérénité*) **sans aucun pourcentage chiffré**.
+   - **Espace Conseiller (Mode Pro / Experts OCCOQ, CRHA & Psychologues)** :
+     - Restitution intégrale de la matrice des **21 Work Styles O\*NET 30.1**, partitionnée de façon étanche sous les **4 macro-dimensions factorielles d'ordre supérieur** (HumRRO 2025 / JAP 2025).
+     - Accès aux scores percentiles normalisés sur 100, scores d'impact sur la performance ($WI \in [-3, +3]$), rangs de distinction ($DR \in [1, 10]$).
+     - Cotations cliniques EDSC 1 à 5 sur les axes DPCI, coordonnées cartésiennes de Prediger $(T/P, D/I)$ et données probantes scientifiques avec taux de consensus et DOIs des publications clés.
+     - Profil Big Five (OCEAN) normé avec scores percentiles pour l'analyse de fit personne-poste et de prévention du burnout.
 
 ---
 
