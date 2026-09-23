@@ -45,6 +45,8 @@ mÃ©tiers et formations via la vitrine Astro.
 | BLS ORS (Ergonomie US BLS) | PlanifiÃ© | Profils ergonomiques haute prÃ©cision (heures assis/debout, lbs) | CadrÃ© post-B5 |
 | Job Bank (offres actives) | FAIT | 424 nÅ“uds MarketDemand (239 CNPs QC) | 100% |
 | Career Ladders (CMC) | Demo | 19 liens | Demo seulement |
+| Architecture Monorepo & Workspaces | FAIT (2026-09-22) | Découpage en `apps/frontend`, `apps/api`, `packages/ckg`, `packages/database`, `packages/data-pipeline` | 100% |
+| Déploiement Vercel & Docker | FAIT (2026-09-22) | Dockerfiles isolés par app + Pipeline de déploiement Astro Vercel | 100% |
 
 ---
 

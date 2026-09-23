@@ -15,12 +15,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
-      include: ['react', 'react-dom', 'lucide-react', 'motion/react'],
-      esbuildOptions: {
-        define: {
-          'process.env.NODE_ENV': '"development"'
-        }
-      }
+      include: ['react', 'react-dom', 'lucide-react', 'motion/react']
     },
     server: {
       hmr: process.env.DISABLE_HMR !== 'true',

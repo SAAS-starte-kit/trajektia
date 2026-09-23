@@ -20,16 +20,16 @@ Le projet Trajektia utilise plusieurs outils et agents d'IA pour optimiser les c
 ## Étapes du Workflow
 
 ### 1. Analyse du Plan d'Action
-- Ouvrir et lire le fichier `ckg/PLAN_ACTION.md`.
+- Ouvrir et lire le fichier `packages/ckg/PLAN_ACTION.md`.
 - Repérer la ou les prochaines tâches prioritaires ayant le statut **À faire** ou **En attente**.
 
 ### 2. Qualification et Attribution de la Tâche
 - Déterminer quel agent ou outil est le plus qualifié selon les critères suivants :
   - *Prototypage UI rapide, création de nouveaux concepts d'écrans ou de Design System textuel* $\rightarrow$ **Google Stitch (MCP)**
   - *Alignement fidèle sur des maquettes graphiques existantes, extraction de tokens et variables Figma* $\rightarrow$ **Figma (MCP)**
-  - *Intégration de code frontend (Astro/Tailwind/React), refontes structurelles du site* $\rightarrow$ **Antigravity**
+  - *Intégration de code frontend (`apps/frontend`), refontes structurelles du site* $\rightarrow$ **Antigravity**
   - *Analyse documentaire massive, cross-référencement de manuels volumineux, batch à faible coût* $\rightarrow$ **Gemini CLI**
-  - *Script Python pur (ETL, parsing, extraction, refactoring)* $\rightarrow$ **Claude Code Router**
+  - *Script Python pur (`apps/api`, `packages/data-pipeline`, `packages/ckg`)* $\rightarrow$ **Claude Code Router**
   - *Notification, suivi externe ou message vers Telegram* $\rightarrow$ **Hermes**
   - *Exploration de données, requêtes analytiques lourdes* $\rightarrow$ **Google Jules**
 - Définir le contexte minimal nécessaire (fichiers cibles, contraintes, format attendu) pour économiser un maximum de tokens.
@@ -46,4 +46,4 @@ Le projet Trajektia utilise plusieurs outils et agents d'IA pour optimiser les c
 - Dès que l'agent destinataire (Stitch, CCR, Jules) termine son travail :
   - Récupérer automatiquement le code, l'écran ou le rapport généré.
   - Exécuter les tests de vérification.
-  - Mettre à jour `ckg/PLAN_ACTION.md` et présenter la synthèse finale à l'utilisateur.
+  - Mettre à jour `packages/ckg/PLAN_ACTION.md` et présenter la synthèse finale à l'utilisateur.
