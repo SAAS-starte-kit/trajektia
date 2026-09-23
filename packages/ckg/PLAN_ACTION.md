@@ -39,7 +39,7 @@ mÃ©tiers et formations via la vitrine Astro.
 | O*NET Job Zones              | FAIT (Supabase + Ingestor Neo4j) | 923 SOC + 5 Zones | 813 professions enrichies (18.4%), mÃ©tadonnÃ©es SVP et Ã©quivalences TEER. |
 | SST / CNESST (DonnÃ©es QuÃ©bec) | FAIT | 3 698 liens, 20 secteurs, 7 risques (Supabase) + 1 496 HAS_RISK (Neo4j) | 100% |
 | Exigences Physiques (EDSC GC 2016) | FAIT | 504 mÃ©tiers (Forces S1-S4, Postures B1-B4, Vision, OuÃ¯e) | 100% Supabase + Neo4j |
-| DPC DonnÃ©es-Personnes-Choses (GC 2016) | FAIT | 504 mÃ©tiers (Cotation DPC + Pont RIASEC Prediger) | 100% Supabase + Neo4j |
+| DPCI DonnÃ©es-Personnes-Choses-IdÃ©es (GC 2016 / O*NET) | FAIT | 504 mÃ©tiers (Cotation DPCI, Pont RIASEC Prediger & Verbes d'action) | 100% Supabase + Frontend |
 | Test PsychomÃ©trique (Big Five + RIASEC) | FAIT | 110 items (50 IPIP-50 + 60 Mini-IP), scoring 11D, UI Astro/React | 100% |
 | Titres alternatifs TCC 2025 (Synonymes) | Ã€ FAIRE | Dictionnaire synonymes compÃ©tences FR/EN pour recherche | CadrÃ© |
 | BLS ORS (Ergonomie US BLS) | PlanifiÃ© | Profils ergonomiques haute prÃ©cision (heures assis/debout, lbs) | CadrÃ© post-B5 |

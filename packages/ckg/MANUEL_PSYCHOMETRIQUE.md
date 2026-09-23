@@ -41,6 +41,38 @@ Bien que l'équivalence complète ne soit pas démontrée, la décision clinique
 - **Structure factorielle** : La recherche menée par Zecca, Rossier et al. (2015) publiée dans le *Swiss Journal of Psychology* a formellement validé la structure de cette version francophone. Leurs analyses factorielles confirmatoires prouvent que la forme structurelle circomplexe (l'hexagone de Holland) est parfaitement préservée en français.
 - **Fiabilité** : Cette même étude démontre une fiabilité très solide, avec des coefficients Alpha de Cronbach systématiquement **supérieurs à 0,80** pour les six dimensions RIASEC.
 
+### 3.3. La Tétra-Structure DPCI et l'Espace Cartésien de Prediger (1982)
+
+Pour relier la tâche professionnelle concrète aux intérêts vocationnels, Trajektia s'appuie sur la formalisation de Dale J. Prediger (1982), qui projette l'hexagone de Holland sur deux axes cartésiens orthogonaux : **Choses vs. Personnes** ($T/P$) et **Données vs. Idées** ($D/I$).
+
+#### Genèse de la Triade DPC et Émancipation du Pôle « Idées » (DPCI)
+Historiquement, la *Functional Job Analysis* (FJA) d'Emploi et Développement social Canada (EDSC, Guide des carrières 2016) classifiait les tâches professionnelles selon trois relations fondamentales : **Données (D)**, **Personnes (P)** et **Choses (C)**. Toutefois, cette triade regroupait sous le terme « Données » à la fois la gestion administrative routinière et les activités de recherche ou de modélisation théorique abstraite. 
+
+Pour corriger ce biais et compléter le repère cartésien bipolaire de Prediger, Trajektia formalise l'extension tétra-polaire **DPCI (Données, Personnes, Choses, Idées)** en calculant le quatrième pôle à partir de l'adéquation vocationnelle :
+
+$$\text{Idées}_{\text{RIASEC}} = \frac{I_{\text{RIASEC}} + A_{\text{RIASEC}}}{2}$$
+
+Le score obtenu est normalisé sur une échelle discrète de 1 à 5, alignée sur l'intensité des trois pôles historiques du Guide des carrières d'EDSC.
+
+#### Coordonnées Cartésiennes Continues de Prediger
+Les coordonnées $(x, y)$ sur le plan vocationnel de Prediger sont calculées comme suit :
+$$T/P = (P - C) \times 20 \quad \in [-85, +85]$$
+$$D/I = (D - I) \times 20 \quad \in [-85, +85]$$
+Ces coordonnées permettent de positionner le métier et l'usager dans un continuum géométrique dénué des artefacts d'échelles discrètes.
+
+#### Taxonomie des Verbes d'Action et Ergonomie Clinique Différenciée
+Afin d'éviter la réification de chiffres hermétiques (ex: "Données : 4/5"), Trajektia implémente une ergonomie d'affichage à double niveau :
+1. **Grand Public (Verbes d'Action Fonctionnels)** : Traduction immédiate des dimensions en actions observables du travail réel :
+   - 💡 **Idées (I)** : *Concevoir, Innover, Théoriser, Modéliser, Résoudre*.
+   - 📊 **Données (D)** : *Analyser, Structurer, Classifier, Compiler, Calculer*.
+   - 👥 **Personnes (P)** : *Coordonner, Conseiller, Guider, Négocier, Soigner*.
+   - ⚙️ **Choses (C)** : *Ajuster avec précision, Façonner, Manœuvrer, Réparer*.
+2. **Espace Conseiller / Mode Pro (Contexte Clinique en 4 Dimensions)** :
+   - *Résolution de problèmes* : Degré d'imprévisibilité et d'autonomie face aux imprévus de terrain.
+   - *Environnement et charge cognitive* : Niveau d'abstraction, concentration soutenue et traitement d'information complexe.
+   - *Rythme et cadence* : Pression temporelle, interruptions de tâches et urgences opérationnelles.
+   - *Posture et ergonomie physique* : Sollicitations motrices fines, maintien postural et contraintes biomécaniques.
+
 ---
 
 ## 4. La Personnalité : Modèle Big Five (OCEAN), IPIP-50 Libre de Droit & Validation Empirique O*NET
@@ -199,10 +231,16 @@ Tandis que le grand public accède à une synthèse des 5 macro-scores OCEAN, **
      - *Pensée analytique / Rigueur* $\longleftrightarrow$ **DPC Données** (*Analyser, Structurer, Classifier*).
      - *Orientation sociale / Empathie* $\longleftrightarrow$ **DPC Personnes** (*Conseiller, Coordonner, Accompagner*).
      - *Attention au détail / Précision motrice* $\longleftrightarrow$ **DPC Choses** (*Ajuster avec précision, Façonner, Manœuvrer*).
-     - *Curiosité intellectuelle / Innovation (I + A)* $\longleftrightarrow$ **DPC Idées** (*Concevoir, Modéliser, Explorer, Résoudre*).
-7. **Stratégie d'Affichage Éthique et Cognitive (Grand Public vs. Espace Conseiller)** :
-   - **Grand Public** : Restitution dénuée de jargon chiffré. Le système met en valeur les **3 à 4 Work Styles dominants** du métier (les cotes d'importance les plus élevées $> 80/100$) avec des définitions courtes et concrètes d'impact au quotidien, et traduit le profil DPCI en verbes d'action immédiats.
-   - **Espace Conseiller (Mode Pro)** : Restitution intégrale de la matrice des **21 Work Styles O\*NET 30.1**, organisée sous les **4 macro-dimensions empiriques** (Proactivité, Interpersonnel, Conscience/Règles, Résilience) démontrées par Putka et al. (HumRRO, 2025) pour éviter l'erreur écologique (*Ecological Fallacy*), avec accès aux échelons EDSC de base et aux coordonnées de Prediger.
+     - *Curiosité intellectuelle / Innovation (I + A)* $\longleftrightarrow$ **DPC Idées** (*Concevoir, Innover, Théoriser, Modéliser*).
+7. **Organisation Factorielle Supérieure des 21 Work Styles O\*NET 30.1** :
+   - Pour éliminer l'erreur écologique (*Ecological Fallacy*, Robinson 1950) et structurer les exigences des postes, les 21 facettes O\*NET sont regroupées sous les **4 macro-dimensions d'ordre supérieur** (Putka, Liu & Lewis, HumRRO Report No. 129, 2025 ; Anni et al., JAP 2025) :
+     - **I. Orientation Proactive & Croissance** : *Accomplissement / Effort d'accomplissement*, *Initiative*, *Innovation*, *Leadership*, *Persévérance*, *Prise de risque / Tolérance à l'ambiguïté*.
+     - **II. Dimension Interpersonnelle & Sociale** : *Coopération*, *Orientation sociale*, *Sensibilité aux problèmes / Souci d'autrui*.
+     - **III. Conscienciosité & Rigueur Opérationnelle** : *Attention aux détails*, *Fiabilité*, *Intégrité*, *Organisation*, *Planification*, *Raisonnement / Prudence*.
+     - **IV. Résilience & Régulation Émotionnelle** : *Tolérance au stress*, *Auto-contrôle / Maîtrise de soi*, *Adaptabilité / Flexibilité*, *Pensée analytique*.
+8. **Stratégie d'Affichage Éthique et Cognitive (Grand Public vs. Espace Conseiller)** :
+   - **Grand Public** : Élimination du bruit informationnel et de la surcharge cognitive. Le système met en valeur les **3 à 4 Work Styles dominants** du métier (les scores d'importance les plus élevés $> 80/100$) avec badges de compétence et définitions concrètes d'impact au quotidien, et traduit le profil DPCI en verbes d'action immédiats.
+   - **Espace Conseiller (Mode Pro)** : Restitution intégrale de la matrice des **21 Work Styles O\*NET 30.1**, organisée sous les **4 macro-dimensions empiriques**, avec accès aux scores percentiles normalisés, au score d'impact sur la performance ($WI \in [-3, +3]$), au rang de distinction ($DR \in [1, 10]$), aux échelons EDSC de base et aux coordonnées de Prediger.
 
 ---
 

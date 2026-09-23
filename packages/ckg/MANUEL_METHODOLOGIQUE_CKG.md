@@ -351,6 +351,32 @@ CSV GC 2016 (Activités Physiques) + CSV GC 2016 (DPC)
 - Rapprochement des sous-groupes décimaux du Guide des carrières (ex: `3131.1` $\rightarrow$ `31301`).
 - Injection bivalente : stockage relationnel riche (SQL) + indexation rapide sur nœuds de graphe (Cypher).
 
+### 5.8 Pipeline de Génération du Contenu Métiers & Déduplication O\*NET — `generate_career_content.py`
+
+**Objectif :** Produire le fichier de données statiques TypeScript (`apps/frontend/src/data/metiers.ts`) alimentant les pages fiches métiers Astro (`/metiers/[cnp].astro`). Ce script agrège l'ensemble des données multi-sources (descriptions, DPCI, Prediger, Work Styles, compétences OaSIS, formations MEQ, risques CNESST).
+
+**Problématique de la correspondance 1-à-plusieurs (Crosswalk Multiplicity) :**
+Dans la table de correspondance `noc_onet_mapping.csv`, un code CNP canadien correspond fréquemment à 2 à 4 codes O\*NET SOC américains (ex: la CNP 21232 *Développeurs de logiciels* correspond simultanément aux codes SOC 15-1252.00, 15-1253.00 et 15-1254.00). Une jointure directe produisait une explosion combinatoire des descripteurs comportementaux (*Work Styles*), générant jusqu'à 714 doublons d'items pour une seule fiche profession.
+
+**Résolution à double verrouillage (SQL + Python) :**
+1. **Agrégation SQL par moyenne arithmétique arrondie :**
+   ```sql
+   SELECT 
+       ws.style_id,
+       ws.nom_style_fr,
+       ROUND(AVG(ws.score))::int as score,
+       ws.importance_score,
+       ws.work_impact_score
+   FROM occupation_work_styles ws
+   WHERE ws.occupation_code = %s
+   GROUP BY ws.style_id, ws.nom_style_fr, ws.importance_score, ws.work_impact_score
+   ORDER BY score DESC
+   ```
+2. **Filtrage défensif en mémoire (`deduplicate_work_styles`) :**
+   Une fonction de déduplication stricte basée sur un ensemble de contrôle (`seen_ids`) garantit qu'aucune facette ne peut apparaître plus d'une fois, plafonnant la matrice à exactement **21 facettes O\*NET uniques maximum** par profession.
+3. **Calcul et Normalisation du Pôle « Idées » DPCI :**
+   Le script extrait les cotes $D, P, C$ de la table `occupation_physical_demands`, calcule le pôle $I = \min(5, \max(1, \text{round}((I_{\text{RIASEC}} + A_{\text{RIASEC}}) / 20)))$ et projette les coordonnées cartésiennes de Prediger $(T/P, D/I)$ sur l'intervalle $[-85, +85]$.
+
 ---
 
 ## 6. Modélisation du Graphe de Connaissances (Neo4j)
@@ -857,7 +883,9 @@ L'intégration des styles comportementaux au travail (*Work Styles*) repose sur 
 
 2. **Affichage Grand Public vs. Mode Pro des Work Styles** :
    - **Grand Public** : Mise en valeur exclusive des **3 à 4 Work Styles dominants** du métier (les cotes d'importance les plus élevées $> 80/100$) accompagnés d'une courte définition contextualisée d'application terrain, évitant la surcharge cognitive.
-   - **Mode Pro** : Déploiement de la matrice exhaustive des **21 facettes comportementales O*NET**, avec scores percentiles normalisés et correspondances avec les 30 sous-facettes de l'inventaire IPIP-NEO-120.
+   - **Mode Pro** : Déploiement de la matrice exhaustive des **21 facettes comportementales O\*NET**, regroupées sous les **4 macro-dimensions**, avec scores percentiles normalisés, scores d'impact sur la performance ($WI$) et rangs de distinction ($DR$).
+
+### 8.8.2 Grille des 5 Dimensions Contextuelles de Terrain (Mode Pro)
 
 1. **Charge Cognitive (1 à 5)** : Évalue le niveau d'abstraction requis, la complexité algorithmique ou diagnostique, la vitesse d'apprentissage de nouveaux systèmes et la mémoire de travail (ex: Développeur = 5/5, Soudeur = 3/5).
 2. **Effort Physique (1 à 5)** : Traduit la cotation officielle de force (Sédentaire `S-1` à Très Lourd `S-4`), le port de charges en kilogrammes, les postures contraignantes (accroupi, escaliers, escabeaux) et la résistance à la fatigue musculaire (ex: Comptable = 1/5, Électricien = 4/5, Soudeur = 5/5).
