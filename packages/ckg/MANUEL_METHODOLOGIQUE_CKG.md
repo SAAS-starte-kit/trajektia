@@ -1005,6 +1005,7 @@ L'alimentation de l'Observatoire Trajektia repose sur une stratégie hybride mul
 1. **Job Bank / Guichet-Emplois Canada (Ligne 7 Excel & Open Canada CKAN)** :
    - Fichiers mensuels complets en données ouvertes (`open.canada.ca`, package `ea639e28-c0fc-48bf-b5dd-b8899bd43072`).
    - 88 mois d'historique téléchargeable avec codes CNP 2021, localisations québécoises, exigences de diplômes et volumes vacants.
+   - **Pipeline d'ingestion des séries temporelles (`scripts/ingest_jobbank_12m_history.py`)** : Ingestion continue de 14 mois consécutifs (juillet 2025 à août/septembre 2026), totalisant 730 555 offres réelles consolidées en 6 798 snapshots dans `trajektia_market_snapshots` pour calculer les courbes de tendances et taux de croissance salariale annuels.
 2. **Adzuna Job Search API (Ligne 40 Excel)** :
    - Flux REST en direct branché sur le Canada (`https://api.adzuna.com/v1/api/jobs/ca/search/1`).
    - Fournit les salaires réels estimés, les descriptions complètes et les liens vers les employeurs. Quota gratuit de 2 500 req/mois extensible gratuitement pour les partenaires.

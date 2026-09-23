@@ -490,7 +490,10 @@ python scratch/verify_physical_db.py
   - `trajektia_skill_demand_history` : Historique de pÃ©nÃ©tration des compÃ©tences Ã©mergentes.
   - `v_trajektia_career_trends_12m` : Vue calculant les pentes de croissance sur 12 mois.
 - [x] DÃ©velopper le script Cron d'ingestion mensuelle (`etl/market_snapshot_collector.py`) agrÃ©geant Adzuna et Guichet-Emplois. [FAIT]
-- [ ] IntÃ©grer les graphiques de tendances (courbe salariale 12 mois et momentum de recrutement) sur les fiches mÃ©tiers Astro.
+- [x] Intégrer les graphiques de tendances (courbe salariale 12 mois et momentum de recrutement) sur les fiches métiers Astro. [FAIT — 2026-09-23]
+  - Ingestion de 14 mois d'archives Guichet-Emplois CKAN (730 555 offres réelles analysées, 6 798 snapshots dans `trajektia_market_snapshots`).
+  - Vue dérivée `v_trajektia_career_trends_12m` alimentée et calculant la croissance salariale et de la demande à 12 mois.
+  - Composant Astro natif `<TendancesSalariales>` avec graphique SVG interactif (courbe, dégradé, barres de volume, badges de momentum).
 
 ### H4 â€” Ã‰tape 4 : Branding & PropriÃ©tÃ© Intellectuelle des MÃ©triques Trajektiaâ„¢
 - [x] Consigner au [Manuel MÃ©thodologique CKG](ckg/MANUEL_METHODOLOGIQUE_CKG.md) la nomenclature officielle :
@@ -587,12 +590,12 @@ RÃ‰ALISÃ‰ (Fondations, Ingestion, Moteurs & Taxonomie DPC)
 [FAIT] P3  Interconnexion Formations MEQ / MES, 539 Établissements & Admissibilité PTPD (`[cnp].astro`)
 [FAIT] P4  Validation Build Statique SSG (910 pages HTML générées sans erreur dans `dist/` + Sitemap XML)
 [FAIT] F2.1 Harmonisation Sémantique DPCI & Déduplication des Work Styles O*NET (Astro & ETL)
+[FAIT] H3   Observatoire Temporel & Tendances Salariales 12 Mois Trajektia Live™ (6 798 snapshots, 730k offres, composant SVG interactif `TendancesSalariales.astro`)
 
-PROCHAINE ÉTAPE PRIORITAIRE — Encyclopédie Grand Public & Espace Conseiller
+PROCHAINE ÉTAPE PRIORITAIRE — Méthodologies & Espace Conseiller
 ────────────────────────────────────────────────────────────────────────
-1. H3  Intégration des graphiques de tendances salariales 12 mois (Time-Series Trajektia Live™)
-2. G6  Ingestion de Méthodologies & Guides Spécialisés via Skill_Seekers (CNESST, IRSST, EDSC, OCCOQ)
-3. F3  Simulateur Interactif d'Aptitude, Réadaptation & Finesse Clinique (Espace Conseiller)
+1. G6  Ingestion de Méthodologies & Guides Spécialisés via Skill_Seekers (CNESST, IRSST, EDSC, OCCOQ)
+2. F3  Simulateur Interactif d'Aptitude, Réadaptation & Finesse Clinique (Espace Conseiller)
 ```
 
 

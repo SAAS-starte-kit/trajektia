@@ -78,13 +78,22 @@ CREATE INDEX IF NOT EXISTS idx_skill_demand_name ON trajektia_skill_demand_histo
 
 -- 4. Vue Analytique des Tendances Métiers sur 12 Mois
 CREATE OR REPLACE VIEW v_trajektia_career_trends_12m AS
-WITH latest AS (
+WITH latest_salary AS (
     SELECT DISTINCT ON (cnp_code)
         cnp_code,
-        snapshot_date,
-        salary_live_median,
+        snapshot_date AS salary_date,
+        salary_live_median
+    FROM trajektia_market_snapshots
+    WHERE salary_live_median IS NOT NULL
+    ORDER BY cnp_code, snapshot_date DESC
+),
+latest_vol AS (
+    SELECT DISTINCT ON (cnp_code)
+        cnp_code,
+        snapshot_date AS latest_date,
         postings_volume,
-        market_tension_index
+        market_tension_index,
+        remote_ratio_pct
     FROM trajektia_market_snapshots
     ORDER BY cnp_code, snapshot_date DESC
 ),
@@ -99,17 +108,19 @@ past_12m AS (
     ORDER BY cnp_code, snapshot_date DESC
 )
 SELECT 
-    l.cnp_code,
-    l.snapshot_date AS latest_date,
-    l.salary_live_median AS current_salary_live,
+    lv.cnp_code,
+    lv.latest_date,
+    ls.salary_live_median AS current_salary_live,
     p.salary_live_median AS past_12m_salary_live,
-    ROUND(((l.salary_live_median - p.salary_live_median) / NULLIF(p.salary_live_median, 0) * 100), 2) AS salary_growth_12m_pct,
-    l.postings_volume AS current_openings_volume,
+    ROUND(((ls.salary_live_median - p.salary_live_median) / NULLIF(p.salary_live_median, 0) * 100), 2) AS salary_growth_12m_pct,
+    lv.postings_volume AS current_openings_volume,
     p.postings_volume AS past_12m_openings_volume,
-    ROUND(((l.postings_volume - p.postings_volume)::numeric / NULLIF(p.postings_volume, 0)::numeric * 100), 2) AS demand_growth_12m_pct,
-    l.market_tension_index AS current_tension_index
-FROM latest l
-LEFT JOIN past_12m p ON l.cnp_code = p.cnp_code;
+    ROUND(((lv.postings_volume - p.postings_volume)::numeric / NULLIF(p.postings_volume, 0)::numeric * 100), 2) AS demand_growth_12m_pct,
+    lv.market_tension_index AS current_tension_index,
+    lv.remote_ratio_pct AS current_remote_ratio
+FROM latest_vol lv
+LEFT JOIN latest_salary ls ON lv.cnp_code = ls.cnp_code
+LEFT JOIN past_12m p ON lv.cnp_code = p.cnp_code;
 
 COMMENT ON TABLE trajektia_live_job_postings IS 'Cache éphémère (TTL 30 jours) des offres actives pour l''affichage UI';
 COMMENT ON TABLE trajektia_market_snapshots IS 'Séries temporelles mensuelles pour les courbes de salaires réels et volumes d''embauche';

@@ -946,6 +946,24 @@ export interface SalaireStatCan {{
   }};
 }}
 
+export interface TendanceMarchePoint {{
+  date: string;
+  mois_label: string;
+  salaire_median: number;
+  salaire_horaire: number;
+  volume_offres: number;
+  ratio_teletravail?: number;
+}}
+
+export interface TendancesMarche12M {{
+  historique: TendanceMarchePoint[];
+  croissance_salaire_12m_pct?: number;
+  croissance_demande_12m_pct?: number;
+  tension_marche?: number;
+  salaire_marche_actuel?: number;
+  statut_dynamique: "Forte hausse" | "Croissance stable" | "Stabilité du marché" | "Ralentissement" | "Données émergentes";
+}}
+
 export interface FicheMetier {{
   cnp: string;
   feer: number;
@@ -1013,6 +1031,7 @@ export interface FicheMetier {{
     score: number;
     statut: string;
   }};
+  tendances_marche?: TendancesMarche12M;
 }}
 
 export const METIERS_DATA: FicheMetier[] = {json_data};
@@ -1053,6 +1072,101 @@ def deduplicate_work_styles(styles):
             existing = seen[sid]
             existing["score"] = round((existing["score"] + s.get("score", 50)) / 2)
     return sorted(seen.values(), key=lambda x: x.get("score", 0), reverse=True)
+
+def get_market_trends_by_cnp(cursor):
+    """Récupère l'historique mensuel 12-14 mois et les métriques de tendance pour chaque profession CNP."""
+    # 1. Métriques de la vue 12m
+    cursor.execute("""
+        SELECT cnp_code, current_salary_live, past_12m_salary_live, 
+               salary_growth_12m_pct, current_openings_volume, past_12m_openings_volume, 
+               demand_growth_12m_pct, current_tension_index, current_remote_ratio
+        FROM v_trajektia_career_trends_12m;
+    """)
+    trends_meta = {}
+    for row in cursor.fetchall():
+        cnp, cur_sal, past_sal, sal_growth, cur_vol, past_vol, dem_growth, tension, remote = row
+        trends_meta[cnp] = {
+            "croissance_salaire_12m_pct": float(sal_growth) if sal_growth is not None else None,
+            "croissance_demande_12m_pct": float(dem_growth) if dem_growth is not None else None,
+            "tension_marche": float(tension) if tension is not None else None,
+            "current_salary_live": float(cur_sal) if cur_sal is not None else None,
+            "current_remote_ratio": float(remote) if remote is not None else None
+        }
+
+    # 2. Historique des snapshots mensuels (juillet 2025 à aujourd'hui)
+    cursor.execute("""
+        SELECT cnp_code, snapshot_date, postings_volume, salary_live_median, remote_ratio_pct
+        FROM trajektia_market_snapshots
+        WHERE snapshot_date >= '2025-07-01'
+        ORDER BY cnp_code, snapshot_date ASC;
+    """)
+    
+    MOIS_FR = {
+        '01': 'Jan', '02': 'Fév', '03': 'Mar', '04': 'Avr', '05': 'Mai', '06': 'Juin',
+        '07': 'Juil', '08': 'Août', '09': 'Sep', '10': 'Oct', '11': 'Nov', '12': 'Déc'
+    }
+    
+    raw_history = {}
+    for r in cursor.fetchall():
+        cnp, snap_date, vol, med_sal, remote = r
+        raw_history.setdefault(cnp, []).append({
+            "date": snap_date.strftime("%Y-%m"),
+            "snap_date": snap_date,
+            "vol": vol or 0,
+            "sal": float(med_sal) if med_sal is not None else None,
+            "remote": float(remote) if remote is not None else 0.0
+        })
+        
+    trends_by_cnp = {}
+    for cnp, hlist in raw_history.items():
+        # Trouver le premier salaire valide comme référence
+        last_valid_sal = None
+        for item in hlist:
+            if item["sal"] is not None:
+                last_valid_sal = item["sal"]
+                break
+        
+        points = []
+        for item in hlist:
+            if item["sal"] is not None:
+                last_valid_sal = item["sal"]
+            sal_to_use = item["sal"] if item["sal"] is not None else last_valid_sal
+            
+            d_str = item["date"]
+            parts = d_str.split('-')
+            m_label = f"{MOIS_FR.get(parts[1], parts[1])} {parts[0][2:]}"
+            
+            horaire = round(sal_to_use / 1820.0, 2) if sal_to_use else 35.0
+            points.append({
+                "date": d_str,
+                "mois_label": m_label,
+                "salaire_median": round(sal_to_use) if sal_to_use else 55000,
+                "salaire_horaire": horaire,
+                "volume_offres": item["vol"],
+                "ratio_teletravail": item["remote"]
+            })
+            
+        meta = trends_meta.get(cnp, {})
+        sal_growth = meta.get("croissance_salaire_12m_pct")
+        if sal_growth is None and len(points) >= 2 and points[0]["salaire_median"] > 0:
+            sal_growth = round(((points[-1]["salaire_median"] - points[0]["salaire_median"]) / points[0]["salaire_median"]) * 100, 1)
+            
+        statut = "Données émergentes"
+        if sal_growth is not None:
+            if sal_growth >= 8: statut = "Forte hausse"
+            elif sal_growth >= 2: statut = "Croissance stable"
+            elif sal_growth >= -2: statut = "Stabilité du marché"
+            else: statut = "Ralentissement"
+            
+        trends_by_cnp[cnp] = {
+            "historique": points,
+            "croissance_salaire_12m_pct": sal_growth,
+            "croissance_demande_12m_pct": meta.get("croissance_demande_12m_pct"),
+            "tension_marche": meta.get("tension_marche"),
+            "salaire_marche_actuel": points[-1]["salaire_median"] if points else None,
+            "statut_dynamique": statut
+        }
+    return trends_by_cnp
 
 def get_db_careers():
     # Load env if not already loaded
@@ -1217,10 +1331,12 @@ def get_db_careers():
                 }
                 
             db_careers.append(career)
-        return db_careers
+        
+        trends_by_cnp = get_market_trends_by_cnp(cursor)
+        return db_careers, trends_by_cnp
     except Exception as e:
         print("Erreur DB", e)
-        return []
+        return [], {}
 
 def main():
     sys.stdout.reconfigure(encoding='utf-8')
@@ -1235,7 +1351,7 @@ def main():
                     if k.strip() not in os.environ:
                         os.environ[k.strip()] = v.strip()
 
-    db_careers = get_db_careers()
+    db_careers, trends_by_cnp = get_db_careers()
     db_dict = {c['cnp']: c for c in db_careers}
     
     # Update pilot careers
@@ -1270,7 +1386,25 @@ def main():
     
     all_careers = PILOT_CAREERS + filtered_db_careers
 
+    # Enrichir chaque métier avec les tendances réelles de marché 12 mois
+    trends_enriched_count = 0
+    for c in all_careers:
+        cnp = c.get('cnp')
+        if cnp in trends_by_cnp:
+            t = trends_by_cnp[cnp]
+            c['tendances_marche'] = t
+            trends_enriched_count += 1
+            if t.get('salaire_marche_actuel'):
+                sal_growth_val = t.get('croissance_salaire_12m_pct')
+                sal_growth_float = float(sal_growth_val) if sal_growth_val is not None else 0.0
+                c['salaire']['indice_trajektia_live'] = {
+                    'moyenne_offres': t['salaire_marche_actuel'],
+                    'variation_annuelle': f"{'+' if sal_growth_float > 0 else ''}{sal_growth_float:.1f}%",
+                    'echantillon_offres': sum(p['volume_offres'] for p in t.get('historique', []))
+                }
+
     print(f"[CKG Generator] Ajout de {len(filtered_db_careers)} métiers dynamiques depuis Supabase.")
+    print(f"[CKG Generator] {trends_enriched_count} métiers enrichis avec séries temporelles 12 mois Trajektia Live™.")
     print(f"[CKG Generator] Génération de {len(all_careers)} métiers au total...")
     
     # Validation

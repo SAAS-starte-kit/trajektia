@@ -8,6 +8,7 @@ import InfoBubble from '../../components/ui/InfoBubble.astro';
 import ToggleProPublic from '../../components/ui/ToggleProPublic.astro';
 import ProfilPsychometrique from '../../components/metiers/ProfilPsychometrique.astro';
 import ErgonomieSante from '../../components/metiers/ErgonomieSante.astro';
+import TendancesSalariales from '../../components/metiers/TendancesSalariales.astro';
 import { METIERS_DATA, type FicheMetier } from '../../data/metiers';
 
 export async function getStaticPaths() {
@@ -145,6 +146,12 @@ function getMutationBadgeStyle(statut: string): string {
           class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-700/70 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold text-xs border border-slate-200 dark:border-slate-600 transition-all"
         >
           Salaires StatCan
+        </a>
+        <a 
+          href="#tendances-marche" 
+          class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/50 dark:hover:bg-indigo-900/60 text-indigo-800 dark:text-indigo-300 font-semibold text-xs border border-indigo-200 dark:border-indigo-800/60 transition-all"
+        >
+          📈 Tendances 12M
         </a>
         {metier.competences?.vertes_esco && metier.competences.vertes_esco.length > 0 && (
         <a 
@@ -328,6 +335,13 @@ function getMutationBadgeStyle(statut: string): string {
     )}
 
   </div>
+
+  <!-- OBSERVATOIRE DU MARCHÉ : TENDANCES SALARIALES & EMBAUCHE SUR 12 MOIS -->
+  <TendancesSalariales 
+    tendances={metier.tendances_marche} 
+    salaireStatCan={metier.salaire} 
+    titreMetier={metier.titre_court} 
+  />
 
   <!-- ============================================================ -->
   <!-- PROFILS PSYCHOMÉTRIQUES ET SANTÉ (NOUVEAUX COMPOSANTS) -->
