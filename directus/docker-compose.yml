@@ -3,15 +3,17 @@ services:
   directus:
     image: directus/directus:latest
     ports:
-      - 8055:8055
+      - "${DIRECTUS_PORT:-8055}:8055"
+    env_file:
+      - .env
     environment:
-      SECRET: "trajektia_directus_secret_123456789"
-      ADMIN_EMAIL: "admin@trajektia.ca"
-      ADMIN_PASSWORD: "DirectusTrajektiaAdmin2026!"
-      DB_CLIENT: "pg"
-      DB_HOST: "aws-1-ca-central-1.pooler.supabase.com"
-      DB_PORT: "5432"
-      DB_DATABASE: "postgres"
-      DB_USER: "postgres.gunnghbhxokolvdovnnm"
-      DB_PASSWORD: "6woSkyEYhPMAe0y0"
+      SECRET: "${DIRECTUS_SECRET:-trajektia_directus_secret_change_me}"
+      ADMIN_EMAIL: "${DIRECTUS_ADMIN_EMAIL:-admin@trajektia.ca}"
+      ADMIN_PASSWORD: "${DIRECTUS_ADMIN_PASSWORD}"
+      DB_CLIENT: "${DIRECTUS_DB_CLIENT:-pg}"
+      DB_HOST: "${DIRECTUS_DB_HOST:-aws-1-ca-central-1.pooler.supabase.com}"
+      DB_PORT: "${DIRECTUS_DB_PORT:-5432}"
+      DB_DATABASE: "${DIRECTUS_DB_DATABASE:-postgres}"
+      DB_USER: "${DIRECTUS_DB_USER:-postgres.gunnghbhxokolvdovnnm}"
+      DB_PASSWORD: "${DIRECTUS_DB_PASSWORD}"
       WEBSOCKETS_ENABLED: "true"

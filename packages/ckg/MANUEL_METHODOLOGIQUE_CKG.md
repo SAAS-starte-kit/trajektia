@@ -108,8 +108,10 @@ Trajektia construit un **graphe de connaissances multi-dimensionnel** (Career Kn
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
 │                              COUCHE API & PRÉSENTATION                                 │
 │                                                                                        │
-│        Directus (Headless CMS)  ──────►  Astro (Frontend Statique)                     │
-│        API REST + GraphQL                Site Web Trajektia                            │
+│   FastAPI (apps/api : Hybrid Search) ───┐                                              │
+│   Supabase Client (@supabase/ssr)   ────┼───►  Astro 5 (apps/frontend : Vitrine & SSR) │
+│                                         │      Site Web & Exploration Trajektia        │
+│   Directus (Admin Back-Office Optionnel)┘      (Variables & secrets via .env)          │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 

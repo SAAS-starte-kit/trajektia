@@ -3,13 +3,34 @@ fix_directus.py — Correctif automatisé via l'API Directus
   1. Configure toutes les collections (retire les triangles oranges)
   2. Limite le keyword search aux colonnes textuelles uniquement
 """
-import requests
-import json
+import os
 import sys
+from pathlib import Path
+import json
+import requests
 
-BASE_URL = "http://localhost:8055"
-EMAIL    = "admin@trajektia.ca"
-PASSWORD = "DirectusTrajektiaAdmin2026!"
+# Chargement automatique des variables d'environnement (.env local à directus/ ou root)
+try:
+    from dotenv import load_dotenv
+    directus_env = Path(__file__).resolve().parent / ".env"
+    root_env = Path(__file__).resolve().parent.parent / ".env"
+    if directus_env.exists():
+        load_dotenv(directus_env)
+    elif root_env.exists():
+        load_dotenv(root_env)
+    else:
+        load_dotenv()
+except ImportError:
+    pass
+
+BASE_URL = os.getenv("DIRECTUS_URL", "http://localhost:8055")
+EMAIL    = os.getenv("DIRECTUS_ADMIN_EMAIL", "admin@trajektia.ca")
+PASSWORD = os.getenv("DIRECTUS_ADMIN_PASSWORD") or os.getenv("DIRECTUS_PASSWORD")
+
+if not PASSWORD:
+    print("❌ ERREUR: Le mot de passe admin Directus n'est pas configuré.")
+    print("Veuillez définir DIRECTUS_ADMIN_PASSWORD dans votre fichier .env ou vos variables d'environnement.")
+    sys.exit(1)
 
 # ── Collections à configurer + colonnes de recherche autorisées ─────────────
 COLLECTIONS = {

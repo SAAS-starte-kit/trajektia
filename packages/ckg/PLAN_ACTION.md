@@ -48,9 +48,10 @@ mÃ©tiers et formations via la vitrine Astro.
 | Architecture Monorepo & Workspaces | FAIT (2026-09-22) | Découpage en `apps/frontend`, `apps/api`, `packages/ckg`, `packages/database`, `packages/data-pipeline` | 100% |
 | Déploiement Vercel & Docker | FAIT (2026-09-22) | Dockerfiles isolés par app + Pipeline de déploiement Astro Vercel | 100% |
 | **Flotte Jules — Salve 1 (Vitest & Scoring)** | **FAIT (2026-09-24)** | Découplage scoring pur + Vitest configuré + 8/8 tests passants | 100% |
-| **Flotte Jules — Salve 2 (FastAPI Pydantic v2)** | **EN COURS** | Session Jules `969275576374646941` — modularisation routers/ | En exécution |
-| **Flotte Jules — Salve 3 (FastEmbed ONNX)** | **Planifié (Queue)** | Allègement conteneur API & suppression dépendance PyTorch | Prêt |
-| **Flotte Jules — Salve 4 (GitHub Actions CI)** | **Planifié (Queue)** | Workflow CI `.github/workflows/ci.yml` lint, vitest & build | Prêt |
+| **Flotte Jules — Salve 2 (FastAPI Pydantic v2)** | **FAIT (2026-09-24)** | Modularisation `routers/` + Schémas Pydantic v2 stricts (`schemas.py`) | 100% |
+| **Flotte Jules — Salve 3 (FastEmbed ONNX)** | **FAIT (2026-09-24)** | Allègement conteneur API & suppression de PyTorch / SentenceTransformers | 100% |
+| **Flotte Jules — Salve 4 (GitHub Actions CI)** | **FAIT (2026-09-24)** | Pipeline `.github/workflows/ci.yml` automatisé (lint, tests vitest & build) | 100% |
+| **Sécurisation Directus & Secrets** | **FAIT (2026-09-24)** | Éradication des mots de passe en clair (docker-compose & python), env vars `.env.example`, nettoyage Git | 100% |
 
 ---
 
