@@ -47,6 +47,17 @@ except ImportError:
     HAS_ML = False
     print("⚠️ Attention: sentence-transformers non installé. La recherche sémantique sera désactivée.")
 
+# Langfuse Observability
+try:
+    from langfuse import observe
+    HAS_LANGFUSE = True
+except ImportError:
+    HAS_LANGFUSE = False
+    def observe(*args, **kwargs):
+        def decorator(func):
+            return func
+        return decorator
+
 # ── Configuration ─────────────────────────────────────────────
 DATABASE_URL = os.environ.get("SUPABASE_DB_URL", "")
 CORS_ORIGINS = json.loads(os.environ.get("CORS_ORIGINS", '["http://localhost:3000"]'))
@@ -282,6 +293,7 @@ async def search_metiers(
 
 # ── GET /api/semantic_search ──────────────────────────────────
 @app.get("/api/semantic_search", tags=["Recherche"])
+@observe(name="trajektia-semantic-search", as_type="retriever")
 async def semantic_search(
     q: str = Query(..., min_length=5, description="Phrase descriptive (ex: 'Je veux travailler dehors')"),
     limit: int = Query(10, ge=1, le=50)

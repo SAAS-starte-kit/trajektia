@@ -1,0 +1,8445 @@
+{
+  "program_to_cnps": {
+    "5227": {
+      "code": "5227",
+      "title": "Secrétariat médical",
+      "level": "DEP",
+      "cnps": [
+        "41210"
+      ]
+    },
+    "5229": {
+      "code": "5229",
+      "title": "Soutien informatique",
+      "level": "DEP",
+      "cnps": [
+        "62100",
+        "21222",
+        "40012",
+        "22221"
+      ]
+    },
+    "5231": {
+      "code": "5231",
+      "title": "Comptabilité",
+      "level": "DEP",
+      "cnps": [
+        "12200",
+        "41210",
+        "41220",
+        "64321",
+        "12011",
+        "10010",
+        "14200"
+      ]
+    },
+    "5321": {
+      "code": "5321",
+      "title": "Vente-conseil",
+      "level": "DEP",
+      "cnps": [
+        "62100",
+        "64100",
+        "11201"
+      ]
+    },
+    "5323": {
+      "code": "5323",
+      "title": "Représentation",
+      "level": "DEP",
+      "cnps": [
+        "11200"
+      ]
+    },
+    "5357": {
+      "code": "5357",
+      "title": "Secrétariat",
+      "level": "DEP",
+      "cnps": [
+        "41210",
+        "13110"
+      ]
+    },
+    "5254": {
+      "code": "5254",
+      "title": "Grandes cultures",
+      "level": "DEP",
+      "cnps": [
+        "94129",
+        "73200",
+        "92023",
+        "94100"
+      ]
+    },
+    "5256": {
+      "code": "5256",
+      "title": "Production acéricole",
+      "level": "DEP",
+      "cnps": [
+        "95103",
+        "72203",
+        "90010",
+        "85101",
+        "72202",
+        "50011",
+        "72022",
+        "21321",
+        "51110",
+        "52110",
+        "94104",
+        "21320",
+        "62020",
+        "22312",
+        "94102",
+        "63221",
+        "12013",
+        "72020",
+        "80010",
+        "95109",
+        "82010",
+        "92021",
+        "10030",
+        "22302",
+        "82021",
+        "70021",
+        "21330",
+        "95104",
+        "83100",
+        "62029",
+        "72010",
+        "85100",
+        "82031",
+        "85111",
+        "94213",
+        "93101",
+        "80020",
+        "95106",
+        "94112",
+        "20010",
+        "21301",
+        "72405",
+        "92024",
+        "83101",
+        "94100",
+        "92012",
+        "84101",
+        "52112",
+        "13201",
+        "95101",
+        "95100",
+        "92015",
+        "82020",
+        "14402",
+        "94211",
+        "94106",
+        "52113",
+        "80021",
+        "21332",
+        "92010"
+      ]
+    },
+    "5257": {
+      "code": "5257",
+      "title": "Pêche professionnelle",
+      "level": "DEP",
+      "cnps": [
+        "72603",
+        "22113",
+        "60031",
+        "22111",
+        "64322",
+        "83120",
+        "84121",
+        "40011",
+        "85102",
+        "83121",
+        "80010",
+        "63200"
+      ]
+    },
+    "5288": {
+      "code": "5288",
+      "title": "Horticulture et jardinerie",
+      "level": "DEP",
+      "cnps": [
+        "22114",
+        "80020"
+      ]
+    },
+    "5320": {
+      "code": "5320",
+      "title": "Réalisation daménagements paysagers",
+      "level": "DEP",
+      "cnps": [
+        "53111"
+      ]
+    },
+    "5348": {
+      "code": "5348",
+      "title": "Production horticole",
+      "level": "DEP",
+      "cnps": [
+        "80021"
+      ]
+    },
+    "5354": {
+      "code": "5354",
+      "title": "Production animale",
+      "level": "DEP",
+      "cnps": [
+        "95103",
+        "72203",
+        "90010",
+        "85101",
+        "72202",
+        "50011",
+        "72022",
+        "21321",
+        "51110",
+        "52110",
+        "94104",
+        "21320",
+        "62020",
+        "22312",
+        "94102",
+        "63221",
+        "12013",
+        "72020",
+        "80010",
+        "95109",
+        "82010",
+        "92021",
+        "10030",
+        "22302",
+        "82021",
+        "70021",
+        "21330",
+        "95104",
+        "83100",
+        "62029",
+        "72010",
+        "85100",
+        "82031",
+        "85111",
+        "94213",
+        "93101",
+        "80020",
+        "95106",
+        "94112",
+        "20010",
+        "21301",
+        "72405",
+        "92024",
+        "83101",
+        "94100",
+        "92012",
+        "84101",
+        "52112",
+        "13201",
+        "95101",
+        "95100",
+        "92015",
+        "82020",
+        "14402",
+        "94211",
+        "94106",
+        "52113",
+        "80021",
+        "21332",
+        "92010"
+      ]
+    },
+    "5366": {
+      "code": "5366",
+      "title": "Arboriculture-élagage",
+      "level": "DEP",
+      "cnps": [
+        "82031",
+        "80021",
+        "22114",
+        "85101"
+      ]
+    },
+    "5268": {
+      "code": "5268",
+      "title": "Boucherie de détail",
+      "level": "DEP",
+      "cnps": [
+        "65102",
+        "63201",
+        "60020"
+      ]
+    },
+    "5270": {
+      "code": "5270",
+      "title": "Boulangerie",
+      "level": "DEP",
+      "cnps": [
+        "60020",
+        "75201",
+        "94140",
+        "65102",
+        "92012",
+        "63202",
+        "95106",
+        "62010"
+      ]
+    },
+    "5283": {
+      "code": "5283",
+      "title": "Réception en hôtellerie",
+      "level": "DEP",
+      "cnps": [
+        "60031",
+        "22222",
+        "14400",
+        "21221",
+        "12013",
+        "64314"
+      ]
+    },
+    "5293": {
+      "code": "5293",
+      "title": "Service de la restauration",
+      "level": "DEP",
+      "cnps": [
+        "60030",
+        "64101",
+        "72310",
+        "72320",
+        "62200",
+        "62020",
+        "95109",
+        "70011",
+        "53100",
+        "63200"
+      ]
+    },
+    "5297": {
+      "code": "5297",
+      "title": "Pâtisserie",
+      "level": "DEP",
+      "cnps": [
+        "63202",
+        "92012",
+        "62200",
+        "94124",
+        "95106",
+        "63200"
+      ]
+    },
+    "5311": {
+      "code": "5311",
+      "title": "Cuisine",
+      "level": "DEP",
+      "cnps": [
+        "75110",
+        "41220",
+        "65201",
+        "41221",
+        "63200",
+        "73200",
+        "60040",
+        "62200",
+        "62020"
+      ]
+    },
+    "5324": {
+      "code": "5324",
+      "title": "Cuisine du marché",
+      "level": "DEP",
+      "cnps": [
+        "75110",
+        "41220",
+        "65201",
+        "41221",
+        "73200",
+        "60040",
+        "62200",
+        "62020",
+        "63200"
+      ]
+    },
+    "5342": {
+      "code": "5342",
+      "title": "Pâtisserie de restauration contemporaine",
+      "level": "DEP",
+      "cnps": [
+        "62200",
+        "63200"
+      ]
+    },
+    "5355": {
+      "code": "5355",
+      "title": "Conseil et vente de voyages",
+      "level": "DEP",
+      "cnps": [
+        "62100",
+        "11201"
+      ]
+    },
+    "5085": {
+      "code": "5085",
+      "title": "Bijouterie-joaillerie",
+      "level": "DEP",
+      "cnps": [
+        "62202"
+      ]
+    },
+    "5178": {
+      "code": "5178",
+      "title": "Taille de pierre",
+      "level": "DEP",
+      "cnps": [
+        "72320",
+        "92010"
+      ]
+    },
+    "5326": {
+      "code": "5326",
+      "title": "Photographie",
+      "level": "DEP",
+      "cnps": [
+        "92024",
+        "60020",
+        "51120",
+        "55109",
+        "53110",
+        "94110",
+        "94153",
+        "52111"
+      ]
+    },
+    "5327": {
+      "code": "5327",
+      "title": "Décoration intérieure et présentation visuelle",
+      "level": "DEP",
+      "cnps": [
+        "52121"
+      ]
+    },
+    "5172": {
+      "code": "5172",
+      "title": "Réparation appareils au gaz naturel",
+      "level": "DEP",
+      "cnps": [
+        "82021"
+      ]
+    },
+    "5211": {
+      "code": "5211",
+      "title": "Entretien général d'immeubles",
+      "level": "DEP",
+      "cnps": [
+        "41210",
+        "72013",
+        "60020",
+        "14100",
+        "75212"
+      ]
+    },
+    "5215": {
+      "code": "5215",
+      "title": "Restauration de maçonnerie",
+      "level": "DEP",
+      "cnps": [
+        "72320"
+      ]
+    },
+    "5238": {
+      "code": "5238",
+      "title": "Arpentage et topographie",
+      "level": "DEP",
+      "cnps": [
+        "22213",
+        "21300",
+        "75119",
+        "73209",
+        "21203"
+      ]
+    },
+    "5250": {
+      "code": "5250",
+      "title": "Dessin de bâtiment",
+      "level": "DEP",
+      "cnps": [
+        "22212"
+      ]
+    },
+    "5286": {
+      "code": "5286",
+      "title": "Plâtrage",
+      "level": "DEP",
+      "cnps": [
+        "75110",
+        "72014",
+        "72106",
+        "73102"
+      ]
+    },
+    "5300": {
+      "code": "5300",
+      "title": "Carrelage",
+      "level": "DEP",
+      "cnps": [
+        "73101",
+        "72014",
+        "75110"
+      ]
+    },
+    "5303": {
+      "code": "5303",
+      "title": "Briquetage-maçonnerie",
+      "level": "DEP",
+      "cnps": [
+        "72320",
+        "72014"
+      ]
+    },
+    "5312": {
+      "code": "5312",
+      "title": "Mécanique de protection contre les incendies",
+      "level": "DEP",
+      "cnps": [
+        "75119",
+        "95109"
+      ]
+    },
+    "5315": {
+      "code": "5315",
+      "title": "Réfrigération",
+      "level": "DEP",
+      "cnps": [
+        "21301",
+        "95106",
+        "72321",
+        "72014",
+        "92011",
+        "72402",
+        "75119",
+        "95102",
+        "95107",
+        "72020"
+      ]
+    },
+    "5319": {
+      "code": "5319",
+      "title": "Charpenterie-menuiserie",
+      "level": "DEP",
+      "cnps": [
+        "75110",
+        "72013",
+        "72310"
+      ]
+    },
+    "5322": {
+      "code": "5322",
+      "title": "Intervention en sécurité incendie",
+      "level": "DEP",
+      "cnps": [
+        "41400",
+        "40019"
+      ]
+    },
+    "5333": {
+      "code": "5333",
+      "title": "Plomberie et chauffage",
+      "level": "DEP",
+      "cnps": [
+        "62100",
+        "95100",
+        "72012",
+        "94100",
+        "93100",
+        "72300"
+      ]
+    },
+    "5334": {
+      "code": "5334",
+      "title": "Installation de revêtements souples",
+      "level": "DEP",
+      "cnps": [
+        "75110"
+      ]
+    },
+    "5336": {
+      "code": "5336",
+      "title": "Peinture en bâtiment",
+      "level": "DEP",
+      "cnps": [
+        "72014"
+      ]
+    },
+    "5343": {
+      "code": "5343",
+      "title": "Préparation et finition de béton",
+      "level": "DEP",
+      "cnps": [
+        "92015",
+        "94110",
+        "92013",
+        "94124",
+        "63221"
+      ]
+    },
+    "5350": {
+      "code": "5350",
+      "title": "Pose de systèmes intérieurs",
+      "level": "DEP",
+      "cnps": [
+        "72011"
+      ]
+    },
+    "5351": {
+      "code": "5351",
+      "title": "Pose de revêtements de toiture",
+      "level": "DEP",
+      "cnps": [
+        "72014"
+      ]
+    },
+    "5359": {
+      "code": "5359",
+      "title": "Mécanique de machines fixes",
+      "level": "DEP",
+      "cnps": [
+        "74201",
+        "72405",
+        "94105",
+        "94204",
+        "75119",
+        "73400",
+        "94107",
+        "94124",
+        "72020",
+        "95109"
+      ]
+    },
+    "5836": {
+      "code": "5836",
+      "title": "Commercial and Residential Painting",
+      "level": "DEP",
+      "cnps": [
+        "12203",
+        "22311",
+        "41210",
+        "73300",
+        "72410",
+        "73200",
+        "70021",
+        "41101",
+        "70012",
+        "41402",
+        "13111",
+        "62100",
+        "10019",
+        "14101",
+        "40011",
+        "43202",
+        "13101",
+        "64101",
+        "21221",
+        "41401"
+      ]
+    },
+    "5031": {
+      "code": "5031",
+      "title": "Rembourrage industriel",
+      "level": "DEP",
+      "cnps": [
+        "63221"
+      ]
+    },
+    "5142": {
+      "code": "5142",
+      "title": "Finition de meubles",
+      "level": "DEP",
+      "cnps": [
+        "92015",
+        "94133",
+        "94210",
+        "92022",
+        "94124",
+        "63221",
+        "95109"
+      ]
+    },
+    "5352": {
+      "code": "5352",
+      "title": "Ébénisterie",
+      "level": "DEP",
+      "cnps": [
+        "72311",
+        "72013"
+      ]
+    },
+    "5328": {
+      "code": "5328",
+      "title": "Conduite de procédés de traitement de eau",
+      "level": "DEP",
+      "cnps": [
+        "41210",
+        "92010"
+      ]
+    },
+    "5313": {
+      "code": "5313",
+      "title": "Imprimerie",
+      "level": "DEP",
+      "cnps": [
+        "62100",
+        "41210",
+        "90010",
+        "94130",
+        "94150",
+        "72022",
+        "64101",
+        "94151",
+        "73401",
+        "72020",
+        "95109",
+        "94152"
+      ]
+    },
+    "5344": {
+      "code": "5344",
+      "title": "Infographie",
+      "level": "DEP",
+      "cnps": [
+        "52111"
+      ]
+    },
+    "5345": {
+      "code": "5345",
+      "title": "Mode et confection de vêtements sur mesure",
+      "level": "DEP",
+      "cnps": [
+        "41210",
+        "53125"
+      ]
+    },
+    "5024": {
+      "code": "5024",
+      "title": "Réparation appareils électroménagers",
+      "level": "DEP",
+      "cnps": [
+        "72421",
+        "72020",
+        "73200"
+      ]
+    },
+    "5185": {
+      "code": "5185",
+      "title": "Montage de lignes électriques",
+      "level": "DEP",
+      "cnps": [
+        "72011",
+        "75119",
+        "72203"
+      ]
+    },
+    "5266": {
+      "code": "5266",
+      "title": "Installation et réparation équipement de télécommunication",
+      "level": "DEP",
+      "cnps": [
+        "22311",
+        "73200",
+        "75119",
+        "14404",
+        "72020",
+        "72201"
+      ]
+    },
+    "5271": {
+      "code": "5271",
+      "title": "Réparation appareils électroniques audiovidéos",
+      "level": "DEP",
+      "cnps": [
+        "60020",
+        "92021",
+        "22311",
+        "22312"
+      ]
+    },
+    "5281": {
+      "code": "5281",
+      "title": "Électromécanique de systèmes automatisés",
+      "level": "DEP",
+      "cnps": [
+        "72020"
+      ]
+    },
+    "5295": {
+      "code": "5295",
+      "title": "Électricité",
+      "level": "DEP",
+      "cnps": [
+        "72011",
+        "72422",
+        "62100",
+        "22233",
+        "74205",
+        "72203",
+        "92021",
+        "72200",
+        "22231",
+        "21301",
+        "72202",
+        "14202",
+        "75119",
+        "22303",
+        "90011",
+        "22312",
+        "22310",
+        "21310"
+      ]
+    },
+    "5296": {
+      "code": "5296",
+      "title": "Installation et entretien de systèmes de sécurité",
+      "level": "DEP",
+      "cnps": [
+        "22311"
+      ]
+    },
+    "5154": {
+      "code": "5154",
+      "title": "Mécanique de véhicules légers",
+      "level": "DEP",
+      "cnps": [
+        "94200",
+        "94204",
+        "75119",
+        "14401",
+        "72020"
+      ]
+    },
+    "5217": {
+      "code": "5217",
+      "title": "Carrosserie",
+      "level": "DEP",
+      "cnps": [
+        "72411",
+        "72020"
+      ]
+    },
+    "5298": {
+      "code": "5298",
+      "title": "Mécanique automobile",
+      "level": "DEP",
+      "cnps": [
+        "21301",
+        "41210",
+        "94200",
+        "72410",
+        "72500",
+        "72020"
+      ]
+    },
+    "5330": {
+      "code": "5330",
+      "title": "Mécanique de véhicules lourds routiers",
+      "level": "DEP",
+      "cnps": [
+        "94204"
+      ]
+    },
+    "5331": {
+      "code": "5331",
+      "title": "Mécanique d'engins de chantier",
+      "level": "DEP",
+      "cnps": [
+        "75119"
+      ]
+    },
+    "5335": {
+      "code": "5335",
+      "title": "Mécanique agricole",
+      "level": "DEP",
+      "cnps": [
+        "41210",
+        "72405",
+        "21399",
+        "94204",
+        "84120",
+        "72020"
+      ]
+    },
+    "5346": {
+      "code": "5346",
+      "title": "Conseil technique en entretien et en réparation de véhicules",
+      "level": "DEP",
+      "cnps": [
+        "62100",
+        "21300",
+        "40021"
+      ]
+    },
+    "5347": {
+      "code": "5347",
+      "title": "Conseil et vente de pièces équipement motorisé",
+      "level": "DEP",
+      "cnps": [
+        "62100"
+      ]
+    },
+    "5353": {
+      "code": "5353",
+      "title": "Mécanique spécialisée équipement lourd",
+      "level": "DEP",
+      "cnps": [
+        "75110",
+        "72402"
+      ]
+    },
+    "5798": {
+      "code": "5798",
+      "title": "Automobile Mechanics",
+      "level": "DEP",
+      "cnps": [
+        "21301",
+        "41210",
+        "43109",
+        "94200",
+        "94219",
+        "72411",
+        "72500",
+        "72100",
+        "64409",
+        "60040",
+        "94106",
+        "53200",
+        "12202",
+        "63100",
+        "92013",
+        "72020"
+      ]
+    },
+    "5179": {
+      "code": "5179",
+      "title": "Protection et exploitation de territoires fauniques",
+      "level": "DEP",
+      "cnps": [
+        "22112",
+        "40010"
+      ]
+    },
+    "5193": {
+      "code": "5193",
+      "title": "Conduite et réglage de machines à mouler",
+      "level": "DEP",
+      "cnps": [
+        "41210",
+        "43109",
+        "75110",
+        "60040",
+        "92010",
+        "14405"
+      ]
+    },
+    "5197": {
+      "code": "5197",
+      "title": "Montage de structures en aérospatiale",
+      "level": "DEP",
+      "cnps": [
+        "72105",
+        "95101",
+        "75110",
+        "72310",
+        "93200",
+        "72010",
+        "72104"
+      ]
+    },
+    "5223": {
+      "code": "5223",
+      "title": "Techniques d'usinage",
+      "level": "DEP",
+      "cnps": [
+        "62101",
+        "41210",
+        "62100",
+        "72321",
+        "10030",
+        "14100",
+        "22213",
+        "50010",
+        "21300",
+        "41320",
+        "64101",
+        "14300",
+        "21221",
+        "21310",
+        "51100",
+        "12113"
+      ]
+    },
+    "5224": {
+      "code": "5224",
+      "title": "Usinage sur machines-outils à commande numérique",
+      "level": "DEP",
+      "cnps": [
+        "94106"
+      ]
+    },
+    "5225": {
+      "code": "5225",
+      "title": "Dessin industriel",
+      "level": "DEP",
+      "cnps": [
+        "22212",
+        "94131",
+        "52111",
+        "41210"
+      ]
+    },
+    "5244": {
+      "code": "5244",
+      "title": "Tôlerie de précision",
+      "level": "DEP",
+      "cnps": [
+        "72010",
+        "72102"
+      ]
+    },
+    "5269": {
+      "code": "5269",
+      "title": "Montage de câbles et de circuits",
+      "level": "DEP",
+      "cnps": [
+        "92021"
+      ]
+    },
+    "5307": {
+      "code": "5307",
+      "title": "Montage mécanique en aérospatiale",
+      "level": "DEP",
+      "cnps": [
+        "95101",
+        "72405",
+        "94200",
+        "72402",
+        "75110",
+        "94204",
+        "94131",
+        "75119",
+        "73400",
+        "94107",
+        "72020",
+        "95109"
+      ]
+    },
+    "5362": {
+      "code": "5362",
+      "title": "Opération équipements de production",
+      "level": "DEP",
+      "cnps": [
+        "32101",
+        "31301",
+        "33102",
+        "31300"
+      ]
+    },
+    "5073": {
+      "code": "5073",
+      "title": "Affûtage",
+      "level": "DEP",
+      "cnps": [
+        "72999",
+        "94106",
+        "95101"
+      ]
+    },
+    "5088": {
+      "code": "5088",
+      "title": "Sciage",
+      "level": "DEP",
+      "cnps": [
+        "95103",
+        "22112",
+        "14402"
+      ]
+    },
+    "5189": {
+      "code": "5189",
+      "title": "Abattage et façonnage des bois",
+      "level": "DEP",
+      "cnps": [
+        "84110"
+      ]
+    },
+    "5262": {
+      "code": "5262",
+      "title": "Pâtes et papiers - Opérations",
+      "level": "DEP",
+      "cnps": [
+        "90010"
+      ]
+    },
+    "5289": {
+      "code": "5289",
+      "title": "Travail sylvicole",
+      "level": "DEP",
+      "cnps": [
+        "21321",
+        "41403",
+        "40030",
+        "11201",
+        "41210",
+        "42201",
+        "22232",
+        "30010",
+        "41400",
+        "10011",
+        "41101",
+        "41407",
+        "40010",
+        "13112",
+        "94124",
+        "41300",
+        "13111",
+        "42203",
+        "11200",
+        "40011",
+        "31203",
+        "95101",
+        "82020",
+        "14102",
+        "21322",
+        "31301",
+        "41321",
+        "41401",
+        "92014"
+      ]
+    },
+    "5306": {
+      "code": "5306",
+      "title": "Aménagement de la forêt",
+      "level": "DEP",
+      "cnps": [
+        "41210",
+        "22300",
+        "21330",
+        "52121",
+        "21202",
+        "85121",
+        "82031",
+        "22114",
+        "13101",
+        "85103"
+      ]
+    },
+    "1489": {
+      "code": "1489",
+      "title": "Réparation d'armes à feu",
+      "level": "DEP",
+      "cnps": [
+        "72999",
+        "92024"
+      ]
+    },
+    "5006": {
+      "code": "5006",
+      "title": "Mécanique entretien en commandes industrielles",
+      "level": "DEP",
+      "cnps": [
+        "72020"
+      ]
+    },
+    "5260": {
+      "code": "5260",
+      "title": "Mécanique industrielle de construction et entretien",
+      "level": "DEP",
+      "cnps": [
+        "75110",
+        "75119",
+        "72020"
+      ]
+    },
+    "5337": {
+      "code": "5337",
+      "title": "Mécanique d'ascenseur",
+      "level": "DEP",
+      "cnps": [
+        "94200",
+        "72500",
+        "94204",
+        "72022",
+        "22303",
+        "14401",
+        "72020",
+        "95109",
+        "41210",
+        "72402",
+        "75119",
+        "94124",
+        "95106",
+        "22301",
+        "21301",
+        "74205",
+        "20010",
+        "72405",
+        "21399",
+        "94105",
+        "94131",
+        "73400",
+        "94107",
+        "74201",
+        "95101",
+        "75110",
+        "84120",
+        "22212",
+        "32110",
+        "41200"
+      ]
+    },
+    "5195": {
+      "code": "5195",
+      "title": "Soudage-montage",
+      "level": "DEP",
+      "cnps": [
+        "94201",
+        "95101",
+        "95100",
+        "75110",
+        "72103",
+        "94107",
+        "72010",
+        "72104"
+      ]
+    },
+    "5203": {
+      "code": "5203",
+      "title": "Fonderie",
+      "level": "DEP",
+      "cnps": [
+        "95101",
+        "95100",
+        "90010",
+        "94130",
+        "72500",
+        "22101",
+        "93100",
+        "21322",
+        "94101",
+        "72311",
+        "94104",
+        "83100",
+        "84100",
+        "94124",
+        "92010",
+        "83121"
+      ]
+    },
+    "5222": {
+      "code": "5222",
+      "title": "Traitement de surface",
+      "level": "DEP",
+      "cnps": [
+        "85111"
+      ]
+    },
+    "5299": {
+      "code": "5299",
+      "title": "Montage structural et architectural",
+      "level": "DEP",
+      "cnps": [
+        "94201",
+        "72203",
+        "94200",
+        "72205",
+        "22311",
+        "94204",
+        "92022",
+        "72406",
+        "84100",
+        "94212",
+        "72204",
+        "95109",
+        "72301",
+        "72020",
+        "92021",
+        "72402",
+        "72302",
+        "73200",
+        "72320",
+        "72999",
+        "75119",
+        "73209",
+        "95104",
+        "83100",
+        "72010",
+        "92013",
+        "94213",
+        "72104",
+        "94122",
+        "72420",
+        "72105",
+        "72405",
+        "92024",
+        "51120",
+        "94203",
+        "94150",
+        "72400",
+        "94131",
+        "73400",
+        "94107",
+        "12112",
+        "92023",
+        "93200",
+        "95102",
+        "52111",
+        "52112",
+        "94202",
+        "72011",
+        "94205",
+        "95101",
+        "72013",
+        "72102",
+        "95100",
+        "94219",
+        "75110",
+        "53111",
+        "72103",
+        "94210",
+        "92020",
+        "72310",
+        "94211",
+        "52113",
+        "85110",
+        "94153",
+        "53100",
+        "92014"
+      ]
+    },
+    "5308": {
+      "code": "5308",
+      "title": "Fabrication de structures métalliques et de métaux ouvrés",
+      "level": "DEP",
+      "cnps": [
+        "72010",
+        "95101"
+      ]
+    },
+    "5356": {
+      "code": "5356",
+      "title": "Chaudronnerie",
+      "level": "DEP",
+      "cnps": [
+        "72010",
+        "95101",
+        "72103",
+        "72102"
+      ]
+    },
+    "5360": {
+      "code": "5360",
+      "title": "Ferblanterie",
+      "level": "DEP",
+      "cnps": [
+        "75110",
+        "72102"
+      ]
+    },
+    "5092": {
+      "code": "5092",
+      "title": "Forage et dynamitage",
+      "level": "DEP",
+      "cnps": [
+        "72021"
+      ]
+    },
+    "5220": {
+      "code": "5220",
+      "title": "Conduite d'engins de chantier",
+      "level": "DEP",
+      "cnps": [
+        "41210",
+        "43109",
+        "75110",
+        "60040",
+        "92010",
+        "14405"
+      ]
+    },
+    "5248": {
+      "code": "5248",
+      "title": "Conduite de grues",
+      "level": "DEP",
+      "cnps": [
+        "75110"
+      ]
+    },
+    "5261": {
+      "code": "5261",
+      "title": "Extraction de minerai",
+      "level": "DEP",
+      "cnps": [
+        "82020",
+        "92011",
+        "21322",
+        "95109",
+        "83100",
+        "21332",
+        "93101",
+        "80010"
+      ]
+    },
+    "5273": {
+      "code": "5273",
+      "title": "Conduite de machinerie lourde en voirie forestière",
+      "level": "DEP",
+      "cnps": [
+        "41210",
+        "43109",
+        "75110",
+        "60040",
+        "92010",
+        "14405"
+      ]
+    },
+    "5144": {
+      "code": "5144",
+      "title": "Assistance dentaire",
+      "level": "DEP",
+      "cnps": [
+        "41210"
+      ]
+    },
+    "5325": {
+      "code": "5325",
+      "title": "Santé  assistance et soins infirmiers",
+      "level": "DEP",
+      "cnps": [
+        "41210",
+        "21120"
+      ]
+    },
+    "5341": {
+      "code": "5341",
+      "title": "Assistance technique en pharmacie",
+      "level": "DEP",
+      "cnps": [
+        "41210",
+        "22221",
+        "41201"
+      ]
+    },
+    "5358": {
+      "code": "5358",
+      "title": "Assistance à la personne en établissement et à domicile",
+      "level": "DEP",
+      "cnps": [
+        "42201"
+      ]
+    },
+    "5245": {
+      "code": "5245",
+      "title": "Coiffure",
+      "level": "DEP",
+      "cnps": [
+        "60040",
+        "63210",
+        "65329",
+        "41210"
+      ]
+    },
+    "5339": {
+      "code": "5339",
+      "title": "Esthétique",
+      "level": "DEP",
+      "cnps": [
+        "60040",
+        "63211",
+        "31101",
+        "21120"
+      ]
+    },
+    "5349": {
+      "code": "5349",
+      "title": "Épilation",
+      "level": "DEP",
+      "cnps": [
+        "63211"
+      ]
+    },
+    "5291": {
+      "code": "5291",
+      "title": "Transport par camion",
+      "level": "DEP",
+      "cnps": [
+        "75211",
+        "92023",
+        "84100",
+        "74203",
+        "72024"
+      ]
+    },
+    "5304": {
+      "code": "5304",
+      "title": "Régulation de vol",
+      "level": "DEP",
+      "cnps": [
+        "74204",
+        "93101",
+        "72601"
+      ]
+    },
+    "5226": {
+      "code": "5226",
+      "title": "Secrétariat juridique",
+      "level": "DEP",
+      "cnps": [
+        "41210"
+      ]
+    },
+    "5309": {
+      "code": "5309",
+      "title": "Gestion entreprise de construction",
+      "level": "DEP",
+      "cnps": [
+        "62100"
+      ]
+    },
+    "5043": {
+      "code": "5043",
+      "title": "Spécialités en horticulture",
+      "level": "DEP",
+      "cnps": [
+        "62101",
+        "63202"
+      ]
+    },
+    "5119": {
+      "code": "5119",
+      "title": "Calorifugeage",
+      "level": "DEP",
+      "cnps": [
+        "72014"
+      ]
+    },
+    "5214": {
+      "code": "5214",
+      "title": "Entretien et réparation de caravanes",
+      "level": "DEP",
+      "cnps": [
+        "73200"
+      ]
+    },
+    "5282": {
+      "code": "5282",
+      "title": "Installation et fabrication de produits verriers",
+      "level": "DEP",
+      "cnps": [
+        "95100",
+        "94100",
+        "92011",
+        "94110",
+        "93101",
+        "94107",
+        "94121",
+        "92023",
+        "92010",
+        "95102",
+        "95109",
+        "92014"
+      ]
+    },
+    "5080": {
+      "code": "5080",
+      "title": "Rembourrage artisanal",
+      "level": "DEP",
+      "cnps": [
+        "63221",
+        "95109"
+      ]
+    },
+    "5082": {
+      "code": "5082",
+      "title": "Nettoyage à sec et entretien de vêtements",
+      "level": "DEP",
+      "cnps": [
+        "95100",
+        "75110",
+        "64101",
+        "75212",
+        "60040",
+        "62024",
+        "65311",
+        "74202"
+      ]
+    },
+    "5265": {
+      "code": "5265",
+      "title": "Service technique équipement bureautique",
+      "level": "DEP",
+      "cnps": [
+        "62100",
+        "41210",
+        "22311",
+        "64101"
+      ]
+    },
+    "5766": {
+      "code": "5766",
+      "title": "Installation and Repair of Telecommunications Equipment",
+      "level": "DEP",
+      "cnps": [
+        "72603",
+        "95103",
+        "22233",
+        "72205",
+        "22311",
+        "72500",
+        "92011",
+        "93100",
+        "92101",
+        "22221",
+        "14401",
+        "84100",
+        "72204",
+        "72020",
+        "95109",
+        "92021",
+        "10030",
+        "82021",
+        "70021",
+        "32102",
+        "21330",
+        "73200",
+        "70012",
+        "75119",
+        "93102",
+        "85111",
+        "93101",
+        "72201",
+        "72420",
+        "20012",
+        "83101",
+        "94100",
+        "72021",
+        "72012",
+        "72014",
+        "94110",
+        "73400",
+        "94107",
+        "94121",
+        "92023",
+        "84101",
+        "95102",
+        "72011",
+        "95100",
+        "75110",
+        "72602",
+        "14404",
+        "90011",
+        "92010",
+        "92014"
+      ]
+    },
+    "5232": {
+      "code": "5232",
+      "title": "Mécanique de motocyclettes",
+      "level": "DEP",
+      "cnps": [
+        "72020"
+      ]
+    },
+    "5363": {
+      "code": "5363",
+      "title": "Mise en oeuvre de matériaux composites",
+      "level": "DEP",
+      "cnps": [
+        "13100",
+        "22112",
+        "94129"
+      ]
+    },
+    "5290": {
+      "code": "5290",
+      "title": "Abattage manuel et débardage forestier",
+      "level": "DEP",
+      "cnps": [
+        "83110",
+        "84110",
+        "82010"
+      ]
+    },
+    "5182": {
+      "code": "5182",
+      "title": "Horlogerie-bijouterie",
+      "level": "DEP",
+      "cnps": [
+        "94219",
+        "95109"
+      ]
+    },
+    "5329": {
+      "code": "5329",
+      "title": "Serrurerie",
+      "level": "DEP",
+      "cnps": [
+        "72999"
+      ]
+    },
+    "5234": {
+      "code": "5234",
+      "title": "Soudage haute pression",
+      "level": "DEP",
+      "cnps": [
+        "72103",
+        "22230",
+        "94100"
+      ]
+    },
+    "5274": {
+      "code": "5274",
+      "title": "Conduite de machines de traitement du mineraI",
+      "level": "DEP",
+      "cnps": [
+        "92010"
+      ]
+    },
+    "5042": {
+      "code": "5042",
+      "title": "Outillage",
+      "level": "DEP",
+      "cnps": [
+        "14403",
+        "90010",
+        "72100",
+        "14401",
+        "72010",
+        "12013",
+        "72101"
+      ]
+    },
+    "5208": {
+      "code": "5208",
+      "title": "Classement des bois débités",
+      "level": "DEP",
+      "cnps": [
+        "95103",
+        "22112"
+      ]
+    },
+    "5076": {
+      "code": "5076",
+      "title": "Pose d'armature du béton",
+      "level": "DEP",
+      "cnps": [
+        "75110"
+      ]
+    },
+    "5253": {
+      "code": "5253",
+      "title": "Forage au diamant",
+      "level": "DEP",
+      "cnps": [
+        "75110",
+        "84100",
+        "82020"
+      ]
+    },
+    "1250": {
+      "code": "1250",
+      "title": "Mécanique marine",
+      "level": "DEP",
+      "cnps": [
+        "21301",
+        "74201"
+      ]
+    },
+    "5280": {
+      "code": "5280",
+      "title": "Liaison en réseau équipement bureautique",
+      "level": "DEP",
+      "cnps": [
+        "13100"
+      ]
+    },
+    "5370": {
+      "code": "5370",
+      "title": "Boulangerie",
+      "level": "DEP",
+      "cnps": [
+        "60020",
+        "75201",
+        "94140",
+        "65102",
+        "92012",
+        "63202",
+        "95106",
+        "62010"
+      ]
+    },
+    "5146": {
+      "code": "5146",
+      "title": "Mécanique de machines fixes",
+      "level": "DEP",
+      "cnps": [
+        "74201",
+        "72405",
+        "94105",
+        "94204",
+        "75119",
+        "73400",
+        "94107",
+        "94124",
+        "72020",
+        "95109"
+      ]
+    },
+    "5810": {
+      "code": "5810",
+      "title": "Production Equipment Operation",
+      "level": "DEP",
+      "cnps": [
+        "95103",
+        "72203",
+        "90010",
+        "85101",
+        "72202",
+        "50011",
+        "72022",
+        "21321",
+        "51110",
+        "52110",
+        "94104",
+        "21320",
+        "62020",
+        "22312",
+        "94102",
+        "63221",
+        "12013",
+        "72020",
+        "80010",
+        "95109",
+        "82010",
+        "92021",
+        "10030",
+        "22302",
+        "82021",
+        "70021",
+        "21330",
+        "95104",
+        "83100",
+        "62029",
+        "72010",
+        "85100",
+        "82031",
+        "85111",
+        "94213",
+        "93101",
+        "80020",
+        "95106",
+        "94112",
+        "20010",
+        "21301",
+        "72405",
+        "92024",
+        "83101",
+        "94100",
+        "92012",
+        "84101",
+        "52112",
+        "13201",
+        "95101",
+        "95100",
+        "92015",
+        "82020",
+        "14402",
+        "94211",
+        "94106",
+        "52113",
+        "80021",
+        "21332",
+        "92010"
+      ]
+    },
+    "5263": {
+      "code": "5263",
+      "title": "Horlogerie-rhabillage",
+      "level": "DEP",
+      "cnps": [
+        "94219",
+        "92024",
+        "95109"
+      ]
+    },
+    "5285": {
+      "code": "5285",
+      "title": "Fabrication de moules",
+      "level": "DEP",
+      "cnps": [
+        "21301",
+        "95101",
+        "72311",
+        "95104",
+        "95106",
+        "95109"
+      ]
+    },
+    "5365": {
+      "code": "5365",
+      "title": "Matelotage",
+      "level": "DEP",
+      "cnps": [
+        "44200",
+        "74201",
+        "84121",
+        "75210"
+      ]
+    },
+    "420.B0": {
+      "code": "420.B0",
+      "title": "Techniques de l'informatique",
+      "level": "DEC",
+      "cnps": [
+        "62100",
+        "41210",
+        "22220",
+        "21232",
+        "21221",
+        "21234"
+      ]
+    },
+    "180.A0": {
+      "code": "180.A0",
+      "title": "Soins infirmiers (DEC)",
+      "level": "DEC",
+      "cnps": [
+        "41210",
+        "60031",
+        "31300",
+        "30010",
+        "41404",
+        "31301",
+        "33102",
+        "21120"
+      ]
+    },
+    "243.11": {
+      "code": "243.11",
+      "title": "Technologie de l'électronique industrielle",
+      "level": "DEC",
+      "cnps": [
+        "62100",
+        "22310",
+        "41210"
+      ]
+    },
+    "241.A0": {
+      "code": "241.A0",
+      "title": "Techniques de génie mécanique",
+      "level": "DEC",
+      "cnps": [
+        "21300",
+        "21310",
+        "22301"
+      ]
+    },
+    "221.B0": {
+      "code": "221.B0",
+      "title": "Technologie du génie civil",
+      "level": "DEC",
+      "cnps": [
+        "20010",
+        "22300",
+        "21300",
+        "22212",
+        "41200"
+      ]
+    },
+    "310.A0": {
+      "code": "310.A0",
+      "title": "Techniques policières",
+      "level": "DEC",
+      "cnps": [
+        "41210"
+      ]
+    },
+    "410.B0": {
+      "code": "410.B0",
+      "title": "Techniques de comptabilité et de gestion",
+      "level": "DEC",
+      "cnps": [
+        "41210"
+      ]
+    },
+    "322.A0": {
+      "code": "322.A0",
+      "title": "Techniques d'éducation à l'enfance",
+      "level": "DEC",
+      "cnps": [
+        "41210"
+      ]
+    },
+    "140.B0": {
+      "code": "140.B0",
+      "title": "Technologie d'analyses biomédicales",
+      "level": "DEC",
+      "cnps": [
+        "21109"
+      ]
+    },
+    "412.A0": {
+      "code": "412.A0",
+      "title": "Techniques de bureautique",
+      "level": "DEC",
+      "cnps": [
+        "62101",
+        "41210",
+        "62100",
+        "72321",
+        "10030",
+        "14100",
+        "22213",
+        "50010",
+        "21300",
+        "41320",
+        "64101",
+        "14300",
+        "21221",
+        "21310",
+        "51100",
+        "12113"
+      ]
+    },
+    "BAC-GINF": {
+      "code": "BAC-GINF",
+      "title": "Baccalauréat en génie informatique",
+      "level": "BAC",
+      "cnps": [
+        "21231",
+        "21311"
+      ]
+    },
+    "BAC-GLOG": {
+      "code": "BAC-GLOG",
+      "title": "Baccalauréat en génie logiciel",
+      "level": "BAC",
+      "cnps": [
+        "21231"
+      ]
+    },
+    "BAC-INFO": {
+      "code": "BAC-INFO",
+      "title": "Baccalauréat en informatique",
+      "level": "BAC",
+      "cnps": [
+        "21232",
+        "21230"
+      ]
+    },
+    "BAC-INF": {
+      "code": "BAC-INF",
+      "title": "Baccalauréat en sciences infirmières",
+      "level": "BAC",
+      "cnps": [
+        "31300",
+        "31301"
+      ]
+    },
+    "BAC-COMPT": {
+      "code": "BAC-COMPT",
+      "title": "Baccalauréat en sciences comptables (CPA)",
+      "level": "BAC",
+      "cnps": [
+        "11100"
+      ]
+    },
+    "BAC-DROIT": {
+      "code": "BAC-DROIT",
+      "title": "Baccalauréat en droit (LL.B.)",
+      "level": "BAC",
+      "cnps": [
+        "41101"
+      ]
+    },
+    "BAC-MED": {
+      "code": "BAC-MED",
+      "title": "Doctorat de premier cycle en médecine",
+      "level": "DOCTORAT",
+      "cnps": [
+        "31102",
+        "31100"
+      ]
+    }
+  },
+  "cnp_to_programs": {
+    "41210": [
+      {
+        "code": "5227",
+        "title": "Secrétariat médical",
+        "level": "DEP",
+        "direct": true
+      },
+      {
+        "code": "5231",
+        "title": "Comptabilité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5357",
+        "title": "Secrétariat",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5211",
+        "title": "Entretien général d'immeubles",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5328",
+        "title": "Conduite de procédés de traitement de eau",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5313",
+        "title": "Imprimerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5345",
+        "title": "Mode et confection de vêtements sur mesure",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5298",
+        "title": "Mécanique automobile",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5335",
+        "title": "Mécanique agricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5193",
+        "title": "Conduite et réglage de machines à mouler",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5225",
+        "title": "Dessin industriel",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5306",
+        "title": "Aménagement de la forêt",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5220",
+        "title": "Conduite d'engins de chantier",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5273",
+        "title": "Conduite de machinerie lourde en voirie forestière",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5144",
+        "title": "Assistance dentaire",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5325",
+        "title": "Santé  assistance et soins infirmiers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5341",
+        "title": "Assistance technique en pharmacie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5245",
+        "title": "Coiffure",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5226",
+        "title": "Secrétariat juridique",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5265",
+        "title": "Service technique équipement bureautique",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "420.B0",
+        "title": "Techniques de l'informatique",
+        "level": "DEC",
+        "direct": false
+      },
+      {
+        "code": "180.A0",
+        "title": "Soins infirmiers (DEC)",
+        "level": "DEC",
+        "direct": false
+      },
+      {
+        "code": "243.11",
+        "title": "Technologie de l'électronique industrielle",
+        "level": "DEC",
+        "direct": false
+      },
+      {
+        "code": "310.A0",
+        "title": "Techniques policières",
+        "level": "DEC",
+        "direct": false
+      },
+      {
+        "code": "410.B0",
+        "title": "Techniques de comptabilité et de gestion",
+        "level": "DEC",
+        "direct": false
+      },
+      {
+        "code": "322.A0",
+        "title": "Techniques d'éducation à l'enfance",
+        "level": "DEC",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "62100": [
+      {
+        "code": "5229",
+        "title": "Soutien informatique",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5321",
+        "title": "Vente-conseil",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5355",
+        "title": "Conseil et vente de voyages",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5333",
+        "title": "Plomberie et chauffage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5313",
+        "title": "Imprimerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5346",
+        "title": "Conseil technique en entretien et en réparation de véhicules",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5347",
+        "title": "Conseil et vente de pièces équipement motorisé",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5309",
+        "title": "Gestion entreprise de construction",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5265",
+        "title": "Service technique équipement bureautique",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "420.B0",
+        "title": "Techniques de l'informatique",
+        "level": "DEC",
+        "direct": false
+      },
+      {
+        "code": "243.11",
+        "title": "Technologie de l'électronique industrielle",
+        "level": "DEC",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "21222": [
+      {
+        "code": "5229",
+        "title": "Soutien informatique",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "40012": [
+      {
+        "code": "5229",
+        "title": "Soutien informatique",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22221": [
+      {
+        "code": "5229",
+        "title": "Soutien informatique",
+        "level": "DEP",
+        "direct": true
+      },
+      {
+        "code": "5341",
+        "title": "Assistance technique en pharmacie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "12200": [
+      {
+        "code": "5231",
+        "title": "Comptabilité",
+        "level": "DEP",
+        "direct": true
+      }
+    ],
+    "41220": [
+      {
+        "code": "5231",
+        "title": "Comptabilité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5311",
+        "title": "Cuisine",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5324",
+        "title": "Cuisine du marché",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "64321": [
+      {
+        "code": "5231",
+        "title": "Comptabilité",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "12011": [
+      {
+        "code": "5231",
+        "title": "Comptabilité",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "10010": [
+      {
+        "code": "5231",
+        "title": "Comptabilité",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "14200": [
+      {
+        "code": "5231",
+        "title": "Comptabilité",
+        "level": "DEP",
+        "direct": true
+      }
+    ],
+    "64100": [
+      {
+        "code": "5321",
+        "title": "Vente-conseil",
+        "level": "DEP",
+        "direct": true
+      }
+    ],
+    "11201": [
+      {
+        "code": "5321",
+        "title": "Vente-conseil",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5355",
+        "title": "Conseil et vente de voyages",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "11200": [
+      {
+        "code": "5323",
+        "title": "Représentation",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "13110": [
+      {
+        "code": "5357",
+        "title": "Secrétariat",
+        "level": "DEP",
+        "direct": true
+      }
+    ],
+    "94129": [
+      {
+        "code": "5254",
+        "title": "Grandes cultures",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5363",
+        "title": "Mise en oeuvre de matériaux composites",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "73200": [
+      {
+        "code": "5254",
+        "title": "Grandes cultures",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5311",
+        "title": "Cuisine",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5324",
+        "title": "Cuisine du marché",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5024",
+        "title": "Réparation appareils électroménagers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5266",
+        "title": "Installation et réparation équipement de télécommunication",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5214",
+        "title": "Entretien et réparation de caravanes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "92023": [
+      {
+        "code": "5254",
+        "title": "Grandes cultures",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5291",
+        "title": "Transport par camion",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5282",
+        "title": "Installation et fabrication de produits verriers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94100": [
+      {
+        "code": "5254",
+        "title": "Grandes cultures",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5333",
+        "title": "Plomberie et chauffage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5282",
+        "title": "Installation et fabrication de produits verriers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5234",
+        "title": "Soudage haute pression",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "95103": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5088",
+        "title": "Sciage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5208",
+        "title": "Classement des bois débités",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72203": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5185",
+        "title": "Montage de lignes électriques",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "90010": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5313",
+        "title": "Imprimerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5262",
+        "title": "Pâtes et papiers - Opérations",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5042",
+        "title": "Outillage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "85101": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5366",
+        "title": "Arboriculture-élagage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72202": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "50011": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72022": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5313",
+        "title": "Imprimerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "21321": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "51110": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "52110": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94104": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "21320": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "62020": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5293",
+        "title": "Service de la restauration",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5311",
+        "title": "Cuisine",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5324",
+        "title": "Cuisine du marché",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22312": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5271",
+        "title": "Réparation appareils électroniques audiovidéos",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94102": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "63221": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5343",
+        "title": "Préparation et finition de béton",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5031",
+        "title": "Rembourrage industriel",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5142",
+        "title": "Finition de meubles",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5080",
+        "title": "Rembourrage artisanal",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "12013": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5283",
+        "title": "Réception en hôtellerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5042",
+        "title": "Outillage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72020": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5315",
+        "title": "Réfrigération",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5359",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5313",
+        "title": "Imprimerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5024",
+        "title": "Réparation appareils électroménagers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5266",
+        "title": "Installation et réparation équipement de télécommunication",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5281",
+        "title": "Électromécanique de systèmes automatisés",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5154",
+        "title": "Mécanique de véhicules légers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5217",
+        "title": "Carrosserie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5298",
+        "title": "Mécanique automobile",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5335",
+        "title": "Mécanique agricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5307",
+        "title": "Montage mécanique en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5006",
+        "title": "Mécanique entretien en commandes industrielles",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5260",
+        "title": "Mécanique industrielle de construction et entretien",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5232",
+        "title": "Mécanique de motocyclettes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5146",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "80010": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5257",
+        "title": "Pêche professionnelle",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5261",
+        "title": "Extraction de minerai",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "95109": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5293",
+        "title": "Service de la restauration",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5312",
+        "title": "Mécanique de protection contre les incendies",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5359",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5142",
+        "title": "Finition de meubles",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5313",
+        "title": "Imprimerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5307",
+        "title": "Montage mécanique en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5261",
+        "title": "Extraction de minerai",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5282",
+        "title": "Installation et fabrication de produits verriers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5080",
+        "title": "Rembourrage artisanal",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5182",
+        "title": "Horlogerie-bijouterie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5146",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5263",
+        "title": "Horlogerie-rhabillage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5285",
+        "title": "Fabrication de moules",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "82010": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5290",
+        "title": "Abattage manuel et débardage forestier",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "92021": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5271",
+        "title": "Réparation appareils électroniques audiovidéos",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5269",
+        "title": "Montage de câbles et de circuits",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "10030": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "22302": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "82021": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5172",
+        "title": "Réparation appareils au gaz naturel",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "70021": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "21330": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5306",
+        "title": "Aménagement de la forêt",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "95104": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5285",
+        "title": "Fabrication de moules",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "83100": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5261",
+        "title": "Extraction de minerai",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "62029": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72010": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5197",
+        "title": "Montage de structures en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5244",
+        "title": "Tôlerie de précision",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5195",
+        "title": "Soudage-montage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5308",
+        "title": "Fabrication de structures métalliques et de métaux ouvrés",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5356",
+        "title": "Chaudronnerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5042",
+        "title": "Outillage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "85100": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "82031": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5366",
+        "title": "Arboriculture-élagage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5306",
+        "title": "Aménagement de la forêt",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "85111": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5222",
+        "title": "Traitement de surface",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94213": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "93101": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5261",
+        "title": "Extraction de minerai",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5304",
+        "title": "Régulation de vol",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5282",
+        "title": "Installation et fabrication de produits verriers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "80020": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5288",
+        "title": "Horticulture et jardinerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "95106": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5270",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5297",
+        "title": "Pâtisserie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5315",
+        "title": "Réfrigération",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5370",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5285",
+        "title": "Fabrication de moules",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94112": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "20010": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "221.B0",
+        "title": "Technologie du génie civil",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "21301": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5315",
+        "title": "Réfrigération",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5298",
+        "title": "Mécanique automobile",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "1250",
+        "title": "Mécanique marine",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5285",
+        "title": "Fabrication de moules",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72405": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5359",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5335",
+        "title": "Mécanique agricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5307",
+        "title": "Montage mécanique en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5146",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "92024": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5326",
+        "title": "Photographie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "1489",
+        "title": "Réparation d'armes à feu",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5263",
+        "title": "Horlogerie-rhabillage",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "83101": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "92012": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5270",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5297",
+        "title": "Pâtisserie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5370",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "84101": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "52112": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "13201": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "95101": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5197",
+        "title": "Montage de structures en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5307",
+        "title": "Montage mécanique en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5073",
+        "title": "Affûtage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5195",
+        "title": "Soudage-montage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5308",
+        "title": "Fabrication de structures métalliques et de métaux ouvrés",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5356",
+        "title": "Chaudronnerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5285",
+        "title": "Fabrication de moules",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "95100": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5333",
+        "title": "Plomberie et chauffage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5195",
+        "title": "Soudage-montage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5282",
+        "title": "Installation et fabrication de produits verriers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5082",
+        "title": "Nettoyage à sec et entretien de vêtements",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "92015": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5343",
+        "title": "Préparation et finition de béton",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5142",
+        "title": "Finition de meubles",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "82020": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5261",
+        "title": "Extraction de minerai",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5253",
+        "title": "Forage au diamant",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "14402": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5088",
+        "title": "Sciage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94211": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94106": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5224",
+        "title": "Usinage sur machines-outils à commande numérique",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5073",
+        "title": "Affûtage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "52113": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "80021": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5348",
+        "title": "Production horticole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5366",
+        "title": "Arboriculture-élagage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "21332": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5261",
+        "title": "Extraction de minerai",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "92010": [
+      {
+        "code": "5256",
+        "title": "Production acéricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5354",
+        "title": "Production animale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5178",
+        "title": "Taille de pierre",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5328",
+        "title": "Conduite de procédés de traitement de eau",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5193",
+        "title": "Conduite et réglage de machines à mouler",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5220",
+        "title": "Conduite d'engins de chantier",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5273",
+        "title": "Conduite de machinerie lourde en voirie forestière",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5282",
+        "title": "Installation et fabrication de produits verriers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5274",
+        "title": "Conduite de machines de traitement du mineraI",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5810",
+        "title": "Production Equipment Operation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72603": [
+      {
+        "code": "5257",
+        "title": "Pêche professionnelle",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22113": [
+      {
+        "code": "5257",
+        "title": "Pêche professionnelle",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "60031": [
+      {
+        "code": "5257",
+        "title": "Pêche professionnelle",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5283",
+        "title": "Réception en hôtellerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "180.A0",
+        "title": "Soins infirmiers (DEC)",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "22111": [
+      {
+        "code": "5257",
+        "title": "Pêche professionnelle",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "64322": [
+      {
+        "code": "5257",
+        "title": "Pêche professionnelle",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "83120": [
+      {
+        "code": "5257",
+        "title": "Pêche professionnelle",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "84121": [
+      {
+        "code": "5257",
+        "title": "Pêche professionnelle",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5365",
+        "title": "Matelotage",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "40011": [
+      {
+        "code": "5257",
+        "title": "Pêche professionnelle",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "85102": [
+      {
+        "code": "5257",
+        "title": "Pêche professionnelle",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "83121": [
+      {
+        "code": "5257",
+        "title": "Pêche professionnelle",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "63200": [
+      {
+        "code": "5257",
+        "title": "Pêche professionnelle",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5293",
+        "title": "Service de la restauration",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5297",
+        "title": "Pâtisserie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5311",
+        "title": "Cuisine",
+        "level": "DEP",
+        "direct": true
+      },
+      {
+        "code": "5324",
+        "title": "Cuisine du marché",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5342",
+        "title": "Pâtisserie de restauration contemporaine",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22114": [
+      {
+        "code": "5288",
+        "title": "Horticulture et jardinerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5366",
+        "title": "Arboriculture-élagage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5306",
+        "title": "Aménagement de la forêt",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "53111": [
+      {
+        "code": "5320",
+        "title": "Réalisation daménagements paysagers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "65102": [
+      {
+        "code": "5268",
+        "title": "Boucherie de détail",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5270",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5370",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "63201": [
+      {
+        "code": "5268",
+        "title": "Boucherie de détail",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "60020": [
+      {
+        "code": "5268",
+        "title": "Boucherie de détail",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5270",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5326",
+        "title": "Photographie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5211",
+        "title": "Entretien général d'immeubles",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5271",
+        "title": "Réparation appareils électroniques audiovidéos",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5370",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "75201": [
+      {
+        "code": "5270",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5370",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94140": [
+      {
+        "code": "5270",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5370",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "63202": [
+      {
+        "code": "5270",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5297",
+        "title": "Pâtisserie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5043",
+        "title": "Spécialités en horticulture",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5370",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "62010": [
+      {
+        "code": "5270",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5370",
+        "title": "Boulangerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22222": [
+      {
+        "code": "5283",
+        "title": "Réception en hôtellerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "14400": [
+      {
+        "code": "5283",
+        "title": "Réception en hôtellerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "21221": [
+      {
+        "code": "5283",
+        "title": "Réception en hôtellerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "420.B0",
+        "title": "Techniques de l'informatique",
+        "level": "DEC",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "64314": [
+      {
+        "code": "5283",
+        "title": "Réception en hôtellerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "60030": [
+      {
+        "code": "5293",
+        "title": "Service de la restauration",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "64101": [
+      {
+        "code": "5293",
+        "title": "Service de la restauration",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5313",
+        "title": "Imprimerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5082",
+        "title": "Nettoyage à sec et entretien de vêtements",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5265",
+        "title": "Service technique équipement bureautique",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "72310": [
+      {
+        "code": "5293",
+        "title": "Service de la restauration",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5319",
+        "title": "Charpenterie-menuiserie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5197",
+        "title": "Montage de structures en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72320": [
+      {
+        "code": "5293",
+        "title": "Service de la restauration",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5178",
+        "title": "Taille de pierre",
+        "level": "DEP",
+        "direct": true
+      },
+      {
+        "code": "5215",
+        "title": "Restauration de maçonnerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5303",
+        "title": "Briquetage-maçonnerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "62200": [
+      {
+        "code": "5293",
+        "title": "Service de la restauration",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5297",
+        "title": "Pâtisserie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5311",
+        "title": "Cuisine",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5324",
+        "title": "Cuisine du marché",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5342",
+        "title": "Pâtisserie de restauration contemporaine",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "70011": [
+      {
+        "code": "5293",
+        "title": "Service de la restauration",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "53100": [
+      {
+        "code": "5293",
+        "title": "Service de la restauration",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94124": [
+      {
+        "code": "5297",
+        "title": "Pâtisserie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5343",
+        "title": "Préparation et finition de béton",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5359",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5142",
+        "title": "Finition de meubles",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5146",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "75110": [
+      {
+        "code": "5311",
+        "title": "Cuisine",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5324",
+        "title": "Cuisine du marché",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5286",
+        "title": "Plâtrage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5300",
+        "title": "Carrelage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5319",
+        "title": "Charpenterie-menuiserie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5334",
+        "title": "Installation de revêtements souples",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5353",
+        "title": "Mécanique spécialisée équipement lourd",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5193",
+        "title": "Conduite et réglage de machines à mouler",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5197",
+        "title": "Montage de structures en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5307",
+        "title": "Montage mécanique en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5260",
+        "title": "Mécanique industrielle de construction et entretien",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5195",
+        "title": "Soudage-montage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5360",
+        "title": "Ferblanterie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5220",
+        "title": "Conduite d'engins de chantier",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5248",
+        "title": "Conduite de grues",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5273",
+        "title": "Conduite de machinerie lourde en voirie forestière",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5082",
+        "title": "Nettoyage à sec et entretien de vêtements",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5076",
+        "title": "Pose d'armature du béton",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5253",
+        "title": "Forage au diamant",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "65201": [
+      {
+        "code": "5311",
+        "title": "Cuisine",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5324",
+        "title": "Cuisine du marché",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "41221": [
+      {
+        "code": "5311",
+        "title": "Cuisine",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5324",
+        "title": "Cuisine du marché",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "60040": [
+      {
+        "code": "5311",
+        "title": "Cuisine",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5324",
+        "title": "Cuisine du marché",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5193",
+        "title": "Conduite et réglage de machines à mouler",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5220",
+        "title": "Conduite d'engins de chantier",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5273",
+        "title": "Conduite de machinerie lourde en voirie forestière",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5245",
+        "title": "Coiffure",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5339",
+        "title": "Esthétique",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5082",
+        "title": "Nettoyage à sec et entretien de vêtements",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "62202": [
+      {
+        "code": "5085",
+        "title": "Bijouterie-joaillerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "51120": [
+      {
+        "code": "5326",
+        "title": "Photographie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "55109": [
+      {
+        "code": "5326",
+        "title": "Photographie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "53110": [
+      {
+        "code": "5326",
+        "title": "Photographie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94110": [
+      {
+        "code": "5326",
+        "title": "Photographie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5343",
+        "title": "Préparation et finition de béton",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5282",
+        "title": "Installation et fabrication de produits verriers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94153": [
+      {
+        "code": "5326",
+        "title": "Photographie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "52111": [
+      {
+        "code": "5326",
+        "title": "Photographie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5344",
+        "title": "Infographie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5225",
+        "title": "Dessin industriel",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "52121": [
+      {
+        "code": "5327",
+        "title": "Décoration intérieure et présentation visuelle",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5306",
+        "title": "Aménagement de la forêt",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72013": [
+      {
+        "code": "5211",
+        "title": "Entretien général d'immeubles",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5319",
+        "title": "Charpenterie-menuiserie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5352",
+        "title": "Ébénisterie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "14100": [
+      {
+        "code": "5211",
+        "title": "Entretien général d'immeubles",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "75212": [
+      {
+        "code": "5211",
+        "title": "Entretien général d'immeubles",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5082",
+        "title": "Nettoyage à sec et entretien de vêtements",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22213": [
+      {
+        "code": "5238",
+        "title": "Arpentage et topographie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "21300": [
+      {
+        "code": "5238",
+        "title": "Arpentage et topographie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5346",
+        "title": "Conseil technique en entretien et en réparation de véhicules",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "241.A0",
+        "title": "Techniques de génie mécanique",
+        "level": "DEC",
+        "direct": false
+      },
+      {
+        "code": "221.B0",
+        "title": "Technologie du génie civil",
+        "level": "DEC",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "75119": [
+      {
+        "code": "5238",
+        "title": "Arpentage et topographie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5312",
+        "title": "Mécanique de protection contre les incendies",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5315",
+        "title": "Réfrigération",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5359",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5185",
+        "title": "Montage de lignes électriques",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5266",
+        "title": "Installation et réparation équipement de télécommunication",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5154",
+        "title": "Mécanique de véhicules légers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5331",
+        "title": "Mécanique d'engins de chantier",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5307",
+        "title": "Montage mécanique en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5260",
+        "title": "Mécanique industrielle de construction et entretien",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5146",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "73209": [
+      {
+        "code": "5238",
+        "title": "Arpentage et topographie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "21203": [
+      {
+        "code": "5238",
+        "title": "Arpentage et topographie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22212": [
+      {
+        "code": "5250",
+        "title": "Dessin de bâtiment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5225",
+        "title": "Dessin industriel",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "221.B0",
+        "title": "Technologie du génie civil",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "72014": [
+      {
+        "code": "5286",
+        "title": "Plâtrage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5300",
+        "title": "Carrelage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5303",
+        "title": "Briquetage-maçonnerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5315",
+        "title": "Réfrigération",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5336",
+        "title": "Peinture en bâtiment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5351",
+        "title": "Pose de revêtements de toiture",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5119",
+        "title": "Calorifugeage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72106": [
+      {
+        "code": "5286",
+        "title": "Plâtrage",
+        "level": "DEP",
+        "direct": true
+      }
+    ],
+    "73102": [
+      {
+        "code": "5286",
+        "title": "Plâtrage",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "73101": [
+      {
+        "code": "5300",
+        "title": "Carrelage",
+        "level": "DEP",
+        "direct": true
+      }
+    ],
+    "72321": [
+      {
+        "code": "5315",
+        "title": "Réfrigération",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "92011": [
+      {
+        "code": "5315",
+        "title": "Réfrigération",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5261",
+        "title": "Extraction de minerai",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5282",
+        "title": "Installation et fabrication de produits verriers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72402": [
+      {
+        "code": "5315",
+        "title": "Réfrigération",
+        "level": "DEP",
+        "direct": true
+      },
+      {
+        "code": "5353",
+        "title": "Mécanique spécialisée équipement lourd",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5307",
+        "title": "Montage mécanique en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "95102": [
+      {
+        "code": "5315",
+        "title": "Réfrigération",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5282",
+        "title": "Installation et fabrication de produits verriers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "95107": [
+      {
+        "code": "5315",
+        "title": "Réfrigération",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "41400": [
+      {
+        "code": "5322",
+        "title": "Intervention en sécurité incendie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "40019": [
+      {
+        "code": "5322",
+        "title": "Intervention en sécurité incendie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72012": [
+      {
+        "code": "5333",
+        "title": "Plomberie et chauffage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "93100": [
+      {
+        "code": "5333",
+        "title": "Plomberie et chauffage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72300": [
+      {
+        "code": "5333",
+        "title": "Plomberie et chauffage",
+        "level": "DEP",
+        "direct": true
+      }
+    ],
+    "92013": [
+      {
+        "code": "5343",
+        "title": "Préparation et finition de béton",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72011": [
+      {
+        "code": "5350",
+        "title": "Pose de systèmes intérieurs",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5185",
+        "title": "Montage de lignes électriques",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "74201": [
+      {
+        "code": "5359",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "1250",
+        "title": "Mécanique marine",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5146",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5365",
+        "title": "Matelotage",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94105": [
+      {
+        "code": "5359",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5146",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94204": [
+      {
+        "code": "5359",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5154",
+        "title": "Mécanique de véhicules légers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5330",
+        "title": "Mécanique de véhicules lourds routiers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5335",
+        "title": "Mécanique agricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5307",
+        "title": "Montage mécanique en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5146",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "73400": [
+      {
+        "code": "5359",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5307",
+        "title": "Montage mécanique en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5146",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94107": [
+      {
+        "code": "5359",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5307",
+        "title": "Montage mécanique en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5195",
+        "title": "Soudage-montage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5282",
+        "title": "Installation et fabrication de produits verriers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5146",
+        "title": "Mécanique de machines fixes",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "12203": [
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22311": [
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5266",
+        "title": "Installation et réparation équipement de télécommunication",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5271",
+        "title": "Réparation appareils électroniques audiovidéos",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5296",
+        "title": "Installation et entretien de systèmes de sécurité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5265",
+        "title": "Service technique équipement bureautique",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "73300": [
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72410": [
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5298",
+        "title": "Mécanique automobile",
+        "level": "DEP",
+        "direct": true
+      }
+    ],
+    "41101": [
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "BAC-DROIT",
+        "title": "Baccalauréat en droit (LL.B.)",
+        "level": "BAC",
+        "direct": true
+      }
+    ],
+    "70012": [
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "41402": [
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "13111": [
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "10019": [
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "14101": [
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "43202": [
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "13101": [
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5306",
+        "title": "Aménagement de la forêt",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "41401": [
+      {
+        "code": "5836",
+        "title": "Commercial and Residential Painting",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94133": [
+      {
+        "code": "5142",
+        "title": "Finition de meubles",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94210": [
+      {
+        "code": "5142",
+        "title": "Finition de meubles",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "92022": [
+      {
+        "code": "5142",
+        "title": "Finition de meubles",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72311": [
+      {
+        "code": "5352",
+        "title": "Ébénisterie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5285",
+        "title": "Fabrication de moules",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94130": [
+      {
+        "code": "5313",
+        "title": "Imprimerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94150": [
+      {
+        "code": "5313",
+        "title": "Imprimerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94151": [
+      {
+        "code": "5313",
+        "title": "Imprimerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "73401": [
+      {
+        "code": "5313",
+        "title": "Imprimerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94152": [
+      {
+        "code": "5313",
+        "title": "Imprimerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "53125": [
+      {
+        "code": "5345",
+        "title": "Mode et confection de vêtements sur mesure",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72421": [
+      {
+        "code": "5024",
+        "title": "Réparation appareils électroménagers",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "14404": [
+      {
+        "code": "5266",
+        "title": "Installation et réparation équipement de télécommunication",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72201": [
+      {
+        "code": "5266",
+        "title": "Installation et réparation équipement de télécommunication",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72422": [
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22233": [
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "74205": [
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72200": [
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": true
+      }
+    ],
+    "22231": [
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "14202": [
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22303": [
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "90011": [
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22310": [
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "243.11",
+        "title": "Technologie de l'électronique industrielle",
+        "level": "DEC",
+        "direct": true
+      }
+    ],
+    "21310": [
+      {
+        "code": "5295",
+        "title": "Électricité",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "241.A0",
+        "title": "Techniques de génie mécanique",
+        "level": "DEC",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "94200": [
+      {
+        "code": "5154",
+        "title": "Mécanique de véhicules légers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5298",
+        "title": "Mécanique automobile",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5307",
+        "title": "Montage mécanique en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "14401": [
+      {
+        "code": "5154",
+        "title": "Mécanique de véhicules légers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5042",
+        "title": "Outillage",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72411": [
+      {
+        "code": "5217",
+        "title": "Carrosserie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72500": [
+      {
+        "code": "5298",
+        "title": "Mécanique automobile",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "21399": [
+      {
+        "code": "5335",
+        "title": "Mécanique agricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "84120": [
+      {
+        "code": "5335",
+        "title": "Mécanique agricole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "40021": [
+      {
+        "code": "5346",
+        "title": "Conseil technique en entretien et en réparation de véhicules",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "43109": [
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5193",
+        "title": "Conduite et réglage de machines à mouler",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5220",
+        "title": "Conduite d'engins de chantier",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5273",
+        "title": "Conduite de machinerie lourde en voirie forestière",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94219": [
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5182",
+        "title": "Horlogerie-bijouterie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5263",
+        "title": "Horlogerie-rhabillage",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72100": [
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5042",
+        "title": "Outillage",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "64409": [
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "53200": [
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "12202": [
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "63100": [
+      {
+        "code": "5798",
+        "title": "Automobile Mechanics",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22112": [
+      {
+        "code": "5179",
+        "title": "Protection et exploitation de territoires fauniques",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5088",
+        "title": "Sciage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5363",
+        "title": "Mise en oeuvre de matériaux composites",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5208",
+        "title": "Classement des bois débités",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "40010": [
+      {
+        "code": "5179",
+        "title": "Protection et exploitation de territoires fauniques",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "14405": [
+      {
+        "code": "5193",
+        "title": "Conduite et réglage de machines à mouler",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5220",
+        "title": "Conduite d'engins de chantier",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5273",
+        "title": "Conduite de machinerie lourde en voirie forestière",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72105": [
+      {
+        "code": "5197",
+        "title": "Montage de structures en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "93200": [
+      {
+        "code": "5197",
+        "title": "Montage de structures en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72104": [
+      {
+        "code": "5197",
+        "title": "Montage de structures en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5195",
+        "title": "Soudage-montage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "62101": [
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5043",
+        "title": "Spécialités en horticulture",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "50010": [
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "41320": [
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "14300": [
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "51100": [
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "12113": [
+      {
+        "code": "5223",
+        "title": "Techniques d'usinage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "412.A0",
+        "title": "Techniques de bureautique",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "94131": [
+      {
+        "code": "5225",
+        "title": "Dessin industriel",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5307",
+        "title": "Montage mécanique en aérospatiale",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72102": [
+      {
+        "code": "5244",
+        "title": "Tôlerie de précision",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5356",
+        "title": "Chaudronnerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5360",
+        "title": "Ferblanterie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "32101": [
+      {
+        "code": "5362",
+        "title": "Opération équipements de production",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "31301": [
+      {
+        "code": "5362",
+        "title": "Opération équipements de production",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "180.A0",
+        "title": "Soins infirmiers (DEC)",
+        "level": "DEC",
+        "direct": true
+      },
+      {
+        "code": "BAC-INF",
+        "title": "Baccalauréat en sciences infirmières",
+        "level": "BAC",
+        "direct": true
+      }
+    ],
+    "33102": [
+      {
+        "code": "5362",
+        "title": "Opération équipements de production",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "180.A0",
+        "title": "Soins infirmiers (DEC)",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "31300": [
+      {
+        "code": "5362",
+        "title": "Opération équipements de production",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "180.A0",
+        "title": "Soins infirmiers (DEC)",
+        "level": "DEC",
+        "direct": false
+      },
+      {
+        "code": "BAC-INF",
+        "title": "Baccalauréat en sciences infirmières",
+        "level": "BAC",
+        "direct": true
+      }
+    ],
+    "72999": [
+      {
+        "code": "5073",
+        "title": "Affûtage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "1489",
+        "title": "Réparation d'armes à feu",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5329",
+        "title": "Serrurerie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "84110": [
+      {
+        "code": "5189",
+        "title": "Abattage et façonnage des bois",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5290",
+        "title": "Abattage manuel et débardage forestier",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "41403": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "40030": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "42201": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5358",
+        "title": "Assistance à la personne en établissement et à domicile",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22232": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "30010": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "180.A0",
+        "title": "Soins infirmiers (DEC)",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "10011": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "41407": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "13112": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "41300": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "42203": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "31203": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "14102": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "21322": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5261",
+        "title": "Extraction de minerai",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "41321": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "92014": [
+      {
+        "code": "5289",
+        "title": "Travail sylvicole",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5282",
+        "title": "Installation et fabrication de produits verriers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22300": [
+      {
+        "code": "5306",
+        "title": "Aménagement de la forêt",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "221.B0",
+        "title": "Technologie du génie civil",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "21202": [
+      {
+        "code": "5306",
+        "title": "Aménagement de la forêt",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "85121": [
+      {
+        "code": "5306",
+        "title": "Aménagement de la forêt",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "85103": [
+      {
+        "code": "5306",
+        "title": "Aménagement de la forêt",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22301": [
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "241.A0",
+        "title": "Techniques de génie mécanique",
+        "level": "DEC",
+        "direct": true
+      }
+    ],
+    "32110": [
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "41200": [
+      {
+        "code": "5337",
+        "title": "Mécanique d'ascenseur",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "221.B0",
+        "title": "Technologie du génie civil",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "94201": [
+      {
+        "code": "5195",
+        "title": "Soudage-montage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72103": [
+      {
+        "code": "5195",
+        "title": "Soudage-montage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5356",
+        "title": "Chaudronnerie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5234",
+        "title": "Soudage haute pression",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22101": [
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94101": [
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "84100": [
+      {
+        "code": "5203",
+        "title": "Fonderie",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5291",
+        "title": "Transport par camion",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5253",
+        "title": "Forage au diamant",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72205": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72406": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94212": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72204": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72301": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72302": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94122": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72420": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94203": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72400": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "12112": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94202": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94205": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "92020": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "85110": [
+      {
+        "code": "5299",
+        "title": "Montage structural et architectural",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72021": [
+      {
+        "code": "5092",
+        "title": "Forage et dynamitage",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "21120": [
+      {
+        "code": "5325",
+        "title": "Santé  assistance et soins infirmiers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5339",
+        "title": "Esthétique",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "180.A0",
+        "title": "Soins infirmiers (DEC)",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "41201": [
+      {
+        "code": "5341",
+        "title": "Assistance technique en pharmacie",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "63210": [
+      {
+        "code": "5245",
+        "title": "Coiffure",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "65329": [
+      {
+        "code": "5245",
+        "title": "Coiffure",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "63211": [
+      {
+        "code": "5339",
+        "title": "Esthétique",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5349",
+        "title": "Épilation",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "31101": [
+      {
+        "code": "5339",
+        "title": "Esthétique",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "75211": [
+      {
+        "code": "5291",
+        "title": "Transport par camion",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "74203": [
+      {
+        "code": "5291",
+        "title": "Transport par camion",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72024": [
+      {
+        "code": "5291",
+        "title": "Transport par camion",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "74204": [
+      {
+        "code": "5304",
+        "title": "Régulation de vol",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72601": [
+      {
+        "code": "5304",
+        "title": "Régulation de vol",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "94121": [
+      {
+        "code": "5282",
+        "title": "Installation et fabrication de produits verriers",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "62024": [
+      {
+        "code": "5082",
+        "title": "Nettoyage à sec et entretien de vêtements",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "65311": [
+      {
+        "code": "5082",
+        "title": "Nettoyage à sec et entretien de vêtements",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "74202": [
+      {
+        "code": "5082",
+        "title": "Nettoyage à sec et entretien de vêtements",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "92101": [
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "32102": [
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "93102": [
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "20012": [
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72602": [
+      {
+        "code": "5766",
+        "title": "Installation and Repair of Telecommunications Equipment",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "13100": [
+      {
+        "code": "5363",
+        "title": "Mise en oeuvre de matériaux composites",
+        "level": "DEP",
+        "direct": false
+      },
+      {
+        "code": "5280",
+        "title": "Liaison en réseau équipement bureautique",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "83110": [
+      {
+        "code": "5290",
+        "title": "Abattage manuel et débardage forestier",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22230": [
+      {
+        "code": "5234",
+        "title": "Soudage haute pression",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "14403": [
+      {
+        "code": "5042",
+        "title": "Outillage",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "72101": [
+      {
+        "code": "5042",
+        "title": "Outillage",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "44200": [
+      {
+        "code": "5365",
+        "title": "Matelotage",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "75210": [
+      {
+        "code": "5365",
+        "title": "Matelotage",
+        "level": "DEP",
+        "direct": false
+      }
+    ],
+    "22220": [
+      {
+        "code": "420.B0",
+        "title": "Techniques de l'informatique",
+        "level": "DEC",
+        "direct": true
+      }
+    ],
+    "21232": [
+      {
+        "code": "420.B0",
+        "title": "Techniques de l'informatique",
+        "level": "DEC",
+        "direct": true
+      },
+      {
+        "code": "BAC-INFO",
+        "title": "Baccalauréat en informatique",
+        "level": "BAC",
+        "direct": true
+      }
+    ],
+    "21234": [
+      {
+        "code": "420.B0",
+        "title": "Techniques de l'informatique",
+        "level": "DEC",
+        "direct": true
+      }
+    ],
+    "41404": [
+      {
+        "code": "180.A0",
+        "title": "Soins infirmiers (DEC)",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "21109": [
+      {
+        "code": "140.B0",
+        "title": "Technologie d'analyses biomédicales",
+        "level": "DEC",
+        "direct": false
+      }
+    ],
+    "21231": [
+      {
+        "code": "BAC-GINF",
+        "title": "Baccalauréat en génie informatique",
+        "level": "BAC",
+        "direct": true
+      },
+      {
+        "code": "BAC-GLOG",
+        "title": "Baccalauréat en génie logiciel",
+        "level": "BAC",
+        "direct": true
+      }
+    ],
+    "21311": [
+      {
+        "code": "BAC-GINF",
+        "title": "Baccalauréat en génie informatique",
+        "level": "BAC",
+        "direct": true
+      }
+    ],
+    "21230": [
+      {
+        "code": "BAC-INFO",
+        "title": "Baccalauréat en informatique",
+        "level": "BAC",
+        "direct": true
+      }
+    ],
+    "11100": [
+      {
+        "code": "BAC-COMPT",
+        "title": "Baccalauréat en sciences comptables (CPA)",
+        "level": "BAC",
+        "direct": true
+      }
+    ],
+    "31102": [
+      {
+        "code": "BAC-MED",
+        "title": "Doctorat de premier cycle en médecine",
+        "level": "DOCTORAT",
+        "direct": true
+      }
+    ],
+    "31100": [
+      {
+        "code": "BAC-MED",
+        "title": "Doctorat de premier cycle en médecine",
+        "level": "DOCTORAT",
+        "direct": true
+      }
+    ]
+  }
+}

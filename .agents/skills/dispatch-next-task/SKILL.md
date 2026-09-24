@@ -21,7 +21,8 @@ Le projet Trajektia utilise plusieurs outils et agents d'IA pour optimiser les c
 
 ### 1. Analyse du Plan d'Action ou Tâche Directe
 - **Si une tâche explicite est fournie en argument** (ex: `/dispatch-next-task "tâche xyz"`) :
-  - **Court-circuiter l'étape du plan** : Ne pas lire `packages/ckg/PLAN_ACTION.md` et passer directement à l'étape 2 (ou utiliser la commande dédiée `/dispatch-task-now "..."` / `/dispatch-now "..."`).
+  - Si la tâche nécessite une évaluation, une clarification ou une inscription au plan d'action : déléguer ou renvoyer vers `/triage "..."`.
+  - Si la tâche doit être expédiée immédiatement sans impacter le plan : passer directement à l'étape 2 (ou utiliser `/dispatch-now "..."`).
 - **Si aucun argument n'est fourni** :
   - Ouvrir et lire le fichier `packages/ckg/PLAN_ACTION.md`.
   - Repérer la ou les prochaines tâches prioritaires ayant le statut **À faire** ou **En attente**.
@@ -38,7 +39,7 @@ Le projet Trajektia utilise plusieurs outils et agents d'IA pour optimiser les c
 
 - **Sélection du Modèle pour Antigravity** :
   - Si la tâche attribuée à **Antigravity** implique de la refactorisation architecturale complexe, du raisonnement abstrait multi-fichiers ou la résolution de bugs subtils $\rightarrow$ Recommander à l'utilisateur de basculer sur **Gemini 3.1 Pro** ou **Claude 3.7 Sonnet**.
-  - Si la tâche concerne l'intégration UI courante, des composants Tailwind/React/Astro ou l'exécution rapide de workflows $\rightarrow$ Maintenir **Gemini 3.6 Flash** pour une vitesse et une économie de tokens optimales.
+  - Si la tâche concerne l'intégration UI courante, des composants Tailwind/React/Astro ou l'exécution rapide de workflows $\rightarrow$ Maintenir **Gemini 3.8 Flash** ou **Gemini 3.6 Flash** pour une vitesse et une économie de tokens optimales.
 - Définir le contexte minimal nécessaire (fichiers cibles, contraintes, format attendu) pour économiser un maximum de tokens.
 
 ### 3. Préparation et Envoi Direct (Mode Zéro Intermédiaire - Sans passer par l'utilisateur)

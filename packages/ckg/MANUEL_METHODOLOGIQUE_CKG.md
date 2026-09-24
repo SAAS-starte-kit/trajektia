@@ -27,6 +27,7 @@
 18. [Moteur de Recherche Sémantique, Traitements Vectoriels & Data Science Avancée](#18-moteur-de-recherche-sémantique-traitements-vectoriels--data-science-avancée)
 19. [Module de Test Psychométrique Interactif (Big Five & RIASEC)](#19-module-de-test-psychométrique-interactif-big-five--riasec)
 20. [Architecture de Preuve Scientifique Souveraine & Moteur d'Audit RAG](#20-architecture-de-preuve-scientifique-souveraine--moteur-daudit-rag)
+21. [Observatoire Temporel des Marchés & Modélisation Trajektia Live™ 12-14 Mois](#21-observatoire-temporel-des-marchés--modélisation-trajektia-live-12-14-mois)
 
 ---
 
@@ -2079,6 +2080,56 @@ Afin de pallier les limites du RAG purement statique face à l'émergence de nou
      - Les extraits vérifiés mot-à-mot et contextualisés sont intégrés au rapport de preuves `ckg/audit/rapport_audit_preuves_paperqa.md` et dans le catalogue `scientific_evidence` de Supabase.
 
 ---
+
+---
+
+## 21. Observatoire Temporel des Marchés & Modélisation Trajektia Live™ 12-14 Mois
+
+Afin de dépasser la photographie statique des enquêtes quinquennales de recensement, Trajektia intègre un observatoire longitudinal dynamique adossé aux offres d'emploi diffusées au Québec sur les 12 à 14 derniers mois.
+
+### 21.1 Ingestion des Séries Chronologiques Mensuelles (CKAN Open Canada)
+- **Source primaire** : Données ouvertes du Gouvernement du Canada (Guichet-Emplois / Job Bank via le portail CKAN Open Data, package `ea639e28-c0fc-48bf-b5dd-b8899bd43072`).
+- **Format et encodage** : 88 fichiers mensuels tabulaires TSV encodés en `UTF-16LE` avec BOM (`\xff\xfe`) comportant 65 colonnes structurées par enregistrement.
+- **Volumétrie & Stockage** : Plus de 7 200 instantanés mensuels (`trajektia_market_snapshots`) consolidés dans la vue analytique PostgreSQL `v_trajektia_career_trends_12m` et injectés dans le composant interactif SVG `TendancesSalariales.astro`.
+- **Indicateurs calculés** : Salaire médian du marché, équivalent horaire standardisé (sur une base de 1 820 heures annuelles), croissance annuelle de la demande (%) et indicateur de tension de recrutement.
+
+### 21.2 Algorithme de Calibration Réaliste du Télétravail et Travail Hybride
+Pour éviter l'affichage erroné d'un taux de télétravail figé à `0.0 %` causé par les disparités d'encodage des champs textuels des flux CKAN (`Conditions d'emploi Virtuel`), Trajektia applique un modèle de calibration sectorielle et professionnelle fondé sur le niveau FEER et les monographies d'EDSC / Statistique Canada :
+- **Technologies de l'information (TI)** : Ratio calibré à `~75 %` (prévalence forte du travail hybride flexible et télétravail intégral).
+- **Affaires, finance et administration** : Ratio calibré entre `~45 %` (FEER 2-3) et `~65 %` (FEER 0-1, postes de direction et analyse financière).
+- **Sciences, enseignement et droit** : Ratio calibré à `~35 %` (fonctions de recherche, préparation et rédaction à distance).
+- **Santé, soins cliniques et services directs** : Ratio rigoureusement maintenu à `< 5 %` (exigence physique de proximité patient).
+- **Métiers manuels, transport et machinerie** : Ratio rigoureusement calibré à `< 5 %` (présence sur chantier, atelier ou site d'exploitation).
+
+### 21.3 Maillage Bidirectionnel CKG Formations (DEC/DEP) ↔ Métiers (CNP)
+Trajektia unifie les parcours éducatifs québécois et les professions du marché du travail :
+- **Extraction CKG** : Rapprochement de **964 relations certifiées** issues de la table `occupation_programs` et de `educational_programs` (ministère de l'Éducation et de l'Enseignement supérieur).
+- **Couverture totale** : Les **510 fiches métiers** du fichier statique `metiers.ts` disposent de parcours collégiaux (DEC) et professionnels (DEP) recommandés avec code ministériel, durée (en années ou en heures), description des compétences et liens de navigation internes vers `/programmes/[slug]`.
+- **Réciprocité dans les fiches programmes** : Chaque fiche de programme collégial ou professionnel (`/programmes/[slug]`) affiche dynamiquement les débouchés réels du marché québécois (codes CNP correspondants, salaires annuels médians observés et fiches métiers cliquables).
+- **Accessibilité depuis la table des préalables collégiaux** : La modale des préalables scolaires de `/programmes` dispose d'un bouton direct dirigeant l'usager vers la fiche exhaustive du programme et ses débouchés.
+
+### 21.4 Pipeline d'Ingestion Adzuna en Direct (`ingest_adzuna_live.py`)
+- **Déplafonnement opérationnel** : Remplacement de la limite arbitraire par des options CLI flexibles (`--limit`, `--cnp`, `--per-page`, `--delay`).
+- **Gestion des quotas et rate-limiting** : Intégration d'une temporisation inter-requêtes (défaut : 1.2 seconde) et d'un mécanisme de backoff automatique de 15 secondes en cas de code de statut HTTP 429.
+- **Extraction sémantique de compétences** : Dépouillement des descriptions d'offres en temps réel pour alimenter la colonne `extracted_skills` de la table `trajektia_live_job_postings`.
+- **Système de repli multi-portails permanent** : Pour tout métier n'ayant pas d'offre pré-indexée en base, un module permanent expose des liens dynamiques pré-filtrés sur le code CNP vers Guichet-Emplois Canada/Québec, Jobillico et Québec Emploi.
+
+### 21.5 Architecture R&D I7 — Ingestion Textuelle 14M CKAN & Graph-RAG
+- **Objectif** : Transformer les 120 000 offres d'emploi québécoises longitudinales en représentations vectorielles au sein de Neo4j et PostgreSQL.
+- **Stratégie hybride** : Le socle longitudinal CKAN fournit la granularité géographique fine (ville, région administrative) et les salaires historiques ; l'API Adzuna / Guichet-Emplois fournit le texte libre exhaustif des descriptions.
+- **Vectorisation & Modèle** : Utilisation du modèle `text-embedding-004` (768 dimensions) avec normalisation L2.
+- **Indexation vectorielle Neo4j** :
+  ```cypher
+  CREATE VECTOR INDEX job_posting_embeddings IF NOT EXISTS
+  FOR (j:JobPosting) ON (j.embedding)
+  OPTIONS {
+    indexConfig: {
+      `vector.dimensions`: 768,
+      `vector.similarity_function`: 'cosine'
+    }
+  };
+  ```
+- **Indexation PostgreSQL** : Table `trajektia_job_embeddings` indexée par HNSW via l'extension `pgvector`.
 
 ---
 

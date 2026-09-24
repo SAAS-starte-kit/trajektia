@@ -107,6 +107,74 @@ for (const ws of rawWorkStyles) {
 }
 const allWorkStyles = Array.from(uniqueStylesMap.values()).sort((a, b) => b.score - a.score);
 
+// Fonction de contextualisation sémantique au métier pour les Work Styles
+function getContextualizedWorkStyleDescription(style: { id?: string; nom: string; description?: string | null }): string {
+  if (style.description && style.description.trim().length > 5) {
+    return style.description;
+  }
+  const name = style.nom.toLowerCase();
+  const metierTitre = metier.titre_court || metier.titre || "cette profession";
+  const secteur = metier.secteur ? metier.secteur.toLowerCase() : "";
+
+  if (name.includes('fiabilit') || name.includes('assiduit') || name.includes('dependab')) {
+    if (secteur.includes('santé')) return "Rigueur constante dans le respect des protocoles cliniques et la sécurité des patients.";
+    if (secteur.includes('informatiq') || secteur.includes('technolog')) return "Respect scrupuleux des engagements, standards de code et sécurité des systèmes.";
+    if (secteur.includes('finance') || secteur.includes('administr') || secteur.includes('affaire')) return "Rigueur absolue dans le respect des échéances, de la conformité et des engagements organisationnels.";
+    return `Faire preuve d'assiduité, de constance et de rigueur dans l'exécution quotidienne pour ${metierTitre.toLowerCase()}.`;
+  }
+  if (name.includes('leadership')) {
+    if (secteur.includes('affaire') || secteur.includes('finance')) return "Définir les orientations stratégiques, mobiliser les équipes et piloter les objectifs de performance.";
+    return `Mobiliser ses pairs, porter les orientations clés du mandat et guider les décisions d'équipe.`;
+  }
+  if (name.includes('intégrit') || name.includes('integrit') || name.includes('éthique')) {
+    if (secteur.includes('santé') || secteur.includes('droit') || secteur.includes('administr')) return "Protéger la confidentialité des dossiers, agir avec transparence et appliquer les normes déontologiques.";
+    return `Agir avec impartialité, transparence et éthique dans l'ensemble des relations professionnelles.`;
+  }
+  if (name.includes('coopérat') || name.includes('cooperat') || name.includes('équipe')) {
+    return `Travailler en étroite synergie avec les collègues, partenaires et intervenants multidisciplinaires.`;
+  }
+  if (name.includes('orientation sociale') || name.includes('service') || name.includes('social')) {
+    return `Être à l'écoute des personnes, cerner précisément leurs attentes et apporter un accompagnement de qualité.`;
+  }
+  if (name.includes('analyt')) {
+    return `Analyser avec méthode les données complexes, diagnostiquer les écarts et formuler des solutions adaptées.`;
+  }
+  if (name.includes('détail') || name.includes('detail') || name.includes('précision')) {
+    return `Maintenir une exactitude minutieuse dans la vérification des livrables et la tenue des dossiers.`;
+  }
+  if (name.includes('adaptab') || name.includes('flexib')) {
+    return `S'ajuster rapidement aux changements d'environnement, imprévus opérationnels et nouvelles directives.`;
+  }
+  if (name.includes('initiat')) {
+    return `Anticiper les besoins, proposer des solutions novatrices et agir de manière proactive sans supervision constante.`;
+  }
+  if (name.includes('innovat')) {
+    return `Imaginer des méthodes créatives, tester de nouvelles approches et moderniser les pratiques du métier.`;
+  }
+  if (name.includes('persévér') || name.includes('persever') || name.includes('ténacit')) {
+    return `Faire preuve d'endurance face aux défis techniques ardus et mener les mandats complexes à terme.`;
+  }
+  if (name.includes('stress') || name.includes('maîtrise de soi') || name.includes('sang-froid')) {
+    return `Conserver son calme, sa lucidité et son discernement même lors des situations d'urgence ou de forte pression.`;
+  }
+  if (name.includes('logique')) {
+    return `Évaluer avec rigueur la cohérence des processus, la validité des architectures et la faisabilité des actions.`;
+  }
+  if (name.includes('mathématiq') || name.includes('calcul')) {
+    return `Appliquer des calculs précis, des analyses quantitatives et des modèles statistiques adaptés au contexte.`;
+  }
+  if (name.includes('organisation') || name.includes('planif')) {
+    return `Ordonnancer méthodiquement les priorités, gérer les ressources et respecter les échéanciers fixés.`;
+  }
+  if (name.includes('sensibilité') || name.includes('problème')) {
+    return `Détecter rapidement les signaux faibles, dysfonctionnements et risques opérationnels avant qu'ils ne s'aggravent.`;
+  }
+  if (name.includes('effort') || name.includes('accompliss')) {
+    return `Démontrer une volonté continue d'excellence, de dépassement des objectifs et de progression de ses compétences.`;
+  }
+  return `Déployer cette posture clé avec régularité pour exceller dans les exigences opérationnelles de ${metierTitre.toLowerCase()}.`;
+}
+
 // Fallback intelligent si non renseigné
 const fallbackStyles = [
   { id: "3", nom: "Pensée Analytique", description: "Analyser les besoins et formuler des solutions adaptées aux contraintes.", score: Math.min(95, (metier.riasec?.scores?.investigateur || 60) + 5) },
@@ -116,8 +184,18 @@ const fallbackStyles = [
   { id: "5", nom: "Coopération & Esprit d'Équipe", description: "Travail collaboratif et communication efficace avec les collègues et partenaires.", score: Math.min(95, (metier.riasec?.scores?.social || 60) + 5) }
 ];
 const effectiveWorkStyles = allWorkStyles.length > 0 ? allWorkStyles : fallbackStyles;
-// Standard O*NET : Top 5 des facettes dominantes pour l'affichage Grand Public
-const dominantWorkStyles = effectiveWorkStyles.slice(0, 5);
+
+// Sélection Grand Public : 4 à 6 styles dominants prioritaires au-dessus de 75-80%
+const highStyles = effectiveWorkStyles.filter(s => s.score >= 75);
+const selectedRawStyles = highStyles.length >= 4 
+  ? highStyles.slice(0, 6) 
+  : effectiveWorkStyles.slice(0, Math.min(5, effectiveWorkStyles.length));
+
+// Enrichissement contextuel systématique de la description pour le Grand Public
+const dominantWorkStyles = selectedRawStyles.map(ws => ({
+  ...ws,
+  description: getContextualizedWorkStyleDescription(ws)
+}));
 
 // Référentiel des 21 icônes pérennes O*NET (utilisées partout dans Trajektia)
 const ONET_FACET_ICONS: Record<string, string> = {
@@ -298,17 +376,17 @@ const macroDimensions = [
         </div>
       </div>
 
-      <!-- WORK STYLES : VUE GRAND PUBLIC (Top 5 dominants selon recommandation O*NET avec icônes et sans pourcentages) -->
+      <!-- WORK STYLES : VUE GRAND PUBLIC (Top 4 à 6 dominants selon recommandation O*NET avec icônes et sans pourcentages) -->
       <div class="public-only mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
         <div class="flex items-center justify-between mb-3">
           <div>
             <h3 class="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span>🌟 Vos 5 Forces au Travail (Styles O*NET)</span>
+              <span>🌟 Vos {dominantWorkStyles.length} Forces au Travail (Styles O*NET)</span>
             </h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400">Postures et qualités comportementales les plus valorisées pour ce métier.</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Postures et qualités comportementales prioritaires ({dominantWorkStyles.length} styles majeurs à forte valeur ajoutée).</p>
           </div>
           <span class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800 shrink-0">
-            Top 5 Dominants
+            Top {dominantWorkStyles.length} Dominants
           </span>
         </div>
 

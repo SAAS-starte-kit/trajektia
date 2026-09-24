@@ -81,6 +81,11 @@ export function isFeatureEnabled(key: FeatureFlagKey): boolean {
     try {
       const stored = localStorage.getItem(STORAGE_PREFIX + key);
       if (stored !== null) {
+        // Protection anti-lockout : en environnement de développement local ou si flag dev, toujours actif
+        if (key === 'FF_CONSEILLER_DEV_PANEL') {
+          const isDev = (import.meta as any).env?.DEV ?? true;
+          if (isDev) return true;
+        }
         return stored === 'true';
       }
     } catch {

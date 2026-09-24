@@ -62,7 +62,7 @@ const { title, description = "Plateforme éducative pour les programmes collégi
     </main>
     <Footer />
     <MobileBottomNav />
-    {/* Widget développeur — Feature Flags (s'affiche uniquement si FF_CONSEILLER_DEV_PANEL est actif) */}
-    <FeatureFlagDevPanel client:idle />
+    {/* Widget développeur — Feature Flags */}
+    <FeatureFlagDevPanel client:load />
   </body>
 </html>

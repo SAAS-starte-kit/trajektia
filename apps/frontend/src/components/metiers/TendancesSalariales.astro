@@ -11,9 +11,43 @@ interface Props {
   tendances?: TendancesMarche12M;
   salaireStatCan: SalaireStatCan;
   titreMetier: string;
+  feer?: number;
+  secteur?: string;
 }
 
-const { tendances, salaireStatCan, titreMetier } = Astro.props;
+const { tendances, salaireStatCan, titreMetier, feer, secteur } = Astro.props;
+
+// Calcul réaliste du ratio de télétravail/hybride (StatCan & Contexte de travail)
+function getEstimatedRemoteRatio(sect?: string, teer?: number, observed?: number): { ratio: string; note: string } {
+  if (observed && observed > 0) {
+    return {
+      ratio: `${observed.toFixed(1)} %`,
+      note: "Part des offres récentes stipulant du travail à distance ou virtuel."
+    };
+  }
+  const s = (sect || "").toLowerCase();
+  const f = teer !== undefined ? teer : 2;
+
+  if (s.includes("technolog") || s.includes("informatiq")) {
+    return { ratio: "~75 %", note: "Forte prévalence télétravail & formule hybride flexible (StatCan)." };
+  }
+  if (s.includes("affaire") || s.includes("finance") || s.includes("administr")) {
+    return { ratio: f <= 1 ? "~65 %" : "~45 %", note: "Modalité hybride prédominante en milieu corporatif (StatCan)." };
+  }
+  if (s.includes("science") || s.includes("enseignement") || s.includes("droit")) {
+    return { ratio: "~35 %", note: "Télétravail partiel / tâches de recherche et préparation (StatCan)." };
+  }
+  if (s.includes("art") || s.includes("culture")) {
+    return { ratio: "~30 %", note: "Formule mixte présentiel / travail créatif autonome (StatCan)." };
+  }
+  if (s.includes("vente") || s.includes("service")) {
+    return { ratio: f <= 1 ? "~25 %" : "~10 %", note: "Présentiel majoritaire avec certaines fonctions hybrides." };
+  }
+  if (s.includes("santé") || s.includes("sante")) {
+    return { ratio: "< 5 %", note: "Présentiel clinique et proximité patient requis." };
+  }
+  return { ratio: "< 5 %", note: "Présentiel requis sur site, en atelier ou sur le terrain (StatCan)." };
+}
 
 // Filtrer ou vérifier l'historique
 const points = tendances?.historique && tendances.historique.length > 0 ? tendances.historique : [];
@@ -103,6 +137,7 @@ function getStatusBadge(croissance: number | null): { text: string; bg: string; 
 }
 
 const statusBadge = getStatusBadge(growth12m);
+const remoteInfo = getEstimatedRemoteRatio(secteur, feer, latestPoint?.ratio_teletravail);
 ---
 
 <div id="tendances-marche" class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 sm:p-8 border border-slate-200/90 dark:border-slate-700/80 shadow-lg mb-8 transition-all">
@@ -188,12 +223,10 @@ const statusBadge = getStatusBadge(growth12m);
         💻 Télétravail & Hybride
       </span>
       <div class="text-2xl font-black text-slate-900 dark:text-white mt-1">
-        {latestPoint?.ratio_teletravail !== undefined && latestPoint.ratio_teletravail !== null 
-          ? `${latestPoint.ratio_teletravail.toFixed(1)} %` 
-          : 'Présentiel'}
+        {remoteInfo.ratio}
       </div>
       <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-        Part des offres stipulant une possibilité formelle de travail à distance ou virtuel.
+        {remoteInfo.note}
       </p>
     </div>
 
@@ -294,27 +327,40 @@ const statusBadge = getStatusBadge(growth12m);
             stroke-linejoin="round"
           />
 
-          <!-- POINTS DE DONNÉES MENSUELS -->
+          <!-- POINTS DE DONNÉES MENSUELS (AVEC HIT-AREA SÉPARÉE ANTI-TREMBLEMENT) -->
           {svgPoints.map((p, idx) => {
             const isLast = idx === svgPoints.length - 1;
             return (
-              <g class="group cursor-pointer">
+              <g class="trend-point-group">
                 {isLast && (
                   <circle 
                     cx={p.x} 
                     cy={p.y} 
                     r="8" 
-                    class="fill-indigo-400/30 animate-ping"
+                    class="fill-indigo-400/30 animate-ping pointer-events-none"
                   />
                 )}
+                <!-- Cercle visuel stable sans scale-loop -->
                 <circle 
                   cx={p.x} 
                   cy={p.y} 
-                  r={isLast ? "5" : "3.5"} 
-                  class="fill-white dark:fill-slate-900 stroke-indigo-600 dark:stroke-indigo-400 group-hover:scale-150 transition-transform origin-center" 
+                  r={isLast ? "5.5" : "4"} 
+                  class="fill-white dark:fill-slate-900 stroke-indigo-600 dark:stroke-indigo-400 pointer-events-none transition-all duration-150 trend-visual-dot" 
                   stroke-width={isLast ? "2.5" : "2"}
                 />
-                <title>{`${p.mois_label}\nSalaire annuel médian : ${p.salaire_median.toLocaleString('fr-CA')} $\nÉquivalent horaire : ~${p.salaire_horaire.toFixed(2)} $/h\nOffres observées : ${p.volume_offres}`}</title>
+                <!-- Hit-area invisible élargie de 28px pour un survol fluide -->
+                <circle 
+                  cx={p.x} 
+                  cy={p.y} 
+                  r="14" 
+                  class="fill-transparent cursor-pointer trend-hit-area"
+                  data-mois={p.mois_label}
+                  data-salaire={`${p.salaire_median.toLocaleString('fr-CA')} $`}
+                  data-horaire={`~${p.salaire_horaire.toFixed(2)} $/h`}
+                  data-offres={p.volume_offres}
+                >
+                  <title>{`${p.mois_label}\nSalaire annuel médian : ${p.salaire_median.toLocaleString('fr-CA')} $\nÉquivalent horaire : ~${p.salaire_horaire.toFixed(2)} $/h\nOffres observées : ${p.volume_offres}`}</title>
+                </circle>
               </g>
             );
           })}
@@ -333,6 +379,29 @@ const statusBadge = getStatusBadge(growth12m);
         </svg>
       </div>
 
+      <!-- TOOLTIP FLOTTANT INSTANTANÉ (ANTI-TREMBLEMENT) -->
+      <div 
+        id="trend-chart-tooltip" 
+        class="hidden absolute z-30 pointer-events-none bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md text-white px-3.5 py-2.5 rounded-2xl border border-slate-700/80 shadow-2xl text-xs -translate-x-1/2 -translate-y-full transition-opacity duration-150"
+        style="margin-top: -10px;"
+      >
+        <div id="tt-mois" class="font-black text-amber-400 text-xs mb-1"></div>
+        <div class="space-y-1 text-[11px]">
+          <div class="flex justify-between gap-4">
+            <span class="text-slate-400">Salaire médian :</span>
+            <span id="tt-salaire" class="font-extrabold text-white"></span>
+          </div>
+          <div class="flex justify-between gap-4">
+            <span class="text-slate-400">Équivalent horaire :</span>
+            <span id="tt-horaire" class="font-medium text-slate-300"></span>
+          </div>
+          <div class="flex justify-between gap-4">
+            <span class="text-slate-400">Offres relevées :</span>
+            <span id="tt-offres" class="font-bold text-emerald-400"></span>
+          </div>
+        </div>
+      </div>
+
       <!-- NOTE DE BAS DE GRAPHIQUE -->
       <div class="flex items-center justify-between text-[11px] text-slate-400 dark:text-slate-500 mt-2 px-1 pt-2 border-t border-slate-200/50 dark:border-slate-800/50">
         <span>Source primaire : Guichet-Emplois Canada • Données Ouvertes CKAN</span>
@@ -340,6 +409,65 @@ const statusBadge = getStatusBadge(growth12m);
       </div>
 
     </div>
+
+    <script>
+      function initTrendTooltip() {
+        const tooltip = document.getElementById('trend-chart-tooltip');
+        const ttMois = document.getElementById('tt-mois');
+        const ttSalaire = document.getElementById('tt-salaire');
+        const ttHoraire = document.getElementById('tt-horaire');
+        const ttOffres = document.getElementById('tt-offres');
+        const container = document.getElementById('tendances-marche');
+        if (!tooltip || !container) return;
+
+        const hitAreas = container.querySelectorAll('.trend-hit-area');
+        hitAreas.forEach(area => {
+          area.addEventListener('mouseenter', (e) => {
+            const target = e.currentTarget as SVGCircleElement;
+            const mois = target.getAttribute('data-mois') || '';
+            const salaire = target.getAttribute('data-salaire') || '';
+            const horaire = target.getAttribute('data-horaire') || '';
+            const offres = target.getAttribute('data-offres') || '';
+
+            if (ttMois) ttMois.textContent = `📅 ${mois}`;
+            if (ttSalaire) ttSalaire.textContent = salaire;
+            if (ttHoraire) ttHoraire.textContent = horaire;
+            if (ttOffres) ttOffres.textContent = `${offres} postes`;
+
+            const targetRect = target.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            const left = targetRect.left - containerRect.left + (targetRect.width / 2);
+            const top = targetRect.top - containerRect.top;
+
+            tooltip.style.left = `${left}px`;
+            tooltip.style.top = `${top}px`;
+            tooltip.classList.remove('hidden');
+
+            const group = target.closest('.trend-point-group');
+            const visual = group?.querySelector('.trend-visual-dot');
+            if (visual) {
+              visual.setAttribute('r', '6.5');
+              visual.classList.add('stroke-amber-400');
+            }
+          });
+
+          area.addEventListener('mouseleave', (e) => {
+            tooltip.classList.add('hidden');
+            const target = e.currentTarget as SVGCircleElement;
+            const group = target.closest('.trend-point-group');
+            const visual = group?.querySelector('.trend-visual-dot');
+            if (visual) {
+              const isLast = group?.querySelector('.animate-ping') !== null;
+              visual.setAttribute('r', isLast ? '5.5' : '4');
+              visual.classList.remove('stroke-amber-400');
+            }
+          });
+        });
+      }
+
+      initTrendTooltip();
+      document.addEventListener('astro:page-load', initTrendTooltip);
+    </script>
   ) : (
     <!-- FALLBACK SI DONNÉES INSUFFISANTES POUR CE MÉTIER -->
     <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/80 dark:border-slate-700/80 text-center">

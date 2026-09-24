@@ -13,6 +13,8 @@ Ce workflow permet de qualifier et d'expédier instantanément une tâche ad-hoc
 ```
 *(Fonctionne également sous la variante `/dispatch-now "..."` ou si l'utilisateur invoque directement une directive de dispatch immédiat).*
 
+> **Distinction avec `/triage`** : Si la tâche nécessite une évaluation préalable, des questions d'éclaircissement ou une inscription dans `packages/ckg/PLAN_ACTION.md`, utiliser plutôt `/triage "..."` (ou `/eval "..."`).
+
 ---
 
 ## Matrice de Qualification Rapide des Agents

@@ -338,6 +338,11 @@ Afin d'assurer le respect strict du code de déontologie de l'OCCOQ, le moteur a
    - *Règle déontologique d'interface* : Un score brut de 1,00 correspond mathématiquement à $0\,\%$. Pour éviter toute fausse interprétation d'incompatibilité absolue ou de "score nul" par le candidat ou le conseiller, l'interface affiche explicitement `< 5 %` pour tout score inférieur à 5 %, préservant ainsi la nature exploratoire et non-éliminatoire de la mesure.
 4. **Absence de disqualification (Métiers Miroirs)** :
    Aucun métier n'est étiqueté comme "interdit" ou "impossible". L'algorithme propose des **"Métiers Miroirs"** lorsque l'affinité est basse, expliquant objectivement la nature des efforts d'adaptation requis plutôt qu'une exclusion arbitraire.
+5. **Restitution Ergonomique des 21 Work Styles O*NET & Contextualisation Métier** :
+   - *Filtre de saillance cognitive (Vue Grand Public)* : Présentation ciblée sur les **4 à 6 styles de travail dominants majeurs** ($\ge 75 - 80\,\%$). Cela prévient la saturation informationnelle tout en mettant en lumière les forces motrices comportementales distinctives de la profession.
+   - *Contextualisation sémantique au métier* : Remplacement des définitions génériques par des **formulations d'action spécifiques au rôle professionnel** (ex: pour un développeur de logiciels, la *Pensée Analytique* devient *"Analyser les besoins et développer des solutions logicielles complexes"*, tandis que le *Raisonnement Logique* devient *"Évaluer la robustesse et l'efficience des architectures logicielles"*).
+   - *Règle de zéro-description nulle* : Intégration d'un générateur déterministe assurant qu'aucune fiche métier n'affiche de description `null` ou vide, chaque style disposant d'une déclinaison sectorielle adaptée.
+   - *Mode Espace Conseiller / Pro* : Conservation de l'exhaustivité des **21 facettes comportementales O*NET** pour permettre aux conseillers d'orientation (membres de l'OCCOQ) de conduire des analyses différentielles approfondies lors des bilans de compétences.
 
 ---
 

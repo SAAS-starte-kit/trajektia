@@ -566,6 +566,18 @@ python scratch/verify_physical_db.py
   - [ ] Extraction des entitÃ©s (filtres DPC, FEER, conditions de travail).
   - [ ] Recherche hybride Supabase (Dense vectoriel + Sparse lexical).
 
+### I7 — Ingestion Textuelle Complète des Offres d'Emploi 14M (CKAN) & Vectorisation Graph-RAG
+- **Objectif :** Évaluer et implémenter l'ingestion du contenu granulaire (tâches, compétences mentionnées, ville, région administrative, prérequis linguistiques, fourchettes salariales réelles) issu des dizaines de milliers d'annonces du flux 14 mois Guichet-Emplois / Job Bank CKAN.
+- **Bénéfices CKG & RAG :**
+  - Alimenter Neo4j avec des nœuds `:JobPosting` et relations vers `:Occupation` et `:Skill`.
+  - Calculer des embeddings vectoriels denses (BGE-M3 / OpenAI text-embedding-3) sur les descriptions textuelles réelles du marché du travail québécois.
+  - Déduire empiriquement la proximité sémantique réelle entre métiers pour les passerelles de reconversion, la tension par sous-région et les compétences émergentes.
+- **Tâches à réaliser :**
+  - [ ] Analyser le schéma brut et la disponibilité des champs textuels (tâches, compétences, descriptions complètes) dans les dumps CSV CKAN mensuels.
+  - [ ] Définir la table Supabase `job_postings_historical_corpus` et le modèle Neo4j associé.
+  - [ ] Établir un pipeline de vectorisation par lots (chunking, extraction d'entités ESCO/OaSIS, génération d'embeddings).
+  - [ ] Tester le calcul de similarité cosinus vectorielle entre offres réelles et fiches métiers CNP pour valider l'impact sur les passerelles de reconversion.
+
 ---
 
 ## ðŸ—“ï¸� SÃ©quence RecommandÃ©e & Feuille de Route
@@ -609,10 +621,19 @@ RÃ‰ALISÃ‰ (Fondations, Ingestion, Moteurs & Taxonomie DPC)
 [FAIT] F2.1 Harmonisation Sémantique DPCI & Déduplication des Work Styles O*NET (Astro & ETL)
 [FAIT] H3   Observatoire Temporel & Tendances Salariales 12 Mois Trajektia Live™ (6 798 snapshots, 730k offres, composant SVG interactif `TendancesSalariales.astro`)
 
-PROCHAINE ÉTAPE PRIORITAIRE — Méthodologies & Espace Conseiller
+[FAIT] T1  Ergonomie SVG & Tooltip Instantané sans jitter (`TendancesSalariales.astro`)
+[FAIT] T2  Maillage Cliquable Passerelles de Reconversion (`[cnp].astro` - liens vers `/metiers/[cnp]`)
+[FAIT] T3  Contextualisation Métier des 4-6 Work Styles O*NET Dominants (> 75%) pour le Grand Public (`ProfilPsychometrique.astro`)
+[FAIT] T4  Déplafonnement Ingestion Adzuna (retrait du LIMIT 5, rate-limit, options CLI) & Fallback Multi-Portails Guichet-Emplois/Jobillico
+[FAIT] T5  Calibration Réaliste du Télétravail (FEER & Secteur d'activité, suppression du 0.0%)
+[FAIT] T6  Maillage Bidirectionnel CKG Formations ↔ Métiers (964 relations `occupation_programs` -> 510 fiches `metiers.ts` & fiches DEC/DEP)
+[FAIT] I7  R&D & Étude de Faisabilité Ingestion Textuelle 14M Offres CKAN & Vectorisation Graph-RAG (`FEASIBILITY_CKAN_VECTORIZATION_I7.md`)
+
+PROCHAINE ÉTAPE PRIORITAIRE — Sprint Ingestion Régionale CKAN & Index Vectoriel Neo4j
 ────────────────────────────────────────────────────────────────────────
-1. G6  Ingestion de Méthodologies & Guides Spécialisés via Skill_Seekers (CNESST, IRSST, EDSC, OCCOQ)
-2. F3  Simulateur Interactif d'Aptitude, Réadaptation & Finesse Clinique (Espace Conseiller)
+1. [À FAIRE] I7.1 Développement du parseur UTF-16LE multi-mois CKAN pour extraire la granularité ville/région
+2. [À FAIRE] I7.2 Pipeline d'embedding textuel (`text-embedding-004`) et stockage HNSW dans Supabase `pgvector`
+3. [À FAIRE] I7.3 Indexation vectorielle Neo4j et route API de matching sémantique compétences / profils
 ```
 
 

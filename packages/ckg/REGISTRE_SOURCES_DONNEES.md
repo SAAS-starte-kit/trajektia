@@ -27,8 +27,9 @@ Ce document constitue la référence centrale pour le suivi, l'audit de fraîche
 | **O*NET Mini-IP (RIASEC)** | USDOL / Rounds et al. | Short Form 2010 | Client Web / React | 60 items (6 pôles de Holland) | Stable (validé) | Permanent |
 | **O*NET Work Values (TWA)** | USDOL / Dawis & Lofquist | Release 28.2 (2024) | `Work Values.txt` (CKG) | 6 valeurs de satisfaction par métier | Annuelle | Stable |
 | **Titres Alternatifs TCC** | EDSC (Ouvert Canada) | TCC 2025 v1.0 | Supabase (`competency_synonyms`) | Dictionnaire bilingue de synonymes | Annuelle | 2027 |
-| **BLS ORS (Ergonomie US)** | U.S. Bureau of Labor Statistics | ORS 2023-2025 | Modèle réadaptation haute précision | % heures assis/debout, charges lbs | Annuelle | Fin 2026 |
 | **Job Bank / Guichet-Emplois** | EDSC / Gouvernement du Canada (CKAN) | API Live 2026 | Neo4j (`:MarketDemand`) | 424 nœuds (239 CNPs QC avec offres actives) | Mensuelle / API Live | Continue (Automatique) |
+| **Offres d'Emploi Live Adzuna** | Adzuna API | Édition Live 2026 | Supabase (`trajektia_live_job_postings`) | Offres en direct QC, salaires affichés, compétences | Continue (rate-limited) | Quotidienne / Hebdo |
+| **Dumps Historiques 14M CKAN** | Gouvernement du Canada (Open Data) | 2024-2026 (88 mois) | Supabase (`trajektia_market_snapshots`) | 7 222 snapshots, salaires réels, volumes, villes | Mensuelle | Continue |
 
 ---
 
@@ -416,6 +417,23 @@ python trajektia/etl/meq_relance_ingestor.py
 
 # 5. Ingestion des Exigences Physiques & DPC (Guide des carrières 2016)
 python trajektia/etl/physical_demands_dpc_ingestor.py
+
+### 18. API Adzuna Live (Offres en direct & Compétences du marché)
+- **Organisme émetteur** : Adzuna Canada.
+- **Format source** : API REST JSON (`https://api.adzuna.com/v1/api/jobs/ca/search/`).
+- **Destination dans le système** : Table Supabase `trajektia_live_job_postings`.
+- **Champs extraits** : `id`, `title`, `company`, `location`, `salary_min`, `salary_max`, `description_snippet`, `apply_url`, `extracted_skills`.
+- **Script d'ingestion** : `scripts/ingest_adzuna_live.py` (intégrant rate-limiting de 1.2s et gestion adaptative d'erreurs 429).
+- **Fréquence** : Continue et rafraîchissement hebdomadaire avec expiration glissante à 30 jours.
+
+### 19. Dumps Historiques CKAN Open Canada 14 Mois (Job Bank)
+- **Organisme émetteur** : Gouvernement du Canada / Guichet-Emplois (`open.canada.ca`, package `ea639e28-c0fc-48bf-b5dd-b8899bd43072`).
+- **Format source** : Fichiers tabulaires TSV encodés en `UTF-16LE` avec BOM (`\xff\xfe`), 65 colonnes structurées.
+- **Destination dans le système** : Table Supabase `trajektia_market_snapshots` et vue SQL `v_trajektia_career_trends_12m`.
+- **Volumétrie** : 7 222 snapshots mensuels réconciliés couvrant l'ensemble des professions CNP 2021.
+- **R&D / Évolution (Initiative I7)** : Pipeline d'embedding textuel (`text-embedding-004`) et indexation vectorielle dans Neo4j (`cypher_tat_pr_rsm_schema.cypher`) et Supabase (`pgvector`).
+
+---
 
 # 6. Test du Moteur d'Adéquation Ergonomique & Réadaptation CNESST
 python trajektia/analytics/ergonomics.py

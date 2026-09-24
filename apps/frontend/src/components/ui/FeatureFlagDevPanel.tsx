@@ -53,16 +53,38 @@ const CATEGORY_ORDER = ["Psychométrie", "Fiches Métiers", "Ergonomie & SST", "
 // ─────────────────────────────────────────────────────────────
 
 export default function FeatureFlagDevPanel() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [flags, setFlags] = useState<FlagState>(() => ({} as FlagState));
   const [justReset, setJustReset] = useState(false);
 
-  // Lecture initiale — côté client uniquement
+  // Lecture initiale — côté client avec nettoyage d'un éventuel verrouillage
   useEffect(() => {
+    try {
+      if (localStorage.getItem("trajektia_ff_FF_CONSEILLER_DEV_PANEL") === "false") {
+        localStorage.removeItem("trajektia_ff_FF_CONSEILLER_DEV_PANEL");
+      }
+    } catch {}
+
     const panelEnabled = isFeatureEnabled("FF_CONSEILLER_DEV_PANEL");
     setIsVisible(panelEnabled);
     setFlags(readAllFlags());
+  }, []);
+
+  // Écoute du raccourci clavier global (Ctrl + Shift + F ou Alt + F) pour réafficher/ouvrir en urgence
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "f") ||
+        (e.altKey && e.key.toLowerCase() === "f")
+      ) {
+        e.preventDefault();
+        setIsVisible(true);
+        setIsOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   // Écoute des changements de flags (depuis d'autres onglets ou composants)
@@ -98,7 +120,7 @@ export default function FeatureFlagDevPanel() {
 
   return (
     <div
-      className="fixed bottom-4 right-4 z-[9999] flex flex-col items-end gap-2"
+      className="fixed bottom-20 md:bottom-4 right-4 z-[9999] flex flex-col items-end gap-2"
       role="region"
       aria-label="Panneau développeur — Feature Flags"
     >

@@ -3068,7 +3068,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 90000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5231",
+        "titre": "Comptabilité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5231-comptabilite"
+      }
+    ]
   },
   {
     "cnp": "10011",
@@ -3397,7 +3407,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 69051,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "10012",
@@ -3726,7 +3746,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 100000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec affaires, finance et administration",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Directeurs des achats.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "10019",
@@ -4055,7 +4091,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 91237,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      }
+    ]
   },
   {
     "cnp": "10020",
@@ -4371,7 +4417,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 135000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec affaires, finance et administration",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Directeurs des assurances.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "10021",
@@ -4683,7 +4745,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 94620,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec affaires, finance et administration",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Directeurs de banques et autres services de placements.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "10022",
@@ -4995,7 +5073,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 70000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec affaires, finance et administration",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Directeurs de la publicité.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "10029",
@@ -5324,7 +5418,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 83083,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec affaires, finance et administration",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Directeurs d'autres services aux entreprises.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "10030",
@@ -5653,7 +5763,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 60000,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5223",
+        "titre": "Techniques d'usinage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5223"
+      }
+    ]
   },
   {
     "cnp": "11101",
@@ -5969,7 +6113,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 75000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec affaires, finance et administration",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Analystes financiers financières.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "11102",
@@ -6298,7 +6458,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 57500,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec affaires, finance et administration",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Conseillers financiers financières.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "11103",
@@ -6481,7 +6657,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 57567,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec affaires, finance et administration",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Agents en valeurs et agents en placements.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "11109",
@@ -6793,7 +6985,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 43000,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec affaires, finance et administration",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Inspecteurs et vérificateurs financiers financières.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "11200",
@@ -7122,7 +7330,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 70000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5323",
+        "titre": "Représentation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5323"
+      },
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "11201",
@@ -7451,7 +7677,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65520,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5321",
+        "titre": "Vente-conseil",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5321-vente-conseil"
+      },
+      {
+        "type": "DEP",
+        "code": "5355",
+        "titre": "Conseil et vente de voyages",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5355-conseil-et-vente-de-voyages"
+      },
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "11202",
@@ -7780,7 +8032,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 61070,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec affaires, finance et administration",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Professionnels en publicité.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "12010",
@@ -8109,7 +8377,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 60060,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en affaires, finance et administration",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Superviseurs de commis de bureau et du personnel de soutien administratif.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur affaires, finance et administration",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "12011",
@@ -8309,7 +8593,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 66806,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5231",
+        "titre": "Comptabilité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5231-comptabilite"
+      }
+    ]
   },
   {
     "cnp": "12012",
@@ -8558,7 +8852,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.05,
       "salaire_marche_actuel": 50978,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en affaires, finance et administration",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Superviseurs de commis de bibliothèque.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur affaires, finance et administration",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "12013",
@@ -8887,7 +9197,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65520,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5283",
+        "titre": "Réception en hôtellerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5283-reception-en-hotellerie"
+      },
+      {
+        "type": "DEP",
+        "code": "5042",
+        "titre": "Outillage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5042"
+      }
+    ]
   },
   {
     "cnp": "12100",
@@ -9216,7 +9560,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 58802,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en affaires, finance et administration",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Adjoints de direction.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur affaires, finance et administration",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "12101",
@@ -9416,7 +9776,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 53742,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en affaires, finance et administration",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Agents des ressources humaines et de recrutement.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur affaires, finance et administration",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "12102",
@@ -9745,7 +10121,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 63008,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en affaires, finance et administration",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Agents en approvisionnement aux achats.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur affaires, finance et administration",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "12103",
@@ -10074,7 +10466,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54800,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en affaires, finance et administration",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Planificateurs de congrès et d'événements.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur affaires, finance et administration",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "12104",
@@ -10370,7 +10778,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65389,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en affaires, finance et administration",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Agents de taxes d'accise.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur affaires, finance et administration",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "12110",
@@ -10674,7 +11098,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.25,
       "salaire_marche_actuel": 40076,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en affaires, finance et administration",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Sténographes judiciaires.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur affaires, finance et administration",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "12111",
@@ -10995,7 +11435,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.21,
       "salaire_marche_actuel": 52016,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en affaires, finance et administration",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Personnel en gestion de l’information sur la santé.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur affaires, finance et administration",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "12112",
@@ -11324,7 +11780,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 49650,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "12113",
@@ -11645,7 +12111,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 145893,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5223",
+        "titre": "Techniques d'usinage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5223"
+      }
+    ]
   },
   {
     "cnp": "12200",
@@ -11974,7 +12458,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50960,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5231",
+        "titre": "Comptabilité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5231-comptabilite"
+      }
+    ]
   },
   {
     "cnp": "12201",
@@ -12286,7 +12780,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38220,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en affaires, finance et administration",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Experts en sinistres.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur affaires, finance et administration",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "12202",
@@ -12615,7 +13125,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 60000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5798",
+        "titre": "Automobile Mechanics",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5798-automobile-mechanics"
+      }
+    ]
   },
   {
     "cnp": "12203",
@@ -12927,7 +13447,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 51524,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      }
+    ]
   },
   {
     "cnp": "13100",
@@ -13256,7 +13786,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50851,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5363",
+        "titre": "Mise en oeuvre de matériaux composites",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5363-fabrication-de-pieces-industrielles-et-aerospatiales-en-composite"
+      },
+      {
+        "type": "DEP",
+        "code": "5280",
+        "titre": "Liaison en réseau équipement bureautique",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5280"
+      }
+    ]
   },
   {
     "cnp": "13101",
@@ -13585,7 +14133,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 55000,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      },
+      {
+        "type": "DEP",
+        "code": "5306",
+        "titre": "Aménagement de la forêt",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5306-amenagement-de-la-foret"
+      }
+    ]
   },
   {
     "cnp": "13102",
@@ -13914,7 +14480,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en affaires, finance et administration",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Administrateurs de la paye.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur affaires, finance et administration",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "13110",
@@ -14243,7 +14825,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 42169,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5357",
+        "titre": "Secrétariat",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5357-secretariat"
+      }
+    ]
   },
   {
     "cnp": "13111",
@@ -14572,7 +15164,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 43680,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      },
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "13112",
@@ -14901,7 +15511,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38220,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "13200",
@@ -15205,7 +15825,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 40040,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en affaires, finance et administration",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Courtiers en douanes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur affaires, finance et administration",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "13201",
@@ -15388,7 +16024,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 51589,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "14100",
@@ -15700,7 +16362,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 37820,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5211",
+        "titre": "Entretien général d'immeubles",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5211-entretien-general-dimmeubles"
+      },
+      {
+        "type": "DEP",
+        "code": "5223",
+        "titre": "Techniques d'usinage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5223"
+      }
+    ]
   },
   {
     "cnp": "14101",
@@ -16012,7 +16700,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      }
+    ]
   },
   {
     "cnp": "14102",
@@ -16341,7 +17039,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "14103",
@@ -16670,7 +17378,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 33215,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en affaires, finance et administration",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Commis des services judiciaires et autres professions des services judiciaires.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "14110",
@@ -16974,7 +17691,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en affaires, finance et administration",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Intervieweurs pour enquêtes.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "14111",
@@ -17303,7 +18029,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38020,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en affaires, finance et administration",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Commis à la saisie de données.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "14112",
@@ -17607,7 +18342,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 31577,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en affaires, finance et administration",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Opérateurs d'équipement d'éditique.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "14200",
@@ -17919,7 +18663,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 43680,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5231",
+        "titre": "Comptabilité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5231-comptabilite"
+      }
+    ]
   },
   {
     "cnp": "14201",
@@ -18231,7 +18985,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 61106,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en affaires, finance et administration",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Commis de banque.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "14202",
@@ -18431,7 +19194,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 33442,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      }
+    ]
   },
   {
     "cnp": "14300",
@@ -18760,7 +19533,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45491,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5223",
+        "titre": "Techniques d'usinage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5223"
+      }
+    ]
   },
   {
     "cnp": "14301",
@@ -19072,7 +19863,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38912,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en affaires, finance et administration",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Commis aux petites annonces.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "14400",
@@ -19401,7 +20201,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38220,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5283",
+        "titre": "Réception en hôtellerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5283-reception-en-hotellerie"
+      }
+    ]
   },
   {
     "cnp": "14401",
@@ -19730,7 +20540,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5154",
+        "titre": "Mécanique de véhicules légers",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5154"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      },
+      {
+        "type": "DEP",
+        "code": "5042",
+        "titre": "Outillage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5042"
+      }
+    ]
   },
   {
     "cnp": "14402",
@@ -20059,7 +20903,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38220,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5088",
+        "titre": "Sciage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5088-sciage"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "14403",
@@ -20371,7 +21249,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38220,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5042",
+        "titre": "Outillage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5042"
+      }
+    ]
   },
   {
     "cnp": "14404",
@@ -20700,7 +21588,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45000,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5266",
+        "titre": "Installation et réparation équipement de télécommunication",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5266-installation-et-reparation-dequipement-de-telecommunication"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "14405",
@@ -20900,7 +21806,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 43480,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5193",
+        "titre": "Conduite et réglage de machines à mouler",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5193-conduite-et-reglage-de-machines-a-mouler"
+      },
+      {
+        "type": "DEP",
+        "code": "5220",
+        "titre": "Conduite d'engins de chantier",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5220-conduite-dengins-de-chantier"
+      },
+      {
+        "type": "DEP",
+        "code": "5273",
+        "titre": "Conduite de machinerie lourde en voirie forestière",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5273-conduite-de-machinerie-lourde-en-voirie-forestiere"
+      }
+    ]
   },
   {
     "cnp": "20010",
@@ -21229,7 +22161,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 110600,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "221.B0",
+        "titre": "Technologie du génie civil",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/221-b0-civil-engineering-technology"
+      },
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      }
+    ]
   },
   {
     "cnp": "20011",
@@ -21541,7 +22507,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 87750,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Directeurs des services d’architecture et d’urbanisme.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "20012",
@@ -21870,7 +22852,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 86109,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "21100",
@@ -22182,7 +23174,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 128000,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Physiciens.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21101",
@@ -22511,7 +23519,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 55000,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Chimistes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21102",
@@ -22823,7 +23847,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 118350,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Géoscientifiques.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21103",
@@ -22911,7 +23951,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 177345,
       "statut_dynamique": "Données émergentes"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Météorologues et climatologues.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21109",
@@ -23207,7 +24263,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65000,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "140.B0",
+        "titre": "Technologie d'analyses biomédicales",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/140-b0-technologie-danalyses-biomedicales"
+      }
+    ]
   },
   {
     "cnp": "21110",
@@ -23519,7 +24585,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 74292,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Biologistes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21111",
@@ -23848,7 +24930,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 90000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Professionnels des sciences forestières.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21112",
@@ -24177,7 +25275,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 62500,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Agronomes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21120",
@@ -24506,7 +25620,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 69397,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "180.A0",
+        "titre": "Soins infirmiers (DEC)",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/180-a0-nursing"
+      },
+      {
+        "type": "DEP",
+        "code": "5325",
+        "titre": "Santé  assistance et soins infirmiers",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5325-sante-assistance-et-soins-infirmiers"
+      },
+      {
+        "type": "DEP",
+        "code": "5339",
+        "titre": "Esthétique",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5339-esthetique"
+      }
+    ]
   },
   {
     "cnp": "21200",
@@ -24835,7 +25975,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 83356,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Architectes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21201",
@@ -25164,7 +26320,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 43680,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Architectes paysagistes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21202",
@@ -25493,7 +26665,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 90527,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5306",
+        "titre": "Aménagement de la forêt",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5306-amenagement-de-la-foret"
+      }
+    ]
   },
   {
     "cnp": "21203",
@@ -25814,7 +26996,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 108160,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5238",
+        "titre": "Arpentage et topographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5238-arpentage-et-topographie"
+      }
+    ]
   },
   {
     "cnp": "21210",
@@ -26126,7 +27318,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 105000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Mathématiciens.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21211",
@@ -26455,7 +27663,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 90000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Scientifiques de données.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21220",
@@ -26784,7 +28008,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 75000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Spécialistes de la cybersécurité.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21221",
@@ -27113,7 +28353,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 82810,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "420.B0",
+        "titre": "Techniques de l'informatique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/420-b0-computer-science-technology"
+      },
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5283",
+        "titre": "Réception en hôtellerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5283-reception-en-hotellerie"
+      },
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      }
+    ]
   },
   {
     "cnp": "21222",
@@ -27442,7 +28716,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 87360,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5229",
+        "titre": "Soutien informatique",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5229"
+      }
+    ]
   },
   {
     "cnp": "21223",
@@ -27754,7 +29038,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 72800,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Analystes de bases de données.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21230",
@@ -28083,7 +29383,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65902,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "code": "BAC-INFO",
+        "titre": "Baccalauréat en informatique",
+        "duree": "1 à 2 ans",
+        "description": "Formation québécoise reconnue (BAC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21231",
@@ -28395,7 +29705,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 86109,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "code": "BAC-GINF",
+        "titre": "Baccalauréat en génie informatique",
+        "duree": "1 à 2 ans",
+        "description": "Formation québécoise reconnue (BAC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "BAC",
+        "code": "BAC-GLOG",
+        "titre": "Baccalauréat en génie logiciel",
+        "duree": "1 à 2 ans",
+        "description": "Formation québécoise reconnue (BAC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21233",
@@ -28724,7 +30052,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 68887,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Concepteurs Web.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21234",
@@ -29053,7 +30397,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 81900,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "420.B0",
+        "titre": "Techniques de l'informatique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/420-b0-computer-science-technology"
+      }
+    ]
   },
   {
     "cnp": "21300",
@@ -29382,7 +30736,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 85000,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "241.A0",
+        "titre": "Techniques de génie mécanique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/241-a0-mechanical-engineering-technology"
+      },
+      {
+        "type": "DEC",
+        "code": "221.B0",
+        "titre": "Technologie du génie civil",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/221-b0-civil-engineering-technology"
+      },
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5238",
+        "titre": "Arpentage et topographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5238-arpentage-et-topographie"
+      }
+    ]
   },
   {
     "cnp": "21301",
@@ -29711,7 +31099,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 71391,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5315",
+        "titre": "Réfrigération",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5315"
+      },
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      }
+    ]
   },
   {
     "cnp": "21310",
@@ -30040,7 +31462,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 80000,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "241.A0",
+        "titre": "Techniques de génie mécanique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/241-a0-mechanical-engineering-technology"
+      },
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      },
+      {
+        "type": "DEP",
+        "code": "5223",
+        "titre": "Techniques d'usinage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5223"
+      }
+    ]
   },
   {
     "cnp": "21311",
@@ -30352,7 +31808,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 89235,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "code": "BAC-GINF",
+        "titre": "Baccalauréat en génie informatique",
+        "duree": "1 à 2 ans",
+        "description": "Formation québécoise reconnue (BAC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21320",
@@ -30681,7 +32147,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 76294,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "21321",
@@ -31010,7 +32502,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 75000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "21322",
@@ -31315,7 +32841,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 70000,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      },
+      {
+        "type": "DEP",
+        "code": "5203",
+        "titre": "Fonderie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5203"
+      },
+      {
+        "type": "DEP",
+        "code": "5261",
+        "titre": "Extraction de minerai",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5261"
+      }
+    ]
   },
   {
     "cnp": "21330",
@@ -31620,7 +33172,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.07,
       "salaire_marche_actuel": 90000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5306",
+        "titre": "Aménagement de la forêt",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5306-amenagement-de-la-foret"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "21331",
@@ -31820,7 +33406,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 80000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Ingénieurs géologiques.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21332",
@@ -32069,7 +33671,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.05,
       "salaire_marche_actuel": 165957,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5261",
+        "titre": "Extraction de minerai",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5261"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "21390",
@@ -32245,7 +33881,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.07,
       "salaire_marche_actuel": 85000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec sciences naturelles et appliquées",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Ingénieurs en aérospatiale.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "21399",
@@ -32557,7 +34209,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 98850,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5335",
+        "titre": "Mécanique agricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5335-mecanique-agricole"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      }
+    ]
   },
   {
     "cnp": "22100",
@@ -32869,7 +34539,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 48667,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en sciences naturelles et appliquées",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues en chimie.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur sciences naturelles et appliquées",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "22101",
@@ -33181,7 +34867,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 55250,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5203",
+        "titre": "Fonderie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5203"
+      }
+    ]
   },
   {
     "cnp": "22110",
@@ -33493,7 +35189,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en sciences naturelles et appliquées",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues en biologie.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur sciences naturelles et appliquées",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "22111",
@@ -33797,7 +35509,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.07,
       "salaire_marche_actuel": 40040,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5257",
+        "titre": "Pêche professionnelle",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5257-peche-professionnelle"
+      }
+    ]
   },
   {
     "cnp": "22112",
@@ -34126,7 +35848,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 57200,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5179",
+        "titre": "Protection et exploitation de territoires fauniques",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5179-protection-et-exploitation-de-territoires-fauniques"
+      },
+      {
+        "type": "DEP",
+        "code": "5088",
+        "titre": "Sciage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5088-sciage"
+      },
+      {
+        "type": "DEP",
+        "code": "5363",
+        "titre": "Mise en oeuvre de matériaux composites",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5363-fabrication-de-pieces-industrielles-et-aerospatiales-en-composite"
+      },
+      {
+        "type": "DEP",
+        "code": "5208",
+        "titre": "Classement des bois débités",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5208-classement-des-bois-debites"
+      }
+    ]
   },
   {
     "cnp": "22113",
@@ -34455,7 +36211,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 31850,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5257",
+        "titre": "Pêche professionnelle",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5257-peche-professionnelle"
+      }
+    ]
   },
   {
     "cnp": "22114",
@@ -34767,7 +36533,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 41860,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5288",
+        "titre": "Horticulture et jardinerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5288-horticulture-et-jardinerie"
+      },
+      {
+        "type": "DEP",
+        "code": "5366",
+        "titre": "Arboriculture-élagage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5366-elagage"
+      },
+      {
+        "type": "DEP",
+        "code": "5306",
+        "titre": "Aménagement de la forêt",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5306-amenagement-de-la-foret"
+      }
+    ]
   },
   {
     "cnp": "22210",
@@ -35096,7 +36888,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50851,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en sciences naturelles et appliquées",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues et techniciens en architecture.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur sciences naturelles et appliquées",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "22211",
@@ -35425,7 +37233,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 60000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en sciences naturelles et appliquées",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Designers industriels industrielles.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur sciences naturelles et appliquées",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "22212",
@@ -35737,7 +37561,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 52780,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "221.B0",
+        "titre": "Technologie du génie civil",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/221-b0-civil-engineering-technology"
+      },
+      {
+        "type": "DEP",
+        "code": "5250",
+        "titre": "Dessin de bâtiment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5250-dessin-de-batiment"
+      },
+      {
+        "type": "DEP",
+        "code": "5225",
+        "titre": "Dessin industriel",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5225-dessin-industriel"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      }
+    ]
   },
   {
     "cnp": "22213",
@@ -36049,7 +37907,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 51388,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5238",
+        "titre": "Arpentage et topographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5238-arpentage-et-topographie"
+      },
+      {
+        "type": "DEP",
+        "code": "5223",
+        "titre": "Techniques d'usinage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5223"
+      }
+    ]
   },
   {
     "cnp": "22214",
@@ -36361,7 +38245,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 58094,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en sciences naturelles et appliquées",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues et techniciens en cartographie.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur sciences naturelles et appliquées",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "22220",
@@ -36673,7 +38573,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 66119,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "420.B0",
+        "titre": "Techniques de l'informatique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/420-b0-computer-science-technology"
+      }
+    ]
   },
   {
     "cnp": "22221",
@@ -37002,7 +38912,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 60000,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5229",
+        "titre": "Soutien informatique",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5229"
+      },
+      {
+        "type": "DEP",
+        "code": "5341",
+        "titre": "Assistance technique en pharmacie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5341"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "22222",
@@ -37202,7 +39138,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 69524,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5283",
+        "titre": "Réception en hôtellerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5283-reception-en-hotellerie"
+      }
+    ]
   },
   {
     "cnp": "22230",
@@ -37531,7 +39477,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 60715,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5234",
+        "titre": "Soudage haute pression",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5234"
+      }
+    ]
   },
   {
     "cnp": "22231",
@@ -37843,7 +39799,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 47593,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      }
+    ]
   },
   {
     "cnp": "22232",
@@ -38043,7 +40009,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 77833,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "22233",
@@ -38372,7 +40348,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 58837,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "22300",
@@ -38684,7 +40678,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65520,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "221.B0",
+        "titre": "Technologie du génie civil",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/221-b0-civil-engineering-technology"
+      },
+      {
+        "type": "DEP",
+        "code": "5306",
+        "titre": "Aménagement de la forêt",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5306-amenagement-de-la-foret"
+      }
+    ]
   },
   {
     "cnp": "22301",
@@ -38996,7 +41008,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 58000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "241.A0",
+        "titre": "Techniques de génie mécanique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/241-a0-mechanical-engineering-technology"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      }
+    ]
   },
   {
     "cnp": "22302",
@@ -39308,7 +41338,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 63500,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "22303",
@@ -39637,7 +41693,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 60000,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      }
+    ]
   },
   {
     "cnp": "22310",
@@ -39949,7 +42023,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 55000,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "243.11",
+        "titre": "Technologie de l'électronique industrielle",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/243-11"
+      },
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      }
+    ]
   },
   {
     "cnp": "22311",
@@ -40278,7 +42370,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50960,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      },
+      {
+        "type": "DEP",
+        "code": "5266",
+        "titre": "Installation et réparation équipement de télécommunication",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5266-installation-et-reparation-dequipement-de-telecommunication"
+      },
+      {
+        "type": "DEP",
+        "code": "5271",
+        "titre": "Réparation appareils électroniques audiovidéos",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5271-tapisserie-dameublement"
+      },
+      {
+        "type": "DEP",
+        "code": "5296",
+        "titre": "Installation et entretien de systèmes de sécurité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5296-installation-et-entretien-de-systemes-de-securite"
+      }
+    ]
   },
   {
     "cnp": "22312",
@@ -40607,7 +42733,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 67020,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5271",
+        "titre": "Réparation appareils électroniques audiovidéos",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5271-tapisserie-dameublement"
+      },
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      }
+    ]
   },
   {
     "cnp": "22313",
@@ -40919,7 +43079,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65975,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en sciences naturelles et appliquées",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Mécaniciens et techniciens d'instruments d'aéronefs.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur sciences naturelles et appliquées",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "30010",
@@ -41248,7 +43424,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 94695,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "180.A0",
+        "titre": "Soins infirmiers (DEC)",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/180-a0-nursing"
+      },
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "31100",
@@ -41560,7 +43754,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 272306,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "BAC-MED",
+        "titre": "Doctorat de premier cycle en médecine",
+        "duree": "1 à 2 ans",
+        "description": "Formation québécoise reconnue (DOCTORAT) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31101",
@@ -41864,7 +44068,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.21,
       "salaire_marche_actuel": 90970,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5339",
+        "titre": "Esthétique",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5339-esthetique"
+      }
+    ]
   },
   {
     "cnp": "31102",
@@ -42193,7 +44407,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 200000,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "BAC-MED",
+        "titre": "Doctorat de premier cycle en médecine",
+        "duree": "1 à 2 ans",
+        "description": "Formation québécoise reconnue (DOCTORAT) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31103",
@@ -42522,7 +44746,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 110110,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec santé",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Vétérinaires.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31110",
@@ -42834,7 +45074,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 150000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec santé",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Dentistes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31111",
@@ -43163,7 +45419,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 75650,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec santé",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Optométristes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31112",
@@ -43475,7 +45747,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 88270,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec santé",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Audiologistes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31120",
@@ -43787,7 +46075,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 101010,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec santé",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Pharmaciens communautaires communautaires et pharmaciens d'hôpitaux.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31121",
@@ -44116,7 +46420,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 74165,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec santé",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Diététistes et nutritionnistes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31200",
@@ -44445,7 +46765,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 104103,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec santé",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Psychologues.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31201",
@@ -44766,7 +47102,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 2.36,
       "salaire_marche_actuel": 91000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec santé",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Chiropraticiens.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31202",
@@ -45095,7 +47447,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 81900,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec santé",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Physiothérapeutes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31203",
@@ -45424,7 +47792,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 69597,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "31204",
@@ -45736,7 +48114,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50960,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec santé",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Thérapeute par les loisirs.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31209",
@@ -46040,7 +48434,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.51,
       "salaire_marche_actuel": 91000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec santé",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Docteurs en médecine podiatrique.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31300",
@@ -46369,7 +48779,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 40950,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "code": "BAC-INF",
+        "titre": "Baccalauréat en sciences infirmières",
+        "duree": "1 à 2 ans",
+        "description": "Formation québécoise reconnue (BAC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "code": "180.A0",
+        "titre": "Soins infirmiers (DEC)",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/180-a0-nursing"
+      },
+      {
+        "type": "DEP",
+        "code": "5362",
+        "titre": "Opération équipements de production",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5362-operation-dequipements-de-production"
+      }
+    ]
   },
   {
     "cnp": "31302",
@@ -46698,7 +49134,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 95714,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec santé",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Infirmiers praticiens praticiennes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "31303",
@@ -47010,7 +49462,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 34944,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec santé",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Adjoints au médecin.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "32100",
@@ -47339,7 +49807,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Opticiens d'ordonnances.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32101",
@@ -47651,7 +50135,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65811,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5362",
+        "titre": "Opération équipements de production",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5362-operation-dequipements-de-production"
+      }
+    ]
   },
   {
     "cnp": "32102",
@@ -47972,7 +50466,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 3.24,
       "salaire_marche_actuel": 54418,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "32103",
@@ -48284,7 +50788,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 70500,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Inhalothérapeutes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32104",
@@ -48613,7 +51133,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues en santé animale et techniciens vétérinaires.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32109",
@@ -48925,7 +51461,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Audioprothésistes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32110",
@@ -49117,7 +51669,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.35,
       "salaire_marche_actuel": 60060,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      }
+    ]
   },
   {
     "cnp": "32111",
@@ -49429,7 +51991,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 91000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Hygiénistes dentaires.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32112",
@@ -49758,7 +52336,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50960,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues et techniciens dentaires.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32120",
@@ -50087,7 +52681,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 61407,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues de laboratoires médicaux.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32121",
@@ -50399,7 +53009,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 69287,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues en radiologie.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32122",
@@ -50720,7 +53346,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.72,
       "salaire_marche_actuel": 64319,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues en échographie.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32123",
@@ -51024,7 +53666,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.37,
       "salaire_marche_actuel": 60861,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues en cardiologie.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32124",
@@ -51353,7 +54011,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Techniciens en pharmacie.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32129",
@@ -51665,7 +54339,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 41860,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Techniciens en diététique.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32200",
@@ -51848,7 +54538,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 95668,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Praticiens de médecine traditionnelle chinoise.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32201",
@@ -52177,7 +54883,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 80950,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Massothérapeutes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "32209",
@@ -52360,7 +55082,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 58240,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Herboristes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "33100",
@@ -52672,7 +55410,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Assistants dentaires.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "33101",
@@ -52872,7 +55626,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 42533,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Assistants de laboratoires médicaux et préposés techniques reliés.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "33102",
@@ -53201,7 +55971,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 42169,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "180.A0",
+        "titre": "Soins infirmiers (DEC)",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/180-a0-nursing"
+      },
+      {
+        "type": "DEP",
+        "code": "5362",
+        "titre": "Opération équipements de production",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5362-operation-dequipements-de-production"
+      }
+    ]
   },
   {
     "cnp": "33103",
@@ -53401,7 +56189,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 34580,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Assistants techniques techniques en pharmacie et assistants en pharmacie.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "33109",
@@ -53713,7 +56517,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en santé",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Techniciens en audiométrie.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur santé",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "40010",
@@ -54025,7 +56845,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 83720,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5179",
+        "titre": "Protection et exploitation de territoires fauniques",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5179-protection-et-exploitation-de-territoires-fauniques"
+      },
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "40011",
@@ -54354,7 +57192,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 79698,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5257",
+        "titre": "Pêche professionnelle",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5257-peche-professionnelle"
+      },
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      },
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "40012",
@@ -54683,7 +57547,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 103121,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5229",
+        "titre": "Soutien informatique",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5229"
+      }
+    ]
   },
   {
     "cnp": "40019",
@@ -55012,7 +57886,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 90900,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5322",
+        "titre": "Intervention en sécurité incendie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5322-intervention-en-securite-incendie"
+      }
+    ]
   },
   {
     "cnp": "40020",
@@ -55324,7 +58208,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 56670,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec enseignement, droit et services sociaux",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Administrateurs de faculté.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "40021",
@@ -55636,7 +58536,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 103178,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5346",
+        "titre": "Conseil technique en entretien et en réparation de véhicules",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5346-conseil-technique-en-entretien-et-en-reparation-de-vehicules"
+      }
+    ]
   },
   {
     "cnp": "40030",
@@ -55965,7 +58875,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 52780,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "40040",
@@ -56246,7 +59166,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 172197,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec enseignement, droit et services sociaux",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Officiers de direction des services de police et professions connexes des services de la protection du public.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "40041",
@@ -56446,7 +59382,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 111744,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec enseignement, droit et services sociaux",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Chefs et officiers supérieurs supérieures des services d'incendie.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "40042",
@@ -56629,7 +59581,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec enseignement, droit et services sociaux",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Officiers de direction des Forces armées canadiennes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "41100",
@@ -56902,7 +59870,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.09,
       "salaire_marche_actuel": 50501,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec enseignement, droit et services sociaux",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Juges.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "41101",
@@ -57231,7 +60215,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 80000,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "code": "BAC-DROIT",
+        "titre": "Baccalauréat en droit (LL.B.)",
+        "duree": "1 à 2 ans",
+        "description": "Formation québécoise reconnue (BAC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      },
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "41200",
@@ -57560,7 +60570,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 80581,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "221.B0",
+        "titre": "Technologie du génie civil",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/221-b0-civil-engineering-technology"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      }
+    ]
   },
   {
     "cnp": "41201",
@@ -57872,7 +60900,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50560,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5341",
+        "titre": "Assistance technique en pharmacie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5341"
+      }
+    ]
   },
   {
     "cnp": "41210",
@@ -58184,7 +61222,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 57516,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5227",
+        "titre": "Secrétariat médical",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5227"
+      },
+      {
+        "type": "DEC",
+        "code": "420.B0",
+        "titre": "Techniques de l'informatique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/420-b0-computer-science-technology"
+      },
+      {
+        "type": "DEC",
+        "code": "180.A0",
+        "titre": "Soins infirmiers (DEC)",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/180-a0-nursing"
+      },
+      {
+        "type": "DEC",
+        "code": "243.11",
+        "titre": "Technologie de l'électronique industrielle",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/243-11"
+      }
+    ]
   },
   {
     "cnp": "41220",
@@ -58513,7 +61585,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 51234,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5231",
+        "titre": "Comptabilité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5231-comptabilite"
+      },
+      {
+        "type": "DEP",
+        "code": "5311",
+        "titre": "Cuisine",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5311-cuisine"
+      },
+      {
+        "type": "DEP",
+        "code": "5324",
+        "titre": "Cuisine du marché",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5324"
+      }
+    ]
   },
   {
     "cnp": "41221",
@@ -58842,7 +61940,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 51234,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5311",
+        "titre": "Cuisine",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5311-cuisine"
+      },
+      {
+        "type": "DEP",
+        "code": "5324",
+        "titre": "Cuisine du marché",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5324"
+      }
+    ]
   },
   {
     "cnp": "41300",
@@ -59171,7 +62287,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 60060,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "41301",
@@ -59500,7 +62626,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 58740,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec enseignement, droit et services sociaux",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Thérapeutes en counseling et thérapies spécialisées connexes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "41302",
@@ -59821,7 +62963,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.05,
       "salaire_marche_actuel": 48867,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec enseignement, droit et services sociaux",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Chefs religieux.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "41310",
@@ -60117,7 +63275,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.39,
       "salaire_marche_actuel": 69997,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec enseignement, droit et services sociaux",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Enquêteurs de police et autres professions d’enquête.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "41311",
@@ -60446,7 +63620,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 66794,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec enseignement, droit et services sociaux",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Agents de probation et de libération conditionnelle.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "41320",
@@ -60775,7 +63965,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 56670,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5223",
+        "titre": "Techniques d'usinage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5223"
+      }
+    ]
   },
   {
     "cnp": "41321",
@@ -60975,7 +64183,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 56366,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "41400",
@@ -61287,7 +64505,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 58968,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5322",
+        "titre": "Intervention en sécurité incendie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5322-intervention-en-securite-incendie"
+      },
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "41401",
@@ -61487,7 +64723,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 94630,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      },
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "41402",
@@ -61816,7 +65070,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 79020,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      }
+    ]
   },
   {
     "cnp": "41403",
@@ -61999,7 +65263,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 48494,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "41404",
@@ -62199,7 +65473,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 64437,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "180.A0",
+        "titre": "Soins infirmiers (DEC)",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/180-a0-nursing"
+      }
+    ]
   },
   {
     "cnp": "41405",
@@ -62399,7 +65683,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 56529,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec enseignement, droit et services sociaux",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Recherchistes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "41406",
@@ -62582,7 +65882,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 52525,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec enseignement, droit et services sociaux",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Experts-conseils en programmes sportifs.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "41407",
@@ -62903,7 +66219,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.21,
       "salaire_marche_actuel": 73746,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "41409",
@@ -63215,7 +66541,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec enseignement, droit et services sociaux",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Anthropologues.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "42100",
@@ -63544,7 +66886,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 64028,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Policiers (sauf cadres supérieurs).",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "42101",
@@ -63873,7 +67231,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Pompiers.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "42102",
@@ -64024,7 +67398,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.07,
       "salaire_marche_actuel": 60000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Membres spécialisés des Forces armées canadiennes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "42200",
@@ -64207,7 +67597,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50560,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Techniciens juridiques juridiques.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "42201",
@@ -64536,7 +67942,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 43680,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      },
+      {
+        "type": "DEP",
+        "code": "5358",
+        "titre": "Assistance à la personne en établissement et à domicile",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5358-assistance-a-la-personne-en-etablissement-et-a-domicile"
+      }
+    ]
   },
   {
     "cnp": "42202",
@@ -64848,7 +68272,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 41860,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Éducateurs de la petite enfance.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "42203",
@@ -65177,7 +68617,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 49959,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      }
+    ]
   },
   {
     "cnp": "42204",
@@ -65328,7 +68778,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32032,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Travailleurs de la religion.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "43100",
@@ -65640,7 +69106,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 47757,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Aides-enseignants-enseignantes aux niveaux primaire et secondaire.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "43109",
@@ -65952,7 +69434,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5798",
+        "titre": "Automobile Mechanics",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5798-automobile-mechanics"
+      },
+      {
+        "type": "DEP",
+        "code": "5193",
+        "titre": "Conduite et réglage de machines à mouler",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5193-conduite-et-reglage-de-machines-a-mouler"
+      },
+      {
+        "type": "DEP",
+        "code": "5220",
+        "titre": "Conduite d'engins de chantier",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5220-conduite-dengins-de-chantier"
+      },
+      {
+        "type": "DEP",
+        "code": "5273",
+        "titre": "Conduite de machinerie lourde en voirie forestière",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5273-conduite-de-machinerie-lourde-en-voirie-forestiere"
+      }
+    ]
   },
   {
     "cnp": "43200",
@@ -66265,7 +69781,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.12,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Shérifs et huissiers de justice.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "43201",
@@ -66578,7 +70110,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.16,
       "salaire_marche_actuel": 60715,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Agents de services correctionnels.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "43202",
@@ -66890,7 +70438,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65966,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      }
+    ]
   },
   {
     "cnp": "43203",
@@ -67146,7 +70704,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.05,
       "salaire_marche_actuel": 46892,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Agents de services frontaliers et des douanes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "43204",
@@ -67281,7 +70855,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.11,
       "salaire_marche_actuel": 52044,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Membres des opérations des Forces armées canadiennes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "44100",
@@ -67593,7 +71183,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 37947,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en enseignement, droit et services sociaux",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Gardiens d'enfants en milieu familial.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "44101",
@@ -67793,7 +71392,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38220,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en enseignement, droit et services sociaux",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Aides de maintien à domicile.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "44200",
@@ -67928,7 +71536,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 52044,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5365",
+        "titre": "Matelotage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5365-matelotage"
+      }
+    ]
   },
   {
     "cnp": "45100",
@@ -68240,7 +71858,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en enseignement, droit et services sociaux",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Surveillants d'élèves.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "50010",
@@ -68423,7 +72050,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 159000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5223",
+        "titre": "Techniques d'usinage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5223"
+      }
+    ]
   },
   {
     "cnp": "50011",
@@ -68744,7 +72389,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.12,
       "salaire_marche_actuel": 43875,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "50012",
@@ -69073,7 +72744,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 55000,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec arts, culture, sports et loisirs",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Directeurs de programmes et de services de sports.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "51100",
@@ -69385,7 +73072,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 69724,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5223",
+        "titre": "Techniques d'usinage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5223"
+      }
+    ]
   },
   {
     "cnp": "51101",
@@ -69673,7 +73378,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.07,
       "salaire_marche_actuel": 89180,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec arts, culture, sports et loisirs",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Restaurateurs.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "51102",
@@ -69817,7 +73538,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 49940,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec arts, culture, sports et loisirs",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Archivistes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "51110",
@@ -70146,7 +73883,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "51111",
@@ -70458,7 +74221,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 91000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec arts, culture, sports et loisirs",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Romanciers.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "51112",
@@ -70787,7 +74566,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50960,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec arts, culture, sports et loisirs",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Rédacteurs techniques.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "51113",
@@ -71116,7 +74911,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 43992,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec arts, culture, sports et loisirs",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Journalistes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "51114",
@@ -71428,7 +75239,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 46092,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec arts, culture, sports et loisirs",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Traducteurs et traducteurs-réviseurs-réviseures.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "51120",
@@ -71740,7 +75567,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 75000,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5326",
+        "titre": "Photographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5326-photographie"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "51121",
@@ -72036,7 +75881,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.16,
       "salaire_marche_actuel": 30940,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec arts, culture, sports et loisirs",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Chefs d'orchestre.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "51122",
@@ -72348,7 +76209,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec arts, culture, sports et loisirs",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Musiciens.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "52100",
@@ -72660,7 +76537,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 49559,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en arts, culture, sports et loisirs",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Techniciens dans les bibliothèques.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur arts, culture, sports et loisirs",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "52110",
@@ -72989,7 +76882,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 69160,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "52111",
@@ -73318,7 +77237,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5326",
+        "titre": "Photographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5326-photographie"
+      },
+      {
+        "type": "DEP",
+        "code": "5344",
+        "titre": "Infographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5344-infographie"
+      },
+      {
+        "type": "DEP",
+        "code": "5225",
+        "titre": "Dessin industriel",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5225-dessin-industriel"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "52112",
@@ -73615,7 +77568,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.05,
       "salaire_marche_actuel": 45045,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "52113",
@@ -73944,7 +77931,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 49049,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "52114",
@@ -74249,7 +78270,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.07,
       "salaire_marche_actuel": 32087,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en arts, culture, sports et loisirs",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Annonceurs et autres communicateurs.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur arts, culture, sports et loisirs",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "52119",
@@ -74561,7 +78598,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32760,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en arts, culture, sports et loisirs",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Régisseurs de plateau.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur arts, culture, sports et loisirs",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "52120",
@@ -74873,7 +78926,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 55000,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en arts, culture, sports et loisirs",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Designers graphiques.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur arts, culture, sports et loisirs",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "52121",
@@ -75202,7 +79271,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50050,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5327",
+        "titre": "Décoration intérieure et présentation visuelle",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5327-decoration-interieure-et-presentation-visuelle"
+      },
+      {
+        "type": "DEP",
+        "code": "5306",
+        "titre": "Aménagement de la forêt",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5306-amenagement-de-la-foret"
+      }
+    ]
   },
   {
     "cnp": "53100",
@@ -75385,7 +79472,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 34080,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5293",
+        "titre": "Service de la restauration",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5293-service-de-la-restauration"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "53110",
@@ -75714,7 +79819,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 47000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5326",
+        "titre": "Photographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5326-photographie"
+      }
+    ]
   },
   {
     "cnp": "53111",
@@ -76026,7 +80141,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5320",
+        "titre": "Réalisation daménagements paysagers",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5320-realisation-damenagements-paysagers"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "53120",
@@ -76338,7 +80471,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en arts, culture, sports et loisirs",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Danseurs.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur arts, culture, sports et loisirs",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "53121",
@@ -76610,7 +80759,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.05,
       "salaire_marche_actuel": 57093,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en arts, culture, sports et loisirs",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Acteurs et comédiens.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur arts, culture, sports et loisirs",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "53122",
@@ -76914,7 +81079,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.23,
       "salaire_marche_actuel": 71083,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en arts, culture, sports et loisirs",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Peintres.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur arts, culture, sports et loisirs",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "53123",
@@ -77218,7 +81399,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 55000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en arts, culture, sports et loisirs",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Ensembliers de théâtre.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur arts, culture, sports et loisirs",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "53124",
@@ -77530,7 +81727,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en arts, culture, sports et loisirs",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Artisans sculpteurs sculpteures.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur arts, culture, sports et loisirs",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "53125",
@@ -77843,7 +82056,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.09,
       "salaire_marche_actuel": 51870,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5345",
+        "titre": "Mode et confection de vêtements sur mesure",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5345-mode-et-confection-de-vetements-sur-mesure"
+      }
+    ]
   },
   {
     "cnp": "53200",
@@ -78083,7 +82306,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.07,
       "salaire_marche_actuel": 75000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5798",
+        "titre": "Automobile Mechanics",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5798-automobile-mechanics"
+      }
+    ]
   },
   {
     "cnp": "53201",
@@ -78395,7 +82628,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en arts, culture, sports et loisirs",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Entraîneurs.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur arts, culture, sports et loisirs",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "53202",
@@ -78668,7 +82917,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.07,
       "salaire_marche_actuel": 76986,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en arts, culture, sports et loisirs",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Arbitres et officiels de sports.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur arts, culture, sports et loisirs",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "54100",
@@ -78980,7 +83245,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45336,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en arts, culture, sports et loisirs",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Animateurs et responsables de programmes de sports et de loisirs.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "55109",
@@ -79147,7 +83421,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.07,
       "salaire_marche_actuel": 145600,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5326",
+        "titre": "Photographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5326-photographie"
+      }
+    ]
   },
   {
     "cnp": "60010",
@@ -79476,7 +83760,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 85000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec vente et services",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Directeurs des ventes corporatives.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "60020",
@@ -79659,7 +83959,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 52000,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5268",
+        "titre": "Boucherie de détail",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5268-boucherie-de-detail"
+      },
+      {
+        "type": "DEP",
+        "code": "5270",
+        "titre": "Boulangerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5270"
+      },
+      {
+        "type": "DEP",
+        "code": "5326",
+        "titre": "Photographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5326-photographie"
+      },
+      {
+        "type": "DEP",
+        "code": "5211",
+        "titre": "Entretien général d'immeubles",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5211-entretien-general-dimmeubles"
+      }
+    ]
   },
   {
     "cnp": "60030",
@@ -79988,7 +84322,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 63700,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5293",
+        "titre": "Service de la restauration",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5293-service-de-la-restauration"
+      }
+    ]
   },
   {
     "cnp": "60031",
@@ -80317,7 +84661,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65520,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "180.A0",
+        "titre": "Soins infirmiers (DEC)",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/180-a0-nursing"
+      },
+      {
+        "type": "DEP",
+        "code": "5257",
+        "titre": "Pêche professionnelle",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5257-peche-professionnelle"
+      },
+      {
+        "type": "DEP",
+        "code": "5283",
+        "titre": "Réception en hôtellerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5283-reception-en-hotellerie"
+      }
+    ]
   },
   {
     "cnp": "60040",
@@ -80629,7 +84999,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 67249,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5311",
+        "titre": "Cuisine",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5311-cuisine"
+      },
+      {
+        "type": "DEP",
+        "code": "5324",
+        "titre": "Cuisine du marché",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5324"
+      },
+      {
+        "type": "DEP",
+        "code": "5798",
+        "titre": "Automobile Mechanics",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5798-automobile-mechanics"
+      },
+      {
+        "type": "DEP",
+        "code": "5193",
+        "titre": "Conduite et réglage de machines à mouler",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5193-conduite-et-reglage-de-machines-a-mouler"
+      }
+    ]
   },
   {
     "cnp": "62010",
@@ -80958,7 +85362,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 40040,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5270",
+        "titre": "Boulangerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5270"
+      },
+      {
+        "type": "DEP",
+        "code": "5370",
+        "titre": "Boulangerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5370-boulangerie"
+      }
+    ]
   },
   {
     "cnp": "62020",
@@ -81287,7 +85709,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 34580,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5293",
+        "titre": "Service de la restauration",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5293-service-de-la-restauration"
+      },
+      {
+        "type": "DEP",
+        "code": "5311",
+        "titre": "Cuisine",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5311-cuisine"
+      }
+    ]
   },
   {
     "cnp": "62021",
@@ -81616,7 +86072,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en vente et services",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Gouvernants principaux principales.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur vente et services",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "62022",
@@ -81945,7 +86417,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en vente et services",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Superviseurs des services d'hébergement.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur vente et services",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "62023",
@@ -82257,7 +86745,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65520,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en vente et services",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Superviseurs des représentants au service à la clientèle - services financiers.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur vente et services",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "62024",
@@ -82457,7 +86961,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 47320,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5082",
+        "titre": "Nettoyage à sec et entretien de vêtements",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5082"
+      }
+    ]
   },
   {
     "cnp": "62029",
@@ -82657,7 +87171,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 49140,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "62100",
@@ -82986,7 +87526,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "420.B0",
+        "titre": "Techniques de l'informatique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/420-b0-computer-science-technology"
+      },
+      {
+        "type": "DEC",
+        "code": "243.11",
+        "titre": "Technologie de l'électronique industrielle",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/243-11"
+      },
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5229",
+        "titre": "Soutien informatique",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5229"
+      }
+    ]
   },
   {
     "cnp": "62101",
@@ -83315,7 +87889,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 33306,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5223",
+        "titre": "Techniques d'usinage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5223"
+      },
+      {
+        "type": "DEP",
+        "code": "5043",
+        "titre": "Spécialités en horticulture",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5043"
+      }
+    ]
   },
   {
     "cnp": "62200",
@@ -83627,7 +88227,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 49652,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5293",
+        "titre": "Service de la restauration",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5293-service-de-la-restauration"
+      },
+      {
+        "type": "DEP",
+        "code": "5297",
+        "titre": "Pâtisserie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5297-patisserie"
+      },
+      {
+        "type": "DEP",
+        "code": "5311",
+        "titre": "Cuisine",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5311-cuisine"
+      },
+      {
+        "type": "DEP",
+        "code": "5324",
+        "titre": "Cuisine du marché",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5324"
+      }
+    ]
   },
   {
     "cnp": "62201",
@@ -83931,7 +88565,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.09,
       "salaire_marche_actuel": 55480,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en vente et services",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Directeurs de funérailles.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur vente et services",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "62202",
@@ -84243,7 +88893,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 48230,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5085",
+        "titre": "Bijouterie-joaillerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5085-bijouterie-joaillerie"
+      }
+    ]
   },
   {
     "cnp": "63100",
@@ -84443,7 +89103,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 60000,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5798",
+        "titre": "Automobile Mechanics",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5798-automobile-mechanics"
+      }
+    ]
   },
   {
     "cnp": "63101",
@@ -84772,7 +89442,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 53382,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en vente et services",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Agents et vendeurs en immobilier.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur vente et services",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "63102",
@@ -85101,7 +89787,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 47770,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en vente et services",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Représentants des ventes financières.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur vente et services",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "63200",
@@ -85413,7 +90115,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 34580,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5311",
+        "titre": "Cuisine",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5311-cuisine"
+      },
+      {
+        "type": "DEP",
+        "code": "5257",
+        "titre": "Pêche professionnelle",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5257-peche-professionnelle"
+      },
+      {
+        "type": "DEP",
+        "code": "5293",
+        "titre": "Service de la restauration",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5293-service-de-la-restauration"
+      },
+      {
+        "type": "DEP",
+        "code": "5297",
+        "titre": "Pâtisserie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5297-patisserie"
+      }
+    ]
   },
   {
     "cnp": "63201",
@@ -85742,7 +90478,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 40040,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5268",
+        "titre": "Boucherie de détail",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5268-boucherie-de-detail"
+      }
+    ]
   },
   {
     "cnp": "63202",
@@ -86071,7 +90817,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 34580,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5270",
+        "titre": "Boulangerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5270"
+      },
+      {
+        "type": "DEP",
+        "code": "5297",
+        "titre": "Pâtisserie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5297-patisserie"
+      },
+      {
+        "type": "DEP",
+        "code": "5043",
+        "titre": "Spécialités en horticulture",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5043"
+      },
+      {
+        "type": "DEP",
+        "code": "5370",
+        "titre": "Boulangerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5370-boulangerie"
+      }
+    ]
   },
   {
     "cnp": "63210",
@@ -86383,7 +91163,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32032,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5245",
+        "titre": "Coiffure",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5245-coiffure"
+      }
+    ]
   },
   {
     "cnp": "63211",
@@ -86695,7 +91485,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5339",
+        "titre": "Esthétique",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5339-esthetique"
+      },
+      {
+        "type": "DEP",
+        "code": "5349",
+        "titre": "Épilation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5349"
+      }
+    ]
   },
   {
     "cnp": "63220",
@@ -86983,7 +91791,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 46410,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en vente et services",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Fabricants de chaussures.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur vente et services",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "63221",
@@ -87312,7 +92136,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 37992,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5343",
+        "titre": "Préparation et finition de béton",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5343-preparation-et-finition-de-beton"
+      },
+      {
+        "type": "DEP",
+        "code": "5031",
+        "titre": "Rembourrage industriel",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5031-rembourrage-industriel"
+      }
+    ]
   },
   {
     "cnp": "64100",
@@ -87624,7 +92482,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32760,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5321",
+        "titre": "Vente-conseil",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5321-vente-conseil"
+      }
+    ]
   },
   {
     "cnp": "64101",
@@ -87953,7 +92821,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 49115,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5293",
+        "titre": "Service de la restauration",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5293-service-de-la-restauration"
+      },
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      },
+      {
+        "type": "DEP",
+        "code": "5313",
+        "titre": "Imprimerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5313-imprimerie"
+      }
+    ]
   },
   {
     "cnp": "64200",
@@ -88265,7 +93167,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 34580,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Tailleurs.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "64201",
@@ -88561,7 +93472,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Conseillers imagistes imagistes.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "64300",
@@ -88890,7 +93810,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32760,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Maîtres d'hôtel et hôtes.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "64301",
@@ -89219,7 +94148,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 33124,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Barmans.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "64310",
@@ -89548,7 +94486,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 42788,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Conseillers en voyages.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "64311",
@@ -89788,7 +94735,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.05,
       "salaire_marche_actuel": 40040,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Agents de bord - transport aérien.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "64312",
@@ -90092,7 +95048,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 30940,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Agents aux passagers et de billetterie - transport aérien.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "64313",
@@ -90404,7 +95369,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 40040,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Agents de billetterie et personnel assimilé (sauf transport aérien).",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "64314",
@@ -90733,7 +95707,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32760,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5283",
+        "titre": "Réception en hôtellerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5283-reception-en-hotellerie"
+      }
+    ]
   },
   {
     "cnp": "64320",
@@ -91037,7 +96021,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 37310,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Guides touristiques.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "64321",
@@ -91342,7 +96335,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.16,
       "salaire_marche_actuel": 33852,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5231",
+        "titre": "Comptabilité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5231-comptabilite"
+      }
+    ]
   },
   {
     "cnp": "64322",
@@ -91671,7 +96674,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 49400,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5257",
+        "titre": "Pêche professionnelle",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5257-peche-professionnelle"
+      }
+    ]
   },
   {
     "cnp": "64400",
@@ -92000,7 +97013,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38220,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Représentants au service à la clientèle - institutions financières.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "64401",
@@ -92321,7 +97343,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 31486,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Représentants des services postaux.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "64409",
@@ -92504,7 +97535,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32760,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5798",
+        "titre": "Automobile Mechanics",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5798-automobile-mechanics"
+      }
+    ]
   },
   {
     "cnp": "64410",
@@ -92816,7 +97857,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 34216,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Gardiens de sécurité.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "65100",
@@ -93145,7 +98195,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32032,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Caissiers.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "65101",
@@ -93474,7 +98533,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 29757,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Préposés de stations-service.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "65102",
@@ -93674,7 +98742,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 30940,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5268",
+        "titre": "Boucherie de détail",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5268-boucherie-de-detail"
+      },
+      {
+        "type": "DEP",
+        "code": "5270",
+        "titre": "Boulangerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5270"
+      },
+      {
+        "type": "DEP",
+        "code": "5370",
+        "titre": "Boulangerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5370-boulangerie"
+      }
+    ]
   },
   {
     "cnp": "65109",
@@ -93986,7 +99080,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36481,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Distributeurs et Démonstrateurs.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "65200",
@@ -94298,7 +99401,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32032,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Serveurs d'aliments et de boissons.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "65201",
@@ -94610,7 +99722,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32032,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5311",
+        "titre": "Cuisine",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5311-cuisine"
+      },
+      {
+        "type": "DEP",
+        "code": "5324",
+        "titre": "Cuisine du marché",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5324"
+      }
+    ]
   },
   {
     "cnp": "65202",
@@ -94810,7 +99940,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32760,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Coupeurs de viande et poissonniers - commerce de gros et de détail.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "65210",
@@ -95122,7 +100261,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 34389,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Préposés aux services à la clientèle et porteurs de bagages.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "65211",
@@ -95434,7 +100582,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 34707,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Exploitants d'attraction foraine.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "65220",
@@ -95763,7 +100920,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Soigneurs d'animaux et travailleurs en soins des animaux.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "65229",
@@ -95922,7 +101088,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Autre professions de soutien dans les services personnels.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "65310",
@@ -96234,7 +101409,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 34580,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Préposés à l'entretien ménager et au nettoyage - travaux légers.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "65311",
@@ -96546,7 +101730,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5082",
+        "titre": "Nettoyage à sec et entretien de vêtements",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5082"
+      }
+    ]
   },
   {
     "cnp": "65312",
@@ -96875,7 +102069,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 37456,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Concierges et nettoyeurs – gros travaux.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "65320",
@@ -97187,7 +102390,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 34125,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en vente et services",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Opérateurs de machines de nettoyage à sec et de blanchisseries.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "65329",
@@ -97499,7 +102711,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 35372,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5245",
+        "titre": "Coiffure",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5245-coiffure"
+      }
+    ]
   },
   {
     "cnp": "70010",
@@ -97828,7 +103050,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 95856,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec métiers, transport et machinerie",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Directeurs de la construction.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "70011",
@@ -98028,7 +103266,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 39476,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5293",
+        "titre": "Service de la restauration",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5293-service-de-la-restauration"
+      }
+    ]
   },
   {
     "cnp": "70012",
@@ -98340,7 +103588,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65000,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "70020",
@@ -98652,7 +103918,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 88680,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec métiers, transport et machinerie",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Directeurs des transports - opérations.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "70021",
@@ -98957,7 +104239,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.07,
       "salaire_marche_actuel": 78260,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "72010",
@@ -99286,7 +104602,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 64046,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5197",
+        "titre": "Montage de structures en aérospatiale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5197-montage-de-structures-en-aerospatiale"
+      },
+      {
+        "type": "DEP",
+        "code": "5244",
+        "titre": "Tôlerie de précision",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5244-tolerie-de-precision"
+      }
+    ]
   },
   {
     "cnp": "72011",
@@ -99486,7 +104836,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 76895,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5350",
+        "titre": "Pose de systèmes intérieurs",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5350-pose-de-systemes-interieurs"
+      },
+      {
+        "type": "DEP",
+        "code": "5185",
+        "titre": "Montage de lignes électriques",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5185"
+      },
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "72012",
@@ -99670,7 +105054,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.09,
       "salaire_marche_actuel": 81529,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5333",
+        "titre": "Plomberie et chauffage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5333-plomberie-et-chauffage"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "72013",
@@ -99870,7 +105272,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 70434,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5211",
+        "titre": "Entretien général d'immeubles",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5211-entretien-general-dimmeubles"
+      },
+      {
+        "type": "DEP",
+        "code": "5319",
+        "titre": "Charpenterie-menuiserie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5319-charpenterie-menuiserie"
+      },
+      {
+        "type": "DEP",
+        "code": "5352",
+        "titre": "Ébénisterie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5352-ebenisterie"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "72014",
@@ -100070,7 +105506,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 69888,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5286",
+        "titre": "Plâtrage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5286-platrage"
+      },
+      {
+        "type": "DEP",
+        "code": "5300",
+        "titre": "Carrelage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5300-carrelage"
+      },
+      {
+        "type": "DEP",
+        "code": "5303",
+        "titre": "Briquetage-maçonnerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5303-briquetage-maconnerie"
+      },
+      {
+        "type": "DEP",
+        "code": "5315",
+        "titre": "Réfrigération",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5315"
+      }
+    ]
   },
   {
     "cnp": "72020",
@@ -100399,7 +105869,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 85540,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5315",
+        "titre": "Réfrigération",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5315"
+      },
+      {
+        "type": "DEP",
+        "code": "5359",
+        "titre": "Mécanique de machines fixes",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5359-mecanique-de-machines-fixes"
+      }
+    ]
   },
   {
     "cnp": "72021",
@@ -100599,7 +106103,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 70298,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5092",
+        "titre": "Forage et dynamitage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5092"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "72022",
@@ -100920,7 +106442,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.35,
       "salaire_marche_actuel": 65520,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5313",
+        "titre": "Imprimerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5313-imprimerie"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      }
+    ]
   },
   {
     "cnp": "72023",
@@ -101137,7 +106693,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.05,
       "salaire_marche_actuel": 102000,
       "statut_dynamique": "Données émergentes"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Surveillants des opérations du transport ferroviaire.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "72024",
@@ -101449,7 +107021,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 68250,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5291",
+        "titre": "Transport par camion",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5291-transport-par-camion"
+      }
+    ]
   },
   {
     "cnp": "72025",
@@ -101617,7 +107199,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.05,
       "salaire_marche_actuel": 55386,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Superviseurs de services postaux et de messageries.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "72100",
@@ -101929,7 +107527,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50960,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5798",
+        "titre": "Automobile Mechanics",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5798-automobile-mechanics"
+      },
+      {
+        "type": "DEP",
+        "code": "5042",
+        "titre": "Outillage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5042"
+      }
+    ]
   },
   {
     "cnp": "72101",
@@ -102233,7 +107849,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.48,
       "salaire_marche_actuel": 50960,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5042",
+        "titre": "Outillage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5042"
+      }
+    ]
   },
   {
     "cnp": "72102",
@@ -102562,7 +108188,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50960,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5244",
+        "titre": "Tôlerie de précision",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5244-tolerie-de-precision"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5356",
+        "titre": "Chaudronnerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5356-chaudronnerie"
+      },
+      {
+        "type": "DEP",
+        "code": "5360",
+        "titre": "Ferblanterie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5360-ferblanterie"
+      }
+    ]
   },
   {
     "cnp": "72103",
@@ -102827,7 +108487,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.05,
       "salaire_marche_actuel": 76131,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5195",
+        "titre": "Soudage-montage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5195-soudage-montage"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5356",
+        "titre": "Chaudronnerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5356-chaudronnerie"
+      },
+      {
+        "type": "DEP",
+        "code": "5234",
+        "titre": "Soudage haute pression",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5234"
+      }
+    ]
   },
   {
     "cnp": "72104",
@@ -103156,7 +108850,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50068,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5197",
+        "titre": "Montage de structures en aérospatiale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5197-montage-de-structures-en-aerospatiale"
+      },
+      {
+        "type": "DEP",
+        "code": "5195",
+        "titre": "Soudage-montage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5195-soudage-montage"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "72105",
@@ -103485,7 +109205,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 69324,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5197",
+        "titre": "Montage de structures en aérospatiale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5197-montage-de-structures-en-aerospatiale"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "72201",
@@ -103814,7 +109552,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 67340,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5266",
+        "titre": "Installation et réparation équipement de télécommunication",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5266-installation-et-reparation-dequipement-de-telecommunication"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "72202",
@@ -103950,7 +109706,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 70980,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "72203",
@@ -104279,7 +110069,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 77314,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5185",
+        "titre": "Montage de lignes électriques",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5185"
+      },
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      }
+    ]
   },
   {
     "cnp": "72204",
@@ -104600,7 +110424,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.65,
       "salaire_marche_actuel": 65520,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "72205",
@@ -104912,7 +110754,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 67431,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "72300",
@@ -105241,7 +111101,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 64737,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5333",
+        "titre": "Plomberie et chauffage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5333-plomberie-et-chauffage"
+      }
+    ]
   },
   {
     "cnp": "72301",
@@ -105424,7 +111294,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 67322,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "72302",
@@ -105624,7 +111504,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 67340,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "72310",
@@ -105953,7 +111843,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 61880,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5293",
+        "titre": "Service de la restauration",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5293-service-de-la-restauration"
+      },
+      {
+        "type": "DEP",
+        "code": "5319",
+        "titre": "Charpenterie-menuiserie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5319-charpenterie-menuiserie"
+      },
+      {
+        "type": "DEP",
+        "code": "5197",
+        "titre": "Montage de structures en aérospatiale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5197-montage-de-structures-en-aerospatiale"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "72311",
@@ -106153,7 +112077,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5352",
+        "titre": "Ébénisterie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5352-ebenisterie"
+      },
+      {
+        "type": "DEP",
+        "code": "5203",
+        "titre": "Fonderie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5203"
+      },
+      {
+        "type": "DEP",
+        "code": "5285",
+        "titre": "Fabrication de moules",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5285"
+      }
+    ]
   },
   {
     "cnp": "72320",
@@ -106482,7 +112432,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 70525,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5178",
+        "titre": "Taille de pierre",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5178-taille-de-pierre"
+      },
+      {
+        "type": "DEP",
+        "code": "5293",
+        "titre": "Service de la restauration",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5293-service-de-la-restauration"
+      },
+      {
+        "type": "DEP",
+        "code": "5215",
+        "titre": "Restauration de maçonnerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5215"
+      },
+      {
+        "type": "DEP",
+        "code": "5303",
+        "titre": "Briquetage-maçonnerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5303-briquetage-maconnerie"
+      }
+    ]
   },
   {
     "cnp": "72321",
@@ -106803,7 +112787,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 2.15,
       "salaire_marche_actuel": 67012,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "code": "412.A0",
+        "titre": "Techniques de bureautique",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation québécoise reconnue (DEC) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/412-a0-techniques-de-bureautique"
+      },
+      {
+        "type": "DEP",
+        "code": "5315",
+        "titre": "Réfrigération",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5315"
+      },
+      {
+        "type": "DEP",
+        "code": "5223",
+        "titre": "Techniques d'usinage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5223"
+      }
+    ]
   },
   {
     "cnp": "72400",
@@ -107115,7 +113125,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 63700,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "72401",
@@ -107444,7 +113464,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65260,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Mécaniciens d'équipement lourd.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "72402",
@@ -107773,7 +113809,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 62790,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5315",
+        "titre": "Réfrigération",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5315"
+      },
+      {
+        "type": "DEP",
+        "code": "5353",
+        "titre": "Mécanique spécialisée équipement lourd",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5353"
+      },
+      {
+        "type": "DEP",
+        "code": "5307",
+        "titre": "Montage mécanique en aérospatiale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5307-montage-mecanique-en-aerospatiale"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      }
+    ]
   },
   {
     "cnp": "72403",
@@ -108006,7 +114076,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 43170,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Réparateurs de wagons.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "72404",
@@ -108189,7 +114275,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 63700,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Mécaniciens d'aéronefs.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "72405",
@@ -108389,7 +114491,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 48276,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5359",
+        "titre": "Mécanique de machines fixes",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5359-mecanique-de-machines-fixes"
+      },
+      {
+        "type": "DEP",
+        "code": "5335",
+        "titre": "Mécanique agricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5335-mecanique-agricole"
+      }
+    ]
   },
   {
     "cnp": "72406",
@@ -108710,7 +114846,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 108536,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "72410",
@@ -109022,7 +115168,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 59405,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5298",
+        "titre": "Mécanique automobile",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5298-mecanique-automobile"
+      },
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      }
+    ]
   },
   {
     "cnp": "72411",
@@ -109351,7 +115515,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 53772,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5217",
+        "titre": "Carrosserie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5217"
+      },
+      {
+        "type": "DEP",
+        "code": "5798",
+        "titre": "Automobile Mechanics",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5798-automobile-mechanics"
+      }
+    ]
   },
   {
     "cnp": "72420",
@@ -109543,7 +115725,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.18,
       "salaire_marche_actuel": 50960,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "72421",
@@ -109855,7 +116055,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5024",
+        "titre": "Réparation appareils électroménagers",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5024-reparation-dappareils-electromenagers"
+      }
+    ]
   },
   {
     "cnp": "72422",
@@ -110184,7 +116394,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      }
+    ]
   },
   {
     "cnp": "72423",
@@ -110496,7 +116716,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 53690,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Mécaniciens de motocyclettes.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "72429",
@@ -110825,7 +117061,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Autres réparateurs de petits moteurs et de petits équipements.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "72500",
@@ -111154,7 +117406,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 70980,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5298",
+        "titre": "Mécanique automobile",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5298-mecanique-automobile"
+      },
+      {
+        "type": "DEP",
+        "code": "5798",
+        "titre": "Automobile Mechanics",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5798-automobile-mechanics"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      },
+      {
+        "type": "DEP",
+        "code": "5203",
+        "titre": "Fonderie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5203"
+      }
+    ]
   },
   {
     "cnp": "72501",
@@ -111459,7 +117745,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.07,
       "salaire_marche_actuel": 56420,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Foreurs de puits d'eau.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "72600",
@@ -111771,7 +118073,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 90000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Pilotes aériens.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "72601",
@@ -112083,7 +118401,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 40149,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5304",
+        "titre": "Régulation de vol",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5304-regulation-de-vol"
+      }
+    ]
   },
   {
     "cnp": "72602",
@@ -112412,7 +118740,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 108810,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "72603",
@@ -112741,7 +119079,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 104295,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5257",
+        "titre": "Pêche professionnelle",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5257-peche-professionnelle"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "72604",
@@ -112844,7 +119200,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 92926,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Contrôleurs de la circulation ferroviaire.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "72999",
@@ -113156,7 +119528,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 58563,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5073",
+        "titre": "Affûtage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5073-affutage"
+      },
+      {
+        "type": "DEP",
+        "code": "1489",
+        "titre": "Réparation d'armes à feu",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/1489"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5329",
+        "titre": "Serrurerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5329-serrurerie"
+      }
+    ]
   },
   {
     "cnp": "73100",
@@ -113485,7 +119891,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65520,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Finisseurs de béton.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "73101",
@@ -113814,7 +120236,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 67340,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5300",
+        "titre": "Carrelage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5300-carrelage"
+      }
+    ]
   },
   {
     "cnp": "73102",
@@ -114126,7 +120558,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65520,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5286",
+        "titre": "Plâtrage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5286-platrage"
+      }
+    ]
   },
   {
     "cnp": "73110",
@@ -114438,7 +120880,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Couvreurs.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "73111",
@@ -114767,7 +121225,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65520,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Vitriers.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "73112",
@@ -115096,7 +121570,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 49140,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Peintres et décorateurs (sauf décorateurs d'intérieur).",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "73113",
@@ -115425,7 +121915,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Poseurs de revêtements d'intérieur.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "73200",
@@ -115754,7 +122260,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5254",
+        "titre": "Grandes cultures",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5254-grandes-cultures"
+      },
+      {
+        "type": "DEP",
+        "code": "5311",
+        "titre": "Cuisine",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5311-cuisine"
+      },
+      {
+        "type": "DEP",
+        "code": "5324",
+        "titre": "Cuisine du marché",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5324"
+      },
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      }
+    ]
   },
   {
     "cnp": "73201",
@@ -116083,7 +122623,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Préposés à l’entretien général et surintendants.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "73202",
@@ -116412,7 +122968,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 44200,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Fumigateurs et préposés au contrôle de la vermine.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "73209",
@@ -116741,7 +123313,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5238",
+        "titre": "Arpentage et topographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5238-arpentage-et-topographie"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "73300",
@@ -117053,7 +123643,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 57330,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5836",
+        "titre": "Commercial and Residential Painting",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5836-commercial-and-residential-painting"
+      }
+    ]
   },
   {
     "cnp": "73301",
@@ -117365,7 +123965,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 43680,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Conducteurs d'autobus et de tramways.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "73310",
@@ -117589,7 +124205,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 135000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Mécaniciens de locomotive.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "73311",
@@ -117660,7 +124292,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 59277,
       "statut_dynamique": "Données émergentes"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Chefs de train.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "73400",
@@ -117989,7 +124637,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5359",
+        "titre": "Mécanique de machines fixes",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5359-mecanique-de-machines-fixes"
+      },
+      {
+        "type": "DEP",
+        "code": "5307",
+        "titre": "Montage mécanique en aérospatiale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5307-montage-mecanique-en-aerospatiale"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "73401",
@@ -118318,7 +125000,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 46410,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5313",
+        "titre": "Imprimerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5313-imprimerie"
+      }
+    ]
   },
   {
     "cnp": "73402",
@@ -118493,7 +125185,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 64610,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en métiers, transport et machinerie",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Foreurs de mines à ciel ouvert.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur métiers, transport et machinerie",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "74100",
@@ -118805,7 +125513,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38693,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en métiers, transport et machinerie",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Trieurs de courrier.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "74101",
@@ -119030,7 +125747,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 55000,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en métiers, transport et machinerie",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Facteurs.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "74102",
@@ -119359,7 +126085,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 40040,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en métiers, transport et machinerie",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Messagers.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "74200",
@@ -119623,7 +126358,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 49140,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en métiers, transport et machinerie",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Ouvriers de gare de triage du transport ferroviaire.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "74201",
@@ -119935,7 +126679,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 41860,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5359",
+        "titre": "Mécanique de machines fixes",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5359-mecanique-de-machines-fixes"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      },
+      {
+        "type": "DEP",
+        "code": "1250",
+        "titre": "Mécanique marine",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/1250-mecanique-marine"
+      },
+      {
+        "type": "DEP",
+        "code": "5146",
+        "titre": "Mécanique de machines fixes",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5146"
+      }
+    ]
   },
   {
     "cnp": "74202",
@@ -120264,7 +127042,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 35126,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5082",
+        "titre": "Nettoyage à sec et entretien de vêtements",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5082"
+      }
+    ]
   },
   {
     "cnp": "74203",
@@ -120593,7 +127381,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5291",
+        "titre": "Transport par camion",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5291-transport-par-camion"
+      }
+    ]
   },
   {
     "cnp": "74204",
@@ -120905,7 +127703,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 34580,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5304",
+        "titre": "Régulation de vol",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5304-regulation-de-vol"
+      }
+    ]
   },
   {
     "cnp": "74205",
@@ -121105,7 +127913,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 52880,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      }
+    ]
   },
   {
     "cnp": "75100",
@@ -121410,7 +128236,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 37310,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en métiers, transport et machinerie",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Débardeurs.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "75101",
@@ -121722,7 +128557,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 39494,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en métiers, transport et machinerie",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Manutentionnaires qui travaillent manuellement.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "75110",
@@ -122051,7 +128895,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5311",
+        "titre": "Cuisine",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5311-cuisine"
+      },
+      {
+        "type": "DEP",
+        "code": "5324",
+        "titre": "Cuisine du marché",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5324"
+      },
+      {
+        "type": "DEP",
+        "code": "5286",
+        "titre": "Plâtrage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5286-platrage"
+      },
+      {
+        "type": "DEP",
+        "code": "5300",
+        "titre": "Carrelage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5300-carrelage"
+      }
+    ]
   },
   {
     "cnp": "75119",
@@ -122380,7 +129258,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 43680,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5238",
+        "titre": "Arpentage et topographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5238-arpentage-et-topographie"
+      },
+      {
+        "type": "DEP",
+        "code": "5312",
+        "titre": "Mécanique de protection contre les incendies",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5312-mecanique-de-protection-contre-les-incendies"
+      },
+      {
+        "type": "DEP",
+        "code": "5315",
+        "titre": "Réfrigération",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5315"
+      },
+      {
+        "type": "DEP",
+        "code": "5359",
+        "titre": "Mécanique de machines fixes",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5359-mecanique-de-machines-fixes"
+      }
+    ]
   },
   {
     "cnp": "75200",
@@ -122692,7 +129604,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32760,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en métiers, transport et machinerie",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Chauffeurs de taxi et de limousine.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "75201",
@@ -122892,7 +129813,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5270",
+        "titre": "Boulangerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5270"
+      },
+      {
+        "type": "DEP",
+        "code": "5370",
+        "titre": "Boulangerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5370-boulangerie"
+      }
+    ]
   },
   {
     "cnp": "75210",
@@ -123180,7 +130119,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 52034,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5365",
+        "titre": "Matelotage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5365-matelotage"
+      }
+    ]
   },
   {
     "cnp": "75211",
@@ -123492,7 +130441,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5291",
+        "titre": "Transport par camion",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5291-transport-par-camion"
+      }
+    ]
   },
   {
     "cnp": "75212",
@@ -123692,7 +130651,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5211",
+        "titre": "Entretien général d'immeubles",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5211-entretien-general-dimmeubles"
+      },
+      {
+        "type": "DEP",
+        "code": "5082",
+        "titre": "Nettoyage à sec et entretien de vêtements",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5082"
+      }
+    ]
   },
   {
     "cnp": "80010",
@@ -123875,7 +130852,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 61880,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5257",
+        "titre": "Pêche professionnelle",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5257-peche-professionnelle"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5261",
+        "titre": "Extraction de minerai",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5261"
+      }
+    ]
   },
   {
     "cnp": "80020",
@@ -124204,7 +131215,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 40040,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5288",
+        "titre": "Horticulture et jardinerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5288-horticulture-et-jardinerie"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "80021",
@@ -124396,7 +131441,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.35,
       "salaire_marche_actuel": 42315,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5348",
+        "titre": "Production horticole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5348-production-horticole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5366",
+        "titre": "Arboriculture-élagage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5366-elagage"
+      }
+    ]
   },
   {
     "cnp": "80022",
@@ -124572,7 +131651,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 42952,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "BAC",
+        "titre": "Baccalauréat universitaire en lien avec ressources naturelles et agriculture",
+        "duree": "3 à 4 ans (Université)",
+        "description": "Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme Gestionnaires en aquaculture.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEC",
+        "titre": "DEC préuniversitaire ou technique connexe",
+        "duree": "2 à 3 ans (Cégep)",
+        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+        "lien_interne": "/dec-prealables"
+      }
+    ]
   },
   {
     "cnp": "82010",
@@ -124764,7 +131859,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 63700,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5290",
+        "titre": "Abattage manuel et débardage forestier",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5290-abattage-manuel-et-debardage-forestier"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "82020",
@@ -124948,7 +132077,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.09,
       "salaire_marche_actuel": 149600,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      },
+      {
+        "type": "DEP",
+        "code": "5261",
+        "titre": "Extraction de minerai",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5261"
+      }
+    ]
   },
   {
     "cnp": "82021",
@@ -125092,7 +132255,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.07,
       "salaire_marche_actuel": 224080,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5172",
+        "titre": "Réparation appareils au gaz naturel",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5172"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "82030",
@@ -125404,7 +132601,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 41860,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en ressources naturelles et agriculture",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Entrepreneurs de services agricoles.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur ressources naturelles et agriculture",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "82031",
@@ -125716,7 +132929,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 61880,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5366",
+        "titre": "Arboriculture-élagage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5366-elagage"
+      },
+      {
+        "type": "DEP",
+        "code": "5306",
+        "titre": "Aménagement de la forêt",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5306-amenagement-de-la-foret"
+      }
+    ]
   },
   {
     "cnp": "83100",
@@ -126028,7 +133275,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 76276,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5203",
+        "titre": "Fonderie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5203"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "83101",
@@ -126187,7 +133468,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.32,
       "salaire_marche_actuel": 101374,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "83110",
@@ -126516,7 +133831,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 68440,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5290",
+        "titre": "Abattage manuel et débardage forestier",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5290-abattage-manuel-et-debardage-forestier"
+      }
+    ]
   },
   {
     "cnp": "83120",
@@ -126711,7 +134036,17 @@ export const METIERS_DATA: FicheMetier[] = [
         "Soutien"
       ],
       "source": "O*NET 28.2 Work Values"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5257",
+        "titre": "Pêche professionnelle",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5257-peche-professionnelle"
+      }
+    ]
   },
   {
     "cnp": "83121",
@@ -126831,7 +134166,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 70980,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5257",
+        "titre": "Pêche professionnelle",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5257-peche-professionnelle"
+      },
+      {
+        "type": "DEP",
+        "code": "5203",
+        "titre": "Fonderie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5203"
+      }
+    ]
   },
   {
     "cnp": "84100",
@@ -127152,7 +134505,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5203",
+        "titre": "Fonderie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5203"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5291",
+        "titre": "Transport par camion",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5291-transport-par-camion"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "84101",
@@ -127440,7 +134827,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.44,
       "salaire_marche_actuel": 88634,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "84110",
@@ -127753,7 +135174,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5189",
+        "titre": "Abattage et façonnage des bois",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5189-abattage-et-faconnage-des-bois"
+      },
+      {
+        "type": "DEP",
+        "code": "5290",
+        "titre": "Abattage manuel et débardage forestier",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5290-abattage-manuel-et-debardage-forestier"
+      }
+    ]
   },
   {
     "cnp": "84111",
@@ -128082,7 +135521,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 44454,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en ressources naturelles et agriculture",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Ouvriers en sylviculture et en exploitation forestière.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "84120",
@@ -128394,7 +135842,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38220,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5335",
+        "titre": "Mécanique agricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5335-mecanique-agricole"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      }
+    ]
   },
   {
     "cnp": "84121",
@@ -128554,7 +136020,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 66794,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5257",
+        "titre": "Pêche professionnelle",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5257-peche-professionnelle"
+      },
+      {
+        "type": "DEP",
+        "code": "5365",
+        "titre": "Matelotage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5365-matelotage"
+      }
+    ]
   },
   {
     "cnp": "85100",
@@ -128754,7 +136238,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 30212,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "85101",
@@ -128937,7 +136447,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32032,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5366",
+        "titre": "Arboriculture-élagage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5366-elagage"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "85102",
@@ -129129,7 +136673,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.12,
       "salaire_marche_actuel": 34125,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5257",
+        "titre": "Pêche professionnelle",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5257-peche-professionnelle"
+      }
+    ]
   },
   {
     "cnp": "85103",
@@ -129329,7 +136883,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32669,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5306",
+        "titre": "Aménagement de la forêt",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5306-amenagement-de-la-foret"
+      }
+    ]
   },
   {
     "cnp": "85104",
@@ -129433,7 +136997,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 33670,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en ressources naturelles et agriculture",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Trappeurs et chasseurs.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "85110",
@@ -129593,7 +137166,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 37292,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "85111",
@@ -129922,7 +137505,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 63700,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5222",
+        "titre": "Traitement de surface",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5222-traitement-de-surface"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "85120",
@@ -130105,7 +137722,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 39176,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en ressources naturelles et agriculture",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Manoeuvres de l'exploitation forestière.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "85121",
@@ -130434,7 +138060,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5306",
+        "titre": "Aménagement de la forêt",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5306-amenagement-de-la-foret"
+      }
+    ]
   },
   {
     "cnp": "90010",
@@ -130763,7 +138399,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 80000,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5313",
+        "titre": "Imprimerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5313-imprimerie"
+      },
+      {
+        "type": "DEP",
+        "code": "5262",
+        "titre": "Pâtes et papiers - Opérations",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5262-pates-et-papiers-operations"
+      }
+    ]
   },
   {
     "cnp": "90011",
@@ -130930,7 +138600,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.18,
       "salaire_marche_actuel": 91466,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "92010",
@@ -131130,7 +138818,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 72800,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5178",
+        "titre": "Taille de pierre",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5178-taille-de-pierre"
+      },
+      {
+        "type": "DEP",
+        "code": "5328",
+        "titre": "Conduite de procédés de traitement de eau",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5328-conduite-de-procedes-de-traitement-de-leau"
+      }
+    ]
   },
   {
     "cnp": "92011",
@@ -131330,7 +139052,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 98150,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5315",
+        "titre": "Réfrigération",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5315"
+      },
+      {
+        "type": "DEP",
+        "code": "5261",
+        "titre": "Extraction de minerai",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5261"
+      },
+      {
+        "type": "DEP",
+        "code": "5282",
+        "titre": "Installation et fabrication de produits verriers",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5282-installation-et-fabrication-de-produits-verriers"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "92012",
@@ -131530,7 +139286,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 52780,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5270",
+        "titre": "Boulangerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5270"
+      },
+      {
+        "type": "DEP",
+        "code": "5297",
+        "titre": "Pâtisserie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5297-patisserie"
+      }
+    ]
   },
   {
     "cnp": "92013",
@@ -131730,7 +139520,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 65748,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5343",
+        "titre": "Préparation et finition de béton",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5343-preparation-et-finition-de-beton"
+      },
+      {
+        "type": "DEP",
+        "code": "5798",
+        "titre": "Automobile Mechanics",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5798-automobile-mechanics"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "92014",
@@ -131930,7 +139746,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45755,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5289",
+        "titre": "Travail sylvicole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5289-travail-sylvicole"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5282",
+        "titre": "Installation et fabrication de produits verriers",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5282-installation-et-fabrication-de-produits-verriers"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "92015",
@@ -132122,7 +139972,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.09,
       "salaire_marche_actuel": 64610,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5343",
+        "titre": "Préparation et finition de béton",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5343-preparation-et-finition-de-beton"
+      },
+      {
+        "type": "DEP",
+        "code": "5142",
+        "titre": "Finition de meubles",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5142-finition-de-meubles"
+      }
+    ]
   },
   {
     "cnp": "92020",
@@ -132242,7 +140126,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 66612,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "92021",
@@ -132442,7 +140336,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 70070,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5271",
+        "titre": "Réparation appareils électroniques audiovidéos",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5271-tapisserie-dameublement"
+      },
+      {
+        "type": "DEP",
+        "code": "5295",
+        "titre": "Électricité",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5295-electricite"
+      }
+    ]
   },
   {
     "cnp": "92022",
@@ -132634,7 +140562,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.16,
       "salaire_marche_actuel": 65520,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5142",
+        "titre": "Finition de meubles",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5142-finition-de-meubles"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "92023",
@@ -132834,7 +140780,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 59117,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5254",
+        "titre": "Grandes cultures",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5254-grandes-cultures"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5291",
+        "titre": "Transport par camion",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5291-transport-par-camion"
+      },
+      {
+        "type": "DEP",
+        "code": "5282",
+        "titre": "Installation et fabrication de produits verriers",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5282-installation-et-fabrication-de-produits-verriers"
+      }
+    ]
   },
   {
     "cnp": "92024",
@@ -133026,7 +141006,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.44,
       "salaire_marche_actuel": 67340,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5326",
+        "titre": "Photographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5326-photographie"
+      },
+      {
+        "type": "DEP",
+        "code": "1489",
+        "titre": "Réparation d'armes à feu",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/1489"
+      }
+    ]
   },
   {
     "cnp": "92100",
@@ -133338,7 +141352,23 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEC",
+        "titre": "DEC technique en fabrication et services d'utilité publique",
+        "duree": "3 ans (Cégep)",
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Mécaniciens de centrales.",
+        "lien_interne": "/dec-prealables"
+      },
+      {
+        "type": "DEP",
+        "titre": "DEP spécialisé du secteur fabrication et services d'utilité publique",
+        "duree": "1 à 2 ans (CFP)",
+        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "92101",
@@ -133650,7 +141680,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 60952,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "93100",
@@ -133947,7 +141987,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.05,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5333",
+        "titre": "Plomberie et chauffage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5333-plomberie-et-chauffage"
+      },
+      {
+        "type": "DEP",
+        "code": "5203",
+        "titre": "Fonderie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5203"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "93101",
@@ -134276,7 +142342,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 47447,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5261",
+        "titre": "Extraction de minerai",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5261"
+      },
+      {
+        "type": "DEP",
+        "code": "5304",
+        "titre": "Régulation de vol",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5304-regulation-de-vol"
+      }
+    ]
   },
   {
     "cnp": "93102",
@@ -134573,7 +142673,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 49049,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "93200",
@@ -134869,7 +142979,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 64501,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5197",
+        "titre": "Montage de structures en aérospatiale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5197-montage-de-structures-en-aerospatiale"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "94100",
@@ -135061,7 +143189,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5254",
+        "titre": "Grandes cultures",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5254-grandes-cultures"
+      },
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5333",
+        "titre": "Plomberie et chauffage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5333-plomberie-et-chauffage"
+      }
+    ]
   },
   {
     "cnp": "94101",
@@ -135365,7 +143527,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.23,
       "salaire_marche_actuel": 44590,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5203",
+        "titre": "Fonderie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5203"
+      }
+    ]
   },
   {
     "cnp": "94102",
@@ -135661,7 +143833,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.12,
       "salaire_marche_actuel": 37310,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "94103",
@@ -135973,7 +144171,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 41860,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en fabrication et services d'utilité publique",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Opérateurs de machines et travailleurs en façonnage et en finition de produits en béton.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "94104",
@@ -136165,7 +144372,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 54600,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5203",
+        "titre": "Fonderie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5203"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "94105",
@@ -136477,7 +144718,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 43680,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5359",
+        "titre": "Mécanique de machines fixes",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5359-mecanique-de-machines-fixes"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      },
+      {
+        "type": "DEP",
+        "code": "5146",
+        "titre": "Mécanique de machines fixes",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5146"
+      }
+    ]
   },
   {
     "cnp": "94106",
@@ -136806,7 +145073,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 44535,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5798",
+        "titre": "Automobile Mechanics",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5798-automobile-mechanics"
+      },
+      {
+        "type": "DEP",
+        "code": "5224",
+        "titre": "Usinage sur machines-outils à commande numérique",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5224"
+      }
+    ]
   },
   {
     "cnp": "94107",
@@ -137135,7 +145436,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 47593,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5359",
+        "titre": "Mécanique de machines fixes",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5359-mecanique-de-machines-fixes"
+      },
+      {
+        "type": "DEP",
+        "code": "5307",
+        "titre": "Montage mécanique en aérospatiale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5307-montage-mecanique-en-aerospatiale"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      },
+      {
+        "type": "DEP",
+        "code": "5195",
+        "titre": "Soudage-montage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5195-soudage-montage"
+      }
+    ]
   },
   {
     "cnp": "94110",
@@ -137464,7 +145799,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 47029,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5326",
+        "titre": "Photographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5326-photographie"
+      },
+      {
+        "type": "DEP",
+        "code": "5343",
+        "titre": "Préparation et finition de béton",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5343-preparation-et-finition-de-beton"
+      },
+      {
+        "type": "DEP",
+        "code": "5282",
+        "titre": "Installation et fabrication de produits verriers",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5282-installation-et-fabrication-de-produits-verriers"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "94111",
@@ -137647,7 +146016,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 43116,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en fabrication et services d'utilité publique",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Opérateurs de malaxeur - plasturgie.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "94112",
@@ -137959,7 +146337,33 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 50050,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "94120",
@@ -138288,7 +146692,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en fabrication et services d'utilité publique",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Opérateurs de machines à scier dans les scieries.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "94121",
@@ -138464,7 +146877,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 61134,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5282",
+        "titre": "Installation et fabrication de produits verriers",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5282-installation-et-fabrication-de-produits-verriers"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "94122",
@@ -138656,7 +147087,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.23,
       "salaire_marche_actuel": 42916,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "94123",
@@ -138968,7 +147409,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 72800,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en fabrication et services d'utilité publique",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Classeurs de bois d'œuvre.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "94124",
@@ -139297,7 +147747,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 42106,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5297",
+        "titre": "Pâtisserie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5297-patisserie"
+      },
+      {
+        "type": "DEP",
+        "code": "5343",
+        "titre": "Préparation et finition de béton",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5343-preparation-et-finition-de-beton"
+      },
+      {
+        "type": "DEP",
+        "code": "5359",
+        "titre": "Mécanique de machines fixes",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5359-mecanique-de-machines-fixes"
+      },
+      {
+        "type": "DEP",
+        "code": "5142",
+        "titre": "Finition de meubles",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5142-finition-de-meubles"
+      }
+    ]
   },
   {
     "cnp": "94129",
@@ -139497,7 +147981,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 40477,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5254",
+        "titre": "Grandes cultures",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5254-grandes-cultures"
+      },
+      {
+        "type": "DEP",
+        "code": "5363",
+        "titre": "Mise en oeuvre de matériaux composites",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5363-fabrication-de-pieces-industrielles-et-aerospatiales-en-composite"
+      }
+    ]
   },
   {
     "cnp": "94130",
@@ -139801,7 +148303,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.12,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5313",
+        "titre": "Imprimerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5313-imprimerie"
+      },
+      {
+        "type": "DEP",
+        "code": "5203",
+        "titre": "Fonderie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5203"
+      }
+    ]
   },
   {
     "cnp": "94131",
@@ -140130,7 +148650,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 37310,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5225",
+        "titre": "Dessin industriel",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5225-dessin-industriel"
+      },
+      {
+        "type": "DEP",
+        "code": "5307",
+        "titre": "Montage mécanique en aérospatiale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5307-montage-mecanique-en-aerospatiale"
+      },
+      {
+        "type": "DEP",
+        "code": "5337",
+        "titre": "Mécanique d'ascenseur",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5337-mecanique-dascenseur"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "94132",
@@ -140459,7 +149013,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 32760,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en fabrication et services d'utilité publique",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Opérateurs de machines à coudre industrielles.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "94133",
@@ -140659,7 +149222,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 31258,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5142",
+        "titre": "Finition de meubles",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5142-finition-de-meubles"
+      }
+    ]
   },
   {
     "cnp": "94140",
@@ -140971,7 +149544,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 41860,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5270",
+        "titre": "Boulangerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5270"
+      },
+      {
+        "type": "DEP",
+        "code": "5370",
+        "titre": "Boulangerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5370-boulangerie"
+      }
+    ]
   },
   {
     "cnp": "94141",
@@ -141283,7 +149874,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 41605,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en fabrication et services d'utilité publique",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Bouchers industriels industrielles.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "94142",
@@ -141458,7 +150058,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 2.34,
       "salaire_marche_actuel": 32542,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en fabrication et services d'utilité publique",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Opérateurs de machines dans les usines de transformation du poisson et de fruits de mer.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "94143",
@@ -141658,7 +150267,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38948,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en fabrication et services d'utilité publique",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Échantillonneurs et trieurs dans la transformation des aliments et des boissons.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "94150",
@@ -141858,7 +150476,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38220,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5313",
+        "titre": "Imprimerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5313-imprimerie"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "94151",
@@ -142170,7 +150806,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 38220,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5313",
+        "titre": "Imprimerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5313-imprimerie"
+      }
+    ]
   },
   {
     "cnp": "94152",
@@ -142499,7 +151145,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5313",
+        "titre": "Imprimerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5313-imprimerie"
+      }
+    ]
   },
   {
     "cnp": "94153",
@@ -142764,7 +151420,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.02,
       "salaire_marche_actuel": 30030,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5326",
+        "titre": "Photographie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5326-photographie"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "94200",
@@ -143076,7 +151750,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5154",
+        "titre": "Mécanique de véhicules légers",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5154"
+      },
+      {
+        "type": "DEP",
+        "code": "5298",
+        "titre": "Mécanique automobile",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5298-mecanique-automobile"
+      },
+      {
+        "type": "DEP",
+        "code": "5798",
+        "titre": "Automobile Mechanics",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5798-automobile-mechanics"
+      },
+      {
+        "type": "DEP",
+        "code": "5307",
+        "titre": "Montage mécanique en aérospatiale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5307-montage-mecanique-en-aerospatiale"
+      }
+    ]
   },
   {
     "cnp": "94201",
@@ -143388,7 +152096,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 39003,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5195",
+        "titre": "Soudage-montage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5195-soudage-montage"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "94202",
@@ -143563,7 +152289,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 41041,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "94203",
@@ -143875,7 +152611,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45227,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "94204",
@@ -144058,7 +152804,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 45500,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5359",
+        "titre": "Mécanique de machines fixes",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5359-mecanique-de-machines-fixes"
+      },
+      {
+        "type": "DEP",
+        "code": "5154",
+        "titre": "Mécanique de véhicules légers",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5154"
+      },
+      {
+        "type": "DEP",
+        "code": "5330",
+        "titre": "Mécanique de véhicules lourds routiers",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5330-mecanique-de-vehicules-lourds-routiers"
+      },
+      {
+        "type": "DEP",
+        "code": "5335",
+        "titre": "Mécanique agricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5335-mecanique-agricole"
+      }
+    ]
   },
   {
     "cnp": "94205",
@@ -144169,7 +152949,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.05,
       "salaire_marche_actuel": 41860,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "94210",
@@ -144481,7 +153271,25 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5142",
+        "titre": "Finition de meubles",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5142-finition-de-meubles"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "94211",
@@ -144664,7 +153472,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "94212",
@@ -144847,7 +153689,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36873,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      }
+    ]
   },
   {
     "cnp": "94213",
@@ -145030,7 +153882,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 42770,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "94219",
@@ -145213,7 +154099,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5798",
+        "titre": "Automobile Mechanics",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5798-automobile-mechanics"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5182",
+        "titre": "Horlogerie-bijouterie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5182-horlogerie-bijouterie"
+      },
+      {
+        "type": "DEP",
+        "code": "5263",
+        "titre": "Horlogerie-rhabillage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5263"
+      }
+    ]
   },
   {
     "cnp": "95100",
@@ -145413,7 +154333,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 40040,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5333",
+        "titre": "Plomberie et chauffage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5333-plomberie-et-chauffage"
+      },
+      {
+        "type": "DEP",
+        "code": "5195",
+        "titre": "Soudage-montage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5195-soudage-montage"
+      }
+    ]
   },
   {
     "cnp": "95101",
@@ -145613,7 +154567,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 40040,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5197",
+        "titre": "Montage de structures en aérospatiale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5197-montage-de-structures-en-aerospatiale"
+      },
+      {
+        "type": "DEP",
+        "code": "5307",
+        "titre": "Montage mécanique en aérospatiale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5307-montage-mecanique-en-aerospatiale"
+      }
+    ]
   },
   {
     "cnp": "95102",
@@ -145813,7 +154801,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 44590,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5315",
+        "titre": "Réfrigération",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5315"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5282",
+        "titre": "Installation et fabrication de produits verriers",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5282-installation-et-fabrication-de-produits-verriers"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "95103",
@@ -146013,7 +155035,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Ralentissement"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5088",
+        "titre": "Sciage",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5088-sciage"
+      },
+      {
+        "type": "DEP",
+        "code": "5766",
+        "titre": "Installation and Repair of Telecommunications Equipment",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+      }
+    ]
   },
   {
     "cnp": "95104",
@@ -146213,7 +155269,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Forte hausse"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5299",
+        "titre": "Montage structural et architectural",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5299"
+      },
+      {
+        "type": "DEP",
+        "code": "5810",
+        "titre": "Production Equipment Operation",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5810"
+      }
+    ]
   },
   {
     "cnp": "95105",
@@ -146396,7 +155486,16 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 43680,
       "statut_dynamique": "Stabilité du marché"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "titre": "DEP / Attestation professionnelle en fabrication et services d'utilité publique",
+        "duree": "600 à 1800 heures (CFP)",
+        "description": "Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de Manoeuvres des produits du textile.",
+        "lien_interne": "/dep"
+      }
+    ]
   },
   {
     "cnp": "95106",
@@ -146596,7 +155695,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5270",
+        "titre": "Boulangerie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5270"
+      },
+      {
+        "type": "DEP",
+        "code": "5297",
+        "titre": "Pâtisserie",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5297-patisserie"
+      }
+    ]
   },
   {
     "cnp": "95107",
@@ -146788,7 +155921,17 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": 1.53,
       "salaire_marche_actuel": 34362,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5315",
+        "titre": "Réfrigération",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5315"
+      }
+    ]
   },
   {
     "cnp": "95109",
@@ -147100,7 +156243,41 @@ export const METIERS_DATA: FicheMetier[] = [
       "tension_marche": null,
       "salaire_marche_actuel": 36400,
       "statut_dynamique": "Croissance stable"
-    }
+    },
+    "formations": [
+      {
+        "type": "DEP",
+        "code": "5256",
+        "titre": "Production acéricole",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5256-production-acericole"
+      },
+      {
+        "type": "DEP",
+        "code": "5354",
+        "titre": "Production animale",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5354-production-animale"
+      },
+      {
+        "type": "DEP",
+        "code": "5293",
+        "titre": "Service de la restauration",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5293-service-de-la-restauration"
+      },
+      {
+        "type": "DEP",
+        "code": "5312",
+        "titre": "Mécanique de protection contre les incendies",
+        "duree": "1.5 à 2 ans (CFP)",
+        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
+        "lien_interne": "/programmes/5312-mecanique-de-protection-contre-les-incendies"
+      }
+    ]
   }
 ];
 

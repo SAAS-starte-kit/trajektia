@@ -1075,6 +1075,61 @@ SECTEUR_MAP = {
     '9': ("Fabrication et services d'utilité publique", "bg-orange-500/10 text-orange-600 dark:text-orange-400 border-orange-500/20")
 }
 
+import unicodedata
+
+def slugify_prog(text: str) -> str:
+    text = unicodedata.normalize('NFKD', text).encode('ascii', 'ignore').decode('utf-8')
+    text = re.sub(r'[^\w\s-]', '', text.lower()).strip()
+    return re.sub(r'[-\s]+', '-', text).strip('-')
+
+def load_formations_map():
+    """Charge les correspondances CKG programmes <-> métiers et génère les fiches de formations associées."""
+    base_dir = PROJECT_ROOT / "apps" / "frontend" / "src" / "data"
+    map_file = base_dir / "programmes-metiers-map.json"
+    if not map_file.exists():
+        return {}
+    
+    with open(map_file, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    
+    slug_map = {}
+    for fname in ["programmes-dec-prealables.ts", "programmes-dep-prealables.ts"]:
+        pf = base_dir / fname
+        if pf.exists():
+            content = pf.read_text(encoding="utf-8")
+            for m in re.finditer(r'"?code"?:\s*"([^"]+)",\s*"?nom"?:\s*"([^"]+)"', content):
+                code, nom = m.group(1), m.group(2)
+                slug_map[code] = f"/programmes/{code.lower().replace('.', '-')}-{slugify_prog(nom)}"
+
+    cnp_map = data.get("cnp_to_programs", {})
+    formations_by_cnp = {}
+    for cnp, progs in cnp_map.items():
+        sorted_progs = sorted(progs, key=lambda x: (not x.get("direct", False), x.get("level", "") != "DEC"))
+        top_progs = sorted_progs[:4]
+        
+        cards = []
+        for p in top_progs:
+            lvl = p.get("level", "DEP")
+            code = p.get("code", "")
+            title = p.get("title", "")
+            duration = "3 ans (Cégep)" if lvl == "DEC" else ("1.5 à 2 ans (CFP)" if lvl == "DEP" else "1 à 2 ans")
+            desc = f"Formation québécoise reconnue ({lvl}) préparant aux compétences clés exigées pour exercer la profession au Québec."
+            
+            link = slug_map.get(code)
+            if not link:
+                link = f"/programmes/{code.lower().replace('.', '-')}" if lvl in ("DEC", "DEP") else "/dec-prealables"
+            
+            cards.append({
+                "type": lvl if lvl in ["DEP", "DEC", "AEC", "BAC", "MAÎTRISE"] else "DEP",
+                "code": code,
+                "titre": title,
+                "duree": duration,
+                "description": desc,
+                "lien_interne": link
+            })
+        formations_by_cnp[cnp] = cards
+    return formations_by_cnp
+
 def deduplicate_work_styles(styles):
     """Déduplique les 21 Work Styles O*NET en agrégeant et moyennant les scores par style."""
     if not styles:
@@ -1419,8 +1474,72 @@ def main():
                     'echantillon_offres': sum(p['volume_offres'] for p in t.get('historique', []))
                 }
 
+    # Enrichir chaque métier avec les formations québécoises (CKG / Inforoute / DEC / DEP)
+    formations_by_cnp = load_formations_map()
+    formations_enriched_count = 0
+    for c in all_careers:
+        cnp = c.get('cnp')
+        if c.get('formations') and len(c['formations']) > 0:
+            formations_enriched_count += 1
+            continue
+        
+        if cnp in formations_by_cnp and formations_by_cnp[cnp]:
+            c['formations'] = formations_by_cnp[cnp]
+            formations_enriched_count += 1
+        else:
+            feer = c.get('feer', 2)
+            secteur = c.get('secteur', 'ce secteur')
+            titre = c.get('titre_court', c.get('titre', 'ce métier'))
+            
+            if feer <= 1:
+                c['formations'] = [
+                    {
+                        "type": "BAC",
+                        "titre": f"Baccalauréat universitaire en lien avec {secteur.lower()}",
+                        "duree": "3 à 4 ans (Université)",
+                        "description": f"Formation universitaire approfondie permettant d'acquérir les compétences théoriques et méthodologiques pour exercer comme {titre}.",
+                        "lien_interne": "/dec-prealables"
+                    },
+                    {
+                        "type": "DEC",
+                        "titre": "DEC préuniversitaire ou technique connexe",
+                        "duree": "2 à 3 ans (Cégep)",
+                        "description": "Diplôme d'études collégiales donnant accès aux programmes universitaires du secteur.",
+                        "lien_interne": "/dec-prealables"
+                    }
+                ]
+            elif feer in [2, 3]:
+                c['formations'] = [
+                    {
+                        "type": "DEC",
+                        "titre": f"DEC technique en {secteur.lower()}",
+                        "duree": "3 ans (Cégep)",
+                        "description": f"Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de {titre}.",
+                        "lien_interne": "/dec-prealables"
+                    },
+                    {
+                        "type": "DEP",
+                        "titre": f"DEP spécialisé du secteur {secteur.lower()}",
+                        "duree": "1 à 2 ans (CFP)",
+                        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
+                        "lien_interne": "/dep"
+                    }
+                ]
+            else:
+                c['formations'] = [
+                    {
+                        "type": "DEP",
+                        "titre": f"DEP / Attestation professionnelle en {secteur.lower()}",
+                        "duree": "600 à 1800 heures (CFP)",
+                        "description": f"Parcours qualifiant en centre de formation professionnelle avec apprentissage pratique du métier de {titre}.",
+                        "lien_interne": "/dep"
+                    }
+                ]
+            formations_enriched_count += 1
+
     print(f"[CKG Generator] Ajout de {len(filtered_db_careers)} métiers dynamiques depuis Supabase.")
     print(f"[CKG Generator] {trends_enriched_count} métiers enrichis avec séries temporelles 12 mois Trajektia Live™.")
+    print(f"[CKG Generator] {formations_enriched_count} métiers dotés de parcours de formation québécois CKG/DEC/DEP.")
     print(f"[CKG Generator] Génération de {len(all_careers)} métiers au total...")
     
     # Validation
