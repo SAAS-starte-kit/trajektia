@@ -634,6 +634,16 @@ RÃ‰ALISÃ‰ (Fondations, Ingestion, Moteurs & Taxonomie DPC)
 [FAIT] T6  Maillage Bidirectionnel CKG Formations ↔ Métiers (964 relations `occupation_programs` -> 510 fiches `metiers.ts` & fiches DEC/DEP)
 [FAIT] I7  R&D & Étude de Faisabilité Ingestion Textuelle 14M Offres CKAN & Vectorisation Graph-RAG (`FEASIBILITY_CKAN_VECTORIZATION_I7.md`)
 
+FLOTTE ASYNCHRONE GOOGLE JULES (100 sessions/jour — Salves 1 à 7 validées à 100%)
+────────────────────────────────────────────────────────────────────────
+[FAIT] J1  Découplage Scoring Psychométrique pur (`scoring.ts`) + Suite Vitest 8/8 tests passants (`scoring.test.ts`)
+[FAIT] J2  Modularisation FastAPI dans `routers/` (`occupations`, `search`, `competencies`, `riasec`, `leads`) + Schémas Pydantic v2 stricts (`schemas.py`)
+[FAIT] J3  Optimisation Vectorielle : Remplacement de PyTorch SentenceTransformers (>2 Go) par FastEmbed ONNX (~50 Mo)
+[FAIT] J4  Pipeline GitHub Actions CI (`.github/workflows/ci.yml`) pour frontend-tests et backend-check
+[FAIT] J5  Persistance PostgreSQL Supabase `leads_newsletter` + Validation regex & conformité Loi 25 (`leads.py`, `schemas.py`)
+[FAIT] J6  Runner de Migrations SQL et Checksums SHA256 (`scripts/run_migrations.py`, 16 schémas ordonnés de v1 à v15)
+[FAIT] J7  Suite de tests unitaires Vitest pour le moteur psychométrique PR-RSM & TAT (`pr-rsm-engine.test.ts`, 17/17 tests passants)
+
 PROCHAINE ÉTAPE PRIORITAIRE — Sprint Ingestion Régionale CKAN & Index Vectoriel Neo4j
 ────────────────────────────────────────────────────────────────────────
 1. [À FAIRE] I7.1 Développement du parseur UTF-16LE multi-mois CKAN pour extraire la granularité ville/région
