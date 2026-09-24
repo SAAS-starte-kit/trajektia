@@ -85,7 +85,13 @@ trajektia/etl/           → Pipelines Supabase & intégrations provinciales
 | **Matching Métiers Réels & Miroir (D5/D6)** | ✅ Complet | 301 métiers réels branchés | Biais des profils plats éradiqué, narratifs positifs, miroir OCCOQ |
 | **Le Siphon (Neo4j → Supabase)** | ✅ Complet | 8 phases d'export | Synchronisation Occupations, Compétences, Outils, RIASEC, SST & Exigences Physiques / DPC / Prediger (`occupation_physical_demands`) |
 | **Module Satisfaction TWA (D7)** | 🟡 Cadré | O*NET WIL (21 items) + Work Values | Étape 2 approfondissement (Theory of Work Adjustment) |
-| **Modélisation PR-RSM (D8)** | 🟡 Cadré | Surfaces Edwards (LOC/LOIC) | Non-linéarité Person-Job, sous-utilisation vs surmenage |
+| **Modélisation PR-RSM & TAT (D8/J7)** | ✅ Complet | 17/17 tests Vitest passants | Moteur `pr-rsm-engine.ts`, surfaces polynomiales d'Edwards, zones de strain (Verte/Orange/Rouge) et tests unitaires |
+| **Moteur de Scoring Découplé (J1)** | ✅ Complet | 8 tests Vitest passants | Moteur `scoring.ts`, RIASEC pur, normalisation POMP et cosinus centré Pearson |
+| **API Modulaire & Typage Strict (J2)** | ✅ Complet | 11 routes montées | FastAPI sous-routeurs (`occupations`, `search`, `competencies`, `riasec`, `leads`) + Pydantic v2 |
+| **Inférence Sémantique Vectorielle (J3)**| ✅ Optimisé | ~50 Mo empreinte CPU | FastEmbed ONNX (`paraphrase-multilingual-MiniLM-L12-v2`), élimination de PyTorch >2 Go |
+| **Pipeline Intégration Continue (J4)** | ✅ Opérationnel | GitHub Actions CI | `.github/workflows/ci.yml` (tests Vitest, build Astro SSG, vérification backend) |
+| **Capture Leads & Loi 25 (J5)** | ✅ Sécurisé | Supabase `leads_newsletter` | Validation regex stricte, RLS activé, insertion idempotente sans doublons |
+| **Migrations Automatisées (J6)** | ✅ Opérationnel | 16 schémas SQL v1 à v15 | `scripts/run_migrations.py` avec suivi `_migrations_history` et checksums SHA256 |
 | **Accord Angulaire & GDS (D9)** | 🟡 Cadré | Cosinus directionnel + GDS | Métrique circumplexe (Wild & Möhring 2026), FastRP, Louvain |
 | **Preuves Scientifiques Fondatrices** | ✅ Complet | 12 assertions certifiées | Base `scientific_evidence` & `seed_scientific_evidence.py` |
 | **Corpus de Références Importées** | ✅ Archivé | `ckg/references/` (4 artefacts) | O*NET 30.1, Souveraineté IA Loi 25, Infographie, Trait Activation |

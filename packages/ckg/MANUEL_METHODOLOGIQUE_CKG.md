@@ -108,10 +108,17 @@ Trajektia construit un **graphe de connaissances multi-dimensionnel** (Career Kn
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
 │                              COUCHE API & PRÉSENTATION                                 │
 │                                                                                        │
-│   FastAPI (apps/api : Hybrid Search) ───┐                                              │
-│   Supabase Client (@supabase/ssr)   ────┼───►  Astro 5 (apps/frontend : Vitrine & SSR) │
-│                                         │      Site Web & Exploration Trajektia        │
-│   Directus (Admin Back-Office Optionnel)┘      (Variables & secrets via .env)          │
+│   FastAPI Modulaire (apps/api/routers/ :                                               │
+│     • /api/metier/{cnp}       -> occupations.py                                        │
+│     • /api/search & semantic  -> search.py (FastEmbed ONNX 384D)                      │
+│     • /api/competences/{cnp}  -> competencies.py                                       │
+│     • /api/riasec/{cnp}       -> riasec.py                                             │
+│     • /api/leads              -> leads.py (Loi 25, asyncpg, doublons idempotents)      │
+│     Schémas typés stricts     -> apps/api/schemas.py (Pydantic v2)                     │
+│   ) ───┐                                                                               │
+│   Supabase Client (@supabase/ssr) ───┼──► Astro 5 (apps/frontend : Vitrine SSG & SSR) │
+│                                      │    Vitest Suite (17 tests passants)             │
+│   Directus (Admin Back-Office)───────┘    Site Web & Exploration Trajektia             │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -640,19 +647,53 @@ CREATE TABLE occupation_physical_demands (
 );
 ```
 
-### 7.2 Versions du schéma SQL
+### 7.2 Versions du schéma SQL & Runner Automatisé de Migrations
 
-| Version | Fichier | Contenu |
+L'ensemble des schémas relationnels de Trajektia est centralisé dans [`packages/database/`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/packages/database/) et ordonné en **16 fichiers de migration séquentiels** :
+
+| Version | Fichier SQL | Contenu & Rôle Architectural |
 |:---|:---|:---|
-| V1 | `schema.sql` | Tables de base : `occupations`, `competencies`, `riasec_profiles` |
-| V2 | `schema_v2.sql` | Extension OaSIS : hiérarchie CNP, tâches, contextes de travail |
-| V3 | `schema_v3.sql` | Formations MEQ : `educational_institutions`, `programs`, `cip_domains` |
-| V4 | `schema_v4_relance.sql` | Données La Relance : salaires et taux de placement |
-| V5 | `schema_v5_cnesst.sql` | Module SST : `occupational_hazards`, `cnesst_sector_stats`, `occupation_hazards` |
-| V6 | `schema_v6_physical_demands_dpc.sql` | Ergonomie & Aptitude : `occupation_physical_demands` (forces, postures, sensoriel, DPC) |
-| V7 | `schema_v7_dpc_taxonomy.sql` | Taxonomie DPC & Explicabilité : `ref_dpc_taxonomy` (25 verbes, définitions FR/EN, vue enrichie) |
-| V8 | `schema_v8_market_snapshots.sql` | Observatoire Temporel & Tendances : `trajektia_market_snapshots`, `trajektia_skill_demand_history`, `trajektia_live_job_postings` |
-| V9 | `schema_v9_program_devis.sql` | Devis Ministériels MES : `program_competencies` (Codes ministériels 016K, savoir-faire, critères de performance) & champs descriptifs généraux sur `educational_programs` |
+| **V1** | `schema.sql` | Tables de base : `occupations`, `competencies`, `riasec_profiles` |
+| **V2** | `schema_v2.sql` | Extension OaSIS : hiérarchie CNP, tâches, contextes de travail |
+| **V3** | `schema_v3.sql` | Formations MEQ : `educational_institutions`, `programs`, `cip_domains` |
+| **V4** | `schema_v4_onet_extras.sql` | Données La Relance et enrichissements O*NET : salaires et taux de placement |
+| **V5** | `schema_v5_cnesst.sql` | Module SST : `occupational_hazards`, `cnesst_sector_stats`, `occupation_hazards` |
+| **V6** | `schema_v6_physical_demands_dpc.sql` | Ergonomie & Aptitude : `occupation_physical_demands` (forces, postures, sensoriel, DPC) |
+| **V7** | `schema_v7_dpc_taxonomy.sql` | Taxonomie DPC & Explicabilité : `ref_dpc_taxonomy` (25 verbes, définitions FR/EN, vue enrichie) |
+| **V8** | `schema_v8_market_snapshots.sql` | Observatoire Temporel & Tendances : `trajektia_market_snapshots`, `trajektia_skill_demand_history`, `trajektia_live_job_postings` |
+| **V9** | `schema_v9_leads.sql` | Capture des Leads & Conformité Loi 25 : Table `leads_newsletter` (courriels, code CNP, contrainte UNIQUE, politiques RLS) |
+| **V9b** | `schema_v9_program_devis.sql` | Devis Ministériels MES : `program_competencies` (Codes ministériels 016K, savoir-faire, critères de performance) & enrichissement des programmes MEQ |
+| **V10** | `schema_v10_final_sources.sql` | Consolidation finale des métadonnées de provenance et tables de jointures transversales |
+| **V11** | `schema_v11_bigfive_dec.sql` | Modélisation Big Five / OCEAN et liaisons avec les programmes collégiaux (DEC) |
+| **V12** | `schema_v12_pgvector.sql` | Extension `pgvector`, index HNSW vectoriel et tables d'embeddings 384D/1024D |
+| **V13** | `schema_v13_scientific_evidence.sql` | Registre des 12 preuves empiriques et théoriques auditées par PaperQA2 (validité convergente, formules POMP, TAT) |
+| **V14** | `schema_v14_mutation.sql` | Modélisation des mutations de marché et indicateur d'écart de compétences |
+| **V15** | `schema_v15_onet_workstyles.sql` | 21 Work Styles O*NET 30.1 standardisés, contextualisation sectorielle et prévention de l'erreur écologique |
+
+#### 7.3 Runner Automatisé de Migrations (`scripts/run_migrations.py`)
+
+Afin de garantir l'intégrité et la reproductibilité des déploiements de base de données entre les environnements de développement, de test et de production, un orchestrateur de migration dédié est déployé dans [`scripts/run_migrations.py`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/scripts/run_migrations.py) :
+
+- **Table d'Audit `_migrations_history`** :
+  ```sql
+  CREATE TABLE IF NOT EXISTS _migrations_history (
+      id SERIAL PRIMARY KEY,
+      filename TEXT UNIQUE NOT NULL,
+      applied_at TIMESTAMPTZ DEFAULT NOW(),
+      checksum TEXT
+  );
+  ```
+- **Vérification d'Intégrité par Checksums SHA256** : Chaque fichier SQL est haché à l'exécution. Toute altération rétroactive d'une migration déjà appliquée déclenche une alerte de sécurité bloquante.
+- **Mode Détection sans Connexion (`--dry-run`)** : Permet de vérifier la découverte séquentielle des 16 fichiers et la validité syntaxique sans exiger de connexion active à la base de données.
+- **Mode Exécution Transactionnelle (`--apply`)** : Applique séquentiellement les migrations en suspens au sein de transactions atomiques avec gestion des erreurs de rollback.
+
+```bash
+# Vérification des fichiers de migrations et checksums (mode dry-run)
+python scripts/run_migrations.py --dry-run
+
+# Application des migrations vers la base PostgreSQL / Supabase
+python scripts/run_migrations.py --apply
+```
 
 ---
 
@@ -1310,24 +1351,42 @@ params = {
 
 ## 13. Contrôle Qualité et Intégrité des Données
 
-### 13.1 Tests automatisés disponibles
+### 13.1 Tests automatisés et Suites de Validation
 
 ```bash
-# Audit complet du graphe Neo4j
-python trajektia/ckg/audit/verify_ckg_data.py
+# 1. Tests unitaires frontend & psychométrie (Vitest — 17 tests passants)
+npm --prefix apps/frontend test
 
-# Vérification de la synchronisation Neo4j ↔ Supabase
-python trajektia/etl/check_db.py
+# 2. Validation et build statique Astro SSG (910 pages compilées sans erreur)
+npm --prefix apps/frontend run build
 
-# Test et calibration du moteur psychométrique Prediger (ICP)
-python trajektia/analytics/prediger_riasec_calibrator.py
+# 3. Vérification de l'intégrité et des schémas de migrations SQL (16 versions)
+python scripts/run_migrations.py --dry-run
 
-# Test du moteur d'évaluation ergonomique & réadaptation (Fit Score + alertes CNESST)
-python trajektia/analytics/ergonomics.py
+# 4. Contrôle d'importation et modularité de l'API FastAPI (11 routes Pydantic v2)
+python -c "from apps.api.main import app; print('API OK, routes:', len(app.routes))"
 
-# Test du service d'explicabilité et de filtrage taxonomique DPC (25 verbes)
-python trajektia/analytics/dpc_service.py
+# 5. Audit complet du graphe Neo4j
+python packages/ckg/audit/verify_ckg_data.py
+
+# 6. Vérification de la synchronisation Neo4j ↔ Supabase (Le Siphon)
+python packages/data-pipeline/etl/check_db.py
+
+# 7. Test et calibration du moteur psychométrique Prediger (ICP)
+python packages/data-pipeline/analytics/prediger_riasec_calibrator.py
 ```
+
+#### 13.1.1 Pipeline d'Intégration Continue (GitHub Actions CI)
+
+Le dépôt dispose d'un pipeline d'automatisation des tests exécuté à chaque `push` et `pull_request` sur la branche `master` ([`.github/workflows/ci.yml`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/.github/workflows/ci.yml)) :
+- **Job `frontend-tests` (Node 20)** : Installation des dépendances, exécution de la suite Vitest (tests RIASEC & PR-RSM), et compilation complète du site Astro en mode production.
+- **Job `backend-check` (Python 3.10)** : Installation des dépendances légères (`fastembed`, `fastapi`, `pydantic`), contrôle de syntaxe et validation de l'arbre des routes modulaires.
+
+#### 13.1.2 Cartographie de Code Intelligence GitNexus & Impact Analysis
+
+Pour prévenir tout risque de rupture de dépendance lors des refactorisations ou fusions automatiques, le projet intègre **GitNexus** :
+- **Graphe de code** : Indexation permanente de 3 056 nœuds, 4 804 arêtes, 149 clusters fonctionnels et 95 flux d'exécution.
+- **Garantie pré-commit (`detect-changes`)** : Tout commit automatisé ou manuel est soumis à une analyse de graphe préalable (`node .gitnexus/run.cjs detect-changes --scope all --repo .`) confirmant l'absence de régression sur les processus métier critiques.
 
 ### 13.2 Contrôles d'intégrité référentielle
 
@@ -1575,18 +1634,21 @@ Pour alimenter cette infrastructure, une évaluation systématique des familles 
 | `text-embedding-3-large` | OpenAI (Propriétaire) | 3072 | 8 191 tokens | Excellent | Faible (Cloud US, coût élevé 0.13 $/1M) | Non retenu (trop lourd pour HNSW) |
 | `Qwen3-Embedding-4B/8B` | Alibaba (Open-Weight) | 1536 / 4096 | 8 192 tokens | Très bon (Top 1-2 MTEB) | Bonne (Auto-hébergeable mais exige GPU ≥ 16-24 Go) | Alternative recherche avancée |
 | `thenlper/gte-large` | Alibaba NLP (Open-Weight)| 1024 | 512 tokens | Moyen / Fort EN | Bonne (Auto-hébergeable) | Contexte trop court pour fiches CNP |
-| `paraphrase-multilingual-MiniLM` | Sentence-Transformers | 384 | 128 tokens | Bon | Excellente (Ultra-léger) | Maintenu pour dev local sans GPU |
+| `paraphrase-multilingual-MiniLM` | FastEmbed (ONNX Runtime) | 384 | 128-512 tokens | Bon (FR/EN) | Excellente (Ultra-léger ~50 Mo, CPU-optimisé) | ⚡ **Moteur de Requête Rapide & Tests CI** |
 
-#### 3. Décision d'Architecture : Stratégie à Double Niveau (Tiering)
+#### 3. Décision d'Architecture : Stratégie à Double Niveau (Tiering) & Inférence ONNX
 
 - **Tier 1 — Moteur de Production Souverain (Auto-hébergé) : `BAAI/bge-m3`**  
-  Modèle retenu comme pilier central de Trajektia. Il génère des embeddings de dimension 1024, supporte 8 192 tokens (suffisant pour engloutir une fiche métier complète avec ses 40 tâches et compétences), et offre une **architecture tri-modale unique** :
+  Modèle retenu comme pilier central de Trajektia pour l'ingestion de fond. Il génère des embeddings de dimension 1024, supporte 8 192 tokens (suffisant pour engloutir une fiche métier complète avec ses 40 tâches et compétences), et offre une **architecture tri-modale unique** :
   - *Dense retrieval* : Pour la proximité sémantique abstraite.
   - *Sparse lexical matching* : Pour retrouver les codes CNP exacts et les acronymes réglementaires.
   - *Multi-vector (ColBERT-style)* : Pour le re-ranking de précision chirurgicale.  
   Il garantit une étanchéité totale des données privées (Loi 25) lorsqu'il est exécuté dans l'infrastructure souveraine de Trajektia.
 
-- **Tier 2 — Moteur Cloud Partenaire : `Cohere Embed Multilingual (v3/v4)`**  
+- **Tier 2 — Moteur d'Inférence Découplé & Inférence CPU Légère : `FastEmbed ONNX` (384D)**  
+  Afin d'éviter le déploiement de dépendances PyTorch lourdes et de runtimes CUDA volumineux (> 2 Go en conteneur Docker), l'API de recherche en temps réel ([`apps/api/routers/search.py`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/apps/api/routers/search.py)) s'appuie sur la bibliothèque **FastEmbed** (`fastembed>=0.3.0`). Basée sur le runtime C++ ONNX hautement optimisé CPU, elle permet de charger le modèle multilingue `paraphrase-multilingual-MiniLM-L12-v2` avec une empreinte mémoire de seulement **~50 Mo** et une latence inférieure à 15 ms par requête de recherche sémantique.
+
+- **Tier 3 — Moteur Cloud Partenaire : `Cohere Embed Multilingual (v3/v4)`**  
   Fournisseur canadien (Montréal / Toronto) respectant le cadre législatif canadien, mobilisé en alternative managée haute disponibilité pour les traitements d'offres publiques à large échelle ne nécessitant pas d'inférence GPU locale.
 
 ---
@@ -1685,6 +1747,12 @@ L'application des techniques vectorielles aux données professionnelles et perso
 1. **Non-persistance des vecteurs nominatifs** : Aucun vecteur issu d'un CV ou d'une lettre de motivation n'est conservé dans la base publique du CKG. L'appariement est éphémère (*in-memory* ou session chiffrée).
 2. **Auditabilité des scores de similarité** : Conformément aux exigences de transparence algorithmique, chaque score d'affinité ou de dérive est décomposable : l'usager peut afficher les termes et concepts sémantiques qui ont motivé le rapprochement spatial.
 3. **Neutralité et débiaisement** : Les embeddings canoniques du CKG sont générés sur des textes dénués de mentions de genre, d'âge ou de statut socio-économique, neutralisant les biais d'orientation algorithmiques.
+4. **Protocole de Capture des Alertes & Minimisation (Loi 25)** :
+   Le module d'abonnement aux alertes métiers (`POST /api/leads` $\to$ table `leads_newsletter`) applique les principes directeurs de la Loi 25 du Québec :
+   - *Minimisation stricte des données* : Seules l'adresse courriel et le code CNP ciblé sont collectés, à l'exclusion de tout identifiant personnel, nom, numéro de téléphone ou historique de navigation.
+   - *Validation déterministe* : Validation syntaxique rigoureuse via Pydantic v2 (`field_validator`) rejetant automatiquement les adresses malformées avant toute transaction en base.
+   - *Idempotence et intégrité* : Contrainte SQL `UNIQUE(email, cnp_code)` avec insertion non-bloquante (`ON CONFLICT DO NOTHING`), interdisant tout doublon ou saturation intempestive.
+   - *Cloisonnement RLS* : Activation du *Row Level Security* sur PostgreSQL interdisant toute lecture publique de la liste des abonnés, réservée aux rôles de service backend audités.
 
 ---
 
