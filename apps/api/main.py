@@ -49,11 +49,11 @@ load_dotenv()
 
 # ML dependencies (Chargement conditionnel pour éviter un crash si manquant)
 try:
-    from sentence_transformers import SentenceTransformer
+    from fastembed import TextEmbedding
     HAS_ML = True
 except ImportError:
     HAS_ML = False
-    print("⚠️ Attention: sentence-transformers non installé. La recherche sémantique sera désactivée.")
+    print("⚠️ Attention: fastembed non installé. La recherche sémantique sera désactivée.")
 
 # Langfuse Observability
 try:
@@ -89,7 +89,7 @@ async def lifespan(app: FastAPI):
     if HAS_ML:
         print("🧠 Chargement du modèle d'Intelligence Artificielle en mémoire (MiniLM)...")
         # On exécute le chargement dans un thread séparé pour ne pas bloquer la boucle asynchrone
-        app.state.semantic_model = await asyncio.to_thread(SentenceTransformer, 'paraphrase-multilingual-MiniLM-L12-v2')
+        app.state.semantic_model = await asyncio.to_thread(TextEmbedding, model_name='sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
         app.state.has_ml = True
         print("✅ Modèle d'Intelligence Artificielle chargé et prêt")
     else:

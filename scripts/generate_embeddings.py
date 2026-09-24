@@ -10,10 +10,10 @@ from pathlib import Path
 
 # On gère l'import ici pour pouvoir afficher un message d'erreur clair
 try:
-    from sentence_transformers import SentenceTransformer
+    from fastembed import TextEmbedding
 except ImportError:
-    print("Erreur: Le module 'sentence-transformers' n'est pas installé.")
-    print("Veuillez lancer: pip install sentence-transformers torch")
+    print("Erreur: Le module 'fastembed' n'est pas installé.")
+    print("Veuillez lancer: pip install fastembed")
     sys.exit(1)
 
 def load_env_file(filepath: Path):
@@ -40,7 +40,7 @@ def main():
 
     print("Chargement du modèle d'IA local (paraphrase-multilingual-MiniLM-L12-v2)...")
     # Ce modèle est petit, rapide et excellent pour le français/anglais (384 dimensions)
-    model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+    model = TextEmbedding(model_name='sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
 
     print("Connexion à Supabase...")
     try:
@@ -53,7 +53,7 @@ def main():
         cursor.execute("SELECT id, meq_raw_text FROM program_competencies WHERE embedding IS NULL;")
         dec_comps = cursor.fetchall()
         for cid, text in dec_comps:
-            vec = model.encode(text).tolist()
+            vec = list(model.embed([text]))[0].tolist()
             cursor.execute("UPDATE program_competencies SET embedding = %s WHERE id = %s", (vec, cid))
         print(f"   {len(dec_comps)} compétences DEC vectorisées.")
 
@@ -63,7 +63,7 @@ def main():
         cursor.execute("SELECT id, name_fr FROM competencies WHERE name_fr IS NOT NULL AND embedding IS NULL LIMIT 50;")
         onet_comps = cursor.fetchall()
         for cid, text in onet_comps:
-            vec = model.encode(text).tolist()
+            vec = list(model.embed([text]))[0].tolist()
             cursor.execute("UPDATE competencies SET embedding = %s WHERE id = %s", (vec, cid))
         print(f"   {len(onet_comps)} compétences O*NET vectorisées.")
 
@@ -74,7 +74,7 @@ def main():
         occupations = cursor.fetchall()
         for cnp, title, desc in occupations:
             full_text = f"{title}. {desc if desc else ''}"
-            vec = model.encode(full_text).tolist()
+            vec = list(model.embed([full_text]))[0].tolist()
             cursor.execute("UPDATE occupations SET embedding = %s WHERE cnp_code = %s", (vec, cnp))
         print(f"   {len(occupations)} professions vectorisées.")
 

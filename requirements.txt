@@ -17,3 +17,4 @@ openpyxl>=3.1.0
 anthropic>=0.29.0
 gpt-researcher>=0.10.0
 langchain-community>=0.2.0
+fastembed>=0.3.0

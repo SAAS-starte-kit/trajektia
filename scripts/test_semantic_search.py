@@ -9,9 +9,9 @@ from pathlib import Path
 import psycopg2
 
 try:
-    from sentence_transformers import SentenceTransformer
+    from fastembed import TextEmbedding
 except ImportError:
-    print("Erreur: Le module 'sentence-transformers' n'est pas installé.")
+    print("Erreur: Le module 'fastembed' n'est pas installé.")
     sys.exit(1)
 
 def load_env_file(filepath: Path):
@@ -45,10 +45,10 @@ def main():
         sys.exit(1)
 
     print("Chargement du modèle d'IA local...")
-    model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+    model = TextEmbedding(model_name='sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
     
     # Transformation de la requête texte en vecteur
-    query_vector = model.encode(query).tolist()
+    query_vector = list(model.embed([query]))[0].tolist()
 
     try:
         conn = psycopg2.connect(db_url)

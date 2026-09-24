@@ -27,9 +27,9 @@ load_dotenv(_ROOT / ".env")
 SUPABASE_DB_URL = os.getenv("SUPABASE_DB_URL")
 
 try:
-    from sentence_transformers import SentenceTransformer
+    from fastembed import TextEmbedding
 except ImportError:
-    print("Erreur: Le module 'sentence-transformers' n'est pas installé.")
+    print("Erreur: Le module 'fastembed' n'est pas installé.")
     sys.exit(1)
 
 def main():
@@ -38,7 +38,7 @@ def main():
         sys.exit(1)
 
     print("Chargement du modèle d'IA local (paraphrase-multilingual-MiniLM-L12-v2)...")
-    model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+    model = TextEmbedding(model_name='sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2')
 
     print("Connexion à Supabase...")
     try:
@@ -65,7 +65,7 @@ def main():
                 if skills: text_parts.append(", ".join(skills))
                 full_text = " - ".join(text_parts)
                 
-                vec = model.encode(full_text).tolist()
+                vec = list(model.embed([full_text]))[0].tolist()
                 cursor.execute(
                     "UPDATE trajektia_live_job_postings SET embedding = %s WHERE id = %s",
                     (vec, job_id)

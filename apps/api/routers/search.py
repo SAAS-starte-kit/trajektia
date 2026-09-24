@@ -89,7 +89,7 @@ async def semantic_search(
         raise HTTPException(status_code=503, detail="Le moteur d'IA n'est pas disponible sur ce serveur.")
         
     # 1. Encodage vectoriel (dans un thread pool pour éviter de bloquer l'Event Loop)
-    query_vector = await asyncio.to_thread(semantic_model.encode, q)
+    query_vector = await asyncio.to_thread(lambda: list(semantic_model.embed([q]))[0])
     vector_str = str(query_vector.tolist())
     
     # 2. Recherche vectorielle dans Supabase (pgvector <=>)
