@@ -53,15 +53,16 @@ docker cp trajektia_neo4j:/tmp/neo4j_backup_${DATE}.dump \
 gzip "${BACKUP_PATH}/neo4j_backup_${DATE}.dump"
 echo "      ✅ Neo4j : $(du -sh ${BACKUP_PATH}/neo4j_backup_${DATE}.dump.gz | cut -f1)"
 
-# ── 3. Sauvegarde uploads Directus ───────────────────────────
-echo "[3/3] Sauvegarde uploads Directus..."
-docker run --rm \
-    -v trajektia_directus_uploads:/data \
-    -v "${BACKUP_PATH}":/backup \
-    alpine:3.19 \
-    tar czf /backup/directus_uploads_${DATE}.tar.gz -C /data .
-
-echo "      ✅ Directus uploads : $(du -sh ${BACKUP_PATH}/directus_uploads_${DATE}.tar.gz | cut -f1)"
+# ── 3. Sauvegarde uploads Directus (Archivé - actif si volume présent) ────────
+if docker volume inspect trajektia_directus_uploads >/dev/null 2>&1; then
+    echo "[3/3] Sauvegarde uploads Directus..."
+    docker run --rm \
+        -v trajektia_directus_uploads:/data \
+        -v "${BACKUP_PATH}":/backup \
+        alpine:3.19 \
+        tar czf /backup/directus_uploads_${DATE}.tar.gz -C /data .
+    echo "      ✅ Directus uploads : $(du -sh ${BACKUP_PATH}/directus_uploads_${DATE}.tar.gz | cut -f1)"
+fi
 
 # ── 4. Synchronisation vers OVH Object Storage ───────────────
 echo "[4/4] Synchronisation vers OVH Object Storage..."

@@ -27,7 +27,6 @@ volumes:
   neo4j_data:
   neo4j_logs:
   n8n_data:
-  directus_uploads:
   letsencrypt:
 
 # ============================================================
@@ -116,42 +115,6 @@ services:
     networks:
       - trajektia_net
 
-  # ============================================================
-  # DIRECTUS — CMS / Source de Vérité (SSOT)
-  # Hébergé localement — conforme Loi 25
-  # ============================================================
-  directus:
-    image: directus/directus:11.5
-    container_name: trajektia_directus
-    restart: unless-stopped
-    environment:
-      SECRET: ${DIRECTUS_SECRET}
-      ADMIN_EMAIL: ${DIRECTUS_ADMIN_EMAIL}
-      ADMIN_PASSWORD: ${DIRECTUS_ADMIN_PASSWORD}
-      DB_CLIENT: pg
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_DATABASE: postgres
-      DB_USER: postgres
-      DB_PASSWORD: ${POSTGRES_PASSWORD}
-      PUBLIC_URL: https://cms.${DOMAIN}
-      # Cache Redis (optionnel, pour la performance)
-      # CACHE_ENABLED: "true"
-      # CACHE_STORE: redis
-      # REDIS: redis://redis:6379
-    volumes:
-      - directus_uploads:/directus/uploads
-    depends_on:
-      postgres:
-        condition: service_healthy
-    networks:
-      - trajektia_net
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.directus.rule=Host(`cms.${DOMAIN}`)"
-      - "traefik.http.routers.directus.entrypoints=websecure"
-      - "traefik.http.routers.directus.tls.certresolver=letsencrypt"
-      - "traefik.http.services.directus.loadbalancer.server.port=8055"
 
   # ============================================================
   # NEO4J — MemMachine (Graphe de Connaissances de Carrière CKG)
@@ -206,9 +169,6 @@ services:
       # Variables Brilliant Directories (pour les workflows)
       BD_WEBSITE_URL: ${BD_WEBSITE_URL}
       BD_API_KEY: ${BD_API_KEY}
-      # Variables Directus (pour les workflows)
-      DIRECTUS_URL: https://cms.${DOMAIN}
-      DIRECTUS_TOKEN: ${DIRECTUS_TOKEN}
     volumes:
       - n8n_data:/home/node/.n8n
     depends_on:

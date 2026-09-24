@@ -23,7 +23,8 @@ query
 excel_output.txt
 scratch/
 __zip_preview__/
-_archive/
+_archive/*
+!_archive/directus/
 ISEP - Career Knowledge Graph _ Google AI Studio_files/
 __isep_ckgraph__/
 bfi2-descriptives.xlsx

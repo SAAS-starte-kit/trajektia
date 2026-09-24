@@ -52,6 +52,7 @@ mÃ©tiers et formations via la vitrine Astro.
 | **Flotte Jules — Salve 3 (FastEmbed ONNX)** | **FAIT (2026-09-24)** | Allègement conteneur API & suppression de PyTorch / SentenceTransformers | 100% |
 | **Flotte Jules — Salve 4 (GitHub Actions CI)** | **FAIT (2026-09-24)** | Pipeline `.github/workflows/ci.yml` automatisé (lint, tests vitest & build) | 100% |
 | **Sécurisation Directus & Secrets** | **FAIT (2026-09-24)** | Éradication des mots de passe en clair (docker-compose & python), env vars `.env.example`, nettoyage Git | 100% |
+| **Retrait & Archivage Directus (Scénario B)** | **FAIT (2026-09-24)** | Archivage propre dans `_archive/directus/`, retrait du service de docker-compose.prod.yml (-512Mo RAM, 0 surface d'attaque), env vars commentées | 100% |
 
 ---
 
