@@ -64,8 +64,8 @@ const innerHeight = svgHeight - padding.top - padding.bottom;
 const salaries = points.map(p => p.salaire_median).filter(s => s && s > 0);
 const rawMin = salaries.length > 0 ? Math.min(...salaries) : salaireStatCan.annuel_median * 0.85;
 const rawMax = salaries.length > 0 ? Math.max(...salaries) : salaireStatCan.annuel_median * 1.15;
-const salaryMin = Math.max(10000, Math.floor((rawMin * 0.95) / 1000) * 1000);
-const salaryMax = Math.ceil((rawMax * 1.05) / 1000) * 1000;
+const salaryMin = Math.max(10000, Math.floor((rawMin * 0.88) / 1000) * 1000);
+const salaryMax = Math.ceil((rawMax * 1.08) / 1000) * 1000;
 const salaryRange = Math.max(5000, salaryMax - salaryMin);
 
 // Échelle des volumes pour les barres en arrière-plan
@@ -234,7 +234,7 @@ const remoteInfo = getEstimatedRemoteRatio(secteur, feer, latestPoint?.ratio_tel
 
   <!-- ZONE GRAPHIQUE SVG NATIF RESPONSIVE -->
   {hasData ? (
-    <div class="relative bg-slate-50/80 dark:bg-slate-900/70 rounded-2xl p-3 sm:p-4 border border-slate-200/70 dark:border-slate-700/60 overflow-hidden">
+    <div id="trend-chart-container" class="relative bg-slate-50/80 dark:bg-slate-900/70 rounded-2xl p-3 sm:p-4 border border-slate-200/70 dark:border-slate-700/60">
       
       <!-- LÉGENDE DU GRAPHIQUE -->
       <div class="flex flex-wrap items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-2 px-2">
@@ -309,9 +309,7 @@ const remoteInfo = getEstimatedRemoteRatio(secteur, feer, latestPoint?.ratio_tel
               height={Math.max(2, p.barHeight)} 
               rx="3"
               class="fill-indigo-100 dark:fill-indigo-950/60 hover:fill-indigo-300 dark:hover:fill-indigo-800 transition-colors"
-            >
-              <title>{`${p.mois_label} : ${p.volume_offres} offres d'emploi publiées`}</title>
-            </rect>
+            />
           ))}
 
           <!-- AIRE DE DÉGRADÉ -->
@@ -340,27 +338,26 @@ const remoteInfo = getEstimatedRemoteRatio(secteur, feer, latestPoint?.ratio_tel
                     class="fill-indigo-400/30 animate-ping pointer-events-none"
                   />
                 )}
-                <!-- Cercle visuel stable sans scale-loop -->
+                <!-- Cercle visuel stable avec contraste renforcé -->
                 <circle 
                   cx={p.x} 
                   cy={p.y} 
-                  r={isLast ? "5.5" : "4"} 
+                  r={isLast ? "5.5" : "4.5"} 
                   class="fill-white dark:fill-slate-900 stroke-indigo-600 dark:stroke-indigo-400 pointer-events-none transition-all duration-150 trend-visual-dot" 
                   stroke-width={isLast ? "2.5" : "2"}
                 />
-                <!-- Hit-area invisible élargie de 28px pour un survol fluide -->
+                <!-- Hit-area invisible élargie de 32px pour un survol fluide sans title natif intrusif -->
                 <circle 
                   cx={p.x} 
                   cy={p.y} 
-                  r="14" 
+                  r="16" 
                   class="fill-transparent cursor-pointer trend-hit-area"
                   data-mois={p.mois_label}
                   data-salaire={`${p.salaire_median.toLocaleString('fr-CA')} $`}
                   data-horaire={`~${p.salaire_horaire.toFixed(2)} $/h`}
                   data-offres={p.volume_offres}
-                >
-                  <title>{`${p.mois_label}\nSalaire annuel médian : ${p.salaire_median.toLocaleString('fr-CA')} $\nÉquivalent horaire : ~${p.salaire_horaire.toFixed(2)} $/h\nOffres observées : ${p.volume_offres}`}</title>
-                </circle>
+                  aria-label={`${p.mois_label} : ${p.salaire_median.toLocaleString('fr-CA')} $`}
+                />
               </g>
             );
           })}
@@ -379,11 +376,10 @@ const remoteInfo = getEstimatedRemoteRatio(secteur, feer, latestPoint?.ratio_tel
         </svg>
       </div>
 
-      <!-- TOOLTIP FLOTTANT INSTANTANÉ (ANTI-TREMBLEMENT) -->
+      <!-- TOOLTIP FLOTTANT CADRÉ DANS L'ÎLOT (FLIP DYNAMIQUE HAUT/BAS ET CLAMP X) -->
       <div 
         id="trend-chart-tooltip" 
-        class="hidden absolute z-30 pointer-events-none bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md text-white px-3.5 py-2.5 rounded-2xl border border-slate-700/80 shadow-2xl text-xs -translate-x-1/2 -translate-y-full transition-opacity duration-150"
-        style="margin-top: -10px;"
+        class="hidden absolute z-30 pointer-events-none bg-slate-900/95 dark:bg-slate-950/95 backdrop-blur-md text-white px-3.5 py-2.5 rounded-2xl border border-slate-700/80 shadow-2xl text-xs transition-opacity duration-150"
       >
         <div id="tt-mois" class="font-black text-amber-400 text-xs mb-1"></div>
         <div class="space-y-1 text-[11px]">
@@ -417,7 +413,7 @@ const remoteInfo = getEstimatedRemoteRatio(secteur, feer, latestPoint?.ratio_tel
         const ttSalaire = document.getElementById('tt-salaire');
         const ttHoraire = document.getElementById('tt-horaire');
         const ttOffres = document.getElementById('tt-offres');
-        const container = document.getElementById('tendances-marche');
+        const container = document.getElementById('trend-chart-container');
         if (!tooltip || !container) return;
 
         const hitAreas = container.querySelectorAll('.trend-hit-area');
@@ -439,14 +435,29 @@ const remoteInfo = getEstimatedRemoteRatio(secteur, feer, latestPoint?.ratio_tel
             const left = targetRect.left - containerRect.left + (targetRect.width / 2);
             const top = targetRect.top - containerRect.top;
 
-            tooltip.style.left = `${left}px`;
+            // Clamping horizontal pour que l'infobulle ne déborde jamais de l'îlot
+            const tooltipWidth = tooltip.offsetWidth || 190;
+            const halfWidth = tooltipWidth / 2;
+            const paddingX = 14;
+            const clampedLeft = Math.max(halfWidth + paddingX, Math.min(containerRect.width - halfWidth - paddingX, left));
+
+            tooltip.style.left = `${clampedLeft}px`;
             tooltip.style.top = `${top}px`;
+
+            // Flip vertical automatique : si le point est trop proche du haut (< 85px), positionner en-dessous
+            if (top < 85) {
+              tooltip.style.transform = 'translate(-50%, 14px)';
+            } else {
+              tooltip.style.transform = 'translate(-50%, calc(-100% - 12px))';
+            }
+
             tooltip.classList.remove('hidden');
 
             const group = target.closest('.trend-point-group');
             const visual = group?.querySelector('.trend-visual-dot');
             if (visual) {
-              visual.setAttribute('r', '6.5');
+              visual.setAttribute('r', '7');
+              visual.setAttribute('stroke-width', '3');
               visual.classList.add('stroke-amber-400');
             }
           });
@@ -458,7 +469,8 @@ const remoteInfo = getEstimatedRemoteRatio(secteur, feer, latestPoint?.ratio_tel
             const visual = group?.querySelector('.trend-visual-dot');
             if (visual) {
               const isLast = group?.querySelector('.animate-ping') !== null;
-              visual.setAttribute('r', isLast ? '5.5' : '4');
+              visual.setAttribute('r', isLast ? '5.5' : '4.5');
+              visual.setAttribute('stroke-width', isLast ? '2.5' : '2');
               visual.classList.remove('stroke-amber-400');
             }
           });
