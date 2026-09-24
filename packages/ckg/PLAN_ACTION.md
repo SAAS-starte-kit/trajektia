@@ -47,6 +47,10 @@ mÃ©tiers et formations via la vitrine Astro.
 | Career Ladders (CMC) | Demo | 19 liens | Demo seulement |
 | Architecture Monorepo & Workspaces | FAIT (2026-09-22) | Découpage en `apps/frontend`, `apps/api`, `packages/ckg`, `packages/database`, `packages/data-pipeline` | 100% |
 | Déploiement Vercel & Docker | FAIT (2026-09-22) | Dockerfiles isolés par app + Pipeline de déploiement Astro Vercel | 100% |
+| **Flotte Jules — Salve 1 (Vitest & Scoring)** | **FAIT (2026-09-24)** | Découplage scoring pur + Vitest configuré + 8/8 tests passants | 100% |
+| **Flotte Jules — Salve 2 (FastAPI Pydantic v2)** | **EN COURS** | Session Jules `969275576374646941` — modularisation routers/ | En exécution |
+| **Flotte Jules — Salve 3 (FastEmbed ONNX)** | **Planifié (Queue)** | Allègement conteneur API & suppression dépendance PyTorch | Prêt |
+| **Flotte Jules — Salve 4 (GitHub Actions CI)** | **Planifié (Queue)** | Workflow CI `.github/workflows/ci.yml` lint, vitest & build | Prêt |
 
 ---
 
