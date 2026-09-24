@@ -17,12 +17,12 @@ Ce workflow permet de qualifier et d'expédier instantanément une tâche ad-hoc
 
 ---
 
-## Matrice de Qualification Rapide des Agents (Règle d'or : 100 sessions/jour Jules)
+## Matrice de Qualification Rapide des Agents (Règle d'or : 100 sessions/jour Jules Full-Stack)
 
 | Domaine / Nature de la tâche | Agent / Outil cible | Mécanisme d'exécution direct |
 | :--- | :--- | :--- |
-| **Suites de tests (Vitest, Pytest, Playwright), refactorisation modulaire backend, typage Pydantic, tuyauterie ETL, migrations SQL** | **Google Jules (Priorité 1 Asynchrone)** | Inscription directe via l'API REST `https://jules.googleapis.com/v1alpha/sessions` avec format `jules-skills` (file boundaries, assertions chiffrées). |
-| **Prototypage UI, nouveaux concepts d'écrans, Design System textuel** | **Google Stitch (MCP)** | Outils `mcp_StitchMCP_*` (`generate_screen_from_text`, `edit_screens`, `create_project`). |
+| **Suites de tests, refactorisation backend, ETL, schémas Supabase & code UI basé sur Stitch** | **Google Jules (Priorité 1 Asynchrone Full-Stack)** | Inscription directe via l'API REST Jules (`https://jules.googleapis.com/v1alpha/sessions`). Jules dispose de **Stitch MCP** (prototypage UI direct) et **Supabase MCP** (inspection live, types TS, SQL). |
+| **Idéation visuelle immédiate dans l'IDE, génération interactive de maquettes** | **Google Stitch (MCP dans Antigravity)** | Outils `mcp_StitchMCP_*` (`generate_screen_from_text`, `edit_screens`, `create_project`). |
 | **Alignement maquettes Figma existantes, extraction de tokens/variables** | **Figma (MCP)** | Inspection et extraction directe des tokens Auto Layout / CSS. |
 | **Intégration Astro/React interactive, refontes structurelles du site, coordination multi-fichiers, revue de PR** | **Antigravity (IDE)** | Prise en charge directe dans l'IDE avec le modèle adéquat (voir ci-dessous). |
 | **Refactorisation chirurgicale locale ultra-rapide (Python pur, algorithmique immédiate)** | **Claude Code Router (CCR)** | Transmission directe via binaire `ccr` ou API locale `http://localhost:3458`. |
@@ -49,6 +49,7 @@ Ce workflow permet de qualifier et d'expédier instantanément une tâche ad-hoc
 ### 3. Exécution Directe (Zéro Intermédiaire)
 - **Si la tâche est pour Google Jules** :
   - Formater le prompt selon les standards `jules-skills` (Objectif atomique, File boundaries stricts, Assertions chiffrées déterministes, Commandes de tests exactes, Format de PR).
+  - *Intégration MCP* : Si la mission nécessite de l'UI ou des données, instruire expressément Jules d'utiliser ses outils **Stitch MCP** (`generate_screen_from_text`, `get_screen`) ou **Supabase MCP** (`list_tables`, `generate_typescript_types`, `execute_sql`).
   - Envoyer directement la requête à l'API REST `https://jules.googleapis.com/v1alpha/sessions` avec la clé API et la source `sources/github/SAAS-starte-kit/trajektia`.
   - Retourner l'URL de la session créée pour suivi.
 - **Si l'outil ou l'agent dispose d'un connecteur MCP ou d'une CLI locale (Stitch, Hermes, CCR, Neo4j, Supabase)** :

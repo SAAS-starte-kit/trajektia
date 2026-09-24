@@ -127,21 +127,21 @@ Si la tâche constitue un élément à suivre ou planifier :
 
 ### Étape 5 : Sélection de l'Agent et Dispatching (Zéro Intermédiaire)
 
-Déterminer l'agent le plus qualifié selon la matrice Trajektia révisée (Quota Jules : 100 sessions/jour) :
+Déterminer l'agent le plus qualifié selon la matrice Trajektia révisée (Quota Jules : 100 sessions/jour — Full-Stack Outillé) :
 
 | Domaine / Nature de la mission | Agent Cible | Mode d'exécution direct |
 | :--- | :--- | :--- |
-| **Tests automatisés (Vitest, Pytest, Playwright), refactorisations modulaires backend, typage Pydantic, tuyauterie ETL, migrations SQL** | **Google Jules (Priorité 1 Asynchrone)** | Inscription directe via l'API REST `https://jules.googleapis.com/v1alpha/sessions` avec format `jules-skills` (file boundaries, assertions chiffrées). |
-| **Idéation UI, concepts d'écrans, Design System textuel** | **Google Stitch (MCP)** | Outils `mcp_StitchMCP_*` |
+| **Tests automatisés, refactorisations backend, tuyauterie ETL, migrations Supabase, et code UI basé sur maquettes Stitch** | **Google Jules (Priorité 1 Asynchrone Full-Stack)** | Inscription directe via l'API REST `https://jules.googleapis.com/v1alpha/sessions` avec format `jules-skills` et mobilisation de ses outils MCP **Stitch** et **Supabase**. |
+| **Idéation UI, concepts d'écrans dans l'IDE, Design System textuel** | **Google Stitch (MCP dans Antigravity)** | Outils `mcp_StitchMCP_*` |
 | **Inspection pixel-perfect Figma, tokens CSS, Auto Layout** | **Figma (MCP)** | Inspection et extraction de variables |
-| **Intégration Astro/React interactive, refontes frontend, supervision, revue de PR** | **Antigravity (IDE)** | Prise en charge directe avec le modèle adéquat (Gemini 3.8 Flash ou Pro/Sonnet) |
+| **Coordination multi-fichiers, intégration interactive fine, architecture globale, revue de PR** | **Antigravity (IDE)** | Prise en charge directe avec le modèle adéquat (Gemini 3.8 Flash ou Pro/Sonnet) |
 | **Refactorisation chirurgicale locale ultra-rapide (Python pur, algorithmique immédiate)** | **Claude Code Router (CCR)** | Transmission directe via CLI `ccr` ou API `http://localhost:3458` |
 | **Analyse documentaire massive, crosswalks, batch Flash économique** | **Gemini CLI** | Commande CLI avec grand contexte |
 | **Notifications Telegram, communication asynchrone** | **Hermes Agent (MCP)** | Outil `mcp_hermes_messages_send` |
 
 #### Exécution du Dispatch :
 - **Mode Zéro Intermédiaire** :
-  - Si la tâche est attribuée à **Google Jules** : formater le prompt selon les standards `jules-skills` et poster immédiatement la session via l'API REST Jules (`https://jules.googleapis.com/v1alpha/sessions`).
+  - Si la tâche est attribuée à **Google Jules** : formater le prompt selon les standards `jules-skills` (en instruisant l'usage de **Stitch MCP** ou **Supabase MCP** si pertinent) et poster immédiatement la session via l'API REST Jules (`https://jules.googleapis.com/v1alpha/sessions`).
   - Si l'utilisateur a spécifié `--auto` ou demandé une exécution directe : déclencher l'action immédiatement sans attendre de confirmation textuelle.
 - **Rapport de Triage** : Si la tâche est en attente d'arbitrage, présenter une synthèse structurée :
   1. Résumé de l'analyse & Risque GitNexus.
