@@ -21,29 +21,23 @@ import type {
 
 import {
   ALL_QUESTIONS,
-  BFI_2_NORMS,
 } from "../data/questions-psychometriques";
+
+import {
+  calculateBigFiveScores,
+  calculateRiasecScores,
+} from "./scoring";
+
+import type {
+  BigFiveScores,
+  RIASECScores,
+} from "./scoring";
+
+export type { BigFiveScores, RIASECScores };
 
 // ────────────────────────────────────────────────────────────
 // TYPES
 // ────────────────────────────────────────────────────────────
-
-export interface BigFiveScores {
-  Ouverture: number;
-  Consciencieux: number;
-  Extraversion: number;
-  Agreabilite: number;
-  Stabilite_Emotionnelle: number;
-}
-
-export interface RIASECScores {
-  Realiste: number;
-  Investigateur: number;
-  Artistique: number;
-  Social: number;
-  Entreprenant: number;
-  Conventionnel: number;
-}
 
 export interface PsychometricResults {
   bigFive: BigFiveScores;
@@ -82,135 +76,15 @@ export type RawResponses = Record<string, number>;
  * Calcule les scores psychométriques à partir des réponses brutes.
  */
 export function calculateScores(responses: RawResponses): PsychometricResults {
-  // Initialiser les accumulateurs
-  const bigFiveRaw: Record<BigFiveDimension, number> = {
-    Ouverture: 0,
-    Consciencieux: 0,
-    Extraversion: 0,
-    Agreabilite: 0,
-    Stabilite_Emotionnelle: 0,
-  };
-
-  const riasecRaw: Record<RIASECDimension, number> = {
-    Realiste: 0,
-    Investigateur: 0,
-    Artistique: 0,
-    Social: 0,
-    Entreprenant: 0,
-    Conventionnel: 0,
-  };
-  
-  const bigFiveCounts: Record<BigFiveDimension, number> = {
-    Ouverture: 0,
-    Consciencieux: 0,
-    Extraversion: 0,
-    Agreabilite: 0,
-    Stabilite_Emotionnelle: 0,
-  };
-
-  const riasecCounts: Record<RIASECDimension, number> = {
-    Realiste: 0,
-    Investigateur: 0,
-    Artistique: 0,
-    Social: 0,
-    Entreprenant: 0,
-    Conventionnel: 0,
-  };
+  const { normalized: bigFive, percentiles: bigFivePercentiles } = calculateBigFiveScores(responses);
+  const { normalized: riasec, codeHolland, traitsHolland } = calculateRiasecScores(responses);
 
   let completedQuestions = 0;
-
-  // Traiter chaque question
   for (const question of ALL_QUESTIONS) {
-    const rawScore = responses[question.id];
-    if (rawScore === undefined || rawScore === null) continue;
-
-    completedQuestions++;
-
-    // Appliquer l'inversion psychométrique si nécessaire
-    const effectiveScore =
-      question.type_calcul === "Inverse" ? 6 - rawScore : rawScore;
-
-    // Ajouter au bon accumulateur
-    if (question.modele === "BigFive") {
-      bigFiveRaw[question.dimension as BigFiveDimension] += effectiveScore;
-      bigFiveCounts[question.dimension as BigFiveDimension]++;
-    } else {
-      riasecRaw[question.dimension as RIASECDimension] += effectiveScore;
-      riasecCounts[question.dimension as RIASECDimension]++;
+    if (responses[question.id] !== undefined && responses[question.id] !== null) {
+      completedQuestions++;
     }
   }
-
-  // Normaliser sur 0-100 en fonction du nombre d'items répondus
-  const normalize = (raw: number, itemCount: number): number => {
-    if (itemCount === 0) return 0;
-    const min = itemCount * 1; // Tous les items à 1
-    const max = itemCount * 5; // Tous les items à 5
-    const percentage = Math.round(((raw - min) / (max - min)) * 100);
-    return Math.min(100, Math.max(0, percentage));
-  };
-
-  // Calcul du Percentile Normatif basé sur les statistiques du BFI-2
-  const calculatePercentile = (raw: number, itemCount: number, dimension: BigFiveDimension): number => {
-    if (itemCount === 0) return 0;
-    const userMean = raw / itemCount;
-    const norm = BFI_2_NORMS[dimension];
-    const zScore = (userMean - norm.mean) / norm.sd;
-    
-    // Approximation logistique de la loi normale (CDF)
-    const percentile = 1 / (1 + Math.exp(-1.702 * zScore));
-    return Math.max(1, Math.min(99, Math.round(percentile * 100)));
-  };
-
-  const bigFive: BigFiveScores = {
-    Ouverture: normalize(bigFiveRaw.Ouverture, bigFiveCounts.Ouverture),
-    Consciencieux: normalize(bigFiveRaw.Consciencieux, bigFiveCounts.Consciencieux),
-    Extraversion: normalize(bigFiveRaw.Extraversion, bigFiveCounts.Extraversion),
-    Agreabilite: normalize(bigFiveRaw.Agreabilite, bigFiveCounts.Agreabilite),
-    Stabilite_Emotionnelle: normalize(bigFiveRaw.Stabilite_Emotionnelle, bigFiveCounts.Stabilite_Emotionnelle),
-  };
-
-  const bigFivePercentiles: BigFiveScores = {
-    Ouverture: calculatePercentile(bigFiveRaw.Ouverture, bigFiveCounts.Ouverture, "Ouverture"),
-    Consciencieux: calculatePercentile(bigFiveRaw.Consciencieux, bigFiveCounts.Consciencieux, "Consciencieux"),
-    Extraversion: calculatePercentile(bigFiveRaw.Extraversion, bigFiveCounts.Extraversion, "Extraversion"),
-    Agreabilite: calculatePercentile(bigFiveRaw.Agreabilite, bigFiveCounts.Agreabilite, "Agreabilite"),
-    Stabilite_Emotionnelle: calculatePercentile(bigFiveRaw.Stabilite_Emotionnelle, bigFiveCounts.Stabilite_Emotionnelle, "Stabilite_Emotionnelle"),
-  };
-
-  const riasec: RIASECScores = {
-    Realiste: normalize(riasecRaw.Realiste, riasecCounts.Realiste),
-    Investigateur: normalize(riasecRaw.Investigateur, riasecCounts.Investigateur),
-    Artistique: normalize(riasecRaw.Artistique, riasecCounts.Artistique),
-    Social: normalize(riasecRaw.Social, riasecCounts.Social),
-    Entreprenant: normalize(riasecRaw.Entreprenant, riasecCounts.Entreprenant),
-    Conventionnel: normalize(riasecRaw.Conventionnel, riasecCounts.Conventionnel),
-  };
-
-  // Calculer le code Holland (3 lettres dominantes)
-  const riasecEntries: [RIASECDimension, number][] = Object.entries(riasec) as any;
-  riasecEntries.sort((a, b) => b[1] - a[1]);
-
-  const letterMap: Record<RIASECDimension, string> = {
-    Realiste: "R",
-    Investigateur: "I",
-    Artistique: "A",
-    Social: "S",
-    Entreprenant: "E",
-    Conventionnel: "C",
-  };
-
-  const labelMap: Record<RIASECDimension, string> = {
-    Realiste: "Réaliste",
-    Investigateur: "Investigateur",
-    Artistique: "Artistique",
-    Social: "Social",
-    Entreprenant: "Entreprenant",
-    Conventionnel: "Conventionnel",
-  };
-
-  const top3 = riasecEntries.slice(0, 3);
-  const codeHolland = top3.map(([dim]) => letterMap[dim]).join("");
-  const traitsHolland = top3.map(([dim]) => labelMap[dim]);
 
   return {
     bigFive,
