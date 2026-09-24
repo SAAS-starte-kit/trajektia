@@ -227,6 +227,86 @@ Implement a thorough Vitest unit test suite covering the Trait Activation Theory
 ## Validation Criteria
 - `npm --prefix apps/frontend test` passes 100% of tests (both `scoring.test.ts` and `pr-rsm-engine.test.ts`).
 """
+    },
+    {
+        "id": "i7-1-ckan-regional-parser",
+        "title": "[CKG / ETL] Parseur UTF-16LE multi-mois CKAN pour extraire la granularité ville/région (I7.1)",
+        "test_command": "python scripts/test_ingest_ckan_regional.py",
+        "prompt": """# TASK: Build Resilient UTF-16LE / UTF-8 Multi-Month CKAN Regional Job Parser (I7.1)
+
+## Context & Architecture
+Repository: SAAS-starte-kit/trajektia (Branch: master)
+Stack: Python 3.10+, standard libraries (csv, io, json, re, urllib, argparse, unittest)
+Domain: Career Knowledge Graph (CKG) & Open Canada CKAN Job Bank Data (Initiative I7)
+Documentation Reference: `packages/ckg/FEASIBILITY_CKAN_VECTORIZATION_I7.md` and `packages/ckg/PLAN_ACTION.md`
+
+## Problem & Technical Need
+Open Canada's Job Bank monthly dumps (`open.canada.ca` dataset `ea639e28-c0fc-48bf-b5dd-b8899bd43072`) consist of large TSV files that frequently switch encodings between UTF-16LE with BOM (`\\xff\\xfe`), standard UTF-16, and UTF-8. Previous scripts processed these files with brittle `errors='ignore'` workarounds which silently corrupted city and accent names in Quebec (e.g. Montréal, Trois-Rivières).
+We need a dedicated, resilient regional parser script `scripts/ingest_ckan_regional_profiles.py` and its accompanying unit test suite `scripts/test_ingest_ckan_regional.py`.
+
+## File Boundaries (STRICT)
+You may ONLY create or modify:
+  - `scripts/ingest_ckan_regional_profiles.py` (New file)
+  - `scripts/test_ingest_ckan_regional.py` (New file)
+Do NOT modify, rename, or delete any other files.
+
+## Detailed Requirements
+
+1. `scripts/ingest_ckan_regional_profiles.py`:
+   - Encodings decoder function `decode_ckan_bytes(raw_bytes: bytes) -> str`:
+     * If starts with `b'\\xff\\xfe'`, decode with `utf-16le`.
+     * If starts with `b'\\xfe\\xff'`, decode with `utf-16be`.
+     * If starts with `b'\\xef\\xbb\\xbf'`, decode with `utf-8-sig`.
+     * Try `utf-8` with fallback to `cp1252` / `latin-1`.
+     * Clean null characters (`\\x00`).
+   - TSV reader handling:
+     * Support tab delimiter `\\t` (and fallback `,` if standard CSV).
+     * Locate column headers dynamically (case-insensitive & bilingual):
+       - CNP: `Code CNP 2021`, `Code CNP21`, `2021 NOC Code`, `NOC 2021`
+       - Province: `Provinces/Territoires`, `Province/Territory`, `Province`
+       - Ville: `Ville`, `City`
+       - Région: `Région économique`, `Economic Region`
+       - Salaire par / Wage per: `Salaire par`, `Wage per`
+       - Salaire min / Wage min: `Salaire Minimum`, `Wage Minimum`, `Low Wage`
+       - Salaire max / Wage max: `Salaire Maximum`, `Wage Maximum`, `High Wage`
+       - Virtuel / Remote: `Conditions d'emploi Virtuel`, `Virtual work`
+   - Quebec filtering:
+     * Filter records where province is 'QC', 'Québec', or 'Quebec'.
+   - Normalization:
+     * 5-digit CNP: if 4 digits, append '0' (e.g. '2123' -> '21230').
+     * Salary annualized:
+       - 'heure'/'hour': wage * 1820
+       - 'semaine'/'week': wage * 52
+       - 'mois'/'month': wage * 12
+       - 'jour'/'day': wage * 260
+       - 'ann'/'year': wage
+       - Filter out outliers outside [18000, 350000].
+     * Remote flag: `True` if value in ('oui', 'yes', 'true', '1').
+   - Aggregation:
+     * Group by `(cnp_code, province, region_economique, ville, snapshot_date)`:
+       - postings_count
+       - median_salary, min_salary, max_salary
+       - remote_count, remote_ratio_pct
+   - CLI Interface (using `argparse`):
+     * `--dry-run`: Runs without database insertion, outputs summary statistics to stdout.
+     * `--limit-months N`: Limits processing to N monthly datasets (default: all or 1).
+     * `--input-file PATH`: Process a local file directly (for testing/offline execution).
+     * `--output-json PATH`: Save aggregated regional JSON output to specified path.
+     * When imported as a module (`import scripts.ingest_ckan_regional_profiles`), do not auto-run.
+
+2. `scripts/test_ingest_ckan_regional.py`:
+   - Standalone unit test suite using `unittest`.
+   - Tests:
+     * `test_decode_utf16le_with_bom`: Verifies UTF-16LE bytes with BOM decode properly with accents (e.g., "Montréal").
+     * `test_decode_utf8`: Verifies UTF-8 decoding.
+     * `test_salary_annualization`: Tests hourly, monthly, and yearly conversion logic.
+     * `test_quebec_filtering_and_aggregation`: Passes a mock TSV (with QC and non-QC rows) and verifies only QC records are aggregated, CNP is 5-digit normalized, and counts are accurate.
+   - Must run and exit with code 0 on `python scripts/test_ingest_ckan_regional.py`.
+
+## Acceptance Criteria
+- `python scripts/test_ingest_ckan_regional.py` runs and outputs OK (all tests pass).
+- `python scripts/ingest_ckan_regional_profiles.py --help` prints CLI documentation and exits with code 0.
+"""
     }
 ]
 
