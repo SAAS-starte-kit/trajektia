@@ -79,9 +79,16 @@ $session = Invoke-RestMethod -Uri "https://jules.googleapis.com/v1alpha/sessions
 
 ---
 
-### 4. Suivi et Fusion Automatique des Résultats
-- Surveiller le statut de la session (`state: IN_PROGRESS` -> `COMPLETED`).
-- Dès que Jules ouvre sa Pull Request sur GitHub :
-  1. Inspecter le diff et les rapports de test via `github-mcp-server` ou git.
-  2. Vérifier l'absence d'impact indésirable via GitNexus (`gitnexus impact`).
-  3. Fusionner la PR dans `master` et mettre à jour `packages/ckg/PLAN_ACTION.md`.
+### 4. Suivi, Boucle Autonome (/goal) et Fusion Continue
+- **Mode Ponctuel** :
+  - Surveiller le statut de la session (`state: IN_PROGRESS` -> `COMPLETED`).
+  - Vérifier l'impact via GitNexus (`gitnexus impact` ou `detect-changes`).
+  - Appliquer le patch et fusionner sur `origin/master`.
+- **Mode Boucle Continue / Autonomous Goal Runner (`python scripts/jules_orchestrator.py --loop`)** :
+  - L'orchestrateur prend en charge l'ensemble de la file d'attente séquencée (`TASKS_QUEUE`).
+  - Crée chaque session Jules, effectue un checkup périodique toutes les 25-30s.
+  - Alerte la console (bip terminal `\a`) et met à jour `.fleet/orchestrator_state.json` dès qu'une tâche est terminée.
+  - Valide automatiquement avec la commande de test spécifiée (Vitest, Python, build).
+  - Passe un check de graphe GitNexus, commite et pousse sur `origin/master`.
+  - Enchaîne immédiatement sur la tâche suivante jusqu'à complétion totale du backlog.
+

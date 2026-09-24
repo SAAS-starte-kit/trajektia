@@ -70,120 +70,162 @@ def get_api_key() -> str:
 
 
 # ==============================================================================
-# BACKLOG STRUCTURÉ DES TÂCHES (SALVES JULES)
+# BACKLOG STRUCTURÉ DES TÂCHES (SALVES JULES VAGUE 2)
 # ==============================================================================
 
 TASKS_QUEUE = [
     {
-        "id": "salve-2-fastapi-modular-pydantic",
-        "title": "[Backend] Modularisation FastAPI dans routers/ et typage Pydantic v2",
-        "test_command": "python -c \"from apps.api.main import app; print('FastAPI loaded successfully:', len(app.routes))\"",
-        "prompt": """# TASK: Modularize FastAPI Stitcher & Introduce Pydantic v2 Schemas
+        "id": "salve-5-leads-persistence-loi25",
+        "title": "[Backend] Persistance Supabase leads_newsletter et validation Pydantic Loi 25",
+        "test_command": "python -c \"from apps.api.main import app; from apps.api.schemas import LeadCreateRequest; r = LeadCreateRequest(email='audit@trajektia.ca', cnp='21211'); print('Schema Lead OK:', r.email, r.cnp)\"",
+        "prompt": """# TASK: Implement Supabase Lead Newsletter Persistence with Loi 25 Privacy Compliance
 
 ## Context & Architecture
 Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: FastAPI 0.111 + Pydantic v2 (in apps/api/)
-Target Directory: apps/api/
+Stack: FastAPI 0.111, Pydantic v2, asyncpg / Supabase PostgreSQL
+Target Files:
+  - `apps/api/schemas.py`
+  - `apps/api/routers/leads.py`
 
 ## Objective
-Extract all endpoints currently located in the monolithic `apps/api/main.py` into dedicated modular routers inside `apps/api/routers/`, define clean, typed Pydantic v2 request/response schemas in `apps/api/schemas.py`, and mount them back cleanly onto the main FastAPI application.
+Implement actual database persistence for job alert leads captured on occupation pages (`POST /api/leads`), storing them safely in `leads_newsletter` table in accordance with Quebec's Law 25 (anonymized/minimalist data, strict email validation, duplicate idempotence).
 
 ## File Boundaries (STRICT)
-You may ONLY create and modify files within `apps/api/`. Do not modify frontend or packages files.
-- Files to create:
-  * `apps/api/schemas.py` (Pydantic v2 BaseModel classes for all endpoints)
-  * `apps/api/routers/__init__.py`
-  * `apps/api/routers/occupations.py` (GET /api/metier/{cnp_code})
-  * `apps/api/routers/search.py` (GET /api/search and GET /api/semantic_search)
-  * `apps/api/routers/competencies.py` (GET /api/competences/{cnp_code})
-  * `apps/api/routers/riasec.py` (GET /api/riasec/{cnp_code})
-  * `apps/api/routers/leads.py` (POST /api/leads)
-- Files to modify:
-  * `apps/api/main.py` (Refactored to initialize lifespan, pool, CORS, and include the routers)
+You may ONLY modify:
+  - `apps/api/schemas.py`
+  - `apps/api/routers/leads.py`
+Do NOT modify any other files.
 
 ## Detailed Requirements
 1. In `apps/api/schemas.py`:
-   - Create Pydantic v2 models:
-     * `OccupationClassification`, `OccupationSalary`, `OccupationJobTitle`, `OccupationRequirement`, `OccupationOasisDescriptor`, `OccupationFullProfileResponse`
-     * `SearchResultItem`, `SearchResponse`
-     * `SemanticSearchResultItem`, `SemanticSearchResponse`
-     * `OasisDescriptorItem`, `CompetencesResponse`
-     * `RiasecScores`, `RiasecProfileResponse`
-     * `LeadCreateRequest`, `LeadResponse`
-2. In `apps/api/routers/`:
-   - Use `APIRouter()` in each router file.
-   - Access the database pool cleanly via `request.app.state.db_pool` or a shared dependency/context.
-   - Maintain full backward compatibility for all existing route URLs, parameters, and query strings.
-3. In `apps/api/main.py`:
-   - Keep the `lifespan` handler managing the `asyncpg.Pool` and `SentenceTransformer` (or ML model).
-   - Mount each router using `app.include_router(router)`.
-   - Keep root health check `GET /`.
+   - Update `LeadCreateRequest`:
+     ```python
+     import re
+     from pydantic import BaseModel, Field, field_validator
+     from typing import Optional
+
+     class LeadCreateRequest(BaseModel):
+         email: str = Field(..., description="Courriel valide du candidat")
+         cnp: Optional[str] = Field(None, max_length=10, description="Code CNP associé à l'alerte")
+
+         @field_validator("email")
+         @classmethod
+         def validate_email_format(cls, v: str) -> str:
+             v = v.strip().lower()
+             pattern = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+             if not re.match(pattern, v):
+                 raise ValueError("Format de courriel invalide")
+             return v
+     ```
+   - Update `LeadResponse`:
+     ```python
+     class LeadResponse(BaseModel):
+         status: str
+         message: str
+         lead_id: Optional[int] = None
+     ```
+
+2. In `apps/api/routers/leads.py`:
+   - Inject the database pool from `request.app.state.db_pool` (asyncpg.Pool).
+   - If `db_pool` is present:
+     - Execute the query:
+       ```sql
+       INSERT INTO leads_newsletter (email, cnp_code, source_url)
+       VALUES ($1, $2, $3)
+       ON CONFLICT (email, cnp_code) DO NOTHING
+       RETURNING id;
+       ```
+     - Return status="success" and appropriate message.
+   - If `db_pool` is None (local test or dev offline mode):
+     - Return status="success", message="Lead enregistré (mode simulation)".
+   - Handle exceptions gracefully with status="error" and HTTP 400 or 500.
 
 ## Validation Criteria
-- Running `python -c "from apps.api.main import app; print(len(app.routes))"` must succeed with zero import errors.
-- Ensure all route paths `/api/metier/{cnp_code}`, `/api/search`, `/api/semantic_search`, `/api/competences/{cnp_code}`, `/api/riasec/{cnp_code}`, and `/api/leads` are preserved.
+- `python -c "from apps.api.schemas import LeadCreateRequest; r = LeadCreateRequest(email='candidat@quebec.ca', cnp='21211'); print('OK:', r.email)"` must succeed.
+- Invalid emails (e.g. `invalid-email`) must raise Pydantic ValidationError.
+- `python -c "from apps.api.main import app; print('Routes count:', len(app.routes))"` must succeed with 0 import errors.
 """
     },
     {
-        "id": "salve-3-fastembed-onnx-optimization",
-        "title": "[Performance] Remplacement de SentenceTransformers par FastEmbed ONNX",
-        "test_command": "python -c \"import fastembed; print('FastEmbed installed')\"",
-        "prompt": """# TASK: Replace heavy SentenceTransformers with lightweight FastEmbed ONNX in FastAPI
+        "id": "salve-6-migrations-consolidator-sql",
+        "title": "[Database] Runner automatisé et vérificateur de migrations SQL",
+        "test_command": "python scripts/run_migrations.py --dry-run",
+        "prompt": """# TASK: Create Automated SQL Migrations Runner and Schema Verifier
 
 ## Context & Architecture
 Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: FastAPI + Python (in apps/api/)
-Target: apps/api/main.py (or apps/api/routers/search.py) and apps/api/requirements.txt
+Stack: Python, PostgreSQL / asyncpg / psycopg2
+Directory: `packages/database/` contains SQL files:
+  - `schema.sql`
+  - `schema_v2.sql`
+  - `schema_v3.sql`
+  - ...
+  - `schema_v9_program_devis.sql`
+  - `schema_v9_leads.sql`
 
 ## Objective
-SentenceTransformers pulls in PyTorch and CUDA runtime dependencies (>2GB). Replace it with Qdrant's `fastembed` library using ONNX runtime (~50MB) for CPU-optimized embedding generation of `paraphrase-multilingual-MiniLM-L12-v2`.
+Create a standalone Python migration script `scripts/run_migrations.py` that discovers all `.sql` schema files in `packages/database/`, validates them, tracks applied migrations in a `_migrations_history` table, and supports `--dry-run` and `--apply` modes.
 
-## File Boundaries
-- Modify: `apps/api/requirements.txt`, `apps/api/routers/search.py` (or `apps/api/main.py`), `requirements.txt`, `Dockerfile.api`.
+## File Boundaries (STRICT)
+- Create: `scripts/run_migrations.py`
+- Do NOT touch frontend or API files.
 
 ## Detailed Requirements
-1. Add `fastembed>=0.3.0` to `apps/api/requirements.txt` and `requirements.txt`.
-2. Remove `sentence-transformers` dependency from requirements files.
-3. In the semantic search logic, initialize FastEmbed:
-   ```python
-   from fastembed import TextEmbedding
-   # Initialize model (downloads onnx model if needed)
-   embedding_model = TextEmbedding(model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
-   ```
-4. Generate the query embedding using `list(embedding_model.embed([query]))[0]` and format as vector string for pgvector `<=>`.
-5. Ensure graceful fallback if fastembed is not installed.
+1. Script `scripts/run_migrations.py`:
+   - Parse CLI arguments:
+     * `--dry-run`: List all discovered migration files in alphabetical/chronological order without executing.
+     * `--apply`: Connect to database (via `DATABASE_URL` or `SUPABASE_DB_URL` from environment or `.env`) and execute pending migrations sequentially in transactions.
+   - Table `_migrations_history`:
+     ```sql
+     CREATE TABLE IF NOT EXISTS _migrations_history (
+         id SERIAL PRIMARY KEY,
+         filename TEXT UNIQUE NOT NULL,
+         applied_at TIMESTAMPTZ DEFAULT NOW(),
+         checksum TEXT
+     );
+     ```
+   - Calculate SHA256 checksum for each SQL file to detect tampering.
+   - Support running offline in `--dry-run` mode without requiring a live PostgreSQL connection.
 
 ## Validation Criteria
-- Python script testing vector generation returns 384 dimensions matching pgvector expectations.
+- Running `python scripts/run_migrations.py --dry-run` outputs the ordered list of schema files (at least 5 files discovered) and exits with returncode 0.
 """
     },
     {
-        "id": "salve-4-github-actions-ci",
-        "title": "[CI/CD] Pipeline GitHub Actions pour tests et build automatique",
-        "test_command": "git status",
-        "prompt": """# TASK: Create GitHub Actions CI Workflow for Automated Testing and Build
+        "id": "salve-7-frontend-vitest-pr-rsm",
+        "title": "[Vitest] Suite de tests unitaires pour le moteur psychométrique PR-RSM",
+        "test_command": "npm --prefix apps/frontend test",
+        "prompt": """# TASK: Create Vitest Unit Test Suite for PR-RSM Psychometric Engine
 
 ## Context & Architecture
 Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: GitHub Actions, Astro, React, Vitest, FastAPI, Python
+Stack: TypeScript, Vitest, Astro (in apps/frontend/)
+Target File under test: `apps/frontend/src/utils/pr-rsm-engine.ts`
+Test File to create: `apps/frontend/src/utils/__tests__/pr-rsm-engine.test.ts`
 
 ## Objective
-Create `.github/workflows/ci.yml` that automatically runs linter, test suites, and frontend build on every pull request and push to master.
+Implement a thorough Vitest unit test suite covering the Trait Activation Theory (TAT) and Polynomial Regression Response Surface Methodology (PR-RSM) calculations exported by `apps/frontend/src/utils/pr-rsm-engine.ts`.
 
-## File Boundaries
-- Create: `.github/workflows/ci.yml`
+## File Boundaries (STRICT)
+- Create: `apps/frontend/src/utils/__tests__/pr-rsm-engine.test.ts`
+- Do NOT modify `apps/frontend/src/utils/pr-rsm-engine.ts` or any other source files.
 
-## Requirements
-1. Trigger on: `push: branches: [master]`, `pull_request: branches: [master]`.
-2. Job 1: `frontend-tests`:
-   - Node 20
-   - Run `npm --prefix apps/frontend install`
-   - Run `npm --prefix apps/frontend test` (Vitest)
-   - Run `npm --prefix apps/frontend run build`
-3. Job 2: `backend-check`:
-   - Python 3.10
-   - Install requirements from `apps/api/requirements.txt`
-   - Validate syntax and imports `python -c "from apps.api.main import app; print('API OK')"`
+## Detailed Test Scenarios
+1. `calculateStrainGap`:
+   - Verify green zone for low gap (< 0.5 SD)
+   - Verify orange zone for moderate gap (0.5 to 1.5 SD)
+   - Verify red zone for high gap (> 1.5 SD)
+2. `calculatePRRSM`:
+   - Verify congruence score when person score matches job score exactly (e.g. 50 and 50)
+   - Verify penalty when mismatch occurs (e.g. 20 and 80)
+3. `calculateTATEvaluation`:
+   - Test with matching traits: returns high fulfillmentScore (>75) and empty or low-severity tensions.
+   - Test with conflicting traits (e.g. high context demand vs low person resistance): detects "Sur-sollicitation" tension.
+   - Test with inverse conflict: detects "Sous-utilisation" tension.
+   - Verify clinical explanation is non-empty and contains benevolent OCCOQ recommendations.
+
+## Validation Criteria
+- `npm --prefix apps/frontend test` passes 100% of tests (both `scoring.test.ts` and `pr-rsm-engine.test.ts`).
 """
     }
 ]
@@ -232,6 +274,15 @@ class JulesClient:
         with urllib.request.urlopen(req) as resp:
             return json.loads(resp.read().decode("utf-8"))
 
+    def get_activities(self, session_id: str) -> list:
+        """Récupère les activités d'une session."""
+        clean_id = session_id.replace("sessions/", "")
+        url = f"{API_BASE}/sessions/{clean_id}/activities"
+        req = urllib.request.Request(url, headers=self.headers, method="GET")
+        with urllib.request.urlopen(req) as resp:
+            data = json.loads(resp.read().decode("utf-8"))
+            return data.get("activities", [])
+
     def list_sessions(self) -> list:
         """Liste les sessions du compte."""
         url = f"{API_BASE}/sessions"
@@ -242,24 +293,94 @@ class JulesClient:
 
 
 # ==============================================================================
+# NOTIFICATIONS & SUIVI D'ÉTAT TEMPS RÉEL (.fleet/)
+# ==============================================================================
+
+def notify_status(task_id: str, state: str, message: str):
+    """Enregistre l'état dans .fleet/orchestrator_state.json et alerte le terminal."""
+    fleet_dir = REPO_ROOT / ".fleet"
+    fleet_dir.mkdir(parents=True, exist_ok=True)
+    state_file = fleet_dir / "orchestrator_state.json"
+    
+    data = {
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "task_id": task_id,
+        "state": state,
+        "message": message
+    }
+    try:
+        with open(state_file, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"⚠️ Erreur écriture état: {e}")
+
+    # Bip d'alerte console pour notifier la complétion ou un arrêt
+    if state in ["COMPLETED", "FAILED"]:
+        sys.stdout.write("\a")
+        sys.stdout.flush()
+
+
+def run_gitnexus_validation() -> bool:
+    """Exécute l'analyse d'impact / détection de changements GitNexus si disponible."""
+    print("🔍 Analyse de graphe GitNexus...")
+    try:
+        run_file = REPO_ROOT / ".gitnexus" / "run.cjs"
+        if run_file.exists():
+            cmd = ["node", str(run_file), "detect-changes", "--scope", "all", "--repo", "."]
+            res = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True, text=True)
+            print(res.stdout or res.stderr)
+            return res.returncode == 0
+        else:
+            print("ℹ️ GitNexus run.cjs non présent, fallback git status propre.")
+            return True
+    except Exception as e:
+        print(f"⚠️ GitNexus validation ignorée: {e}")
+        return True
+
+
+# ==============================================================================
 # APPLICATEUR DE PATCH & VALIDATEUR
 # ==============================================================================
 
-def apply_session_patch(session_data: dict, task_info: dict) -> bool:
-    """Extrait le patch d'une session terminée, l'applique et lance la validation."""
+def extract_git_patch(session_data: dict, client: JulesClient = None) -> tuple:
+    """Extrait le unidiffPatch et le commit message depuis outputs ou activities."""
     outputs = session_data.get("outputs", [])
-    if not outputs:
-        print("❌ Aucun output dans la session Jules.")
+    if outputs:
+        change_set = outputs[0].get("changeSet", {})
+        git_patch = change_set.get("gitPatch", {})
+        unidiff = git_patch.get("unidiffPatch")
+        msg = git_patch.get("suggestedCommitMessage")
+        if unidiff:
+            return unidiff, msg
+            
+    # Fallback vers activities
+    session_id = session_data.get("id") or session_data.get("name")
+    if client and session_id:
+        try:
+            activities = client.get_activities(session_id)
+            for act in reversed(activities):
+                for art in act.get("artifacts", []):
+                    cs = art.get("changeSet", {})
+                    gp = cs.get("gitPatch", {})
+                    unidiff = gp.get("unidiffPatch")
+                    msg = gp.get("suggestedCommitMessage")
+                    if unidiff:
+                        return unidiff, msg
+        except Exception as e:
+            print(f"⚠️ Erreur récupération activités: {e}")
+            
+    return None, None
+
+
+def apply_session_patch(session_data: dict, task_info: dict, client: JulesClient = None) -> bool:
+    """Extrait le patch d'une session terminée, l'applique et lance la validation."""
+    unidiff, suggested_msg = extract_git_patch(session_data, client)
+    if not unidiff:
+        print("❌ Aucun patch unidiff valide trouvé dans la session.")
         return False
         
-    change_set = outputs[0].get("changeSet", {})
-    git_patch = change_set.get("gitPatch", {})
-    unidiff = git_patch.get("unidiffPatch")
-    suggested_msg = git_patch.get("suggestedCommitMessage", task_info["title"])
-    
-    if not unidiff:
-        print("❌ Le patch unidiff est vide.")
-        return False
+    if not suggested_msg:
+        suggested_msg = task_info["title"]
         
     patch_file = REPO_ROOT / f"jules_{task_info['id']}.patch"
     with open(patch_file, "w", encoding="utf-8") as f:
@@ -293,13 +414,16 @@ def apply_session_patch(session_data: dict, task_info: dict) -> bool:
             return False
         print("✅ Test de validation réussi !")
         
-    # 3. Nettoyage du fichier patch
+    # 3. Analyse de graphe GitNexus
+    run_gitnexus_validation()
+        
+    # 4. Nettoyage du fichier patch
     try:
         patch_file.unlink(missing_ok=True)
     except Exception:
         pass
         
-    # 4. Commit et push
+    # 5. Commit et push
     print("🚀 Commit des changements...")
     subprocess.run(["git", "add", "."], cwd=REPO_ROOT, check=True)
     commit_msg = f"feat({task_info['id']}): {suggested_msg.splitlines()[0]}"
@@ -312,6 +436,7 @@ def apply_session_patch(session_data: dict, task_info: dict) -> bool:
     else:
         print("✅ Synchronisé sur GitHub avec succès.")
         
+    notify_status(task_info["id"], "COMPLETED", f"Tâche {task_info['title']} intégrée avec succès.")
     return True
 
 
@@ -351,7 +476,7 @@ def run_autonomous_loop(client: JulesClient, tasks: list, poll_interval: int = 3
                 
                 if state in ["COMPLETED", "SUCCEEDED"]:
                     print(f"🎉 Tâche complétée avec succès en {elapsed}s !")
-                    success = apply_session_patch(s_data, task)
+                    success = apply_session_patch(s_data, task, client=client)
                     if success:
                         print(f"✅ Salve '{task['id']}' validée et fusionnée dans master.")
                     else:
@@ -380,6 +505,7 @@ def main():
     parser.add_argument("--apply", type=str, help="Appliquer le patch d'une session terminée")
     parser.add_argument("--list", action="store_true", help="Lister les sessions actives")
     parser.add_argument("--interval", type=int, default=30, help="Intervalle de polling en secondes (défaut: 30)")
+    parser.add_argument("--task", type=str, help="Exécuter une tâche spécifique par son ID (ex: salve-5-leads-persistence-loi25)")
     args = parser.parse_args()
     
     api_key = get_api_key()
@@ -396,12 +522,20 @@ def main():
     elif args.apply:
         s_data = client.get_session(args.apply)
         task_dummy = {"id": "manual", "title": s_data.get("title", "Jules Patch")}
-        apply_session_patch(s_data, task_dummy)
+        apply_session_patch(s_data, task_dummy, client=client)
+    elif args.task:
+        selected = [t for t in TASKS_QUEUE if t["id"] == args.task]
+        if not selected:
+            print(f"❌ Tâche introuvable : {args.task}")
+            print(f"Disponibles : {[t['id'] for t in TASKS_QUEUE]}")
+            return
+        run_autonomous_loop(client, selected, poll_interval=args.interval)
     elif args.loop:
         run_autonomous_loop(client, TASKS_QUEUE, poll_interval=args.interval)
     else:
         print("Utilisation:")
         print("  python scripts/jules_orchestrator.py --loop       # Lance la file d'attente complète")
+        print("  python scripts/jules_orchestrator.py --task ID   # Lance une tâche spécifique")
         print("  python scripts/jules_orchestrator.py --list       # Liste les sessions")
         print("  python scripts/jules_orchestrator.py --status ID  # Vérifie une session")
 

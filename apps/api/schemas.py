@@ -142,12 +142,23 @@ class RiasecProfileResponse(BaseModel):
     lettre_dominante: Optional[str] = None
 
 # ── Leads ─────────────────────────────────────────────────────
+import re
+from pydantic import field_validator
+
 class LeadCreateRequest(BaseModel):
-    # Depending on what the lead requires, currently empty dictionary in implementation.
-    # Allowing any fields for now, or just empty.
-    pass
-    # We will assume some basic fields might be used later or allow arbitrary JSON dict.
+    email: str = Field(..., description="Courriel valide du candidat")
+    cnp: Optional[str] = Field(None, max_length=10, description="Code CNP associé à l'alerte")
+
+    @field_validator("email")
+    @classmethod
+    def validate_email_format(cls, v: str) -> str:
+        v = v.strip().lower()
+        pattern = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+        if not re.match(pattern, v):
+            raise ValueError("Format de courriel invalide")
+        return v
 
 class LeadResponse(BaseModel):
     status: str
     message: str
+    lead_id: Optional[int] = None
