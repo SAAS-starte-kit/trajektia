@@ -15,7 +15,7 @@ Le projet Trajektia utilise plusieurs outils et agents d'IA pour optimiser les c
 - **Gemini CLI** : Tâches nécessitant une très grande fenêtre de contexte (analyse massive de documents de référence, ingurgiter les manuels complets CKG/psychométriques), génération par batch à bas coût (via Flash), ou scripts d'automatisation exécutables hors de l'IDE.
 - **Claude Code Router (CCR)** : Refactorisation ciblée de scripts backend Python, logique mathématique/algorithmique dense, génération de tests unitaires rapides.
 - **Hermes Agent** : Notifications, communication asynchrone, messages de statut via Telegram/MCP.
-- **Google Jules / Spécialistes Data** : Analyse exploratoire de données, data science, validation des métriques et réconciliation des schémas SQL/Neo4j.
+- **Google Jules (Flotte Asynchrone Cloud — Quota : 100 sessions/jour)** : Agent de codage autonome principal pour tous les chantiers asynchrones de fond : rédaction et couverture de tests unitaires/E2E (Vitest, Playwright, Pytest), réconciliation de données lourdes (SQL ↔ Neo4j), refactorisation modulaire backend (FastAPI/Pydantic), migrations de base de données (Dbmate) et fiabilisation des flux ETL. Opère en sandbox cloud isolée sur GitHub sans impacter les tokens ni la disponibilité de l'IDE.
 
 ## Étapes du Workflow
 
@@ -27,31 +27,61 @@ Le projet Trajektia utilise plusieurs outils et agents d'IA pour optimiser les c
   - Ouvrir et lire le fichier `packages/ckg/PLAN_ACTION.md`.
   - Repérer la ou les prochaines tâches prioritaires ayant le statut **À faire** ou **En attente**.
 
-### 2. Qualification et Attribution de la Tâche
-- Déterminer quel agent ou outil est le plus qualifié selon les critères suivants :
-  - *Prototypage UI rapide, création de nouveaux concepts d'écrans ou de Design System textuel* $\rightarrow$ **Google Stitch (MCP)**
-  - *Alignement fidèle sur des maquettes graphiques existantes, extraction de tokens et variables Figma* $\rightarrow$ **Figma (MCP)**
-  - *Intégration de code frontend (`apps/frontend`), refontes structurelles du site* $\rightarrow$ **Antigravity**
-  - *Analyse documentaire massive, cross-référencement de manuels volumineux, batch à faible coût* $\rightarrow$ **Gemini CLI**
-  - *Script Python pur (`apps/api`, `packages/data-pipeline`, `packages/ckg`)* $\rightarrow$ **Claude Code Router**
-  - *Notification, suivi externe ou message vers Telegram* $\rightarrow$ **Hermes**
-  - *Exploration de données, requêtes analytiques lourdes* $\rightarrow$ **Google Jules**
+### 2. Matrice Révisée de Priorité de Dispatch (Compte tenu du quota de 100 sessions/jour de Jules)
 
-- **Sélection du Modèle pour Antigravity** :
-  - Si la tâche attribuée à **Antigravity** implique de la refactorisation architecturale complexe, du raisonnement abstrait multi-fichiers ou la résolution de bugs subtils $\rightarrow$ Recommander à l'utilisateur de basculer sur **Gemini 3.1 Pro** ou **Claude 3.7 Sonnet**.
-  - Si la tâche concerne l'intégration UI courante, des composants Tailwind/React/Astro ou l'exécution rapide de workflows $\rightarrow$ Maintenir **Gemini 3.8 Flash** ou **Gemini 3.6 Flash** pour une vitesse et une économie de tokens optimales.
-- Définir le contexte minimal nécessaire (fichiers cibles, contraintes, format attendu) pour économiser un maximum de tokens.
+> **Règle d'or d'efficience (Inversion de Priorité)** : Avec 100 sessions gratuites par jour sur Google Jules, toute tâche autonome, de refactoring de fond, d'écriture de tests ou de tuyauterie backend/data **DOIT ÊTRE DÉLÉGUÉE EN PRIORITÉ À JULES**. Antigravity reste le planificateur/architecte et se concentre sur l'UI interactive, le design et la validation des PRs.
 
-### 3. Préparation et Envoi Direct (Mode Zéro Intermédiaire - Sans passer par l'utilisateur)
-- **Routage Automatique Immédiat** :
-  - *Prototypage / Design UI* $\rightarrow$ Invoquer directement l'outil **StitchMCP** (`generate_screen_from_text`, `edit_screens`, etc.).
-  - *Refactoring / Python / Algorithmique* $\rightarrow$ Transmettre directement la requête à **Claude Code Router (CCR)** via le binaire `ccr` ou l'endpoint local `http://localhost:3458`.
-  - *Dev Asynchrone / GitHub / Longue tâche* $\rightarrow$ Lancer la mission directement sur **Google Jules** en arrière-plan.
-  - *Notification & Communication* $\rightarrow$ Invoquer directement l'outil **Hermes** (`messages_send`).
-- **Règle absolue** : Ne JAMAIS demander à l'utilisateur de copier-coller une consigne ou un prompt si l'agent destinataire est accessible programmatiquement. Transmettre et lancer la tâche immédiatement en tâche de fond.
+| Domaine / Nature de la tâche | Agent Cible Prioritaire | Justification & Mécanisme |
+| :--- | :--- | :--- |
+| **Suites de tests (Vitest, Pytest, Playwright), refactorisation modulaire, typage Pydantic, tuyauterie ETL, migrations SQL Dbmate** | **Google Jules (Priorité 1)** | Exécution autonome asynchrone dans le cloud via l'API REST Jules (`https://jules.googleapis.com/v1alpha/sessions`). Zéro coût de tokens dans l'IDE, parallélisme total. |
+| **Prototypage UI, nouveaux concepts d'écrans, Design System textuel** | **Google Stitch (MCP)** | Outils `mcp_StitchMCP_*` (`generate_screen_from_text`, `edit_screens`, `create_project`). |
+| **Alignement maquettes Figma existantes, extraction de tokens/variables** | **Figma (MCP)** | Inspection et extraction directe des tokens Auto Layout / CSS. |
+| **Intégration UI interactive, composants Astro/React fins, coordination multi-fichiers, revue de PR** | **Antigravity (IDE)** | Prise en charge directe dans l'IDE avec le modèle adéquat (Gemini 3.8 Flash pour l'UI, Pro/Sonnet si complexité conceptuelle). |
+| **Analyse documentaire massive, cross-référencement de manuels volumineux, batch à faible coût** | **Gemini CLI** | Invocation en ligne de commande Gemini avec grand contexte (1M+ tokens). |
+| **Refactorisation chirurgicale locale ultra-rapide (Python pur, algorithmique immédiate)** | **Claude Code Router (CCR)** | Transmission directe via binaire `ccr` ou API locale `http://localhost:3458`. |
+| **Notifications Telegram, communication asynchrone, alertes d'état** | **Hermes Agent (MCP)** | Outil `mcp_hermes_messages_send` ou canaux configurés. |
+
+---
+
+### 3. Protocole Spécifique de Dispatch vers Google Jules
+
+#### A. Standards de Formatage de Prompt (Best Practices Jules-Skills & Google Dev)
+Chaque prompt soumis à Jules doit être **autonome, déterministe et strictement borné** :
+1. **Objectif Atomique** : Une seule responsabilité claire par session (ex: « Installer Vitest et tester le scoring psychométrique »).
+2. **Bornes de Fichiers Strictes (*File Boundaries*)** :
+   - Déclarer explicitement la liste des `Files to modify`, `New files`, et `Test files`.
+   - Inclure la clause : *« You may ONLY modify the files listed above. Do NOT modify, rename, or delete files outside your boundary. »*
+3. **Assertions Chiffrées Déterministes** : Fournir les vecteurs étalons scientifiques (issus de `MANUEL_PSYCHOMETRIQUE.md` ou `MANUEL_METHODOLOGIQUE_CKG.md`).
+4. **Commandes de Validation Exactes** : Définir les commandes de test que Jules doit exécuter pour s'auto-valider (ex: `npm --prefix apps/frontend test`, `npm run build`, `pytest`).
+5. **Format du Livrable** : Branche git propre (`jules/<feature-name>`) et Pull Request documentée avec le rapport d'exécution des tests.
+
+#### B. Déclenchement Automatique Immédiat (API REST Jules)
+Exécuter directement l'appel API en PowerShell / REST sans solliciter de copier-coller de l'utilisateur :
+```powershell
+# Utiliser la variable d'environnement ou la clé configurée dans mcp_config.json
+$apiKey = $env:JULES_API_KEY # ou extrait de mcp_config.json
+$body = @{
+    prompt = $julesPrompt
+    title = $taskTitle
+    sourceContext = @{
+        source = "sources/github/SAAS-starte-kit/trajektia"
+        githubRepoContext = @{
+            startingBranch = "master"
+        }
+    }
+} | ConvertTo-Json -Depth 5
+
+$session = Invoke-RestMethod -Uri "https://jules.googleapis.com/v1alpha/sessions" -Headers @{
+    "X-Goog-Api-Key" = $apiKey
+    "Content-Type" = "application/json"
+} -Method Post -Body $body
+```
+
+---
 
 ### 4. Suivi et Fusion Automatique des Résultats
-- Dès que l'agent destinataire (Stitch, CCR, Jules) termine son travail :
-  - Récupérer automatiquement le code, l'écran ou le rapport généré.
-  - Exécuter les tests de vérification.
-  - Mettre à jour `packages/ckg/PLAN_ACTION.md` et présenter la synthèse finale à l'utilisateur.
+- Surveiller le statut de la session (`state: IN_PROGRESS` -> `COMPLETED`).
+- Dès que Jules ouvre sa Pull Request sur GitHub :
+  1. Inspecter le diff et les rapports de test via `github-mcp-server` ou git.
+  2. Vérifier l'absence d'impact indésirable via GitNexus (`gitnexus impact`).
+  3. Fusionner la PR dans `master` et mettre à jour `packages/ckg/PLAN_ACTION.md`.

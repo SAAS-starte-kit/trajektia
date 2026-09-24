@@ -17,19 +17,17 @@ Ce workflow permet de qualifier et d'expédier instantanément une tâche ad-hoc
 
 ---
 
-## Matrice de Qualification Rapide des Agents
-
-Lorsqu'une tâche immédiate est soumise, évaluer son domaine technique et router vers la cible optimale selon la matrice suivante :
+## Matrice de Qualification Rapide des Agents (Règle d'or : 100 sessions/jour Jules)
 
 | Domaine / Nature de la tâche | Agent / Outil cible | Mécanisme d'exécution direct |
 | :--- | :--- | :--- |
-| **Prototypage UI, nouveaux concepts d'écrans, Design System textuel** | **Google Stitch (MCP)** | Outils `mcp_StitchMCP_*` (`generate_screen_from_text`, `edit_screens`, `create_project`) |
-| **Alignement maquettes Figma existantes, extraction de tokens/variables** | **Figma (MCP)** | Inspection et extraction directe des tokens Auto Layout / CSS |
-| **Scripts Python pur, refactorisation backend, algorithmique dense, tests unitaires** | **Claude Code Router (CCR)** | Transmission directe via binaire `ccr` ou API locale `http://localhost:3458` |
-| **Analyse documentaire massive, cross-référencement de manuels volumineux, batch à faible coût** | **Gemini CLI** | Invocation en ligne de commande Gemini avec grand contexte |
-| **Notifications Telegram, communication asynchrone, alertes d'état** | **Hermes Agent (MCP)** | Outil `mcp_hermes_messages_send` ou canaux configurés |
-| **Exploration data lourde, réconciliation SQL / Neo4j, requêtes complexes** | **Google Jules / MCPs Directs** | `mcp_neo4j_*` / `mcp_supabase-mcp-server_*` ou tâche Google Jules |
-| **Intégration Astro/React, refontes structurelles du site, coordination multi-fichiers** | **Antigravity (IDE)** | Prise en charge directe dans l'IDE avec le modèle adéquat (voir ci-dessous) |
+| **Suites de tests (Vitest, Pytest, Playwright), refactorisation modulaire backend, typage Pydantic, tuyauterie ETL, migrations SQL** | **Google Jules (Priorité 1 Asynchrone)** | Inscription directe via l'API REST `https://jules.googleapis.com/v1alpha/sessions` avec format `jules-skills` (file boundaries, assertions chiffrées). |
+| **Prototypage UI, nouveaux concepts d'écrans, Design System textuel** | **Google Stitch (MCP)** | Outils `mcp_StitchMCP_*` (`generate_screen_from_text`, `edit_screens`, `create_project`). |
+| **Alignement maquettes Figma existantes, extraction de tokens/variables** | **Figma (MCP)** | Inspection et extraction directe des tokens Auto Layout / CSS. |
+| **Intégration Astro/React interactive, refontes structurelles du site, coordination multi-fichiers, revue de PR** | **Antigravity (IDE)** | Prise en charge directe dans l'IDE avec le modèle adéquat (voir ci-dessous). |
+| **Refactorisation chirurgicale locale ultra-rapide (Python pur, algorithmique immédiate)** | **Claude Code Router (CCR)** | Transmission directe via binaire `ccr` ou API locale `http://localhost:3458`. |
+| **Analyse documentaire massive, cross-référencement de manuels volumineux, batch à faible coût** | **Gemini CLI** | Invocation en ligne de commande Gemini avec grand contexte. |
+| **Notifications Telegram, communication asynchrone, alertes d'état** | **Hermes Agent (MCP)** | Outil `mcp_hermes_messages_send` ou canaux configurés. |
 
 ---
 
@@ -42,15 +40,20 @@ Lorsqu'une tâche immédiate est soumise, évaluer son domaine technique et rout
 
 ### 2. Sélection de l'Agent et Recommandation de Modèle
 - Identifier l'agent le plus efficient selon la matrice ci-dessus.
+- **Règle de priorisation Jules (100 sessions/jour)** : Si la tâche concerne la rédaction de tests, un refactoring de fond ou de la validation de données/schémas, l'expédier directement à Jules.
 - **Si Antigravity prend en charge la tâche :**
   - *Intégration UI courante, composants Astro/Tailwind, modifications simples* $\rightarrow$ Conserver **Gemini 3.8 Flash** ou **Gemini 3.6 Flash** pour une vitesse maximale et un coût minime ($0.075 / 1M In).
   - *Refactorisation architecturale complexe, bugs subtils, raisonnement abstrait profond* $\rightarrow$ Suggérer à l'utilisateur de basculer sur **Gemini 3.1 Pro** ou **Claude 3.7 Sonnet**.
 - Délimiter le périmètre strict de fichiers (context window minimal) pour ne pas charger de contexte inutile.
 
 ### 3. Exécution Directe (Zéro Intermédiaire)
-- Si l'outil ou l'agent dispose d'un connecteur MCP ou d'une CLI locale (Stitch, Hermes, CCR, Neo4j, Supabase) :
+- **Si la tâche est pour Google Jules** :
+  - Formater le prompt selon les standards `jules-skills` (Objectif atomique, File boundaries stricts, Assertions chiffrées déterministes, Commandes de tests exactes, Format de PR).
+  - Envoyer directement la requête à l'API REST `https://jules.googleapis.com/v1alpha/sessions` avec la clé API et la source `sources/github/SAAS-starte-kit/trajektia`.
+  - Retourner l'URL de la session créée pour suivi.
+- **Si l'outil ou l'agent dispose d'un connecteur MCP ou d'une CLI locale (Stitch, Hermes, CCR, Neo4j, Supabase)** :
   - **Déclencher l'action immédiatement** sans solliciter de confirmation redondante pour le copier-coller.
-- Si la tâche est traitée par Antigravity lui-même :
+- **Si la tâche est traitée par Antigravity lui-même** :
   - Procéder directement aux vérifications de graphe (GitNexus `impact` si code touché), modifications et tests.
 
 ### 4. Restitution du Résultat

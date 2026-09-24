@@ -103,42 +103,49 @@ Si la demande est ambiguë, incomplète ou présente des arbitrages critiques :
 
 ---
 
-### Étape 4 : Inscription au Plan d'Action (`PLAN_ACTION.md`)
+### Étape 4 : Inscription au Plan d'Action (`PLAN_ACTION.md`) & Séquençage
 
 Si la tâche constitue un élément à suivre ou planifier :
 
 1. Ouvrir `packages/ckg/PLAN_ACTION.md`.
 2. Insérer la tâche dans la section appropriée avec le format standardisé du projet :
    ```markdown
-   - [ ] **[ID_OU_TITRE]** [Agent Cible] Description de la tâche
+   - [ ] **[ID_OU_TITRE]** [Agent Cible : Google Jules / Antigravity / Stitch] Description
      - **Objectif** : ...
      - **Priorité** : P0 (Bloquant) | P1 (Important) | P2 (Secondaire)
-     - **Fichiers impactés** : `chemin/vers/fichier`
+     - **Fichiers impactés (File Boundaries)** : `chemin/vers/fichier`
+     - **Prérequis / Dépendance** : [Nom de la tâche précédente si séquencée]
    ```
-3. Si la tâche vient d'être résolue immédiatement (ex: bugfix express), l'inscrire directement avec la mention `- [x] FAIT` et la date du jour.
-4. Si l'utilisateur a spécifié `--dry-run`, sauter cette étape de modification de fichier.
+3. **Séquençage à l'avance (Chaining & Batching Jules)** :
+   - Si plusieurs tâches sont identifiées :
+     * **Tâches Indépendantes** (fichiers disjoints, ex: frontend vs backend) $\rightarrow$ Éligibles au **dispatching parallèle immédiat** sur Jules (profitant du quota de 100 sessions/jour).
+     * **Tâches Dépendantes** (même module, ex: migration SQL avant refactoring API) $\rightarrow$ Structurées en **file d'attente séquencée** : l'agent surveille la fin de la tâche $N$ (`state: COMPLETED`) avant de déclencher la tâche $N+1$.
+4. Si la tâche vient d'être résolue immédiatement (ex: bugfix express), l'inscrire directement avec la mention `- [x] FAIT` et la date du jour.
+5. Si l'utilisateur a spécifié `--dry-run`, sauter cette étape de modification de fichier.
 
 ---
 
 ### Étape 5 : Sélection de l'Agent et Dispatching (Zéro Intermédiaire)
 
-Déterminer l'agent le plus qualifié selon la matrice Trajektia :
+Déterminer l'agent le plus qualifié selon la matrice Trajektia révisée (Quota Jules : 100 sessions/jour) :
 
 | Domaine / Nature de la mission | Agent Cible | Mode d'exécution direct |
 | :--- | :--- | :--- |
+| **Tests automatisés (Vitest, Pytest, Playwright), refactorisations modulaires backend, typage Pydantic, tuyauterie ETL, migrations SQL** | **Google Jules (Priorité 1 Asynchrone)** | Inscription directe via l'API REST `https://jules.googleapis.com/v1alpha/sessions` avec format `jules-skills` (file boundaries, assertions chiffrées). |
 | **Idéation UI, concepts d'écrans, Design System textuel** | **Google Stitch (MCP)** | Outils `mcp_StitchMCP_*` |
 | **Inspection pixel-perfect Figma, tokens CSS, Auto Layout** | **Figma (MCP)** | Inspection et extraction de variables |
-| **Scripts Python pur, refactorisation backend, algorithmes CKG** | **Claude Code Router (CCR)** | Transmission directe via CLI `ccr` ou API `http://localhost:3458` |
+| **Intégration Astro/React interactive, refontes frontend, supervision, revue de PR** | **Antigravity (IDE)** | Prise en charge directe avec le modèle adéquat (Gemini 3.8 Flash ou Pro/Sonnet) |
+| **Refactorisation chirurgicale locale ultra-rapide (Python pur, algorithmique immédiate)** | **Claude Code Router (CCR)** | Transmission directe via CLI `ccr` ou API `http://localhost:3458` |
 | **Analyse documentaire massive, crosswalks, batch Flash économique** | **Gemini CLI** | Commande CLI avec grand contexte |
 | **Notifications Telegram, communication asynchrone** | **Hermes Agent (MCP)** | Outil `mcp_hermes_messages_send` |
-| **Exploration données lourdes, validation requêtes SQL/Neo4j** | **Google Jules / Direct MCPs** | MCPs Neo4j / Supabase ou tâche Jules |
-| **Intégration Astro/React, refontes frontend, coordination multi-fichiers** | **Antigravity (IDE)** | Prise en charge directe avec le modèle adéquat |
 
 #### Exécution du Dispatch :
-- **Mode Zéro Intermédiaire** : Si l'utilisateur a demandé d'exécuter la tâche ou si le flag `--auto` est actif, déclencher l'agent ou démarrer le travail directement sans exiger de copier-coller de la part de l'utilisateur.
+- **Mode Zéro Intermédiaire** :
+  - Si la tâche est attribuée à **Google Jules** : formater le prompt selon les standards `jules-skills` et poster immédiatement la session via l'API REST Jules (`https://jules.googleapis.com/v1alpha/sessions`).
+  - Si l'utilisateur a spécifié `--auto` ou demandé une exécution directe : déclencher l'action immédiatement sans attendre de confirmation textuelle.
 - **Rapport de Triage** : Si la tâche est en attente d'arbitrage, présenter une synthèse structurée :
   1. Résumé de l'analyse & Risque GitNexus.
-  2. Statut dans le plan d'action (`PLAN_ACTION.md`).
+  2. Statut et position dans le plan d'action (`PLAN_ACTION.md`) ou file d'attente séquencée.
   3. Agent et modèle recommandés.
   4. Actions proposées pour lancer l'exécution.
 
