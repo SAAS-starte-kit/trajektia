@@ -73,161 +73,25 @@ def get_api_key() -> str:
 # BACKLOG STRUCTURÉ DES TÂCHES (SALVES JULES VAGUE 2)
 # ==============================================================================
 
-TASKS_QUEUE = [
+COMPLETED_TASKS = [
     {
         "id": "salve-5-leads-persistence-loi25",
         "title": "[Backend] Persistance Supabase leads_newsletter et validation Pydantic Loi 25",
         "test_command": "python -c \"from apps.api.main import app; from apps.api.schemas import LeadCreateRequest; r = LeadCreateRequest(email='audit@trajektia.ca', cnp='21211'); print('Schema Lead OK:', r.email, r.cnp)\"",
-        "prompt": """# TASK: Implement Supabase Lead Newsletter Persistence with Loi 25 Privacy Compliance
-
-## Context & Architecture
-Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: FastAPI 0.111, Pydantic v2, asyncpg / Supabase PostgreSQL
-Target Files:
-  - `apps/api/schemas.py`
-  - `apps/api/routers/leads.py`
-
-## Objective
-Implement actual database persistence for job alert leads captured on occupation pages (`POST /api/leads`), storing them safely in `leads_newsletter` table in accordance with Quebec's Law 25 (anonymized/minimalist data, strict email validation, duplicate idempotence).
-
-## File Boundaries (STRICT)
-You may ONLY modify:
-  - `apps/api/schemas.py`
-  - `apps/api/routers/leads.py`
-Do NOT modify any other files.
-
-## Detailed Requirements
-1. In `apps/api/schemas.py`:
-   - Update `LeadCreateRequest`:
-     ```python
-     import re
-     from pydantic import BaseModel, Field, field_validator
-     from typing import Optional
-
-     class LeadCreateRequest(BaseModel):
-         email: str = Field(..., description="Courriel valide du candidat")
-         cnp: Optional[str] = Field(None, max_length=10, description="Code CNP associé à l'alerte")
-
-         @field_validator("email")
-         @classmethod
-         def validate_email_format(cls, v: str) -> str:
-             v = v.strip().lower()
-             pattern = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
-             if not re.match(pattern, v):
-                 raise ValueError("Format de courriel invalide")
-             return v
-     ```
-   - Update `LeadResponse`:
-     ```python
-     class LeadResponse(BaseModel):
-         status: str
-         message: str
-         lead_id: Optional[int] = None
-     ```
-
-2. In `apps/api/routers/leads.py`:
-   - Inject the database pool from `request.app.state.db_pool` (asyncpg.Pool).
-   - If `db_pool` is present:
-     - Execute the query:
-       ```sql
-       INSERT INTO leads_newsletter (email, cnp_code, source_url)
-       VALUES ($1, $2, $3)
-       ON CONFLICT (email, cnp_code) DO NOTHING
-       RETURNING id;
-       ```
-     - Return status="success" and appropriate message.
-   - If `db_pool` is None (local test or dev offline mode):
-     - Return status="success", message="Lead enregistré (mode simulation)".
-   - Handle exceptions gracefully with status="error" and HTTP 400 or 500.
-
-## Validation Criteria
-- `python -c "from apps.api.schemas import LeadCreateRequest; r = LeadCreateRequest(email='candidat@quebec.ca', cnp='21211'); print('OK:', r.email)"` must succeed.
-- Invalid emails (e.g. `invalid-email`) must raise Pydantic ValidationError.
-- `python -c "from apps.api.main import app; print('Routes count:', len(app.routes))"` must succeed with 0 import errors.
-"""
     },
     {
         "id": "salve-6-migrations-consolidator-sql",
         "title": "[Database] Runner automatisé et vérificateur de migrations SQL",
         "test_command": "python scripts/run_migrations.py --dry-run",
-        "prompt": """# TASK: Create Automated SQL Migrations Runner and Schema Verifier
-
-## Context & Architecture
-Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: Python, PostgreSQL / asyncpg / psycopg2
-Directory: `packages/database/` contains SQL files:
-  - `schema.sql`
-  - `schema_v2.sql`
-  - `schema_v3.sql`
-  - ...
-  - `schema_v9_program_devis.sql`
-  - `schema_v9_leads.sql`
-
-## Objective
-Create a standalone Python migration script `scripts/run_migrations.py` that discovers all `.sql` schema files in `packages/database/`, validates them, tracks applied migrations in a `_migrations_history` table, and supports `--dry-run` and `--apply` modes.
-
-## File Boundaries (STRICT)
-- Create: `scripts/run_migrations.py`
-- Do NOT touch frontend or API files.
-
-## Detailed Requirements
-1. Script `scripts/run_migrations.py`:
-   - Parse CLI arguments:
-     * `--dry-run`: List all discovered migration files in alphabetical/chronological order without executing.
-     * `--apply`: Connect to database (via `DATABASE_URL` or `SUPABASE_DB_URL` from environment or `.env`) and execute pending migrations sequentially in transactions.
-   - Table `_migrations_history`:
-     ```sql
-     CREATE TABLE IF NOT EXISTS _migrations_history (
-         id SERIAL PRIMARY KEY,
-         filename TEXT UNIQUE NOT NULL,
-         applied_at TIMESTAMPTZ DEFAULT NOW(),
-         checksum TEXT
-     );
-     ```
-   - Calculate SHA256 checksum for each SQL file to detect tampering.
-   - Support running offline in `--dry-run` mode without requiring a live PostgreSQL connection.
-
-## Validation Criteria
-- Running `python scripts/run_migrations.py --dry-run` outputs the ordered list of schema files (at least 5 files discovered) and exits with returncode 0.
-"""
     },
     {
         "id": "salve-7-frontend-vitest-pr-rsm",
         "title": "[Vitest] Suite de tests unitaires pour le moteur psychométrique PR-RSM",
         "test_command": "npm --prefix apps/frontend test",
-        "prompt": """# TASK: Create Vitest Unit Test Suite for PR-RSM Psychometric Engine
-
-## Context & Architecture
-Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: TypeScript, Vitest, Astro (in apps/frontend/)
-Target File under test: `apps/frontend/src/utils/pr-rsm-engine.ts`
-Test File to create: `apps/frontend/src/utils/__tests__/pr-rsm-engine.test.ts`
-
-## Objective
-Implement a thorough Vitest unit test suite covering the Trait Activation Theory (TAT) and Polynomial Regression Response Surface Methodology (PR-RSM) calculations exported by `apps/frontend/src/utils/pr-rsm-engine.ts`.
-
-## File Boundaries (STRICT)
-- Create: `apps/frontend/src/utils/__tests__/pr-rsm-engine.test.ts`
-- Do NOT modify `apps/frontend/src/utils/pr-rsm-engine.ts` or any other source files.
-
-## Detailed Test Scenarios
-1. `calculateStrainGap`:
-   - Verify green zone for low gap (< 0.5 SD)
-   - Verify orange zone for moderate gap (0.5 to 1.5 SD)
-   - Verify red zone for high gap (> 1.5 SD)
-2. `calculatePRRSM`:
-   - Verify congruence score when person score matches job score exactly (e.g. 50 and 50)
-   - Verify penalty when mismatch occurs (e.g. 20 and 80)
-3. `calculateTATEvaluation`:
-   - Test with matching traits: returns high fulfillmentScore (>75) and empty or low-severity tensions.
-   - Test with conflicting traits (e.g. high context demand vs low person resistance): detects "Sur-sollicitation" tension.
-   - Test with inverse conflict: detects "Sous-utilisation" tension.
-   - Verify clinical explanation is non-empty and contains benevolent OCCOQ recommendations.
-
-## Validation Criteria
-- `npm --prefix apps/frontend test` passes 100% of tests (both `scoring.test.ts` and `pr-rsm-engine.test.ts`).
-"""
     },
+]
+
+TASKS_QUEUE = [
     {
         "id": "i7-1-ckan-regional-parser",
         "title": "[CKG / ETL] Parseur UTF-16LE multi-mois CKAN pour extraire la granularité ville/région (I7.1)",
@@ -306,6 +170,152 @@ Do NOT modify, rename, or delete any other files.
 ## Acceptance Criteria
 - `python scripts/test_ingest_ckan_regional.py` runs and outputs OK (all tests pass).
 - `python scripts/ingest_ckan_regional_profiles.py --help` prints CLI documentation and exits with code 0.
+"""
+    },
+    {
+        "id": "i7-2-supabase-pgvector-embeddings",
+        "title": "[CKG / Supabase] Schéma SQL pgvector & pipeline d'embedding textuel des offres (I7.2)",
+        "test_command": "python scripts/test_generate_job_embeddings.py",
+        "prompt": """# TASK: Create Supabase pgvector Migration & Text Embeddings Generation Pipeline (I7.2)
+
+## Context & Architecture
+Repository: SAAS-starte-kit/trajektia (Branch: master)
+Stack: Python 3.10+, PostgreSQL / Supabase pgvector, SQL
+Domain: Career Knowledge Graph (CKG) Vector Search & Job Matching
+Documentation Reference: `packages/ckg/FEASIBILITY_CKAN_VECTORIZATION_I7.md` and `packages/ckg/PLAN_ACTION.md`
+
+## Problem & Technical Need
+To enable Graph-RAG semantic search and skill matching over Canadian job postings, we need:
+1. A clean SQL migration schema introducing table `job_postings_vectors` with pgvector extension and an HNSW cosine index.
+2. A resilient Python script `scripts/generate_job_embeddings.py` that formats structured job chunks, generates 768-dimensional normalized embeddings (with offline fallback/mocking for tests), and prepares them for Supabase insertion.
+3. A unit test suite `scripts/test_generate_job_embeddings.py`.
+
+## File Boundaries (STRICT)
+You may ONLY create or modify:
+  - `packages/database/schema_v16_job_postings_vectors.sql` (New file)
+  - `scripts/generate_job_embeddings.py` (New file)
+  - `scripts/test_generate_job_embeddings.py` (New file)
+Do NOT modify, rename, or delete any other files.
+
+## Detailed Requirements
+
+1. `packages/database/schema_v16_job_postings_vectors.sql`:
+   ```sql
+   -- Migration v16: Job Postings Vectors for Semantic Matching (I7.2)
+   CREATE EXTENSION IF NOT EXISTS vector;
+
+   CREATE TABLE IF NOT EXISTS job_postings_vectors (
+       id BIGSERIAL PRIMARY KEY,
+       external_id TEXT UNIQUE NOT NULL,
+       cnp_code VARCHAR(10) NOT NULL,
+       job_title TEXT NOT NULL,
+       city TEXT,
+       region TEXT,
+       content_chunk TEXT NOT NULL,
+       embedding vector(768),
+       metadata JSONB DEFAULT '{}'::jsonb,
+       created_at TIMESTAMPTZ DEFAULT NOW()
+   );
+
+   CREATE INDEX IF NOT EXISTS job_postings_vectors_cnp_idx ON job_postings_vectors (cnp_code);
+   CREATE INDEX IF NOT EXISTS job_postings_vectors_embedding_idx ON job_postings_vectors USING hnsw (embedding vector_cosine_ops);
+   ```
+
+2. `scripts/generate_job_embeddings.py`:
+   - Chunk formatting function:
+     `format_job_chunk(title: str, cnp: str, cnp_title: str, city: str, region: str, remote_status: str, skills: list, description: str = "") -> str`
+     Formats the text according to the standard chunking template defined in `packages/ckg/FEASIBILITY_CKAN_VECTORIZATION_I7.md`.
+   - Vector generation function:
+     `generate_embedding(text: str, mock: bool = False) -> list[float]`
+     Returns a 768-float list. If `mock=True` or no API key is provided, generates a deterministic pseudo-embedding based on hash/random seed normalized to unit length (L2 norm = 1.0).
+   - CLI Interface (`argparse`):
+     * `--dry-run`: Format chunks and generate mock embeddings without DB insertion.
+     * `--limit N`: Limit processing to N records.
+     * `--input-file PATH`: Read input jobs from a JSON file.
+     * `--output-json PATH`: Export formatted chunks and vectors to JSON.
+
+3. `scripts/test_generate_job_embeddings.py`:
+   - Standalone unit tests using `unittest`.
+   - Tests:
+     * `test_format_job_chunk`: Verifies that formatted text contains CNP, Title, City, and Skills.
+     * `test_generate_mock_embedding`: Verifies dimension is exactly 768 and L2 norm is approximately 1.0 (vector is normalized).
+     * `test_sql_schema_syntax`: Reads `packages/database/schema_v16_job_postings_vectors.sql` and asserts `CREATE EXTENSION IF NOT EXISTS vector;` and `vector(768)` are present.
+
+## Acceptance Criteria
+- `python scripts/test_generate_job_embeddings.py` passes 100% of tests.
+- `python scripts/generate_job_embeddings.py --dry-run` executes cleanly and exits with code 0.
+"""
+    },
+    {
+        "id": "i7-3-semantic-match-router",
+        "title": "[FastAPI / CKG] Route API de matching sémantique compétences / profils (I7.3)",
+        "test_command": "python -m pytest apps/api/test_routes.py",
+        "prompt": """# TASK: Implement FastAPI Semantic Matching Endpoint for Job Postings (I7.3)
+
+## Context & Architecture
+Repository: SAAS-starte-kit/trajektia (Branch: master)
+Stack: FastAPI 0.111, Pydantic v2, asyncpg, Pytest (in apps/api/)
+Target Files:
+  - `apps/api/schemas.py`
+  - `apps/api/routers/semantic_match.py` (New file)
+  - `apps/api/main.py`
+  - `apps/api/test_routes.py`
+
+## Objective
+Implement endpoint `POST /api/jobs/semantic-match` in FastAPI to allow searching jobs and matching candidate profiles/skills against vector embeddings in `job_postings_vectors`.
+
+## File Boundaries (STRICT)
+You may ONLY create or modify:
+  - `apps/api/schemas.py`
+  - `apps/api/routers/semantic_match.py` (New file)
+  - `apps/api/main.py`
+  - `apps/api/test_routes.py`
+Do NOT modify, rename, or delete any other files.
+
+## Detailed Requirements
+
+1. In `apps/api/schemas.py`:
+   - Add Pydantic v2 models:
+     ```python
+     class JobMatchItem(BaseModel):
+         id: int
+         external_id: str
+         job_title: str
+         cnp_code: str
+         city: Optional[str] = None
+         region: Optional[str] = None
+         similarity_score: float
+
+     class JobSemanticMatchRequest(BaseModel):
+         query: str = Field(..., min_length=2, description="Texte de recherche ou compétences du candidat")
+         cnp: Optional[str] = Field(None, max_length=10, description="Filtre optionnel par code CNP")
+         region: Optional[str] = Field(None, description="Filtre optionnel par région")
+         top_k: int = Field(5, ge=1, le=50, description="Nombre maximum de résultats")
+         min_score: float = Field(0.0, ge=0.0, le=1.0, description="Seuil minimal de similarité")
+
+     class JobSemanticMatchResponse(BaseModel):
+         query: str
+         total_matches: int
+         matches: List[JobMatchItem]
+     ```
+
+2. In `apps/api/routers/semantic_match.py` (New file):
+   - Create APIRouter.
+   - Endpoint: `POST /semantic-match` (response_model=JobSemanticMatchResponse).
+   - Check if `request.app.state.db_pool` is available:
+     * If available: execute cosine distance query `1 - (embedding <=> $1) AS score` with filters on `cnp_code` and `region`.
+     * If `db_pool` is None (offline / dev mode): return simulated mock results with `similarity_score >= min_score`.
+
+3. In `apps/api/main.py`:
+   - Import and include the semantic match router:
+     `app.include_router(semantic_match.router, prefix="/api/jobs", tags=["Jobs & Semantic Matching"])`
+
+4. In `apps/api/test_routes.py`:
+   - Add test case verifying `/api/jobs/semantic-match` route exists and returns HTTP 200 with valid mock data when queried via `TestClient`.
+
+## Acceptance Criteria
+- `python -m pytest apps/api/test_routes.py` passes with 100% success.
+- `python -c "from apps.api.main import app; from apps.api.schemas import JobSemanticMatchRequest; print('OK')"` exits with code 0.
 """
     }
 ]
@@ -536,11 +546,27 @@ def run_autonomous_loop(client: JulesClient, tasks: list, poll_interval: int = 3
         print(f"ID : {task['id']}")
         
         try:
-            session = client.create_session(task["title"], task["prompt"])
-            session_id = session.get("id") or session.get("name")
-            session_url = session.get("url")
-            print(f"✅ Session créée sur Google Jules : {session_id}")
-            print(f"🔗 Suivi web : {session_url}")
+            # Vérifier si une session active ou terminée existe déjà pour cette tâche
+            existing_session = None
+            try:
+                for s in client.list_sessions():
+                    if s.get("title") == task["title"] and s.get("state") in ["IN_PROGRESS", "QUEUED", "COMPLETED", "SUCCEEDED"]:
+                        existing_session = s
+                        break
+            except Exception:
+                pass
+
+            if existing_session:
+                session_id = existing_session.get("id") or existing_session.get("name")
+                session_url = existing_session.get("url", f"https://jules.google.com/session/{session_id}")
+                print(f"🔄 Session existante détectée sur Google Jules : {session_id} (état: {existing_session.get('state')})")
+                print(f"🔗 Suivi web : {session_url}")
+            else:
+                session = client.create_session(task["title"], task["prompt"])
+                session_id = session.get("id") or session.get("name")
+                session_url = session.get("url")
+                print(f"✅ Session créée sur Google Jules : {session_id}")
+                print(f"🔗 Suivi web : {session_url}")
             
             # Boucle de polling périodique
             print(f"⏳ Surveillance périodique (checkup toutes les {poll_interval}s)...")

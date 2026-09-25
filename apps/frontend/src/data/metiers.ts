@@ -49811,17 +49811,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Opticiens d'ordonnances.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -50792,17 +50785,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Inhalothérapeutes.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -51137,17 +51123,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues en santé animale et techniciens vétérinaires.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -51465,17 +51444,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Audioprothésistes.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -51995,17 +51967,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Hygiénistes dentaires.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -52340,17 +52305,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues et techniciens dentaires.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -52685,17 +52643,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues de laboratoires médicaux.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -53013,17 +52964,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues en radiologie.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -53350,17 +53294,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues en échographie.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -53670,17 +53607,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologues en cardiologie.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -54015,17 +53945,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Techniciens en pharmacie.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -54343,17 +54266,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Techniciens en diététique.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -54542,17 +54458,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Praticiens de médecine traditionnelle chinoise.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -54887,17 +54796,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Massothérapeutes.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -55086,17 +54988,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Herboristes.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -55414,17 +55309,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Assistants dentaires.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -55630,17 +55518,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Assistants de laboratoires médicaux et préposés techniques reliés.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -56193,17 +56074,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Assistants techniques techniques en pharmacie et assistants en pharmacie.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -56521,17 +56395,10 @@ export const METIERS_DATA: FicheMetier[] = [
     "formations": [
       {
         "type": "DEC",
-        "titre": "DEC technique en santé",
+        "titre": "145.A0 — Techniques de santé animale",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Techniciens en audiométrie.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur santé",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Technologue en santé animale.",
+        "lien_interne": "/programmes/145-a0-techniques-de-sante-animale"
       }
     ]
   },
@@ -66887,20 +66754,13 @@ export const METIERS_DATA: FicheMetier[] = [
       "salaire_marche_actuel": 64028,
       "statut_dynamique": "Ralentissement"
     },
-    "formations": [
-      {
+    "formations": [{
         "type": "DEC",
-        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "code": "310.A0",
+        "titre": "310.A0 — Techniques policières",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Policiers (sauf cadres supérieurs).",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique préparant à l'exercice de la profession policière et à l'admission à l'École nationale de police du Québec (ENPQ).",
+        "lien_interne": "/programmes/310-a0-techniques-policieres"
       }
     ]
   },
@@ -67598,20 +67458,13 @@ export const METIERS_DATA: FicheMetier[] = [
       "salaire_marche_actuel": 50560,
       "statut_dynamique": "Stabilité du marché"
     },
-    "formations": [
-      {
+    "formations": [{
         "type": "DEC",
-        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "code": "391.A0",
+        "titre": "391.A0 — Techniques juridiques",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Techniciens juridiques juridiques.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Formation collégiale technique préparant à assister les juristes, avocats et notaires dans la recherche, la rédaction et la gestion des dossiers juridiques.",
+        "lien_interne": "/programmes/391-a0-techniques-juridiques"
       }
     ]
   },
@@ -68273,20 +68126,13 @@ export const METIERS_DATA: FicheMetier[] = [
       "salaire_marche_actuel": 41860,
       "statut_dynamique": "Croissance stable"
     },
-    "formations": [
-      {
+    "formations": [{
         "type": "DEC",
-        "titre": "DEC technique en enseignement, droit et services sociaux",
+        "code": "322.A0",
+        "titre": "322.A0 — Techniques d'éducation à l'enfance",
         "duree": "3 ans (Cégep)",
-        "description": "Programme collégial technique combinant formation pratique en laboratoire, stages et préparation directe au rôle de Éducateurs de la petite enfance.",
-        "lien_interne": "/dec-prealables"
-      },
-      {
-        "type": "DEP",
-        "titre": "DEP spécialisé du secteur enseignement, droit et services sociaux",
-        "duree": "1 à 2 ans (CFP)",
-        "description": "Formation professionnelle diplômante reconnue par le Ministère de l'Éducation pour l'accès direct au marché du travail québécois.",
-        "lien_interne": "/dep"
+        "description": "Programme collégial technique formant les éducatrices et éducateurs qualifiés pour intervenir auprès des enfants de 0 à 12 ans en CPE et services de garde.",
+        "lien_interne": "/programmes/322-a0-techniques-deducation-a-lenfance"
       }
     ]
   },

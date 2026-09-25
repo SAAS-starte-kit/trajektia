@@ -1374,6 +1374,9 @@ python packages/data-pipeline/etl/check_db.py
 
 # 7. Test et calibration du moteur psychométrique Prediger (ICP)
 python packages/data-pipeline/analytics/prediger_riasec_calibrator.py
+
+# 8. Audit d'intégrité des liaisons croisées Métiers ↔ Formations MEQ (510 CNP, 170 DEC, 215 DEP)
+npx tsx scripts/audit_data_integrity.ts
 ```
 
 #### 13.1.1 Pipeline d'Intégration Continue (GitHub Actions CI)
@@ -1387,6 +1390,13 @@ Le dépôt dispose d'un pipeline d'automatisation des tests exécuté à chaque 
 Pour prévenir tout risque de rupture de dépendance lors des refactorisations ou fusions automatiques, le projet intègre **GitNexus** :
 - **Graphe de code** : Indexation permanente de 3 056 nœuds, 4 804 arêtes, 149 clusters fonctionnels et 95 flux d'exécution.
 - **Garantie pré-commit (`detect-changes`)** : Tout commit automatisé ou manuel est soumis à une analyse de graphe préalable (`node .gitnexus/run.cjs detect-changes --scope all --repo .`) confirmant l'absence de régression sur les processus métier critiques.
+
+#### 13.1.3 Audit d'Intégrité des Liaisons Croisées Métiers ↔ Formations MEQ
+
+Le script [`scripts/audit_data_integrity.ts`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/scripts/audit_data_integrity.ts) opère une vérification croisée de l'ensemble des catalogues éducatifs et professionnels :
+- **Couverture exhaustive** : Vérifie l'ensemble des **510 métiers CNP 2021**, des **170 programmes DEC** et des **215 programmes DEP**.
+- **Cohérence bidirectionnelle** : Rapprochement automatique de `program_to_cnps` et `cnp_to_programs`.
+- **Garantie de non-régression** : 0 métier sans formation (`FORMATIONS_VIDES`), validation stricte des `lien_interne` pour éradiquer tout lien brisé (404), et remplacement des intitulés génériques par les libellés officiels du Ministère de l'Enseignement supérieur (MES).
 
 ### 13.2 Contrôles d'intégrité référentielle
 

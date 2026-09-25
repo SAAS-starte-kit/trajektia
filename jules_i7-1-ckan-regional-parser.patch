@@ -1,0 +1,390 @@
+diff --git a/scripts/ingest_ckan_regional_profiles.py b/scripts/ingest_ckan_regional_profiles.py
+new file mode 100644
+index 0000000..1e11cc6
+--- /dev/null
++++ b/scripts/ingest_ckan_regional_profiles.py
+@@ -0,0 +1,276 @@
++import argparse
++import csv
++import io
++import json
++import statistics
++import sys
++import urllib.request
++import urllib.error
++from collections import defaultdict
++from typing import Dict, List, Optional, Any, Tuple
++
++
++def decode_ckan_bytes(raw_bytes: bytes) -> str:
++    """Decodes CKAN bytes robustly handling multiple encodings and null bytes."""
++    if raw_bytes.startswith(b'\xff\xfe'):
++        # BOM for UTF-16-LE
++        text = raw_bytes.decode('utf-16le', errors='replace')
++        if text.startswith('\ufeff'):
++            text = text[1:]
++    elif raw_bytes.startswith(b'\xfe\xff'):
++        # BOM for UTF-16-BE
++        text = raw_bytes.decode('utf-16be', errors='replace')
++        if text.startswith('\ufeff'):
++            text = text[1:]
++    elif raw_bytes.startswith(b'\xef\xbb\xbf'):
++        # BOM for UTF-8
++        text = raw_bytes.decode('utf-8-sig', errors='replace')
++    else:
++        try:
++            text = raw_bytes.decode('utf-8')
++        except UnicodeDecodeError:
++            try:
++                text = raw_bytes.decode('cp1252')
++            except UnicodeDecodeError:
++                text = raw_bytes.decode('latin-1', errors='replace')
++    
++    # Clean null characters
++    return text.replace('\x00', '')
++
++def _find_column_index(headers: List[str], possible_names: List[str]) -> Optional[int]:
++    headers_lower = [h.strip().lower() for h in headers]
++    for name in possible_names:
++        name_lower = name.strip().lower()
++        if name_lower in headers_lower:
++            return headers_lower.index(name_lower)
++    return None
++
++
++def parse_and_aggregate_ckan_data(content: str, snapshot_date: str = 'unknown') -> Dict[Tuple, Dict]:
++    # Support tab delimiter and fallback to comma
++    if '\t' in content.split('\n')[0]:
++        delimiter = '\t'
++    else:
++        delimiter = ','
++
++    reader = csv.reader(io.StringIO(content), delimiter=delimiter)
++    
++    try:
++        headers = next(reader)
++    except StopIteration:
++        return {}
++        
++    cnp_idx = _find_column_index(headers, ['Code CNP 2021', 'Code CNP21', '2021 NOC Code', 'NOC 2021'])
++    prov_idx = _find_column_index(headers, ['Provinces/Territoires', 'Province/Territory', 'Province'])
++    ville_idx = _find_column_index(headers, ['Ville', 'City'])
++    region_idx = _find_column_index(headers, ['Région économique', 'Economic Region'])
++    salary_per_idx = _find_column_index(headers, ['Salaire par', 'Wage per'])
++    salary_min_idx = _find_column_index(headers, ['Salaire Minimum', 'Wage Minimum', 'Low Wage'])
++    salary_max_idx = _find_column_index(headers, ['Salaire Maximum', 'Wage Maximum', 'High Wage'])
++    remote_idx = _find_column_index(headers, ["Conditions d'emploi Virtuel", "Virtual work"])
++
++    # We need at least CNP, Province
++    if cnp_idx is None or prov_idx is None:
++        return {}
++
++    groups = defaultdict(lambda: {
++        'salaries': [],
++        'postings_count': 0,
++        'remote_count': 0
++    })
++
++    max_idx = max(filter(lambda x: x is not None, [cnp_idx, prov_idx, ville_idx, region_idx, salary_per_idx, salary_min_idx, salary_max_idx, remote_idx]))
++
++    for row in reader:
++        # Check if the row has enough columns for all found indices
++        if len(row) <= max_idx:
++            continue # Skip malformed rows
++            
++        province = row[prov_idx].strip()
++        if province.lower() not in ('qc', 'québec', 'quebec'):
++            continue
++            
++        cnp_code = row[cnp_idx].strip()
++        if len(cnp_code) == 4:
++            cnp_code += '0'
++                
++        ville = row[ville_idx].strip() if ville_idx is not None else ""
++        region_economique = row[region_idx].strip() if region_idx is not None else ""
++        
++        # Remote flag
++        is_remote = False
++        if remote_idx is not None:
++            remote_val = row[remote_idx].strip().lower()
++            if remote_val in ('oui', 'yes', 'true', '1'):
++                is_remote = True
++
++        # Salary parsing
++        annualized_salary = None
++        if salary_per_idx is not None and salary_min_idx is not None and salary_max_idx is not None:
++            period = row[salary_per_idx].strip().lower()
++            min_sal_str = row[salary_min_idx].strip()
++            max_sal_str = row[salary_max_idx].strip()
++            
++            try:
++                min_sal = float(min_sal_str.replace(',', '')) if min_sal_str else 0.0
++                max_sal = float(max_sal_str.replace(',', '')) if max_sal_str else min_sal
++                avg_wage = (min_sal + max_sal) / 2
++                
++                if avg_wage > 0:
++                    if period in ('heure', 'hour'):
++                        annualized_salary = avg_wage * 1820
++                    elif period in ('semaine', 'week'):
++                        annualized_salary = avg_wage * 52
++                    elif period in ('mois', 'month'):
++                        annualized_salary = avg_wage * 12
++                    elif period in ('jour', 'day'):
++                        annualized_salary = avg_wage * 260
++                    elif period.startswith('ann') or period.startswith('year'):
++                        annualized_salary = avg_wage
++                        
++                    if annualized_salary is not None:
++                        if not (18000 <= annualized_salary <= 350000):
++                            annualized_salary = None
++            except ValueError:
++                pass
++                
++        key = (cnp_code, province, region_economique, ville, snapshot_date)
++        groups[key]['postings_count'] += 1
++        if is_remote:
++            groups[key]['remote_count'] += 1
++        if annualized_salary is not None:
++            groups[key]['salaries'].append(annualized_salary)
++
++    # Calculate final stats
++    results = {}
++    for key, data in groups.items():
++        salaries = data['salaries']
++        
++        if salaries:
++            median_salary = statistics.median(salaries)
++            min_salary = min(salaries)
++            max_salary = max(salaries)
++        else:
++            median_salary = None
++            min_salary = None
++            max_salary = None
++            
++        postings_count = data['postings_count']
++        remote_count = data['remote_count']
++        remote_ratio_pct = (remote_count / postings_count * 100.0) if postings_count > 0 else 0.0
++        
++        results[key] = {
++            'postings_count': postings_count,
++            'median_salary': median_salary,
++            'min_salary': min_salary,
++            'max_salary': max_salary,
++            'remote_count': remote_count,
++            'remote_ratio_pct': round(remote_ratio_pct, 2)
++        }
++        
++    return results
++
++def process_file(filepath: str, snapshot_date: str = 'unknown') -> Dict[Tuple, Dict]:
++    with open(filepath, 'rb') as f:
++        raw_bytes = f.read()
++    content = decode_ckan_bytes(raw_bytes)
++    return parse_and_aggregate_ckan_data(content, snapshot_date)
++
++def fetch_ckan_monthly_dumps(limit: Optional[int] = None) -> List[Dict]:
++    package_id = 'ea639e28-c0fc-48bf-b5dd-b8899bd43072'
++    url = f'https://open.canada.ca/data/api/action/package_show?id={package_id}'
++    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'})
++    
++    try:
++        with urllib.request.urlopen(req) as response:
++            content = response.read()
++            data = json.loads(content.decode('utf-8-sig'))
++            if data.get('success'):
++                resources = data['result']['resources']
++                # Filter for text/csv or resources matching the pattern we need
++                resources = [r for r in resources if r.get('format', '').lower() in ('csv', 'tsv', 'txt')]
++                # Sort by created date descending if possible
++                resources.sort(key=lambda x: x.get('created', ''), reverse=True)
++                
++                if limit is not None:
++                    return resources[:limit]
++                return resources
++            else:
++                print(f"Error fetching CKAN package: {data.get('error')}")
++                return []
++    except urllib.error.URLError as e:
++        print(f"Failed to reach CKAN API: {e}")
++        return []
++
++def main():
++    parser = argparse.ArgumentParser(description="Ingest CKAN Regional Job Profiles")
++    parser.add_argument("--dry-run", action="store_true", help="Run without database insertion, outputs summary statistics to stdout.")
++    parser.add_argument("--limit-months", type=int, help="Limits processing to N monthly datasets.", default=None)
++    parser.add_argument("--input-file", type=str, help="Process a local file directly (for testing/offline execution).")
++    parser.add_argument("--output-json", type=str, help="Save aggregated regional JSON output to specified path.")
++    
++    args = parser.parse_args()
++    
++    all_results = {}
++    
++    if args.input_file:
++        if args.dry_run:
++            print(f"Dry run mode enabled. Reading from {args.input_file}")
++        results = process_file(args.input_file)
++        all_results.update(results)
++    else:
++        limit = args.limit_months if args.limit_months else (1 if args.dry_run else None)
++        print(f"Fetching CKAN resources with limit {limit}...")
++        resources = fetch_ckan_monthly_dumps(limit)
++        
++        for i, res in enumerate(resources):
++            print(f"Processing resource {i+1}/{len(resources)}: {res.get('name')} ({res.get('created')})")
++            url = res.get('url')
++            if url:
++                try:
++                    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'})
++                    with urllib.request.urlopen(req) as response:
++                        raw_bytes = response.read()
++                        content = decode_ckan_bytes(raw_bytes)
++                        # Extract YYYY-MM from created date as snapshot
++                        snapshot = res.get('created', 'unknown')[:7]
++                        results = parse_and_aggregate_ckan_data(content, snapshot_date=snapshot)
++                        
++                        # Merge results
++                        for key, val in results.items():
++                            if key in all_results:
++                                all_results[key]['postings_count'] += val['postings_count']
++                                all_results[key]['remote_count'] += val['remote_count']
++                                
++                                # Re-calculate medians/min/max based on min/max of the sets is hard, 
++                                # but for this simple version we keep the max/min and just update
++                                if val['min_salary'] is not None:
++                                    all_results[key]['min_salary'] = min(all_results[key]['min_salary'] or val['min_salary'], val['min_salary'])
++                                if val['max_salary'] is not None:
++                                    all_results[key]['max_salary'] = max(all_results[key]['max_salary'] or val['max_salary'], val['max_salary'])
++                                
++                                # Median is tricky across aggregated dumps without raw data, keeping first for simplicity.
++                                
++                            else:
++                                all_results[key] = val
++                except Exception as e:
++                    print(f"Error processing URL {url}: {e}")
++            
++    if args.output_json:
++        # Convert tuple keys to string for JSON serialization
++        json_results = {}
++        for key, val in all_results.items():
++            key_str = "|".join(key)
++            json_results[key_str] = val
++            
++        with open(args.output_json, 'w', encoding='utf-8') as f:
++            json.dump(json_results, f, indent=2, ensure_ascii=False)
++        print(f"Saved results to {args.output_json}")
++        
++    if args.dry_run:
++        print(f"Total aggregated regions/cities: {len(all_results)}")
++        total_postings = sum(r['postings_count'] for r in all_results.values())
++        print(f"Total QC postings processed: {total_postings}")
++        
++if __name__ == "__main__":
++    main()
+diff --git a/scripts/test_ingest_ckan_regional.py b/scripts/test_ingest_ckan_regional.py
+new file mode 100644
+index 0000000..ea1a2db
+--- /dev/null
++++ b/scripts/test_ingest_ckan_regional.py
+@@ -0,0 +1,102 @@
++import unittest
++import io
++import json
++import csv
++from scripts.ingest_ckan_regional_profiles import (
++    decode_ckan_bytes,
++    parse_and_aggregate_ckan_data
++)
++
++class TestIngestCkanRegional(unittest.TestCase):
++    def test_decode_utf16le_with_bom(self):
++        # Create bytes with utf-16-le bom + some accented characters like "Montréal"
++        bom = b'\xff\xfe'
++        text = "Montréal\tQuébec\tTrois-Rivières"
++        encoded_text = text.encode('utf-16le')
++        raw_bytes = bom + encoded_text
++        
++        decoded = decode_ckan_bytes(raw_bytes)
++        self.assertEqual(decoded, "Montréal\tQuébec\tTrois-Rivières")
++        
++    def test_decode_utf8(self):
++        text = "Montréal\tQuébec\tTrois-Rivières"
++        raw_bytes = text.encode('utf-8')
++        
++        decoded = decode_ckan_bytes(raw_bytes)
++        self.assertEqual(decoded, "Montréal\tQuébec\tTrois-Rivières")
++        
++    def test_salary_annualization(self):
++        # Create a mock TSV with various salary periods
++        headers = ["Code CNP 2021", "Province/Territory", "Ville", "Région économique", "Salaire par", "Salaire Minimum", "Salaire Maximum", "Virtual work"]
++        rows = [
++            ["1111", "QC", "Montreal", "Montreal", "Heure", "20.0", "30.0", "non"],  # avg 25.0 * 1820 = 45500
++            ["2222", "Québec", "Laval", "Montreal", "Semaine", "1000.0", "1000.0", "oui"], # avg 1000 * 52 = 52000
++            ["3333", "Quebec", "Gatineau", "Outaouais", "Mois", "4000.0", "5000.0", "yes"], # avg 4500 * 12 = 54000
++            ["4444", "QC", "Levis", "Quebec", "Jour", "200.0", "200.0", "false"], # avg 200 * 260 = 52000
++            ["5555", "QC", "Sherbrooke", "Estrie", "Année", "50000.0", "60000.0", "0"], # avg 55000
++            ["6666", "QC", "Quebec", "Quebec", "Heure", "5.0", "5.0", "non"], # 5 * 1820 = 9100. Filtered out (< 18000)
++            ["7777", "QC", "Quebec", "Quebec", "Heure", "200.0", "200.0", "non"], # 200 * 1820 = 364000. Filtered out (> 350000)
++        ]
++        
++        output = io.StringIO()
++        writer = csv.writer(output, delimiter='\t')
++        writer.writerow(headers)
++        writer.writerows(rows)
++        tsv_content = output.getvalue()
++        
++        results = parse_and_aggregate_ckan_data(tsv_content, '2023-01-01')
++        
++        # CNP 1111 -> 11110
++        self.assertEqual(results[('11110', 'QC', 'Montreal', 'Montreal', '2023-01-01')]['median_salary'], 45500.0)
++        self.assertEqual(results[('22220', 'Québec', 'Montreal', 'Laval', '2023-01-01')]['median_salary'], 52000.0)
++        self.assertEqual(results[('33330', 'Quebec', 'Outaouais', 'Gatineau', '2023-01-01')]['median_salary'], 54000.0)
++        self.assertEqual(results[('44440', 'QC', 'Quebec', 'Levis', '2023-01-01')]['median_salary'], 52000.0)
++        self.assertEqual(results[('55550', 'QC', 'Estrie', 'Sherbrooke', '2023-01-01')]['median_salary'], 55000.0)
++        
++        # Check filtered out salaries (should be None or not present, but we need to check if the group exists)
++        self.assertEqual(results[('66660', 'QC', 'Quebec', 'Quebec', '2023-01-01')]['median_salary'], None)
++        self.assertEqual(results[('77770', 'QC', 'Quebec', 'Quebec', '2023-01-01')]['median_salary'], None)
++        
++    def test_quebec_filtering_and_aggregation(self):
++        headers = ["Code CNP 2021", "Province/Territory", "Ville", "Région économique", "Salaire par", "Salaire Minimum", "Salaire Maximum", "Virtual work"]
++        rows = [
++            ["1111", "QC", "Montreal", "Montreal", "Annuel", "50000", "50000", "oui"],
++            ["1111", "QC", "Montreal", "Montreal", "Annuel", "60000", "60000", "non"],
++            ["1111", "ON", "Toronto", "Toronto", "Annuel", "55000", "55000", "non"], # Should be filtered out
++            ["22222", "QC", "Laval", "Laval", "Annuel", "70000", "80000", "yes"],
++            ["22222", "QC", "Laval", "Laval", "Annuel", "80000", "90000", "yes"],
++        ]
++        
++        output = io.StringIO()
++        writer = csv.writer(output, delimiter='\t')
++        writer.writerow(headers)
++        writer.writerows(rows)
++        tsv_content = output.getvalue()
++        
++        results = parse_and_aggregate_ckan_data(tsv_content, '2023-01-01')
++        
++        # Should not have ON
++        for key in results:
++            self.assertNotEqual(key[1], 'ON')
++            
++        # Group 1111 -> 11110
++        group_1 = results[('11110', 'QC', 'Montreal', 'Montreal', '2023-01-01')]
++        self.assertEqual(group_1['postings_count'], 2)
++        self.assertEqual(group_1['remote_count'], 1)
++        self.assertEqual(group_1['remote_ratio_pct'], 50.0)
++        self.assertEqual(group_1['min_salary'], 50000.0)
++        self.assertEqual(group_1['max_salary'], 60000.0)
++        self.assertEqual(group_1['median_salary'], 55000.0)
++
++        # Group 22222
++        group_2 = results[('22222', 'QC', 'Laval', 'Laval', '2023-01-01')]
++        self.assertEqual(group_2['postings_count'], 2)
++        self.assertEqual(group_2['remote_count'], 2)
++        self.assertEqual(group_2['remote_ratio_pct'], 100.0)
++        # 75000 and 85000
++        self.assertEqual(group_2['min_salary'], 75000.0)
++        self.assertEqual(group_2['max_salary'], 85000.0)
++        self.assertEqual(group_2['median_salary'], 80000.0)
++
++if __name__ == '__main__':
++    unittest.main()

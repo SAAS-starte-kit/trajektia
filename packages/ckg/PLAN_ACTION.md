@@ -56,6 +56,31 @@ mÃ©tiers et formations via la vitrine Astro.
 
 ---
 
+## HOTFIXES DATA — Triage (2026-09-24)
+
+- [x] **[HOTFIX-01]** [Agent Cible : Antigravity] Injecter les programmes DEC manquants (145.A0, 410.A1, 200.C0) dans Neo4j (`Program`) et Supabase (`educational_programs`).
+  - **Objectif** : Corriger les pages vides `/programmes/*`.
+  - **Priorité** : P0 (Bloquant)
+  - **Fichiers impactés** : Neo4j & Supabase
+- [x] **[HOTFIX-02]** [Agent Cible : Antigravity] Corriger le mapping CNP 32104 dans `metiers.ts`.
+  - **Objectif** : Remplacer les titres de formations fictives par "145.A0 — Techniques de santé animale".
+  - **Priorité** : P0 (Bloquant)
+  - **Fichiers impactés** : `apps/frontend/src/data/metiers.ts`
+- [x] **[HOTFIX-03]** [Agent Cible : Antigravity] Enrichir `programmes-devis.json`.
+  - **Objectif** : Les pages `/programmes/*` doivent avoir des descriptions et des compétences.
+  - **Priorité** : P1 (Important)
+  - **Fichiers impactés** : `apps/frontend/src/data/programmes-devis.json`
+- [x] **[HOTFIX-04]** [Agent Cible : Antigravity] Ajuster la logique de `metiersConnexes` pour 145.A0.
+  - **Objectif** : Afficher plus de métiers connexes pour le secteur vétérinaire/agriculture.
+  - **Priorité** : P1 (Important)
+  - **Fichiers impactés** : `apps/frontend/src/data/programmes-metiers-map.json` ou `[slug].astro`
+- [x] **[HOTFIX-05]** [Agent Cible : Antigravity] Audit d'intégrité des liaisons croisées Métiers ↔ Formations (`scripts/audit_data_integrity.ts`).
+  - **Objectif** : Valider les 510 métiers CNP, 170 programmes DEC et 215 programmes DEP. Résoudre les faux positifs de découpage regex (`FORMATIONS_VIDES` à 0), gérer les clés citées pour les 215 DEP, et substituer les titres de formations génériques par leurs équivalents officiels directs (CNP 42100, 42200, 42202, 32104).
+  - **Priorité** : P1 (Important)
+  - **Résultat** : 510/510 métiers avec formations valides, 17/17 tests Vitest passants, risque GitNexus low.
+
+---
+
 ## PHASE A â€” ComplÃ©ter Neo4j (Le Graphe de Relations)
 
 > Principe : Dans Neo4j, on ingÃ¨re UNIQUEMENT des noeuds lÃ©gers (IDs + titres courts)
@@ -633,6 +658,7 @@ RÃ‰ALISÃ‰ (Fondations, Ingestion, Moteurs & Taxonomie DPC)
 [FAIT] T4  Déplafonnement Ingestion Adzuna (retrait du LIMIT 5, rate-limit, options CLI) & Fallback Multi-Portails Guichet-Emplois/Jobillico
 [FAIT] T5  Calibration Réaliste du Télétravail (FEER & Secteur d'activité, suppression du 0.0%)
 [FAIT] T6  Maillage Bidirectionnel CKG Formations ↔ Métiers (964 relations `occupation_programs` -> 510 fiches `metiers.ts` & fiches DEC/DEP)
+[FAIT] T7  Audit Intégrité Données & Consolidation Formations (`scripts/audit_data_integrity.ts`, 510 CNPs, 170 DEC, 215 DEP validés, 17/17 tests Vitest passants)
 [FAIT] I7  R&D & Étude de Faisabilité Ingestion Textuelle 14M Offres CKAN & Vectorisation Graph-RAG (`FEASIBILITY_CKAN_VECTORIZATION_I7.md`)
 
 FLOTTE ASYNCHRONE GOOGLE JULES (100 sessions/jour — Salves 1 à 7 validées à 100%)
