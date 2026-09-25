@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-09-25T11:33:53Z",
-  "task_id": "i7-3-semantic-match-router",
+  "timestamp": "2026-09-25T22:17:59Z",
+  "task_id": "a4-esco-green-skills",
   "state": "COMPLETED",
-  "message": "Tâche [FastAPI / CKG] Route API de matching sémantique compétences / profils (I7.3) intégrée avec succès."
+  "message": "Tâche [CKG / ESCO] Ingestion ciblée des compétences vertes (Green Skills) et marquage écologique des métiers CNP intégrée avec succès."
 }

@@ -104,174 +104,24 @@ COMPLETED_TASKS = [
         "title": "[FastAPI / CKG] Route API de matching sémantique compétences / profils (I7.3)",
         "test_command": "python -m pytest apps/api/test_routes.py",
     },
-]
-
-TASKS_QUEUE = [
     {
         "id": "a4-esco-green-skills",
         "title": "[CKG / ESCO] Ingestion ciblée des compétences vertes (Green Skills) et marquage écologique des métiers CNP",
         "test_command": "python scripts/test_ingest_esco_green_skills.py",
-        "prompt": """# TASK: Implement Targeted ESCO Green Skills Ingestion & NOC Ecological Tagging (A4)
-
-## Context & Architecture
-Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: Python 3.10+, standard libraries (csv, io, json, re, urllib, argparse, unittest)
-Domain: Career Knowledge Graph (CKG) & ESCO Green Transition Skills (Initiative A4)
-Documentation Reference: `packages/ckg/PLAN_ACTION.md` (Phase A4 - Stratégie Ciblée Green Skills)
-
-## Problem & Technical Need
-In alignment with Quebec's climate transition, decarbonization, and ESG policies, we need a targeted ingestion script for official European Commission ESCO Green Skills (`green skills` classification) linked to 2021 Canadian NOC codes (`CNP`).
-Rather than ingesting all 13,890 generic ESCO skills (which causes graph combinatorial explosion), we only ingest validated ecological skills (energy efficiency, renewable energy, circular economy, sustainable materials, environmental compliance).
-
-## File Boundaries (STRICT)
-You may ONLY create or modify:
-  - `scripts/ingest_esco_green_skills.py` (New file)
-  - `scripts/test_ingest_esco_green_skills.py` (New file)
-Do NOT modify, rename, or delete any other files.
-
-## Detailed Requirements
-
-1. `scripts/ingest_esco_green_skills.py`:
-   - Curated taxonomy of green transition domains:
-     * Renewable Energy & Grid (`Énergie renouvelable & Réseaux intelligents`)
-     * Circular Economy & Waste (`Économie circulaire & Gestion des matières`)
-     * Sustainable Construction & Efficiency (`Bâtiment durable & Efficacité énergétique`)
-     * Environmental Compliance & ESG (`Conformité environnementale & Bilan carbone`)
-     * Clean Transportation (`Mobilité durable & Véhicules électriques`)
-   - Function `extract_green_skills_from_dataset(raw_content: str) -> list[dict]`:
-     * Parses skill records (label_fr, label_en, uri, green_category).
-     * Filters skills matching green criteria.
-   - Mapping function `map_green_skills_to_noc(skills: list[dict]) -> dict`:
-     * Maps green competencies to relevant CNP occupations based on keywords/ESCO crosswalk.
-   - CLI Interface (`argparse`):
-     * `--dry-run`: Generates summary statistics (count of green skills, top occupations tagged) to stdout.
-     * `--output-json PATH`: Exports structured green skills and CNP mappings to JSON.
-     * When imported as a module, does not auto-run.
-
-2. `scripts/test_ingest_esco_green_skills.py`:
-   - Standalone unit test suite using `unittest`.
-   - Tests:
-     * `test_green_skills_filtering`: Verifies that non-green skills are excluded and green skills are accurately categorized.
-     * `test_noc_mapping_heuristics`: Asserts that engineering, construction, and environmental CNP codes receive appropriate green tags.
-     * `test_cli_dry_run`: Verifies script executes cleanly with `--dry-run`.
-
-## Acceptance Criteria
-- `python scripts/test_ingest_esco_green_skills.py` runs and outputs OK (100% tests pass).
-- `python scripts/ingest_esco_green_skills.py --help` exits with code 0.
-"""
     },
     {
         "id": "h1-2-lead-capture-frontend",
         "title": "[Frontend / API] Intégration du composant AlerteEmploi avec feedback utilisateur connecté à POST /api/leads",
         "test_command": "npm --prefix apps/frontend test",
-        "prompt": """# TASK: Implement Job Alert Lead Capture React Component & Wire to FastAPI (H1.2)
-
-## Context & Architecture
-Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: TypeScript, React, Astro, Vitest, Tailwind CSS (in apps/frontend/)
-Target Files:
-  - `apps/frontend/src/components/AlerteEmploi.tsx` (New file)
-  - `apps/frontend/src/components/__tests__/AlerteEmploi.test.tsx` (New file)
-
-## Objective
-Create a responsive, accessible React component `AlerteEmploi.tsx` allowing candidates on occupation pages to subscribe to real-time job alerts and salary trend updates for their specific CNP code. It posts data to `/api/leads` and respects Quebec's Law 25 with clear consent notices.
-
-## File Boundaries (STRICT)
-You may ONLY create or modify:
-  - `apps/frontend/src/components/AlerteEmploi.tsx` (New file)
-  - `apps/frontend/src/components/__tests__/AlerteEmploi.test.tsx` (New file)
-Do NOT modify any other files.
-
-## Detailed Requirements
-
-1. `apps/frontend/src/components/AlerteEmploi.tsx`:
-   - Props:
-     ```typescript
-     interface AlerteEmploiProps {
-       cnpCode: string;
-       titreMetier: string;
-     }
-     ```
-   - Features:
-     * Clean, modern glassmorphic card design.
-     * Email input with client-side HTML5 & regex validation.
-     * Clear mention: *« En vous inscrivant, vous acceptez de recevoir des alertes pour ce métier. Conformité Loi 25 : désabonnement instantané en 1 clic. »*
-     * Asynchronous submit via `fetch`:
-       - URL: `(import.meta.env.PUBLIC_API_URL || 'http://localhost:8000') + '/api/leads'`
-       - Method: `POST`
-       - Headers: `{"Content-Type": "application/json"}`
-       - Body: `JSON.stringify({ email, cnp: cnpCode })`
-     * Visual states:
-       - Idle: form with submit button
-       - Loading: spinner state
-       - Success: confirmation message (*« Alerte activée avec succès ! »*)
-       - Error: friendly error message with retry option
-
-2. `apps/frontend/src/components/__tests__/AlerteEmploi.test.tsx`:
-   - Vitest + Testing Library tests:
-     * Render test: verifies title, CNP reference, and Law 25 compliance notice are displayed.
-     * Validation test: prevents submission with invalid email format.
-     * Success flow test: mocks successful fetch and asserts confirmation banner is displayed.
-
-## Acceptance Criteria
-- `npm --prefix apps/frontend test` passes 100% of tests.
-"""
     },
     {
         "id": "i7-4-job-matches-ui",
         "title": "[Frontend / Astro] Composant interactif d'appariement sémantique d'emploi et d'offres réelles",
         "test_command": "npm --prefix apps/frontend test",
-        "prompt": """# TASK: Implement Job Semantic Matcher Feed Component (I7.4)
-
-## Context & Architecture
-Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: TypeScript, React, Astro, Vitest, Tailwind CSS (in apps/frontend/)
-Target Files:
-  - `apps/frontend/src/components/JobSemanticMatcher.tsx` (New file)
-  - `apps/frontend/src/components/__tests__/JobSemanticMatcher.test.tsx` (New file)
-
-## Objective
-Create a rich, responsive React component `JobSemanticMatcher.tsx` connecting directly to the `/api/jobs/semantic-match` endpoint implemented in I7.3. It allows users to enter candidate skills or career aspirations, filter by Quebec administrative regions, and explore live matching job opportunities with cosine affinity scores.
-
-## File Boundaries (STRICT)
-You may ONLY create or modify:
-  - `apps/frontend/src/components/JobSemanticMatcher.tsx` (New file)
-  - `apps/frontend/src/components/__tests__/JobSemanticMatcher.test.tsx` (New file)
-Do NOT modify any other files.
-
-## Detailed Requirements
-
-1. `apps/frontend/src/components/JobSemanticMatcher.tsx`:
-   - Props:
-     ```typescript
-     interface JobSemanticMatcherProps {
-       initialCnp?: string;
-       initialQuery?: string;
-     }
-     ```
-   - Features:
-     * Input field for query (skills, keywords, aspirations).
-     * Regional dropdown filter (Montréal, Capitale-Nationale, Estrie, etc.).
-     * Min similarity slider or presets (>70%, >80%).
-     * Calls `POST /api/jobs/semantic-match` with JSON payload:
-       `{ query, cnp, region, top_k: 6, min_score: 0.5 }`.
-     * Card view for each matching offer:
-       - Job title, CNP badge, Location (City / Region).
-       - Visual affinity pill: e.g. `92% Correspondance` (green/emerald badge).
-       - Direct link to CNP occupation page `/metiers/{cnp_code}`.
-     * Empty state with helpful hints if no matches found.
-
-2. `apps/frontend/src/components/__tests__/JobSemanticMatcher.test.tsx`:
-   - Vitest test suite:
-     * Renders input controls.
-     * Mocks API response from `/api/jobs/semantic-match` and renders job cards with similarity score percentage.
-     * Handles API error or empty state cleanly.
-
-## Acceptance Criteria
-- `npm --prefix apps/frontend test` passes 100% of tests.
-"""
-    }
+    },
 ]
+
+TASKS_QUEUE = []
 
 
 # ==============================================================================
@@ -450,7 +300,7 @@ def apply_session_patch(session_data: dict, task_info: dict, client: JulesClient
     test_cmd = task_info.get("test_command")
     if test_cmd:
         print(f"🧪 Exécution du test de validation: {test_cmd}")
-        t_res = subprocess.run(test_cmd, shell=True, cwd=REPO_ROOT, capture_output=True, text=True)
+        t_res = subprocess.run(test_cmd, shell=True, cwd=REPO_ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace")
         print(t_res.stdout)
         if t_res.returncode != 0:
             print(f"❌ Échec du test de validation: {t_res.stderr}")

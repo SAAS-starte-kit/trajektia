@@ -674,11 +674,9 @@ FLOTTE ASYNCHRONE GOOGLE JULES (100 sessions/jour — Salves 1 à 10 validées �
 [FAIT] J9 / I7.2 Migration SQL Supabase `pgvector` HNSW & pipeline d'embedding textuel (`packages/database/schema_v16_job_postings_vectors.sql` & `scripts/generate_job_embeddings.py`)
 [FAIT] J10 / I7.3 Endpoint FastAPI de Matching Sémantique d'Emplois (`apps/api/routers/semantic_match.py`, `POST /api/jobs/semantic-match`)
 
-PROCHAINE ÉTAPE PRIORITAIRE — Sprint UI Matching Sémantique & Taggage Vert CKG
-────────────────────────────────────────────────────────────────────────
-1. [À FAIRE] A4   Ingestion ciblée des compétences écologiques ESCO Green Skills & Taggage vert des métiers CNP (`scripts/ingest_esco_green_skills.py`)
-2. [À FAIRE] H1.2 Intégration composant de capture de leads `AlerteEmploi.tsx` raccordé à l'API `POST /api/leads`
-3. [À FAIRE] I7.4 Composant React interactif de matching d'offres en direct `JobSemanticMatcher.tsx` (Astro/React)
+[FAIT] J11 / A4   Ingestion ciblée des compétences écologiques ESCO Green Skills & Taggage vert des métiers CNP (`scripts/ingest_esco_green_skills.py`)
+[FAIT] J12 / H1.2 Intégration composant de capture de leads `AlerteEmploi.tsx` raccordé à l'API `POST /api/leads` (4/4 tests Vitest passants)
+[FAIT] J13 / I7.4 Composant React interactif de matching d'offres en direct `JobSemanticMatcher.tsx` (4/4 tests Vitest passants, 25/25 suite globale)
 ```
 
 
