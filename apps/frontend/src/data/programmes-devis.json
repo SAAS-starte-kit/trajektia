@@ -1,0 +1,274 @@
+{
+  "181.A0": {
+    "code": "181.A0",
+    "nom": "Soins préhospitaliers d'urgence",
+    "type": "DEC technique (3 ans)",
+    "description": "Le programme Soins préhospitaliers d'urgence forme des professionnelles et professionnels paramédicaux capables d'évaluer avec précision l'état clinique d'une personne en détresse, d'administrer les protocoles de soins d'urgence avancés, d'effectuer les gestes de réanimation et d'assurer un transport sécuritaire vers un centre hospitalier sous monitoring continu.",
+    "objectives": "Développer un raisonnement clinique d'urgence rapide et rigoureux, maîtriser l'évaluation primaire et secondaire des victimes, appliquer les protocoles de pharmacothérapie d'urgence et les techniques de défibrillation/intubation, et communiquer efficacement avec les médecins régulateurs des centres de communication santé (CCS).",
+    "competencies": [
+      {
+        "code": "00K1",
+        "enonce": "Établir une communication adaptée avec la personne, ses proches et les intervenants d'urgence",
+        "elements": [
+          "Instaurer une relation d'aide et de réassurance psychologique en situation de crise.",
+          "Transmettre les bilans cliniques normés au centre hospitalier receveur (CCS / Urgence).",
+          "Collaborer avec les équipes de premiers répondants, pompiers et policiers sur scène."
+        ],
+        "criteres": [
+          "Communication claire, calme et rassurante adaptée au niveau de détresse de la victime.",
+          "Transmission rigoureuse des données vitales selon la méthode standardisée (SBAR)."
+        ]
+      },
+      {
+        "code": "00K2",
+        "enonce": "Évaluer la sécurité des lieux et gérer l'environnement d'intervention",
+        "elements": [
+          "Identifier les risques environnementaux, toxiques, chimiques ou physiques sur la scène.",
+          "Appliquer les précautions universelles d'asepsie et de protection individuelle (EPI).",
+          "Coordonner le périmètre de sécurité avec les services de secours."
+        ],
+        "criteres": [
+          "Priorisation absolue de la sécurité de l'équipe paramédicale et des tiers.",
+          "Zéro contamination croisée par respect strict des protocoles de biosécurité."
+        ]
+      },
+      {
+        "code": "00K3",
+        "enonce": "Effectuer l'évaluation clinique initiale (primaire) et le monitorage continu",
+        "elements": [
+          "Vérifier et sécuriser les voies respiratoires (ABCDE).",
+          "Interpréter les signes vitaux : oxymétrie, capnographie, pression artérielle et glycémie.",
+          "Réaliser et interpréter l'électrocardiogramme (ECG 12 dérivations)."
+        ],
+        "criteres": [
+          "Détection immédiate des états de choc, détresses respiratoires et arrêts cardiorespiratoires.",
+          "Exactitude des mesures physiologiques et surveillance des tendances hémodynamiques."
+        ]
+      },
+      {
+        "code": "00K4",
+        "enonce": "Administrer les protocoles d'intervention clinique et la pharmacothérapie d'urgence",
+        "elements": [
+          "Administrer les molécules d'urgence selon les protocoles de l'INSPQ/Santé Québec (Épinéphrine, Nitroglycérine, Naloxone, Salbutamol, ASA, Glucagon).",
+          "Effectuer les manœuvres de dégagement des voies respiratoires et la ventilation assistée.",
+          "Procéder à la réanimation cardiorespiratoire avancée et à l'utilisation du moniteur-défibrillateur."
+        ],
+        "criteres": [
+          "Respect sans faille des 7 BONS de l'administration médicamenteuse d'urgence.",
+          "Vérification systématique des contre-indications et adaptation immédiate de la thérapie."
+        ]
+      },
+      {
+        "code": "00K5",
+        "enonce": "Immobiliser et mobiliser la personne pour un transport sécuritaire",
+        "elements": [
+          "Appliquer les techniques d'immobilisation rachidienne (planche dorsale, collier cervical).",
+          "Utiliser les civières de relevage, chaises d'évacuation et dispositifs de transfert.",
+          "Adapter la conduite du véhicule ambulancier à la stabilité hémodynamique du patient."
+        ],
+        "criteres": [
+          "Prévention totale de l'aggravation des lésions traumatiques ou médullaires.",
+          "Maintien de la stabilité clinique tout au long de la trajectoire de transport."
+        ]
+      }
+    ],
+    "cegeps_offreurs": [
+      { "nom": "Collège Ahuntsic", "ville": "Montréal", "region": "Montréal" },
+      { "nom": "Cégep de Sainte-Foy", "ville": "Québec", "region": "Capitale-Nationale" },
+      { "nom": "Cégep de Sherbrooke", "ville": "Sherbrooke", "region": "Estrie" },
+      { "nom": "Cégep de Rivière-du-Loup", "ville": "Rivière-du-Loup", "region": "Bas-Saint-Laurent" },
+      { "nom": "Cégep de Saint-Jérôme", "ville": "Saint-Jérôme", "region": "Laurentides" },
+      { "nom": "Cégep de Saint-Hyacinthe", "ville": "Saint-Hyacinthe", "region": "Montérégie" },
+      { "nom": "Cégep de Chicoutimi", "ville": "Saguenay", "region": "Saguenay–Lac-Saint-Jean" },
+      { "nom": "Collège Shawinigan", "ville": "Shawinigan", "region": "Mauricie" },
+      { "nom": "Cégep de l'Abitibi-Témiscamingue", "ville": "Rouyn-Noranda", "region": "Abitibi-Témiscamingue" },
+      { "nom": "Cégep de la Gaspésie et des Îles", "ville": "Gaspé", "region": "Gaspésie–Îles-de-la-Madeleine" },
+      { "nom": "John Abbott College", "ville": "Sainte-Anne-de-Bellevue", "region": "Montréal (Secteur anglophone)" }
+    ]
+  },
+  "420.B0": {
+    "code": "420.B0",
+    "nom": "Techniques de l'informatique",
+    "type": "DEC technique (3 ans)",
+    "description": "Le programme Techniques de l'informatique prépare des spécialistes capables de concevoir, développer, tester, déployer et sécuriser des solutions logicielles, des architectures de bases de données et des infrastructures infonuagiques pour les entreprises.",
+    "objectives": "Maîtriser les paradigmes de programmation orientée objet et fonctionnelle, concevoir des architectures web et mobiles multi-tiers, automatiser les pipelines CI/CD et administrer des bases de données relationnelles et distribuées.",
+    "competencies": [
+      {
+        "code": "016K",
+        "enonce": "Analyser les exigences logicielles et l'architecture fonctionnelle d'une application",
+        "elements": [
+          "Recueillir et spécifier les besoins fonctionnels et non-fonctionnels des utilisateurs.",
+          "Modéliser le domaine d'affaires et la structure des flux de données.",
+          "Rédiger le cahier des charges et valider la faisabilité technique."
+        ],
+        "criteres": [
+          "Spécifications claires, non ambiguës et conformes aux objectifs de l'organisation.",
+          "Validation rigoureuse des cas d'utilisation et des scénarios de test."
+        ]
+      },
+      {
+        "code": "016N",
+        "enonce": "Développer des applications et composants logiciels sécurisés",
+        "elements": [
+          "Concevoir la structure des modules, classes et interfaces logicielles.",
+          "Implémenter la logique d'affaires en appliquant les patrons de conception (Design Patterns).",
+          "Développer et exécuter des suites de tests unitaires et d'intégration automatisés."
+        ],
+        "criteres": [
+          "Code propre, documenté, maintenable et exempt de failles de sécurité courantes (OWASP).",
+          "Taux de couverture des tests unitaires conforme aux standards de l'industrie."
+        ]
+      },
+      {
+        "code": "016P",
+        "enonce": "Concevoir et exploiter des bases de données relationnelles et NoSQL",
+        "elements": [
+          "Normaliser le schéma conceptuel en respectant les formes normales.",
+          "Rédiger des requêtes SQL d'extraction, jointures complexes et procédures stockées.",
+          "Assurer l'intégrité référentielle, l'indexation et la sécurité des accès."
+        ],
+        "criteres": [
+          "Optimisation du temps de réponse des requêtes sur de gros volumes de données.",
+          "Protection rigoureuse contre les injections SQL et fuites de données."
+        ]
+      }
+    ],
+    "cegeps_offreurs": [
+      { "nom": "Cégep du Vieux Montréal", "ville": "Montréal", "region": "Montréal" },
+      { "nom": "Collège de Maisonneuve", "ville": "Montréal", "region": "Montréal" },
+      { "nom": "Collège Ahuntsic", "ville": "Montréal", "region": "Montréal" },
+      { "nom": "Cégep de Sainte-Foy", "ville": "Québec", "region": "Capitale-Nationale" },
+      { "nom": "Cégep Garneau", "ville": "Québec", "region": "Capitale-Nationale" },
+      { "nom": "Cégep de Sherbrooke", "ville": "Sherbrooke", "region": "Estrie" },
+      { "nom": "Cégep de Trois-Rivières", "ville": "Trois-Rivières", "region": "Mauricie" },
+      { "nom": "Champlain Regional College", "ville": "Saint-Lambert", "region": "Montérégie" },
+      { "nom": "Dawson College", "ville": "Montréal", "region": "Montréal (Anglophone)" }
+    ]
+  },
+  "180.A0": {
+    "code": "180.A0",
+    "nom": "Soins infirmiers",
+    "type": "DEC technique (3 ans)",
+    "description": "Le programme Soins infirmiers forme des professionnelles et professionnels de la santé aptes à poser un jugement clinique éclairé, dispenser des soins infirmiers préventifs, curatifs et palliatifs, administrer la pharmacothérapie et collaborer au sein des équipes interdisciplinaires du réseau de la santé québécois.",
+    "objectives": "Acquérir la maîtrise des techniques de soins médico-chirurgicaux, développer une relation thérapeutique humaine et éthique, assurer la sécurité des usagers et préparer l'examen d'admission à l'Ordre des infirmières et infirmiers du Québec (OIIQ).",
+    "competencies": [
+      {
+        "code": "019W",
+        "enonce": "Évaluer l'état de santé physique et mental d'une personne dans des situations cliniques variées",
+        "elements": [
+          "Effectuer l'examen clinique complet et le recueil des antécédents médicaux.",
+          "Interpréter les signes vitaux, les résultats d'analyses biologiques et d'imagerie.",
+          "Établir le plan de soins et de traitement infirmier (PSTI)."
+        ],
+        "criteres": [
+          "Rigueur méthodologique et détection rapide des signes d'alerte ou de détérioration clinique.",
+          "Consignation précise et légale au dossier médical électronique."
+        ]
+      },
+      {
+        "code": "019X",
+        "enonce": "Administrer et ajuster la pharmacothérapie selon les ordonnances et normes sécuritaires",
+        "elements": [
+          "Vérifier la validité des ordonnances médicales et les interactions médicamenteuses.",
+          "Calculer avec exactitude les doses, débits de perfusion intraveineuse et concentrations.",
+          "Surveiller les effets thérapeutiques attendus et les réactions indésirables."
+        ],
+        "criteres": [
+          "Application irréprochable de la règle des 7 BONS de l'administration des médicaments.",
+          "Intervention immédiate et efficace en cas d'effet indésirable grave."
+        ]
+      }
+    ],
+    "cegeps_offreurs": [
+      { "nom": "Collège de Maisonneuve", "ville": "Montréal", "region": "Montréal" },
+      { "nom": "Cégep de Saint-Laurent", "ville": "Montréal", "region": "Montréal" },
+      { "nom": "Cégep de Sainte-Foy", "ville": "Québec", "region": "Capitale-Nationale" },
+      { "nom": "Cégep de Granby", "ville": "Granby", "region": "Estrie" },
+      { "nom": "Cégep de Saint-Jérôme", "ville": "Saint-Jérôme", "region": "Laurentides" },
+      { "nom": "Vanier College", "ville": "Montréal", "region": "Montréal (Anglophone)" }
+    ]
+  },
+  "111.A0": {
+    "code": "111.A0",
+    "nom": "Techniques d'hygiène dentaire",
+    "type": "DEC technique (3 ans)",
+    "description": "Le programme Techniques d'hygiène dentaire forme des professionnels de la santé buccodentaire qui exercent des activités de dépistage, de prévention, d'enseignement de l'hygiène et de traitements parodontaux non chirurgicaux sous la supervision de l'Ordre des hygiénistes dentaires du Québec (OHDQ).",
+    "objectives": "Maîtriser les examens cliniques bucco-dentaires, réaliser le détartrage et le polissage sous-gingival, appliquer des agents thérapeutiques et concevoir des programmes d'éducation préventive pour les patients.",
+    "competencies": [
+      {
+        "code": "00J2",
+        "enonce": "Effectuer l'évaluation buccodentaire et le dépistage des affections parodontales",
+        "elements": [
+          "Évaluer les tissus mous et durs de la cavité buccale.",
+          "Mesurer et consigner les poches parodontales au sondage.",
+          "Prendre et interpréter les radiographies dentaires numériques."
+        ],
+        "criteres": [
+          "Précision millimétrique du sondage parodontal.",
+          "Qualité diagnostique des clichés radiographiques avec exposition minimale aux rayonnements."
+        ]
+      },
+      {
+        "code": "00J5",
+        "enonce": "Réaliser les soins préventifs et les traitements parodontaux non chirurgicaux",
+        "elements": [
+          "Effectuer le détartrage manuel et ultrasonique supragingival et sous-gingival.",
+          "Polir les surfaces coronaires et appliquer les scellants de puits et fissures.",
+          "Administrer les anesthésiques locaux autorisés."
+        ],
+        "criteres": [
+          "Élimination complète des dépôts minéralisés sans traumatisme pour les tissus sains.",
+          "Respect méticuleux de la chaîne de stérilisation et des normes de contrôle des infections."
+        ]
+      }
+    ],
+    "cegeps_offreurs": [
+      { "nom": "Collège de Maisonneuve", "ville": "Montréal", "region": "Montréal" },
+      { "nom": "Cégep Garneau", "ville": "Québec", "region": "Capitale-Nationale" },
+      { "nom": "Cégep de Saint-Hyacinthe", "ville": "Saint-Hyacinthe", "region": "Montérégie" },
+      { "nom": "Cégep de Trois-Rivières", "ville": "Trois-Rivières", "region": "Mauricie" },
+      { "nom": "John Abbott College", "ville": "Sainte-Anne-de-Bellevue", "region": "Montréal (Anglophone)" }
+    ]
+  },
+  "141.A0": {
+    "code": "141.A0",
+    "nom": "Techniques d'inhalothérapie",
+    "type": "DEC technique (3 ans)",
+    "description": "Le programme Techniques d'inhalothérapie forme des professionnelles et professionnels spécialisés dans les soins cardiorespiratoires d'urgence, la ventilation mécanique, l'assistance anesthésique en bloc opératoire et les explorations fonctionnelles respiratoires sous l'égide de l'OPIQ.",
+    "objectives": "Gérer les ventilateurs mécaniques en soins intensifs, assurer la réanimation respiratoire, administrer l'oxygénothérapie et les gaz médicaux, et collaborer directement avec les anesthésiologistes lors des interventions chirurgicales.",
+    "competencies": [
+      {
+        "code": "017A",
+        "enonce": "Gérer et optimiser la ventilation mécanique invasive et non invasive",
+        "elements": [
+          "Installer, paramétrer et surveiller les ventilateurs de soins intensifs.",
+          "Interpréter les gaz sanguins artériels et adapter les paramètres de ventilation.",
+          "Assister au sevrage ventilatoire et à l'extubation du patient."
+        ],
+        "criteres": [
+          "Ajustement précis des pressions et volumes de ventilation selon la pathologie pulmonaire.",
+          "Intervention immédiate lors des alarmes critiques de dysfonction respiratoire."
+        ]
+      },
+      {
+        "code": "017B",
+        "enonce": "Assister l'anesthésiologiste au bloc opératoire et en réanimation",
+        "elements": [
+          "Préparer et vérifier les appareils d'anesthésie et circuits respiratoires.",
+          "Assister lors de l'intubation trachéale difficile et de la surveillance hémodynamique.",
+          "Gérer les gaz anesthésiants et le réveil opératoire."
+        ],
+        "criteres": [
+          "Conformité absolue aux protocoles de sécurité périopératoire.",
+          "Rapidité et coordination sans faille avec l'équipe de chirurgie."
+        ]
+      }
+    ],
+    "cegeps_offreurs": [
+      { "nom": "Collège de Rosemont", "ville": "Montréal", "region": "Montréal" },
+      { "nom": "Cégep de Sainte-Foy", "ville": "Québec", "region": "Capitale-Nationale" },
+      { "nom": "Cégep de Sherbrooke", "ville": "Sherbrooke", "region": "Estrie" },
+      { "nom": "Vanier College", "ville": "Montréal", "region": "Montréal (Anglophone)" }
+    ]
+  }
+}

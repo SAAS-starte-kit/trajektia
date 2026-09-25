@@ -10,6 +10,7 @@ import ProfilPsychometrique from '../../components/metiers/ProfilPsychometrique.
 import ErgonomieSante from '../../components/metiers/ErgonomieSante.astro';
 import TendancesSalariales from '../../components/metiers/TendancesSalariales.astro';
 import { METIERS_DATA, type FicheMetier } from '../../data/metiers';
+import { getNiveauEtudes } from '../../utils/feerLevels';
 
 export async function getStaticPaths() {
   return METIERS_DATA.map((metier) => ({
@@ -68,8 +69,8 @@ function getMutationBadgeStyle(statut: string): string {
         <span class="px-3 py-1 rounded-full text-xs font-black bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200/70 dark:border-indigo-800/60">
           CNP {metier.cnp}
         </span>
-        <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200/70 dark:border-amber-800/60">
-          Niveau FEER {metier.feer}
+        <span class={`px-3 py-1 rounded-full text-xs font-bold border ${getNiveauEtudes(metier.feer).badgeClass}`}>
+          🎓 {getNiveauEtudes(metier.feer).labelCourt}
         </span>
         <span class="px-3 py-1 rounded-full text-xs font-black bg-purple-50 dark:bg-purple-950/70 text-purple-700 dark:text-purple-300 border border-purple-200/70 dark:border-purple-800/60">
           RIASEC : {metier.riasec.code_holland}

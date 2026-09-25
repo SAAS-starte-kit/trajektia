@@ -4,7 +4,23 @@ import { programmesDEC } from '../../data/programmes-dec-prealables';
 import { programmesDEP } from '../../data/programmes-dep-prealables';
 import { METIERS_DATA } from '../../data/metiers';
 import programmesMetiersMap from '../../data/programmes-metiers-map.json';
-import { ChevronLeft, GraduationCap, Briefcase, BookOpen, MapPin, Target, CheckCircle2, ArrowRight } from 'lucide-react';
+import programmesDevis from '../../data/programmes-devis.json';
+import { getNiveauEtudes } from '../../utils/feerLevels';
+import { 
+  ChevronLeft, 
+  GraduationCap, 
+  Briefcase, 
+  BookOpen, 
+  MapPin, 
+  Target, 
+  CheckCircle2, 
+  ArrowRight,
+  Award,
+  Compass,
+  Building2,
+  Sparkles,
+  ChevronDown
+} from 'lucide-react';
 
 export async function getStaticPaths() {
   const slugify = (text: string) => text.toString().toLowerCase()
@@ -35,48 +51,74 @@ export async function getStaticPaths() {
 
 const { programme, type } = Astro.props;
 
+// Devis ministériel d'études officiel (MES / MEQ)
+const devisInfo = (programmesDevis as any)[programme.code];
+const descriptionProgramme = devisInfo?.description || (programme as any).description || 
+  `Ce cursus officiel québécois (${programme.code} - ${type}) prépare les étudiants à intégrer le marché du travail dans le secteur « ${programme.secteur_nom || "général"} » ou à poursuivre vers des études supérieures.`;
+const objectifsFormation = devisInfo?.objectives;
+const competencesMinisterielles = devisInfo?.competencies || [];
+const cegepsOffreurs = devisInfo?.cegeps_offreurs || [];
+
 // Récupération des correspondances réelles CKG (occupation_programs)
 const mappedInfo = (programmesMetiersMap.program_to_cnps as any)[programme.code];
 const linkedCnps: string[] = mappedInfo?.cnps || [];
-let metiersAssocies = METIERS_DATA.filter(m => linkedCnps.includes(m.cnp));
 
-// Repli sectoriel intelligent si pas de mapping direct strict
-if (metiersAssocies.length === 0 && programme.secteur_nom) {
-  metiersAssocies = METIERS_DATA.filter(m => m.secteur === programme.secteur_nom).slice(0, 4);
+// Niveau d'études visé pour ce diplôme :
+// DEC technique -> Niveau Collégial (FEER 2)
+// DEP -> Niveau Professionnel (FEER 3)
+const targetFeerDirect = type === 'DEC' ? 2 : 3;
+
+// 1. Débouchés directs prioritaires
+let metiersDirects = METIERS_DATA.filter(m => linkedCnps.includes(m.cnp));
+if (metiersDirects.length === 0 && programme.secteur_nom) {
+  // Repli sectoriel calibré : exiger le niveau de qualification correspondant au diplôme
+  metiersDirects = METIERS_DATA.filter(
+    m => m.secteur === programme.secteur_nom && (m.feer === targetFeerDirect || (type === 'DEC' && m.feer === 3))
+  ).slice(0, 4);
 }
 
-// Salaire moyen des débouchés
-const salaires = metiersAssocies.map(m => m.salaire.annuel_median).filter(s => s > 0);
+// 2. Passerelles universitaires & Études supérieures (FEER 1 / BAC+)
+const metiersPasserellesSup = METIERS_DATA.filter(
+  m => m.secteur === programme.secteur_nom && m.feer === 1 && !metiersDirects.some(d => d.cnp === m.cnp)
+).slice(0, 4);
+
+// 3. Métiers connexes et spécialisations
+const metiersConnexes = METIERS_DATA.filter(
+  m => m.secteur === programme.secteur_nom && m.feer === (type === 'DEC' ? 3 : 4) && !metiersDirects.some(d => d.cnp === m.cnp)
+).slice(0, 4);
+
+// Salaire moyen des débouchés directs
+const salaires = metiersDirects.map(m => m.salaire.annuel_median).filter(s => s > 0);
 const salaireMoyenCalcul = salaires.length > 0 
   ? Math.round(salaires.reduce((a, b) => a + b, 0) / salaires.length) 
   : null;
-
-const descriptionProgramme = (programme as any).description || 
-  `Ce cursus officiel québécois (${programme.code} - ${type}) prépare les étudiants à intégrer le marché du travail dans le secteur « ${programme.secteur_nom || "général"} » ou à poursuivre vers des études supérieures.`;
 ---
 
 <BaseLayout 
   title={`${programme.code} - ${programme.nom} | Trajektia`}
-  description={`Découvrez les préalables et les détails d'admission pour le programme ${programme.nom} (${programme.code}) au Québec.`}
+  description={`Découvrez le devis ministériel, les compétences clés et les débouchés professionnels pour le programme ${programme.nom} (${programme.code}) au Québec.`}
 >
-  <div class="max-w-4xl mx-auto">
+  <div class="max-w-5xl mx-auto pb-12">
     <!-- Fil d'ariane & Bouton retour -->
     <a href="/programmes" class="inline-flex items-center gap-2 text-sm text-brand-blue hover:underline mb-6 font-medium">
-      <ChevronLeft size={16} /> Retour à la liste des programmes
+      <ChevronLeft size={16} /> Retour au catalogue des programmes
     </a>
 
     <!-- En-tête du programme (Hero) -->
     <div class="bg-white dark:bg-slate-800/50 rounded-3xl p-8 md:p-10 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 mb-8 relative overflow-hidden">
       <div class="absolute top-0 right-0 -mt-8 -mr-8 text-brand-blue/10 dark:text-brand-blue/5 pointer-events-none">
-        {type === 'DEC' ? <GraduationCap size={200} /> : <Briefcase size={200} />}
+        {type === 'DEC' ? <GraduationCap size={220} /> : <Briefcase size={220} />}
       </div>
       
       <div class="relative z-10">
-        <div class="flex items-center gap-3 mb-4">
+        <div class="flex flex-wrap items-center gap-2.5 mb-4">
           <span class="px-3 py-1 bg-brand-dark dark:bg-slate-900 text-white rounded-full text-xs font-bold tracking-widest uppercase">
-            {type}
+            {type === 'DEC' ? 'DEC Technique' : 'DEP Professionnel'}
           </span>
-          <span class="px-3 py-1 bg-amber-100 dark:bg-brand-yellow/20 text-amber-900 dark:text-white rounded-full text-xs font-bold">
+          <span class="px-3 py-1 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800/60 rounded-full text-xs font-bold">
+            🎓 {type === 'DEC' ? 'Études collégiales (3 ans)' : 'Formation professionnelle (1 à 2 ans)'}
+          </span>
+          <span class="px-3 py-1 bg-amber-100 dark:bg-amber-950/50 text-amber-900 dark:text-amber-300 rounded-full text-xs font-bold border border-amber-200 dark:border-amber-800/60">
             {programme.secteur_nom || "Secteur non défini"}
           </span>
         </div>
@@ -84,49 +126,245 @@ const descriptionProgramme = (programme as any).description ||
         <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-3 leading-tight">
           {programme.nom}
         </h1>
-        <p class="text-xl text-slate-600 dark:text-slate-400 font-medium">Code ministériel : <span class="text-brand-blue font-bold">{programme.code}</span></p>
+        <p class="text-lg text-slate-600 dark:text-slate-400 font-medium">
+          Code ministériel officiel (MES / MEQ) : <span class="text-brand-blue font-bold font-mono">{programme.code}</span>
+        </p>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       
-      <!-- Colonne Principale (Contenu / Description future) -->
-      <div class="md:col-span-2 space-y-6">
+      <!-- Colonne Principale (Contenu / Devis / Compétences / Métiers) -->
+      <div class="lg:col-span-2 space-y-6">
+
+        <!-- À PROPOS & OBJECTIFS MINISTÉRIELS -->
         <div class="bg-white dark:bg-slate-800/50 rounded-3xl p-6 md:p-8 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700">
-          <h2 class="text-xl font-bold flex items-center gap-2 mb-3 text-slate-900 dark:text-white">
-            <BookOpen size={20} class="text-indigo-600 dark:text-indigo-400" />
-            À propos du programme
+          <h2 class="text-xl font-bold flex items-center gap-2.5 mb-3 text-slate-900 dark:text-white">
+            <BookOpen size={22} class="text-indigo-600 dark:text-indigo-400" />
+            <span>À propos du programme</span>
           </h2>
-          <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-sm">
+          <p class="text-slate-700 dark:text-slate-300 leading-relaxed text-sm mb-4">
             {descriptionProgramme}
           </p>
-          
-          <!-- DÉBOUCHÉS PROFESSIONNELS RELIÉS (CKG) -->
-          {metiersAssocies.length > 0 && (
-            <div class="mt-6 pt-5 border-t border-slate-100 dark:border-slate-700/60">
-              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-1.5">
-                <Briefcase size={15} class="text-indigo-600 dark:text-indigo-400" />
-                <span>Professions & Débouchés rattachés ({metiersAssocies.length})</span>
+
+          {objectifsFormation && (
+            <div class="mt-4 p-4 rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-900/60">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-indigo-900 dark:text-indigo-300 mb-1.5 flex items-center gap-1.5">
+                <Target size={15} class="text-indigo-600 dark:text-indigo-400" />
+                <span>Objectifs généraux de formation (Guide MES)</span>
               </h3>
+              <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+                {objectifsFormation}
+              </p>
+            </div>
+          )}
+        </div>
+
+        <!-- COMPÉTENCES MINISTÉRIELLES DÉTAILLÉES (GUIDE D'ÉTUDES MES) -->
+        {competencesMinisterielles.length > 0 && (
+          <div class="bg-white dark:bg-slate-800/50 rounded-3xl p-6 md:p-8 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700">
+            <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-100 dark:border-slate-700/60">
+              <h2 class="text-xl font-bold flex items-center gap-2.5 text-slate-900 dark:text-white">
+                <Award size={22} class="text-amber-500" />
+                <span>Compétences ministérielles clés ({competencesMinisterielles.length})</span>
+              </h2>
+              <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Devis d'études MES</span>
+            </div>
+
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">
+              Ce programme intègre les savoir-faire pratiques et critères de performance évalués selon les standards du Ministère de l'Enseignement supérieur :
+            </p>
+
+            <div class="space-y-4">
+              {competencesMinisterielles.map((comp: any) => (
+                <div class="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-700/60">
+                  <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-amber-100 dark:bg-amber-950/70 text-amber-900 dark:text-amber-300 border border-amber-200 dark:border-amber-800/60 font-mono">
+                      Code {comp.code}
+                    </span>
+                  </div>
+                  <h3 class="text-sm font-bold text-slate-900 dark:text-white mb-2 leading-snug">
+                    {comp.enonce}
+                  </h3>
+
+                  {comp.elements && comp.elements.length > 0 && (
+                    <div class="mt-2.5 pt-2 border-t border-slate-200/60 dark:border-slate-800">
+                      <span class="block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1.5">
+                        Éléments de compétence (savoir-faire) :
+                      </span>
+                      <ul class="space-y-1">
+                        {comp.elements.map((elem: string) => (
+                          <li class="flex items-start gap-1.5 text-xs text-slate-700 dark:text-slate-300">
+                            <span class="text-indigo-500 mt-0.5">•</span>
+                            <span>{elem}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {comp.criteres && comp.criteres.length > 0 && (
+                    <div class="mt-2.5 pt-2 border-t border-slate-200/60 dark:border-slate-800">
+                      <span class="block text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-1">
+                        Critères de performance :
+                      </span>
+                      <ul class="space-y-1">
+                        {comp.criteres.map((crit: string) => (
+                          <li class="flex items-start gap-1.5 text-xs text-slate-600 dark:text-slate-400 italic">
+                            <CheckCircle2 size={12} class="text-emerald-500 shrink-0 mt-0.5" />
+                            <span>{crit}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- MÉTIERS & DÉBOUCHÉS PAR NIVEAU DE FORMATION (Grand Public) -->
+        <div class="bg-white dark:bg-slate-800/50 rounded-3xl p-6 md:p-8 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 space-y-6">
+          <div class="border-b border-slate-100 dark:border-slate-700/60 pb-3">
+            <h2 class="text-xl font-bold flex items-center gap-2.5 text-slate-900 dark:text-white">
+              <Briefcase size={22} class="text-indigo-600 dark:text-indigo-400" />
+              <span>Perspectives professionnelles par niveau d'études</span>
+            </h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              Cartographie des carrières accessibles directement ou via des passerelles académiques (selon la CNP 2021).
+            </p>
+          </div>
+
+          <!-- 1. DÉBOUCHÉS DIRECTS DU DIPLÔME -->
+          {metiersDirects.length > 0 && (
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
+                  <CheckCircle2 size={16} />
+                  <span>🎯 Débouchés directs du {type} (Accessibles à la diplomation)</span>
+                </h3>
+                <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                  {type === 'DEC' ? 'Niveau Collégial technique' : 'Niveau Professionnel'}
+                </span>
+              </div>
+
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {metiersAssocies.map((m) => (
+                {metiersDirects.map((m) => (
                   <a 
                     href={`/metiers/${m.cnp}`}
-                    class="group p-3 rounded-2xl bg-slate-50 dark:bg-slate-900/60 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/70 dark:border-slate-700/60 hover:border-indigo-400 dark:hover:border-indigo-500 hover:shadow-md transition-all flex flex-col justify-between"
+                    class="group p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700/60 hover:border-emerald-400 dark:hover:border-emerald-500 hover:shadow-md transition-all flex flex-col justify-between"
                   >
                     <div>
-                      <div class="flex items-center justify-between text-[11px] mb-1">
-                        <span class="font-extrabold text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-full border border-indigo-200/60 dark:border-indigo-800/50">CNP {m.cnp}</span>
-                        <span class="text-slate-400 font-medium">FEER {m.feer}</span>
+                      <div class="flex items-center justify-between text-[11px] mb-1.5">
+                        <span class="font-extrabold text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-full border border-indigo-200/60 dark:border-indigo-800/50">
+                          CNP {m.cnp}
+                        </span>
+                        <span class={`font-bold px-2 py-0.5 rounded-full text-[10px] border ${getNiveauEtudes(m.feer).badgeClass}`}>
+                          {getNiveauEtudes(m.feer).labelCourt}
+                        </span>
                       </div>
-                      <h4 class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-snug">
+                      <h4 class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors leading-snug">
                         {m.titre_court}
                       </h4>
                     </div>
-                    <div class="mt-2.5 pt-2 border-t border-slate-200/50 dark:border-slate-800 flex items-center justify-between text-[11px]">
+                    <div class="mt-3 pt-2 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between text-[11px]">
                       <span class="font-bold text-emerald-600 dark:text-emerald-400">~{m.salaire.annuel_median.toLocaleString('fr-CA')} $/an</span>
                       <span class="text-indigo-600 dark:text-indigo-400 font-medium flex items-center gap-0.5">
-                        <span>Fiche</span>
+                        <span>Voir la fiche</span>
+                        <ArrowRight size={12} class="transform group-hover:translate-x-0.5 transition-transform" />
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- 2. PASSERELLES UNIVERSITAIRES & ÉTUDES SUPÉRIEURES -->
+          {metiersPasserellesSup.length > 0 && (
+            <div class="pt-4 border-t border-slate-100 dark:border-slate-700/60">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400 flex items-center gap-1.5">
+                  <GraduationCap size={16} />
+                  <span>🚀 Passerelles universitaires & Études supérieures</span>
+                </h3>
+                <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
+                  Baccalauréat / Maîtrise (BAC+)
+                </span>
+              </div>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">
+                Professions du même secteur exigeant la poursuite vers un diplôme universitaire (DEC-BAC ou passerelles d'admission) :
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {metiersPasserellesSup.map((m) => (
+                  <a 
+                    href={`/metiers/${m.cnp}`}
+                    class="group p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700/60 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-md transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <div class="flex items-center justify-between text-[11px] mb-1.5">
+                        <span class="font-extrabold text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-full border border-indigo-200/60 dark:border-indigo-800/50">
+                          CNP {m.cnp}
+                        </span>
+                        <span class={`font-bold px-2 py-0.5 rounded-full text-[10px] border ${getNiveauEtudes(m.feer).badgeClass}`}>
+                          {getNiveauEtudes(m.feer).labelCourt}
+                        </span>
+                      </div>
+                      <h4 class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
+                        {m.titre_court}
+                      </h4>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between text-[11px]">
+                      <span class="font-bold text-emerald-600 dark:text-emerald-400">~{m.salaire.annuel_median.toLocaleString('fr-CA')} $/an</span>
+                      <span class="text-blue-600 dark:text-blue-400 font-medium flex items-center gap-0.5">
+                        <span>Voir la fiche</span>
+                        <ArrowRight size={12} class="transform group-hover:translate-x-0.5 transition-transform" />
+                      </span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- 3. MÉTIERS CONNEXES & FORMATIONS COMPLÉMENTAIRES -->
+          {metiersConnexes.length > 0 && (
+            <div class="pt-4 border-t border-slate-100 dark:border-slate-700/60">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
+                  <Compass size={16} />
+                  <span>🔄 Métiers connexes & Formations courtes (DEP / AEC)</span>
+                </h3>
+                <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+                  Formation professionnelle ou attestation
+                </span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {metiersConnexes.map((m) => (
+                  <a 
+                    href={`/metiers/${m.cnp}`}
+                    class="group p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 hover:bg-white dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-700/60 hover:border-amber-400 dark:hover:border-amber-500 hover:shadow-md transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <div class="flex items-center justify-between text-[11px] mb-1.5">
+                        <span class="font-extrabold text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-full border border-indigo-200/60 dark:border-indigo-800/50">
+                          CNP {m.cnp}
+                        </span>
+                        <span class={`font-bold px-2 py-0.5 rounded-full text-[10px] border ${getNiveauEtudes(m.feer).badgeClass}`}>
+                          {getNiveauEtudes(m.feer).labelCourt}
+                        </span>
+                      </div>
+                      <h4 class="text-xs font-bold text-slate-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors leading-snug">
+                        {m.titre_court}
+                      </h4>
+                    </div>
+                    <div class="mt-3 pt-2 border-t border-slate-200/60 dark:border-slate-800 flex items-center justify-between text-[11px]">
+                      <span class="font-bold text-emerald-600 dark:text-emerald-400">~{m.salaire.annuel_median.toLocaleString('fr-CA')} $/an</span>
+                      <span class="text-amber-600 dark:text-amber-400 font-medium flex items-center gap-0.5">
+                        <span>Voir la fiche</span>
                         <ArrowRight size={12} class="transform group-hover:translate-x-0.5 transition-transform" />
                       </span>
                     </div>
@@ -137,11 +375,11 @@ const descriptionProgramme = (programme as any).description ||
           )}
         </div>
 
-        {/* Section Préalables (générée dynamiquement selon les données actuelles) */}
+        <!-- PRÉALABLES D'ADMISSION -->
         <div class="bg-white dark:bg-slate-800/50 rounded-3xl p-6 md:p-8 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700">
           <h2 class="text-xl font-bold flex items-center gap-2 mb-4 text-slate-900 dark:text-white">
             <CheckCircle2 size={20} class="text-green-600 dark:text-emerald-400" />
-            Préalables d'admission requis
+            <span>Préalables d'admission requis</span>
           </h2>
           
           {type === 'DEC' && programme.prealables === false ? (
@@ -174,14 +412,32 @@ const descriptionProgramme = (programme as any).description ||
         </div>
       </div>
 
-      <!-- Colonne Latérale (Sidebar d'information rapide) -->
+      <!-- Colonne Latérale (Sidebar) -->
       <div class="space-y-6">
+
+        <!-- REPÈRES ÉCONOMIQUES & NIVEAU D'ÉTUDES -->
         <div class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 text-slate-900 dark:text-white">
-          <h3 class="font-black text-base mb-4 pb-3 border-b border-slate-100 dark:border-slate-700/70">
-            Repères Économiques & Cursus
+          <h3 class="font-black text-base mb-4 pb-3 border-b border-slate-100 dark:border-slate-700/70 flex items-center gap-2">
+            <Sparkles size={18} class="text-amber-500" />
+            <span>Repères Clés & Cursus</span>
           </h3>
           <ul class="space-y-4">
             <li class="flex items-start gap-3">
+              <div class="p-2 rounded-lg bg-indigo-100 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 shrink-0 mt-0.5">
+                <GraduationCap size={16} />
+              </div>
+              <div>
+                <span class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">Niveau d'études visé</span>
+                <span class="text-sm font-bold text-slate-900 dark:text-white">
+                  {type === 'DEC' ? "Études collégiales techniques (DEC 3 ans)" : "Formation professionnelle (DEP 1-2 ans)"}
+                </span>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                  {type === 'DEC' ? "Équivalent officiel : Qualification Collégiale Technique" : "Équivalent officiel : Qualification Professionnelle"}
+                </p>
+              </div>
+            </li>
+
+            <li class="flex items-start gap-3 pt-2 border-t border-slate-100 dark:border-slate-700/60">
               <div class="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-950/70 text-emerald-700 dark:text-emerald-300 shrink-0 mt-0.5">
                 <Briefcase size={16} />
               </div>
@@ -190,43 +446,71 @@ const descriptionProgramme = (programme as any).description ||
                 <span class="text-base font-black text-slate-900 dark:text-white">
                   {salaireMoyenCalcul ? `~${salaireMoyenCalcul.toLocaleString('fr-CA')} $ / an` : "Selon échelle sectorielle"}
                 </span>
-                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Médian StatCan des métiers accessibles.</p>
-              </div>
-            </li>
-
-            <li class="flex items-start gap-3 pt-2 border-t border-slate-100 dark:border-slate-700/60">
-              <div class="p-2 rounded-lg bg-indigo-100 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 shrink-0 mt-0.5">
-                <MapPin size={16} />
-              </div>
-              <div>
-                <span class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider">Où l'étudier au Québec ?</span>
-                <div class="mt-2 space-y-1.5">
-                  {type === 'DEC' ? (
-                    <a 
-                      href={`https://www.inforoutefpt.org/programme/dec/${programme.code}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
-                    >
-                      <span>Annuaire Inforoute FPT (Cégeps)</span>
-                      <ArrowRight size={12} />
-                    </a>
-                  ) : (
-                    <a 
-                      href={`https://www.admissionfp.com/programmes-et-formations/dep/${programme.code}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
-                    >
-                      <span>Centres AdmissionFP (CFP)</span>
-                      <ArrowRight size={12} />
-                    </a>
-                  )}
-                </div>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Médian StatCan des débouchés directs.</p>
               </div>
             </li>
           </ul>
         </div>
+
+        <!-- OÙ L'ÉTUDIER AU QUÉBEC (CÉGEPS & CFP) -->
+        <div class="bg-white dark:bg-slate-800/90 rounded-3xl p-6 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 text-slate-900 dark:text-white">
+          <div class="flex items-center justify-between mb-3 pb-2 border-b border-slate-100 dark:border-slate-700/70">
+            <h3 class="font-black text-base flex items-center gap-2">
+              <Building2 size={18} class="text-indigo-600 dark:text-indigo-400" />
+              <span>Où l'étudier au Québec ?</span>
+            </h3>
+            {cegepsOffreurs.length > 0 && (
+              <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
+                {cegepsOffreurs.length} collèges
+              </span>
+            )}
+          </div>
+
+          {cegepsOffreurs.length > 0 ? (
+            <div class="space-y-2.5 max-h-80 overflow-y-auto pr-1">
+              {cegepsOffreurs.map((c: any) => (
+                <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/70 dark:border-slate-700/50">
+                  <div class="font-bold text-xs text-slate-900 dark:text-white leading-tight">
+                    {c.nom}
+                  </div>
+                  <div class="flex items-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400 mt-1">
+                    <MapPin size={12} class="text-indigo-500 shrink-0" />
+                    <span>{c.ville} ({c.region})</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p class="text-xs text-slate-600 dark:text-slate-400 mb-3">
+              Consultez l'annuaire provincial pour découvrir les établissements offrant ce programme :
+            </p>
+          )}
+
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700/60">
+            {type === 'DEC' ? (
+              <a 
+                href={`https://www.inforoutefpt.org/programme/dec/${programme.code}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/60 dark:hover:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 rounded-xl text-xs font-bold transition-colors"
+              >
+                <span>Inforoute FPT (Portail des Cégeps)</span>
+                <ArrowRight size={12} />
+              </a>
+            ) : (
+              <a 
+                href={`https://www.admissionfp.com/programmes-et-formations/dep/${programme.code}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/60 dark:hover:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 rounded-xl text-xs font-bold transition-colors"
+              >
+                <span>AdmissionFP (Portail des CFP)</span>
+                <ArrowRight size={12} />
+              </a>
+            )}
+          </div>
+        </div>
+
       </div>
 
     </div>

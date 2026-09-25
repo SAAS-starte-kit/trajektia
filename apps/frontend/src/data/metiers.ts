@@ -50469,12 +50469,12 @@ export const METIERS_DATA: FicheMetier[] = [
     },
     "formations": [
       {
-        "type": "DEP",
-        "code": "5766",
-        "titre": "Installation and Repair of Telecommunications Equipment",
-        "duree": "1.5 à 2 ans (CFP)",
-        "description": "Formation québécoise reconnue (DEP) préparant aux compétences clés exigées pour exercer la profession au Québec.",
-        "lien_interne": "/programmes/5766-installation-and-repair-of-telecommunications-equipment"
+        "type": "DEC",
+        "code": "181.A0",
+        "titre": "Soins préhospitaliers d'urgence",
+        "duree": "3 ans (Cégep)",
+        "description": "Formation collégiale technique (DEC) préparant aux interventions cliniques d'urgence, aux soins avancés de réanimation et au transport paramédical sécuritaire au Québec.",
+        "lien_interne": "/programmes/181-a0-soins-prehospitaliers-durgence"
       }
     ]
   },

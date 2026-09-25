@@ -1957,7 +1957,7 @@
       "title": "Techniques policières",
       "level": "DEC",
       "cnps": [
-        "41210"
+        "42100"
       ]
     },
     "410.B0": {
@@ -1973,7 +1973,7 @@
       "title": "Techniques d'éducation à l'enfance",
       "level": "DEC",
       "cnps": [
-        "41210"
+        "42202"
       ]
     },
     "140.B0": {
@@ -1981,7 +1981,7 @@
       "title": "Technologie d'analyses biomédicales",
       "level": "DEC",
       "cnps": [
-        "21109"
+        "32120"
       ]
     },
     "412.A0": {
@@ -2065,6 +2065,110 @@
       "cnps": [
         "31102",
         "31100"
+      ]
+    },
+    "181.A0": {
+      "code": "181.A0",
+      "title": "Soins préhospitaliers d'urgence",
+      "level": "DEC",
+      "cnps": [
+        "32102"
+      ]
+    },
+    "181.A1": {
+      "code": "181.A1",
+      "title": "Soins préhospitaliers d'urgence",
+      "level": "DEC",
+      "cnps": [
+        "32102"
+      ]
+    },
+    "111.A0": {
+      "code": "111.A0",
+      "title": "Techniques d'hygiène dentaire",
+      "level": "DEC",
+      "cnps": [
+        "32111"
+      ]
+    },
+    "111.B0": {
+      "code": "111.B0",
+      "title": "Techniques d'hygiène dentaire",
+      "level": "DEC",
+      "cnps": [
+        "32111"
+      ]
+    },
+    "110.A0": {
+      "code": "110.A0",
+      "title": "Techniques de prothèses dentaires",
+      "level": "DEC",
+      "cnps": [
+        "32112"
+      ]
+    },
+    "110.B0": {
+      "code": "110.B0",
+      "title": "Techniques de denturologie",
+      "level": "DEC",
+      "cnps": [
+        "32112"
+      ]
+    },
+    "141.A0": {
+      "code": "141.A0",
+      "title": "Techniques d'inhalothérapie",
+      "level": "DEC",
+      "cnps": [
+        "32103"
+      ]
+    },
+    "144.A0": {
+      "code": "144.A0",
+      "title": "Techniques de physiothérapie / réadaptation physique",
+      "level": "DEC",
+      "cnps": [
+        "32121"
+      ]
+    },
+    "144.A1": {
+      "code": "144.A1",
+      "title": "Techniques de physiothérapie",
+      "level": "DEC",
+      "cnps": [
+        "32121"
+      ]
+    },
+    "120.A0": {
+      "code": "120.A0",
+      "title": "Techniques de diététique",
+      "level": "DEC",
+      "cnps": [
+        "32122"
+      ]
+    },
+    "145.A0": {
+      "code": "145.A0",
+      "title": "Techniques de santé animale",
+      "level": "DEC",
+      "cnps": [
+        "32104"
+      ]
+    },
+    "388.A0": {
+      "code": "388.A0",
+      "title": "Techniques de travail social",
+      "level": "DEC",
+      "cnps": [
+        "42201"
+      ]
+    },
+    "391.A0": {
+      "code": "391.A0",
+      "title": "Techniques juridiques",
+      "level": "DEC",
+      "cnps": [
+        "42200"
       ]
     }
   },
@@ -7637,6 +7741,12 @@
     ],
     "42201": [
       {
+        "code": "388.A0",
+        "title": "Techniques de travail social",
+        "level": "DEC",
+        "direct": true
+      },
+      {
         "code": "5289",
         "title": "Travail sylvicole",
         "level": "DEP",
@@ -8249,10 +8359,16 @@
     ],
     "32102": [
       {
-        "code": "5766",
-        "title": "Installation and Repair of Telecommunications Equipment",
-        "level": "DEP",
-        "direct": false
+        "code": "181.A1",
+        "title": "Soins préhospitaliers d'urgence",
+        "level": "DEC",
+        "direct": true
+      },
+      {
+        "code": "181.A0",
+        "title": "Soins préhospitaliers d'urgence",
+        "level": "DEC",
+        "direct": true
       }
     ],
     "93102": [
@@ -8438,6 +8554,104 @@
         "code": "BAC-MED",
         "title": "Doctorat de premier cycle en médecine",
         "level": "DOCTORAT",
+        "direct": true
+      }
+    ],
+    "32111": [
+      {
+        "code": "111.B0",
+        "title": "Techniques d'hygiène dentaire",
+        "level": "DEC",
+        "direct": true
+      },
+      {
+        "code": "111.A0",
+        "title": "Techniques d'hygiène dentaire",
+        "level": "DEC",
+        "direct": true
+      }
+    ],
+    "32112": [
+      {
+        "code": "110.B0",
+        "title": "Techniques de denturologie",
+        "level": "DEC",
+        "direct": true
+      },
+      {
+        "code": "110.A0",
+        "title": "Techniques de prothèses dentaires",
+        "level": "DEC",
+        "direct": true
+      }
+    ],
+    "32103": [
+      {
+        "code": "141.A0",
+        "title": "Techniques d'inhalothérapie",
+        "level": "DEC",
+        "direct": true
+      }
+    ],
+    "32121": [
+      {
+        "code": "144.A1",
+        "title": "Techniques de physiothérapie",
+        "level": "DEC",
+        "direct": true
+      },
+      {
+        "code": "144.A0",
+        "title": "Techniques de physiothérapie / réadaptation physique",
+        "level": "DEC",
+        "direct": true
+      }
+    ],
+    "32120": [
+      {
+        "code": "140.B0",
+        "title": "Technologie d'analyses biomédicales",
+        "level": "DEC",
+        "direct": true
+      }
+    ],
+    "32122": [
+      {
+        "code": "120.A0",
+        "title": "Techniques de diététique",
+        "level": "DEC",
+        "direct": true
+      }
+    ],
+    "32104": [
+      {
+        "code": "145.A0",
+        "title": "Techniques de santé animale",
+        "level": "DEC",
+        "direct": true
+      }
+    ],
+    "42100": [
+      {
+        "code": "310.A0",
+        "title": "Techniques policières",
+        "level": "DEC",
+        "direct": true
+      }
+    ],
+    "42202": [
+      {
+        "code": "322.A0",
+        "title": "Techniques d'éducation à l'enfance",
+        "level": "DEC",
+        "direct": true
+      }
+    ],
+    "42200": [
+      {
+        "code": "391.A0",
+        "title": "Techniques juridiques",
+        "level": "DEC",
         "direct": true
       }
     ]
