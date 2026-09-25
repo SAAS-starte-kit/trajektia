@@ -89,233 +89,186 @@ COMPLETED_TASKS = [
         "title": "[Vitest] Suite de tests unitaires pour le moteur psychométrique PR-RSM",
         "test_command": "npm --prefix apps/frontend test",
     },
-]
-
-TASKS_QUEUE = [
     {
         "id": "i7-1-ckan-regional-parser",
         "title": "[CKG / ETL] Parseur UTF-16LE multi-mois CKAN pour extraire la granularité ville/région (I7.1)",
         "test_command": "python scripts/test_ingest_ckan_regional.py",
-        "prompt": """# TASK: Build Resilient UTF-16LE / UTF-8 Multi-Month CKAN Regional Job Parser (I7.1)
-
-## Context & Architecture
-Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: Python 3.10+, standard libraries (csv, io, json, re, urllib, argparse, unittest)
-Domain: Career Knowledge Graph (CKG) & Open Canada CKAN Job Bank Data (Initiative I7)
-Documentation Reference: `packages/ckg/FEASIBILITY_CKAN_VECTORIZATION_I7.md` and `packages/ckg/PLAN_ACTION.md`
-
-## Problem & Technical Need
-Open Canada's Job Bank monthly dumps (`open.canada.ca` dataset `ea639e28-c0fc-48bf-b5dd-b8899bd43072`) consist of large TSV files that frequently switch encodings between UTF-16LE with BOM (`\\xff\\xfe`), standard UTF-16, and UTF-8. Previous scripts processed these files with brittle `errors='ignore'` workarounds which silently corrupted city and accent names in Quebec (e.g. Montréal, Trois-Rivières).
-We need a dedicated, resilient regional parser script `scripts/ingest_ckan_regional_profiles.py` and its accompanying unit test suite `scripts/test_ingest_ckan_regional.py`.
-
-## File Boundaries (STRICT)
-You may ONLY create or modify:
-  - `scripts/ingest_ckan_regional_profiles.py` (New file)
-  - `scripts/test_ingest_ckan_regional.py` (New file)
-Do NOT modify, rename, or delete any other files.
-
-## Detailed Requirements
-
-1. `scripts/ingest_ckan_regional_profiles.py`:
-   - Encodings decoder function `decode_ckan_bytes(raw_bytes: bytes) -> str`:
-     * If starts with `b'\\xff\\xfe'`, decode with `utf-16le`.
-     * If starts with `b'\\xfe\\xff'`, decode with `utf-16be`.
-     * If starts with `b'\\xef\\xbb\\xbf'`, decode with `utf-8-sig`.
-     * Try `utf-8` with fallback to `cp1252` / `latin-1`.
-     * Clean null characters (`\\x00`).
-   - TSV reader handling:
-     * Support tab delimiter `\\t` (and fallback `,` if standard CSV).
-     * Locate column headers dynamically (case-insensitive & bilingual):
-       - CNP: `Code CNP 2021`, `Code CNP21`, `2021 NOC Code`, `NOC 2021`
-       - Province: `Provinces/Territoires`, `Province/Territory`, `Province`
-       - Ville: `Ville`, `City`
-       - Région: `Région économique`, `Economic Region`
-       - Salaire par / Wage per: `Salaire par`, `Wage per`
-       - Salaire min / Wage min: `Salaire Minimum`, `Wage Minimum`, `Low Wage`
-       - Salaire max / Wage max: `Salaire Maximum`, `Wage Maximum`, `High Wage`
-       - Virtuel / Remote: `Conditions d'emploi Virtuel`, `Virtual work`
-   - Quebec filtering:
-     * Filter records where province is 'QC', 'Québec', or 'Quebec'.
-   - Normalization:
-     * 5-digit CNP: if 4 digits, append '0' (e.g. '2123' -> '21230').
-     * Salary annualized:
-       - 'heure'/'hour': wage * 1820
-       - 'semaine'/'week': wage * 52
-       - 'mois'/'month': wage * 12
-       - 'jour'/'day': wage * 260
-       - 'ann'/'year': wage
-       - Filter out outliers outside [18000, 350000].
-     * Remote flag: `True` if value in ('oui', 'yes', 'true', '1').
-   - Aggregation:
-     * Group by `(cnp_code, province, region_economique, ville, snapshot_date)`:
-       - postings_count
-       - median_salary, min_salary, max_salary
-       - remote_count, remote_ratio_pct
-   - CLI Interface (using `argparse`):
-     * `--dry-run`: Runs without database insertion, outputs summary statistics to stdout.
-     * `--limit-months N`: Limits processing to N monthly datasets (default: all or 1).
-     * `--input-file PATH`: Process a local file directly (for testing/offline execution).
-     * `--output-json PATH`: Save aggregated regional JSON output to specified path.
-     * When imported as a module (`import scripts.ingest_ckan_regional_profiles`), do not auto-run.
-
-2. `scripts/test_ingest_ckan_regional.py`:
-   - Standalone unit test suite using `unittest`.
-   - Tests:
-     * `test_decode_utf16le_with_bom`: Verifies UTF-16LE bytes with BOM decode properly with accents (e.g., "Montréal").
-     * `test_decode_utf8`: Verifies UTF-8 decoding.
-     * `test_salary_annualization`: Tests hourly, monthly, and yearly conversion logic.
-     * `test_quebec_filtering_and_aggregation`: Passes a mock TSV (with QC and non-QC rows) and verifies only QC records are aggregated, CNP is 5-digit normalized, and counts are accurate.
-   - Must run and exit with code 0 on `python scripts/test_ingest_ckan_regional.py`.
-
-## Acceptance Criteria
-- `python scripts/test_ingest_ckan_regional.py` runs and outputs OK (all tests pass).
-- `python scripts/ingest_ckan_regional_profiles.py --help` prints CLI documentation and exits with code 0.
-"""
     },
     {
         "id": "i7-2-supabase-pgvector-embeddings",
         "title": "[CKG / Supabase] Schéma SQL pgvector & pipeline d'embedding textuel des offres (I7.2)",
         "test_command": "python scripts/test_generate_job_embeddings.py",
-        "prompt": """# TASK: Create Supabase pgvector Migration & Text Embeddings Generation Pipeline (I7.2)
-
-## Context & Architecture
-Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: Python 3.10+, PostgreSQL / Supabase pgvector, SQL
-Domain: Career Knowledge Graph (CKG) Vector Search & Job Matching
-Documentation Reference: `packages/ckg/FEASIBILITY_CKAN_VECTORIZATION_I7.md` and `packages/ckg/PLAN_ACTION.md`
-
-## Problem & Technical Need
-To enable Graph-RAG semantic search and skill matching over Canadian job postings, we need:
-1. A clean SQL migration schema introducing table `job_postings_vectors` with pgvector extension and an HNSW cosine index.
-2. A resilient Python script `scripts/generate_job_embeddings.py` that formats structured job chunks, generates 768-dimensional normalized embeddings (with offline fallback/mocking for tests), and prepares them for Supabase insertion.
-3. A unit test suite `scripts/test_generate_job_embeddings.py`.
-
-## File Boundaries (STRICT)
-You may ONLY create or modify:
-  - `packages/database/schema_v16_job_postings_vectors.sql` (New file)
-  - `scripts/generate_job_embeddings.py` (New file)
-  - `scripts/test_generate_job_embeddings.py` (New file)
-Do NOT modify, rename, or delete any other files.
-
-## Detailed Requirements
-
-1. `packages/database/schema_v16_job_postings_vectors.sql`:
-   ```sql
-   -- Migration v16: Job Postings Vectors for Semantic Matching (I7.2)
-   CREATE EXTENSION IF NOT EXISTS vector;
-
-   CREATE TABLE IF NOT EXISTS job_postings_vectors (
-       id BIGSERIAL PRIMARY KEY,
-       external_id TEXT UNIQUE NOT NULL,
-       cnp_code VARCHAR(10) NOT NULL,
-       job_title TEXT NOT NULL,
-       city TEXT,
-       region TEXT,
-       content_chunk TEXT NOT NULL,
-       embedding vector(768),
-       metadata JSONB DEFAULT '{}'::jsonb,
-       created_at TIMESTAMPTZ DEFAULT NOW()
-   );
-
-   CREATE INDEX IF NOT EXISTS job_postings_vectors_cnp_idx ON job_postings_vectors (cnp_code);
-   CREATE INDEX IF NOT EXISTS job_postings_vectors_embedding_idx ON job_postings_vectors USING hnsw (embedding vector_cosine_ops);
-   ```
-
-2. `scripts/generate_job_embeddings.py`:
-   - Chunk formatting function:
-     `format_job_chunk(title: str, cnp: str, cnp_title: str, city: str, region: str, remote_status: str, skills: list, description: str = "") -> str`
-     Formats the text according to the standard chunking template defined in `packages/ckg/FEASIBILITY_CKAN_VECTORIZATION_I7.md`.
-   - Vector generation function:
-     `generate_embedding(text: str, mock: bool = False) -> list[float]`
-     Returns a 768-float list. If `mock=True` or no API key is provided, generates a deterministic pseudo-embedding based on hash/random seed normalized to unit length (L2 norm = 1.0).
-   - CLI Interface (`argparse`):
-     * `--dry-run`: Format chunks and generate mock embeddings without DB insertion.
-     * `--limit N`: Limit processing to N records.
-     * `--input-file PATH`: Read input jobs from a JSON file.
-     * `--output-json PATH`: Export formatted chunks and vectors to JSON.
-
-3. `scripts/test_generate_job_embeddings.py`:
-   - Standalone unit tests using `unittest`.
-   - Tests:
-     * `test_format_job_chunk`: Verifies that formatted text contains CNP, Title, City, and Skills.
-     * `test_generate_mock_embedding`: Verifies dimension is exactly 768 and L2 norm is approximately 1.0 (vector is normalized).
-     * `test_sql_schema_syntax`: Reads `packages/database/schema_v16_job_postings_vectors.sql` and asserts `CREATE EXTENSION IF NOT EXISTS vector;` and `vector(768)` are present.
-
-## Acceptance Criteria
-- `python scripts/test_generate_job_embeddings.py` passes 100% of tests.
-- `python scripts/generate_job_embeddings.py --dry-run` executes cleanly and exits with code 0.
-"""
     },
     {
         "id": "i7-3-semantic-match-router",
         "title": "[FastAPI / CKG] Route API de matching sémantique compétences / profils (I7.3)",
         "test_command": "python -m pytest apps/api/test_routes.py",
-        "prompt": """# TASK: Implement FastAPI Semantic Matching Endpoint for Job Postings (I7.3)
+    },
+]
+
+TASKS_QUEUE = [
+    {
+        "id": "a4-esco-green-skills",
+        "title": "[CKG / ESCO] Ingestion ciblée des compétences vertes (Green Skills) et marquage écologique des métiers CNP",
+        "test_command": "python scripts/test_ingest_esco_green_skills.py",
+        "prompt": """# TASK: Implement Targeted ESCO Green Skills Ingestion & NOC Ecological Tagging (A4)
 
 ## Context & Architecture
 Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: FastAPI 0.111, Pydantic v2, asyncpg, Pytest (in apps/api/)
-Target Files:
-  - `apps/api/schemas.py`
-  - `apps/api/routers/semantic_match.py` (New file)
-  - `apps/api/main.py`
-  - `apps/api/test_routes.py`
+Stack: Python 3.10+, standard libraries (csv, io, json, re, urllib, argparse, unittest)
+Domain: Career Knowledge Graph (CKG) & ESCO Green Transition Skills (Initiative A4)
+Documentation Reference: `packages/ckg/PLAN_ACTION.md` (Phase A4 - Stratégie Ciblée Green Skills)
 
-## Objective
-Implement endpoint `POST /api/jobs/semantic-match` in FastAPI to allow searching jobs and matching candidate profiles/skills against vector embeddings in `job_postings_vectors`.
+## Problem & Technical Need
+In alignment with Quebec's climate transition, decarbonization, and ESG policies, we need a targeted ingestion script for official European Commission ESCO Green Skills (`green skills` classification) linked to 2021 Canadian NOC codes (`CNP`).
+Rather than ingesting all 13,890 generic ESCO skills (which causes graph combinatorial explosion), we only ingest validated ecological skills (energy efficiency, renewable energy, circular economy, sustainable materials, environmental compliance).
 
 ## File Boundaries (STRICT)
 You may ONLY create or modify:
-  - `apps/api/schemas.py`
-  - `apps/api/routers/semantic_match.py` (New file)
-  - `apps/api/main.py`
-  - `apps/api/test_routes.py`
+  - `scripts/ingest_esco_green_skills.py` (New file)
+  - `scripts/test_ingest_esco_green_skills.py` (New file)
 Do NOT modify, rename, or delete any other files.
 
 ## Detailed Requirements
 
-1. In `apps/api/schemas.py`:
-   - Add Pydantic v2 models:
-     ```python
-     class JobMatchItem(BaseModel):
-         id: int
-         external_id: str
-         job_title: str
-         cnp_code: str
-         city: Optional[str] = None
-         region: Optional[str] = None
-         similarity_score: float
+1. `scripts/ingest_esco_green_skills.py`:
+   - Curated taxonomy of green transition domains:
+     * Renewable Energy & Grid (`Énergie renouvelable & Réseaux intelligents`)
+     * Circular Economy & Waste (`Économie circulaire & Gestion des matières`)
+     * Sustainable Construction & Efficiency (`Bâtiment durable & Efficacité énergétique`)
+     * Environmental Compliance & ESG (`Conformité environnementale & Bilan carbone`)
+     * Clean Transportation (`Mobilité durable & Véhicules électriques`)
+   - Function `extract_green_skills_from_dataset(raw_content: str) -> list[dict]`:
+     * Parses skill records (label_fr, label_en, uri, green_category).
+     * Filters skills matching green criteria.
+   - Mapping function `map_green_skills_to_noc(skills: list[dict]) -> dict`:
+     * Maps green competencies to relevant CNP occupations based on keywords/ESCO crosswalk.
+   - CLI Interface (`argparse`):
+     * `--dry-run`: Generates summary statistics (count of green skills, top occupations tagged) to stdout.
+     * `--output-json PATH`: Exports structured green skills and CNP mappings to JSON.
+     * When imported as a module, does not auto-run.
 
-     class JobSemanticMatchRequest(BaseModel):
-         query: str = Field(..., min_length=2, description="Texte de recherche ou compétences du candidat")
-         cnp: Optional[str] = Field(None, max_length=10, description="Filtre optionnel par code CNP")
-         region: Optional[str] = Field(None, description="Filtre optionnel par région")
-         top_k: int = Field(5, ge=1, le=50, description="Nombre maximum de résultats")
-         min_score: float = Field(0.0, ge=0.0, le=1.0, description="Seuil minimal de similarité")
-
-     class JobSemanticMatchResponse(BaseModel):
-         query: str
-         total_matches: int
-         matches: List[JobMatchItem]
-     ```
-
-2. In `apps/api/routers/semantic_match.py` (New file):
-   - Create APIRouter.
-   - Endpoint: `POST /semantic-match` (response_model=JobSemanticMatchResponse).
-   - Check if `request.app.state.db_pool` is available:
-     * If available: execute cosine distance query `1 - (embedding <=> $1) AS score` with filters on `cnp_code` and `region`.
-     * If `db_pool` is None (offline / dev mode): return simulated mock results with `similarity_score >= min_score`.
-
-3. In `apps/api/main.py`:
-   - Import and include the semantic match router:
-     `app.include_router(semantic_match.router, prefix="/api/jobs", tags=["Jobs & Semantic Matching"])`
-
-4. In `apps/api/test_routes.py`:
-   - Add test case verifying `/api/jobs/semantic-match` route exists and returns HTTP 200 with valid mock data when queried via `TestClient`.
+2. `scripts/test_ingest_esco_green_skills.py`:
+   - Standalone unit test suite using `unittest`.
+   - Tests:
+     * `test_green_skills_filtering`: Verifies that non-green skills are excluded and green skills are accurately categorized.
+     * `test_noc_mapping_heuristics`: Asserts that engineering, construction, and environmental CNP codes receive appropriate green tags.
+     * `test_cli_dry_run`: Verifies script executes cleanly with `--dry-run`.
 
 ## Acceptance Criteria
-- `python -m pytest apps/api/test_routes.py` passes with 100% success.
-- `python -c "from apps.api.main import app; from apps.api.schemas import JobSemanticMatchRequest; print('OK')"` exits with code 0.
+- `python scripts/test_ingest_esco_green_skills.py` runs and outputs OK (100% tests pass).
+- `python scripts/ingest_esco_green_skills.py --help` exits with code 0.
+"""
+    },
+    {
+        "id": "h1-2-lead-capture-frontend",
+        "title": "[Frontend / API] Intégration du composant AlerteEmploi avec feedback utilisateur connecté à POST /api/leads",
+        "test_command": "npm --prefix apps/frontend test",
+        "prompt": """# TASK: Implement Job Alert Lead Capture React Component & Wire to FastAPI (H1.2)
+
+## Context & Architecture
+Repository: SAAS-starte-kit/trajektia (Branch: master)
+Stack: TypeScript, React, Astro, Vitest, Tailwind CSS (in apps/frontend/)
+Target Files:
+  - `apps/frontend/src/components/AlerteEmploi.tsx` (New file)
+  - `apps/frontend/src/components/__tests__/AlerteEmploi.test.tsx` (New file)
+
+## Objective
+Create a responsive, accessible React component `AlerteEmploi.tsx` allowing candidates on occupation pages to subscribe to real-time job alerts and salary trend updates for their specific CNP code. It posts data to `/api/leads` and respects Quebec's Law 25 with clear consent notices.
+
+## File Boundaries (STRICT)
+You may ONLY create or modify:
+  - `apps/frontend/src/components/AlerteEmploi.tsx` (New file)
+  - `apps/frontend/src/components/__tests__/AlerteEmploi.test.tsx` (New file)
+Do NOT modify any other files.
+
+## Detailed Requirements
+
+1. `apps/frontend/src/components/AlerteEmploi.tsx`:
+   - Props:
+     ```typescript
+     interface AlerteEmploiProps {
+       cnpCode: string;
+       titreMetier: string;
+     }
+     ```
+   - Features:
+     * Clean, modern glassmorphic card design.
+     * Email input with client-side HTML5 & regex validation.
+     * Clear mention: *« En vous inscrivant, vous acceptez de recevoir des alertes pour ce métier. Conformité Loi 25 : désabonnement instantané en 1 clic. »*
+     * Asynchronous submit via `fetch`:
+       - URL: `(import.meta.env.PUBLIC_API_URL || 'http://localhost:8000') + '/api/leads'`
+       - Method: `POST`
+       - Headers: `{"Content-Type": "application/json"}`
+       - Body: `JSON.stringify({ email, cnp: cnpCode })`
+     * Visual states:
+       - Idle: form with submit button
+       - Loading: spinner state
+       - Success: confirmation message (*« Alerte activée avec succès ! »*)
+       - Error: friendly error message with retry option
+
+2. `apps/frontend/src/components/__tests__/AlerteEmploi.test.tsx`:
+   - Vitest + Testing Library tests:
+     * Render test: verifies title, CNP reference, and Law 25 compliance notice are displayed.
+     * Validation test: prevents submission with invalid email format.
+     * Success flow test: mocks successful fetch and asserts confirmation banner is displayed.
+
+## Acceptance Criteria
+- `npm --prefix apps/frontend test` passes 100% of tests.
+"""
+    },
+    {
+        "id": "i7-4-job-matches-ui",
+        "title": "[Frontend / Astro] Composant interactif d'appariement sémantique d'emploi et d'offres réelles",
+        "test_command": "npm --prefix apps/frontend test",
+        "prompt": """# TASK: Implement Job Semantic Matcher Feed Component (I7.4)
+
+## Context & Architecture
+Repository: SAAS-starte-kit/trajektia (Branch: master)
+Stack: TypeScript, React, Astro, Vitest, Tailwind CSS (in apps/frontend/)
+Target Files:
+  - `apps/frontend/src/components/JobSemanticMatcher.tsx` (New file)
+  - `apps/frontend/src/components/__tests__/JobSemanticMatcher.test.tsx` (New file)
+
+## Objective
+Create a rich, responsive React component `JobSemanticMatcher.tsx` connecting directly to the `/api/jobs/semantic-match` endpoint implemented in I7.3. It allows users to enter candidate skills or career aspirations, filter by Quebec administrative regions, and explore live matching job opportunities with cosine affinity scores.
+
+## File Boundaries (STRICT)
+You may ONLY create or modify:
+  - `apps/frontend/src/components/JobSemanticMatcher.tsx` (New file)
+  - `apps/frontend/src/components/__tests__/JobSemanticMatcher.test.tsx` (New file)
+Do NOT modify any other files.
+
+## Detailed Requirements
+
+1. `apps/frontend/src/components/JobSemanticMatcher.tsx`:
+   - Props:
+     ```typescript
+     interface JobSemanticMatcherProps {
+       initialCnp?: string;
+       initialQuery?: string;
+     }
+     ```
+   - Features:
+     * Input field for query (skills, keywords, aspirations).
+     * Regional dropdown filter (Montréal, Capitale-Nationale, Estrie, etc.).
+     * Min similarity slider or presets (>70%, >80%).
+     * Calls `POST /api/jobs/semantic-match` with JSON payload:
+       `{ query, cnp, region, top_k: 6, min_score: 0.5 }`.
+     * Card view for each matching offer:
+       - Job title, CNP badge, Location (City / Region).
+       - Visual affinity pill: e.g. `92% Correspondance` (green/emerald badge).
+       - Direct link to CNP occupation page `/metiers/{cnp_code}`.
+     * Empty state with helpful hints if no matches found.
+
+2. `apps/frontend/src/components/__tests__/JobSemanticMatcher.test.tsx`:
+   - Vitest test suite:
+     * Renders input controls.
+     * Mocks API response from `/api/jobs/semantic-match` and renders job cards with similarity score percentage.
+     * Handles API error or empty state cleanly.
+
+## Acceptance Criteria
+- `npm --prefix apps/frontend test` passes 100% of tests.
 """
     }
 ]

@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-09-25T11:22:29Z",
-  "task_id": "i7-2-supabase-pgvector-embeddings",
+  "timestamp": "2026-09-25T11:33:53Z",
+  "task_id": "i7-3-semantic-match-router",
   "state": "COMPLETED",
-  "message": "Tâche [CKG / Supabase] Schéma SQL pgvector & pipeline d'embedding textuel des offres (I7.2) intégrée avec succès."
+  "message": "Tâche [FastAPI / CKG] Route API de matching sémantique compétences / profils (I7.3) intégrée avec succès."
 }

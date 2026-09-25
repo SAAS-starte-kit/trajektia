@@ -661,7 +661,7 @@ RÃ‰ALISÃ‰ (Fondations, Ingestion, Moteurs & Taxonomie DPC)
 [FAIT] T7  Audit Intégrité Données & Consolidation Formations (`scripts/audit_data_integrity.ts`, 510 CNPs, 170 DEC, 215 DEP validés, 17/17 tests Vitest passants)
 [FAIT] I7  R&D & Étude de Faisabilité Ingestion Textuelle 14M Offres CKAN & Vectorisation Graph-RAG (`FEASIBILITY_CKAN_VECTORIZATION_I7.md`)
 
-FLOTTE ASYNCHRONE GOOGLE JULES (100 sessions/jour — Salves 1 à 7 validées à 100%)
+FLOTTE ASYNCHRONE GOOGLE JULES (100 sessions/jour — Salves 1 à 10 validées à 100%)
 ────────────────────────────────────────────────────────────────────────
 [FAIT] J1  Découplage Scoring Psychométrique pur (`scoring.ts`) + Suite Vitest 8/8 tests passants (`scoring.test.ts`)
 [FAIT] J2  Modularisation FastAPI dans `routers/` (`occupations`, `search`, `competencies`, `riasec`, `leads`) + Schémas Pydantic v2 stricts (`schemas.py`)
@@ -670,12 +670,15 @@ FLOTTE ASYNCHRONE GOOGLE JULES (100 sessions/jour — Salves 1 à 7 validées à
 [FAIT] J5  Persistance PostgreSQL Supabase `leads_newsletter` + Validation regex & conformité Loi 25 (`leads.py`, `schemas.py`)
 [FAIT] J6  Runner de Migrations SQL et Checksums SHA256 (`scripts/run_migrations.py`, 16 schémas ordonnés de v1 à v15)
 [FAIT] J7  Suite de tests unitaires Vitest pour le moteur psychométrique PR-RSM & TAT (`pr-rsm-engine.test.ts`, 17/17 tests passants)
+[FAIT] J8 / I7.1 Parseur UTF-16LE multi-mois CKAN avec granularité ville/région QC (`scripts/ingest_ckan_regional_profiles.py` & `scripts/test_ingest_ckan_regional.py`)
+[FAIT] J9 / I7.2 Migration SQL Supabase `pgvector` HNSW & pipeline d'embedding textuel (`packages/database/schema_v16_job_postings_vectors.sql` & `scripts/generate_job_embeddings.py`)
+[FAIT] J10 / I7.3 Endpoint FastAPI de Matching Sémantique d'Emplois (`apps/api/routers/semantic_match.py`, `POST /api/jobs/semantic-match`)
 
-PROCHAINE ÉTAPE PRIORITAIRE — Sprint Ingestion Régionale CKAN & Index Vectoriel Neo4j
+PROCHAINE ÉTAPE PRIORITAIRE — Sprint UI Matching Sémantique & Taggage Vert CKG
 ────────────────────────────────────────────────────────────────────────
-1. [À FAIRE] I7.1 Développement du parseur UTF-16LE multi-mois CKAN pour extraire la granularité ville/région
-2. [À FAIRE] I7.2 Pipeline d'embedding textuel (`text-embedding-004`) et stockage HNSW dans Supabase `pgvector`
-3. [À FAIRE] I7.3 Indexation vectorielle Neo4j et route API de matching sémantique compétences / profils
+1. [À FAIRE] A4   Ingestion ciblée des compétences écologiques ESCO Green Skills & Taggage vert des métiers CNP (`scripts/ingest_esco_green_skills.py`)
+2. [À FAIRE] H1.2 Intégration composant de capture de leads `AlerteEmploi.tsx` raccordé à l'API `POST /api/leads`
+3. [À FAIRE] I7.4 Composant React interactif de matching d'offres en direct `JobSemanticMatcher.tsx` (Astro/React)
 ```
 
 
