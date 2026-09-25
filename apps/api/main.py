@@ -42,6 +42,7 @@ from apps.api.routers import (
     riasec_router,
     leads_router
 )
+from apps.api.routers import semantic_match
 
 # Charger .env depuis la racine du projet
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
@@ -132,3 +133,4 @@ app.include_router(search_router)
 app.include_router(competencies_router)
 app.include_router(riasec_router)
 app.include_router(leads_router)
+app.include_router(semantic_match.router, prefix="/api/jobs", tags=["Jobs & Semantic Matching"])

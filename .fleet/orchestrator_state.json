@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-09-24T23:45:00Z",
-  "task_id": "i7-1-ckan-regional-parser",
-  "state": "IN_PROGRESS",
-  "message": "Session Jules 11615682814945264306 lancee avec succes."
+  "timestamp": "2026-09-25T11:22:29Z",
+  "task_id": "i7-2-supabase-pgvector-embeddings",
+  "state": "COMPLETED",
+  "message": "Tâche [CKG / Supabase] Schéma SQL pgvector & pipeline d'embedding textuel des offres (I7.2) intégrée avec succès."
 }

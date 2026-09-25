@@ -162,3 +162,25 @@ class LeadResponse(BaseModel):
     status: str
     message: str
     lead_id: Optional[int] = None
+
+# ── Job Matching ──────────────────────────────────────────────
+class JobMatchItem(BaseModel):
+    id: int
+    external_id: str
+    job_title: str
+    cnp_code: str
+    city: Optional[str] = None
+    region: Optional[str] = None
+    similarity_score: float
+
+class JobSemanticMatchRequest(BaseModel):
+    query: str = Field(..., min_length=2, description="Texte de recherche ou compétences du candidat")
+    cnp: Optional[str] = Field(None, max_length=10, description="Filtre optionnel par code CNP")
+    region: Optional[str] = Field(None, description="Filtre optionnel par région")
+    top_k: int = Field(5, ge=1, le=50, description="Nombre maximum de résultats")
+    min_score: float = Field(0.0, ge=0.0, le=1.0, description="Seuil minimal de similarité")
+
+class JobSemanticMatchResponse(BaseModel):
+    query: str
+    total_matches: int
+    matches: List[JobMatchItem]

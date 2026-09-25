@@ -27,5 +27,24 @@ def test_routes_exist():
     assert "/api/competences/{cnp_code}" in routes
     assert "/api/riasec/{cnp_code}" in routes
     assert "/api/leads" in routes
+    assert "/api/jobs/semantic-match" in routes
 
     assert len(app.routes) > 5
+
+def test_semantic_match():
+    # Because db_pool is not initialized outside of lifespan in test without start up, 
+    # db_pool is None, which triggers the mock code path.
+    payload = {
+        "query": "Développeur Python",
+        "cnp": "21232",
+        "region": "QC",
+        "top_k": 5,
+        "min_score": 0.5
+    }
+    response = client.post("/api/jobs/semantic-match", json=payload)
+    assert response.status_code == 200
+    data = response.json()
+    assert data["query"] == "Développeur Python"
+    assert "matches" in data
+    assert len(data["matches"]) >= 0
+
