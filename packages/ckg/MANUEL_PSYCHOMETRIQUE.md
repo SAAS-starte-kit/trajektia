@@ -356,6 +356,12 @@ Afin d'assurer le respect strict du code de déontologie de l'OCCOQ, le moteur a
    - *Contextualisation sémantique au métier* : Remplacement des définitions génériques par des **formulations d'action spécifiques au rôle professionnel** (ex: pour un développeur de logiciels, la *Pensée Analytique* devient *"Analyser les besoins et développer des solutions logicielles complexes"*, tandis que le *Raisonnement Logique* devient *"Évaluer la robustesse et l'efficience des architectures logicielles"*).
    - *Règle de zéro-description nulle* : Intégration d'un générateur déterministe assurant qu'aucune fiche métier n'affiche de description `null` ou vide, chaque style disposant d'une déclinaison sectorielle adaptée.
    - *Mode Espace Conseiller / Pro* : Conservation de l'exhaustivité des **21 facettes comportementales O*NET** pour permettre aux conseillers d'orientation (membres de l'OCCOQ) de conduire des analyses différentielles approfondies lors des bilans de compétences.
+6. **Badges Méthodologiques et Explicabilité Clinique (<MethodologyBadge>)** :
+   Afin de matérialiser la transparence algorithmique préconisée par l'OCCOQ et la Loi 25 québécoise, l'interface intègre quatre badges normalisés adossés à des infobulles accessibles :
+   - **`live` (Dynamisme du Marché)** : Atteste que la demande est issue de données réelles agrégées en continu (Guichet-Emplois / CKAN / Adzuna) et non de modélisations théoriques obsolètes.
+   - **`realwage` (Pouvoir d'Achat Réel)** : Rappelle que les rémunérations sont pondérées par l'Indice des Prix à la Consommation (IPC) québécois pour refléter le niveau de vie effectif.
+   - **`tension` (Indice de Recrutement)** : Situe le niveau d'ouverture du marché régional (postes vacants vs postulants qualifiés) pour contextualiser l'insertion professionnelle.
+   - **`dpc` (Distance de Proximité de Compétences)** : Garantit une mesure continue et non-éliminatoire de la transférabilité des acquis, valorisant les passerelles de reconversion naturelles.
 
 ---
 

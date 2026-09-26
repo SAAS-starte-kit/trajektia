@@ -685,15 +685,15 @@ FLOTTE ASYNCHRONE GOOGLE JULES (100 sessions/jour — Salves 1 à 10 validées �
 
 ---
 
-## ðŸš€ Commandes de dÃ©marrage rapide
+## 🚀 Commandes de démarrage rapide
 
 ```bash
 # Toujours depuis le dossier trajektia/
 
-# 1. VÃ©rifier la config et les fichiers sources
+# 1. Vérifier la config et les fichiers sources
 python ckg/ckg_config.py
 
-# 2. VÃ©rifier les donnÃ©es physiques et DPC en base
+# 2. Vérifier les données physiques et DPC en base
 python scratch/verify_physical_db.py
 
 # 3. Synchroniser Neo4j -> Supabase (Le Siphon)
