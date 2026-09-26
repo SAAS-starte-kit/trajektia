@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-09-25T22:17:59Z",
-  "task_id": "a4-esco-green-skills",
+  "timestamp": "2026-09-26T00:31:05Z",
+  "task_id": "d3-career-pathways-api",
   "state": "COMPLETED",
-  "message": "Tâche [CKG / ESCO] Ingestion ciblée des compétences vertes (Green Skills) et marquage écologique des métiers CNP intégrée avec succès."
+  "message": "Tâche [FastAPI / CKG] Endpoint des passerelles de reconversion professionnelles et bifurcations (D3) intégrée avec succès."
 }
