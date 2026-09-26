@@ -114,11 +114,12 @@ Trajektia construit un **graphe de connaissances multi-dimensionnel** (Career Kn
 │     • /api/competences/{cnp}  -> competencies.py                                       │
 │     • /api/riasec/{cnp}       -> riasec.py                                             │
 │     • /api/leads              -> leads.py (Loi 25, asyncpg, doublons idempotents)      │
+│     • /api/jobs/semantic-match-> semantic_match.py (pgvector cosine, matching régional)│
 │     Schémas typés stricts     -> apps/api/schemas.py (Pydantic v2)                     │
 │   ) ───┐                                                                               │
 │   Supabase Client (@supabase/ssr) ───┼──► Astro 5 (apps/frontend : Vitrine SSG & SSR) │
-│                                      │    Vitest Suite (17 tests passants)             │
-│   Directus (Admin Back-Office)───────┘    Site Web & Exploration Trajektia             │
+│                                      │    Vitest Suite (25 tests passants, 4 suites)   │
+│   Directus (Admin Back-Office)───────┘    Site Web, AlerteEmploi & JobSemanticMatcher  │
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -1347,6 +1348,17 @@ params = {
 #     "Efficacité énergétique des bâtiments", "Mobilité douce et transport durable"
 ```
 
+### 12.4 Pipeline d'Ingestion Dédié & Taggage Écologique CNP (`scripts/ingest_esco_green_skills.py`)
+
+Afin de garantir une traçabilité et une autonomie totale, le script [`scripts/ingest_esco_green_skills.py`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/scripts/ingest_esco_green_skills.py) structure l'ingestion des compétences écologiques selon 5 domaines taxonomiques de transition québécoise :
+1. **Énergie renouvelable & Réseaux intelligents** : éolien, hydroélectricité, solaire, transport d'énergie décarbonée.
+2. **Économie circulaire & Gestion des matières** : valorisation des résidus, écoconception, recyclage industriel.
+3. **Bâtiment durable & Efficacité énergétique** : certification LEED, isolation thermique, décarbonation CVAC.
+4. **Conformité environnementale & Bilan carbone** : normes ISO 14001, audit GES, conformité Loi sur la qualité de l'environnement (LQE).
+5. **Mobilité durable & Véhicules électriques** : électrification des transports, logistique décarbonée.
+
+Le script cartographie automatiquement les compétences vertes aux 510 métiers CNP québécois pertinents et est validé à 100% par sa suite unitaire dédiée [`scripts/test_ingest_esco_green_skills.py`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/scripts/test_ingest_esco_green_skills.py).
+
 ---
 
 ## 13. Contrôle Qualité et Intégrité des Données
@@ -1354,28 +1366,34 @@ params = {
 ### 13.1 Tests automatisés et Suites de Validation
 
 ```bash
-# 1. Tests unitaires frontend & psychométrie (Vitest — 17 tests passants)
+# 1. Tests unitaires frontend & psychométrie & UI (Vitest — 25 tests passants, 4 suites)
 npm --prefix apps/frontend test
 
 # 2. Validation et build statique Astro SSG (910 pages compilées sans erreur)
 npm --prefix apps/frontend run build
 
-# 3. Vérification de l'intégrité et des schémas de migrations SQL (16 versions)
+# 3. Tests unitaires scripts CKG & ETL (10 tests passants : CKAN, pgvector, ESCO Green Skills)
+python -m unittest discover -s scripts -p "test_*.py"
+
+# 4. Tests des routes et endpoints FastAPI (3 suites pytest, incluant /api/jobs/semantic-match)
+python -m pytest apps/api/test_routes.py
+
+# 5. Vérification de l'intégrité et des schémas de migrations SQL (16 versions ordonnées de v1 à v16)
 python scripts/run_migrations.py --dry-run
 
-# 4. Contrôle d'importation et modularité de l'API FastAPI (11 routes Pydantic v2)
+# 6. Contrôle d'importation et modularité de l'API FastAPI (12 routes Pydantic v2)
 python -c "from apps.api.main import app; print('API OK, routes:', len(app.routes))"
 
-# 5. Audit complet du graphe Neo4j
+# 7. Audit complet du graphe Neo4j
 python packages/ckg/audit/verify_ckg_data.py
 
-# 6. Vérification de la synchronisation Neo4j ↔ Supabase (Le Siphon)
+# 8. Vérification de la synchronisation Neo4j ↔ Supabase (Le Siphon)
 python packages/data-pipeline/etl/check_db.py
 
-# 7. Test et calibration du moteur psychométrique Prediger (ICP)
+# 9. Test et calibration du moteur psychométrique Prediger (ICP)
 python packages/data-pipeline/analytics/prediger_riasec_calibrator.py
 
-# 8. Audit d'intégrité des liaisons croisées Métiers ↔ Formations MEQ (510 CNP, 170 DEC, 215 DEP)
+# 10. Audit d'intégrité des liaisons croisées Métiers ↔ Formations MEQ (510 CNP, 170 DEC, 215 DEP)
 npx tsx scripts/audit_data_integrity.ts
 ```
 
@@ -2194,22 +2212,60 @@ Trajektia unifie les parcours éducatifs québécois et les professions du march
 - **Extraction sémantique de compétences** : Dépouillement des descriptions d'offres en temps réel pour alimenter la colonne `extracted_skills` de la table `trajektia_live_job_postings`.
 - **Système de repli multi-portails permanent** : Pour tout métier n'ayant pas d'offre pré-indexée en base, un module permanent expose des liens dynamiques pré-filtrés sur le code CNP vers Guichet-Emplois Canada/Québec, Jobillico et Québec Emploi.
 
-### 21.5 Architecture R&D I7 — Ingestion Textuelle 14M CKAN & Graph-RAG
-- **Objectif** : Transformer les 120 000 offres d'emploi québécoises longitudinales en représentations vectorielles au sein de Neo4j et PostgreSQL.
-- **Stratégie hybride** : Le socle longitudinal CKAN fournit la granularité géographique fine (ville, région administrative) et les salaires historiques ; l'API Adzuna / Guichet-Emplois fournit le texte libre exhaustif des descriptions.
-- **Vectorisation & Modèle** : Utilisation du modèle `text-embedding-004` (768 dimensions) avec normalisation L2.
-- **Indexation vectorielle Neo4j** :
-  ```cypher
-  CREATE VECTOR INDEX job_posting_embeddings IF NOT EXISTS
-  FOR (j:JobPosting) ON (j.embedding)
-  OPTIONS {
-    indexConfig: {
-      `vector.dimensions`: 768,
-      `vector.similarity_function`: 'cosine'
-    }
-  };
-  ```
-- **Indexation PostgreSQL** : Table `trajektia_job_embeddings` indexée par HNSW via l'extension `pgvector`.
+### 21.5 Module Opérationnel I7 — Ingestion Textuelle CKAN, Vectorisation pgvector & Matching Sémantique
+
+L'Initiative I7 est désormais pleinement intégrée et opérationnelle dans l'architecture Trajektia :
+
+#### 21.5.1 Parseur Résilient UTF-16LE / UTF-8 CKAN (`scripts/ingest_ckan_regional_profiles.py`)
+- **Problème résolu** : Les fichiers d'archives mensuelles Guichet-Emplois alternent sans préavis entre `UTF-16LE` avec BOM (`\xff\xfe`), `UTF-16BE` (`\xfe\xff`), `UTF-8-SIG` et `UTF-8`. L'ancien traitement silencieux (`errors='ignore'`) corrompait les accents et noms de municipalités québécoises (Trois-Rivières, Montréal, etc.).
+- **Détection dynamique du BOM** : Fonction `decode_ckan_bytes()` assurant une intégrité textuelle à 100 %.
+- **Normalisation géographique & salariale** :
+  * Filtrage strict de la province de Québec (`QC`, `Québec`, `Quebec`).
+  * Normalisation des codes CNP à 5 chiffres.
+  * Annualisation rigoureuse de la rémunération (1 820 h pour salaire horaire, 52 semaines pour hebdomadaire, 12 mois pour mensuel, 260 jours pour journalier) avec élimination des valeurs aberrantes hors de l'intervalle `[18 000 $, 350 000 $]`.
+  * Agrégation multi-dimensionnelle par tuple `(cnp_code, province, region_economique, ville, snapshot_date)`.
+- **Validation** : Suite unitaire dédiée [`scripts/test_ingest_ckan_regional.py`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/scripts/test_ingest_ckan_regional.py).
+
+#### 21.5.2 Schéma SQL Supabase pgvector & Index HNSW (`schema_v16_job_postings_vectors.sql`)
+La migration v16 introduit la persistance vectorielle sur PostgreSQL :
+```sql
+CREATE EXTENSION IF NOT EXISTS vector;
+
+CREATE TABLE IF NOT EXISTS job_postings_vectors (
+    id BIGSERIAL PRIMARY KEY,
+    external_id TEXT UNIQUE NOT NULL,
+    cnp_code VARCHAR(10) NOT NULL,
+    job_title TEXT NOT NULL,
+    city TEXT,
+    region TEXT,
+    content_chunk TEXT NOT NULL,
+    embedding vector(768),
+    metadata JSONB DEFAULT '{}'::jsonb,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE INDEX IF NOT EXISTS job_postings_vectors_cnp_idx ON job_postings_vectors (cnp_code);
+CREATE INDEX IF NOT EXISTS job_postings_vectors_embedding_idx ON job_postings_vectors USING hnsw (embedding vector_cosine_ops);
+```
+
+#### 21.5.3 Pipeline d'Embeddings Textuels (`scripts/generate_job_embeddings.py`)
+- **Template de chunking structuré** : Intègre titre de poste, CNP officiel, ville, région économique, modalités de télétravail, compétences requises et description contextuelle.
+- **Normalisation vectorielle** : Vecteurs 768 dimensions normalisés L2 (norme unitaire $||v||_2 = 1.0$), compatibles avec le modèle `text-embedding-004` et testés via [`scripts/test_generate_job_embeddings.py`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/scripts/test_generate_job_embeddings.py).
+
+#### 21.5.4 Endpoint FastAPI de Matching Sémantique (`/api/jobs/semantic-match`)
+- **Routeur modulaire** : [`apps/api/routers/semantic_match.py`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/apps/api/routers/semantic_match.py) monté sur `POST /api/jobs/semantic-match`.
+- **Requête vectorielle** : Calcul de distance cosinus SQL `1 - (embedding <=> $1) AS similarity_score` avec filtres optionnels par CNP et région administrative.
+- **Schémas Pydantic v2** : `JobSemanticMatchRequest`, `JobMatchItem`, `JobSemanticMatchResponse` définis dans [`apps/api/schemas.py`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/apps/api/schemas.py).
+
+#### 21.5.5 Composants Frontend & Expérience Candidat (React / Astro)
+1. **Composant AlerteEmploi** ([`apps/frontend/src/components/AlerteEmploi.tsx`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/apps/frontend/src/components/AlerteEmploi.tsx)) :
+   - Formulaire d'abonnement aux alertes pour un code CNP spécifique.
+   - Respect strict de la **Loi 25 du Québec** (consentement explicite, désabonnement en 1 clic).
+   - Connexion asynchrone à l'endpoint `POST /api/leads` avec gestion des états d'attente, de confirmation et d'erreur.
+2. **Composant JobSemanticMatcher** ([`apps/frontend/src/components/JobSemanticMatcher.tsx`](file:///c:/Users/Patrice.DESKTOP-I932PON/Dev/saas-ai-starter/trajektia/apps/frontend/src/components/JobSemanticMatcher.tsx)) :
+   - Interface interactive de recherche d'offres par compétences ou aspirations professionnelles.
+   - Filtre géographique par région administrative québécoise.
+   - Badge d'affinité visuelle en pourcentage de similarité cosinus (ex: `92% Correspondance`) et lien vers la fiche métier.
 
 ---
 
