@@ -119,186 +119,24 @@ COMPLETED_TASKS = [
         "title": "[Frontend / Astro] Composant interactif d'appariement sémantique d'emploi et d'offres réelles",
         "test_command": "npm --prefix apps/frontend test",
     },
-]
-
-TASKS_QUEUE = [
     {
         "id": "d3-career-pathways-api",
         "title": "[FastAPI / CKG] Endpoint des passerelles de reconversion professionnelles et bifurcations (D3)",
         "test_command": "python -m pytest apps/api/test_routes.py",
-        "prompt": """# TASK: Implement Career Pathways & Reconversion Endpoint in FastAPI (D3)
-
-## Context & Architecture
-Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: FastAPI 0.111, Pydantic v2, asyncpg, Pytest (in apps/api/)
-Target Files:
-  - `apps/api/schemas.py`
-  - `apps/api/routers/occupations.py`
-  - `apps/api/test_routes.py`
-
-## Objective
-Implement endpoint `GET /api/occupations/{cnp_code}/pathways` in FastAPI to calculate and expose career mobility and transition pathways (bifurcations professionnelles) between occupations.
-
-## File Boundaries (STRICT)
-You may ONLY modify:
-  - `apps/api/schemas.py`
-  - `apps/api/routers/occupations.py`
-  - `apps/api/test_routes.py`
-Do NOT modify any other files.
-
-## Detailed Requirements
-
-1. In `apps/api/schemas.py`:
-   - Add Pydantic v2 models:
-     ```python
-     class PathwayItem(BaseModel):
-         target_cnp: str = Field(..., description="Code CNP cible")
-         target_title_fr: str = Field(..., description="Titre en français de la profession cible")
-         transition_ease_score: float = Field(..., ge=0.0, le=100.0, description="Facilité de transition (0-100%)")
-         feer_diff: int = Field(..., description="Écart de niveau FEER/formation (ex: 0, 1, -1)")
-         rationale_fr: str = Field(..., description="Explication clinique ou dimensionnelle de la transition")
-         shared_competencies_count: int = Field(0, description="Nombre de compétences communes")
-
-     class OccupationalPathwaysResponse(BaseModel):
-         source_cnp: str
-         source_title_fr: str
-         pathways_count: int
-         pathways: List[PathwayItem]
-     ```
-
-2. In `apps/api/routers/occupations.py`:
-   - Add route:
-     `@router.get("/api/occupations/{cnp_code}/pathways", response_model=OccupationalPathwaysResponse)`
-   - Behavior:
-     * Check if `request.app.state.db_pool` is available:
-       - If available: query related occupations in same broad/major category or with small FEER difference.
-       - If `db_pool` is None (offline / test mode): return deterministic mock response:
-         - source_cnp: cnp_code
-         - source_title_fr: f"Profession {cnp_code}"
-         - 2 to 3 pathways (e.g. for tech/admin/science transitions) with valid transition_ease_score (e.g. 85.0, 78.0), feer_diff (0 or 1), and clinical rationale.
-
-3. In `apps/api/test_routes.py`:
-   - Add test `test_get_occupations_pathways()`:
-     * Request `GET /api/occupations/21232/pathways` via `client.get`.
-     * Assert status code is 200.
-     * Assert response JSON contains `source_cnp == "21232"`, `pathways`, and `len(pathways) > 0`.
-     * Assert each pathway item has `transition_ease_score >= 0` and `target_cnp`.
-   - Update `test_routes_exist()` to assert `"/api/occupations/{cnp_code}/pathways"` in routes.
-
-## Acceptance Criteria
-- `python -m pytest apps/api/test_routes.py` passes 100% of tests.
-"""
     },
     {
         "id": "h4-methodology-badges-frontend",
         "title": "[Frontend / Astro] Composant badges de propriété intellectuelle et infobulles méthodologiques (H4)",
         "test_command": "npm --prefix apps/frontend test",
-        "prompt": """# TASK: Implement Methodology & Intellectual Property Badges Component (H4)
-
-## Context & Architecture
-Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: TypeScript, React, Astro, Vitest, Testing Library (in apps/frontend/)
-Target Files:
-  - `apps/frontend/src/components/MethodologyBadge.tsx` (New file)
-  - `apps/frontend/src/components/__tests__/MethodologyBadge.test.tsx` (New file)
-
-## Objective
-Create a reusable React component `MethodologyBadge.tsx` in `apps/frontend/src/components/` that displays official certified methodology badges for Trajektia intellectual property marks (defined in MANUEL_METHODOLOGIQUE_CKG.md):
-- `Trajektia Live™` (Salaires et dynamique de marché en continu)
-- `Trajektia RealWage™` (Médiane salariale pondérée par coût de la vie québécois)
-- `Indice de Tension Marché Trajektia™` (Ratio offres actives / chercheurs)
-- `Profil DPC Trajektia™` (Données, Personnes, Choses - Modèle de Prediger)
-
-## File Boundaries (STRICT)
-You may ONLY create:
-  - `apps/frontend/src/components/MethodologyBadge.tsx`
-  - `apps/frontend/src/components/__tests__/MethodologyBadge.test.tsx`
-Do NOT modify any other files.
-
-## Detailed Requirements
-
-1. In `apps/frontend/src/components/MethodologyBadge.tsx`:
-   - Types:
-     ```typescript
-     export type MethodologyMetric = 
-       | 'live' 
-       | 'realwage' 
-       | 'tension' 
-       | 'dpc';
-
-     export interface MethodologyBadgeProps {
-       metric: MethodologyMetric;
-       size?: 'sm' | 'md';
-       showTooltip?: boolean;
-     }
-     ```
-   - Provide a dictionary of official descriptions and labels:
-     * `live`: Label "Trajektia Live™", Badge style (cyan/blue), description: "Indice salarial en temps réel basé sur l'agrégation continue des offres d'emploi au Québec."
-     * `realwage`: Label "Trajektia RealWage™", Badge style (emerald/green), description: "Médiane salariale nette calibrée selon le coût de la vie et les conventions collectives du Québec."
-     * `tension`: Label "Indice de Tension Trajektia™", Badge style (amber/orange), description: "Mesure de pénurie et de dynamisme de recrutement par région administrative."
-     * `dpc`: Label "Profil DPC Trajektia™", Badge style (indigo/purple), description: "Modélisation empirique Données-Personnes-Choses et projection bi-axiale de Prediger."
-   - Features:
-     * Accessible badge button / span with `role="button"` or `aria-label`.
-     * Interactive tooltip or toggle info bubble on click / hover.
-     * Clean, modern Tailwind CSS glassmorphism styles.
-
-2. In `apps/frontend/src/components/__tests__/MethodologyBadge.test.tsx`:
-   - Vitest + Testing Library suite:
-     * Verifies that each metric type ('live', 'realwage', 'tension', 'dpc') renders its corresponding trademark label.
-     * Verifies that clicking or hovering displays the methodology explanation.
-     * Verifies that accessible `aria-label` or text is present.
-
-## Acceptance Criteria
-- `npm --prefix apps/frontend test` passes 100% of tests.
-"""
     },
     {
         "id": "i1-ckg-batch-embeddings",
         "title": "[CKG / FastEmbed] Script batch d'inférence vectorielle et test des embeddings métiers CNP (I1)",
         "test_command": "python scripts/test_generate_ckg_embeddings.py",
-        "prompt": """# TASK: Implement CKG Occupations Batch Embeddings Generator & Tests (I1)
-
-## Context & Architecture
-Repository: SAAS-starte-kit/trajektia (Branch: master)
-Stack: Python 3.10+, FastEmbed ONNX (or mock fallback), Supabase SQL, Unittest
-Target Files:
-  - `scripts/generate_ckg_embeddings.py` (New file)
-  - `scripts/test_generate_ckg_embeddings.py` (New file)
-
-## Objective
-Implement an autonomous batch vectorization script `scripts/generate_ckg_embeddings.py` for all 510 CNP occupations in the Career Knowledge Graph, and a corresponding test suite `scripts/test_generate_ckg_embeddings.py`.
-
-## File Boundaries (STRICT)
-You may ONLY create:
-  - `scripts/generate_ckg_embeddings.py`
-  - `scripts/test_generate_ckg_embeddings.py`
-Do NOT modify any other files.
-
-## Detailed Requirements
-
-1. In `scripts/generate_ckg_embeddings.py`:
-   - Function `format_occupation_chunk(cnp: str, title_fr: str, description_fr: str = "", category_fr: str = "", riasec: str = "") -> str`:
-     Returns a dense semantic chunk: `f"Code CNP: {cnp} | Métier: {title_fr} | Domaine: {category_fr} | RIASEC: {riasec} | Description: {description_fr}"`.
-   - Function `generate_embedding(text: str, mock: bool = False) -> list[float]`:
-     * If fastembed is installed and mock is False: uses TextEmbedding(model_name="nomic-ai/nomic-embed-text-v1.5") or similar.
-     * If mock=True or FastEmbed not available: generates deterministic 768-dimensional normalized unit vector based on hash of input text.
-   - CLI Interface:
-     * `--dry-run`: runs formatting and mock embeddings generation for sample occupations without requiring database connection.
-     * `--limit N`: limit to N occupations.
-     * `--output-json PATH`: optional export to JSON file.
-
-2. In `scripts/test_generate_ckg_embeddings.py`:
-   - Unittest suite:
-     * `test_format_occupation_chunk`: asserts chunk contains CNP, title, and category.
-     * `test_embedding_dimension_and_norm`: asserts generated mock vector has length 768 and L2 norm is ~1.0 (unit vector).
-     * `test_cosine_similarity_relevance`: verifies that cosine similarity between two tech jobs (e.g. Développeur web and Développeur logiciel) is higher than between Développeur web and Boucher/Charcutier.
-
-## Acceptance Criteria
-- `python scripts/test_generate_ckg_embeddings.py` passes 100% of tests.
-- `python scripts/generate_ckg_embeddings.py --dry-run --limit 3` runs cleanly and exits with code 0.
-"""
-    }
+    },
 ]
+
+TASKS_QUEUE = []
 
 
 # ==============================================================================

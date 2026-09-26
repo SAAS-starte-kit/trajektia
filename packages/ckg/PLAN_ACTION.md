@@ -677,6 +677,9 @@ FLOTTE ASYNCHRONE GOOGLE JULES (100 sessions/jour — Salves 1 à 10 validées �
 [FAIT] J11 / A4   Ingestion ciblée des compétences écologiques ESCO Green Skills & Taggage vert des métiers CNP (`scripts/ingest_esco_green_skills.py`)
 [FAIT] J12 / H1.2 Intégration composant de capture de leads `AlerteEmploi.tsx` raccordé à l'API `POST /api/leads` (4/4 tests Vitest passants)
 [FAIT] J13 / I7.4 Composant React interactif de matching d'offres en direct `JobSemanticMatcher.tsx` (4/4 tests Vitest passants, 25/25 suite globale)
+[FAIT] J14 / D3   Endpoint FastAPI des Passerelles de Reconversion & Bifurcations (`apps/api/routers/occupations.py`, `GET /api/occupations/{cnp}/pathways`, 4/4 tests Pytest passants)
+[FAIT] J15 / H4   Composant Astro/React `<MethodologyBadge>` avec Infobulles Officielles de Propriété Intellectuelle & Tests Vitest (30/30 suite globale)
+[FAIT] J16 / I1   Script Batch d'Inférence Vectorielle FastEmbed / nomic 768D des 510 Métiers CNP (`scripts/generate_ckg_embeddings.py` & `scripts/test_generate_ckg_embeddings.py`)
 ```
 
 

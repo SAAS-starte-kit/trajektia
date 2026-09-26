@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-09-26T00:38:26Z",
-  "task_id": "h4-methodology-badges-frontend",
+  "timestamp": "2026-09-26T00:52:57Z",
+  "task_id": "i1-ckg-batch-embeddings",
   "state": "COMPLETED",
-  "message": "Tâche [Frontend / Astro] Composant badges de propriété intellectuelle et infobulles méthodologiques (H4) intégrée avec succès."
+  "message": "Tâche [CKG / FastEmbed] Script batch d'inférence vectorielle et test des embeddings métiers CNP (I1) intégrée avec succès."
 }
