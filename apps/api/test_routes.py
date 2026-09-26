@@ -28,6 +28,7 @@ def test_routes_exist():
     assert "/api/riasec/{cnp_code}" in routes
     assert "/api/leads" in routes
     assert "/api/jobs/semantic-match" in routes
+    assert "/api/occupations/{cnp_code}/pathways" in routes
 
     assert len(app.routes) > 5
 
@@ -48,3 +49,19 @@ def test_semantic_match():
     assert "matches" in data
     assert len(data["matches"]) >= 0
 
+
+def test_get_occupations_pathways():
+    # Calling the endpoint should trigger the deterministic mock response
+    # since db_pool is None outside of lifespan in TestClient context
+    response = client.get("/api/occupations/21232/pathways")
+    assert response.status_code == 200
+    
+    data = response.json()
+    assert data["source_cnp"] == "21232"
+    assert "pathways" in data
+    assert len(data["pathways"]) > 0
+    
+    for pathway in data["pathways"]:
+        assert "target_cnp" in pathway
+        assert "transition_ease_score" in pathway
+        assert pathway["transition_ease_score"] >= 0

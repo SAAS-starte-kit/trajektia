@@ -184,3 +184,18 @@ class JobSemanticMatchResponse(BaseModel):
     query: str
     total_matches: int
     matches: List[JobMatchItem]
+
+# ── Career Pathways ───────────────────────────────────────────
+class PathwayItem(BaseModel):
+    target_cnp: str = Field(..., description="Code CNP cible")
+    target_title_fr: str = Field(..., description="Titre en français de la profession cible")
+    transition_ease_score: float = Field(..., ge=0.0, le=100.0, description="Facilité de transition (0-100%)")
+    feer_diff: int = Field(..., description="Écart de niveau FEER/formation (ex: 0, 1, -1)")
+    rationale_fr: str = Field(..., description="Explication clinique ou dimensionnelle de la transition")
+    shared_competencies_count: int = Field(0, description="Nombre de compétences communes")
+
+class OccupationalPathwaysResponse(BaseModel):
+    source_cnp: str
+    source_title_fr: str
+    pathways_count: int
+    pathways: List[PathwayItem]

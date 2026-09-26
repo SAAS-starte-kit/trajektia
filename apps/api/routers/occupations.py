@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Request
-from apps.api.schemas import OccupationFullProfileResponse
+from apps.api.schemas import OccupationFullProfileResponse, OccupationalPathwaysResponse, PathwayItem
 
 router = APIRouter(tags=["Métiers"])
 
@@ -117,4 +117,89 @@ async def get_metier(cnp_code: str, request: Request):
             "exigences": [dict(r) for r in requirements],
             "competences_oasis": [dict(c) for c in competences],
             "oasis_complet": row["oasis_mapped"],
+        }
+
+
+@router.get("/api/occupations/{cnp_code}/pathways", response_model=OccupationalPathwaysResponse)
+async def get_occupations_pathways(cnp_code: str, request: Request):
+    """
+    Retourne les voies de mobilité (bifurcations) possibles pour une profession.
+    """
+    db_pool = getattr(request.app.state, 'db_pool', None)
+    
+    if db_pool is None:
+        # Mode hors ligne / test: retourner des données déterministes (mock)
+        return {
+            "source_cnp": cnp_code,
+            "source_title_fr": f"Profession {cnp_code}",
+            "pathways_count": 2,
+            "pathways": [
+                {
+                    "target_cnp": "11111",
+                    "target_title_fr": "Profession cible 1",
+                    "transition_ease_score": 85.0,
+                    "feer_diff": 0,
+                    "rationale_fr": "Compétences transférables en administration et gestion.",
+                    "shared_competencies_count": 15
+                },
+                {
+                    "target_cnp": "22222",
+                    "target_title_fr": "Profession cible 2",
+                    "transition_ease_score": 78.0,
+                    "feer_diff": 1,
+                    "rationale_fr": "Nécessite une formation complémentaire courte (FEER +1).",
+                    "shared_competencies_count": 8
+                }
+            ]
+        }
+    
+    async with db_pool.acquire() as conn:
+        # Obtenir les infos de la profession source
+        source = await conn.fetchrow(
+            """
+            SELECT cnp_code, title_fr, major_group_code, teer_level
+            FROM occupations
+            WHERE cnp_code = $1
+            """,
+            cnp_code
+        )
+        
+        if not source:
+            raise HTTPException(status_code=404, detail=f"Profession introuvable : {cnp_code}")
+            
+        # Trouver des professions dans le même groupe principal avec une différence de FEER <= 1
+        pathways_rows = await conn.fetch(
+            """
+            SELECT 
+                cnp_code as target_cnp, 
+                title_fr as target_title_fr,
+                teer_level
+            FROM occupations
+            WHERE major_group_code = $1
+            AND cnp_code != $2
+            AND ABS(teer_level - $3) <= 1
+            LIMIT 5
+            """,
+            source['major_group_code'], cnp_code, source['teer_level']
+        )
+        
+        pathways = []
+        for row in pathways_rows:
+            feer_diff = row['teer_level'] - source['teer_level']
+            # Score bidon pour l'exemple
+            score = max(0.0, 100.0 - abs(feer_diff) * 20.0) 
+            pathways.append({
+                "target_cnp": row['target_cnp'],
+                "target_title_fr": row['target_title_fr'],
+                "transition_ease_score": float(score),
+                "feer_diff": int(feer_diff),
+                "rationale_fr": f"Transition possible dans le même domaine d'expertise (différence FEER: {feer_diff}).",
+                "shared_competencies_count": 5
+            })
+            
+        return {
+            "source_cnp": source["cnp_code"],
+            "source_title_fr": source["title_fr"],
+            "pathways_count": len(pathways),
+            "pathways": pathways
         }
